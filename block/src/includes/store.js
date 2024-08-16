@@ -31,7 +31,7 @@ const selectors = {
 	},
 };
 
-const store = registerStore( 'woo-tax-switch/store', {
+const store = registerStore( 'wdevs-tax-switch/store', {
 	reducer,
 	actions,
 	selectors,

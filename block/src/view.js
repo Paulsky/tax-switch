@@ -17,7 +17,7 @@ const renderSwitchComponent = ( element, ajaxConfig ) => {
 
 window.addEventListener( 'DOMContentLoaded', () => {
 	const elements = document.querySelectorAll(
-		'.wp-block-wdevs-woo-tax-switch'
+		'.wp-block-wdevs-tax-switch'
 	);
 	const ajaxConfig = window.wtsAjaxObject || {
 		ajaxUrl: null,

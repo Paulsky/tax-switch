@@ -22,7 +22,7 @@
  * @link       https://wijnberg.dev
  * @since      1.0.0
  *
- * @package    Woo_Tax_Switch
+ * @package    Wdevs_Tax_Switch
  */
 
 // If uninstall not called from WordPress, then exit.

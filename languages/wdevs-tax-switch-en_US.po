@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Woo Tax Switch\n"
-"POT-Creation-Date: 2024-08-16 12:00+0200\n"
-"PO-Revision-Date: 2024-08-16 12:06+0200\n"
+"Project-Id-Version: Wdevs Tax Switch\n"
+"POT-Creation-Date: 2024-08-16 17:56+0200\n"
+"PO-Revision-Date: 2024-08-16 17:56+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -12,7 +12,7 @@ msgstr ""
 "X-Generator: Poedit 3.4.4\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
-"X-Poedit-WPHeader: woo-tax-switch.php\n"
+"X-Poedit-WPHeader: wdevs-tax-switch.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
 "esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
@@ -21,43 +21,45 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 "X-Poedit-SearchPathExcluded-1: node_modules\n"
 
-#: admin/class-woo-tax-switch-admin.php:78
+#: admin/class-wdevs-tax-switch-admin.php:78
 msgid "Tax switch"
 msgstr "Tax switch"
 
-#: admin/class-woo-tax-switch-admin.php:92
+#: admin/class-wdevs-tax-switch-admin.php:92
 msgid "Tax switch settings"
 msgstr "Tax switch settings"
 
-#: admin/class-woo-tax-switch-admin.php:94
+#: admin/class-wdevs-tax-switch-admin.php:94
 msgid "Customize the tax switch settings."
 msgstr "Customize the tax switch settings."
 
-#: admin/class-woo-tax-switch-admin.php:98
+#: admin/class-wdevs-tax-switch-admin.php:98
 msgid "Including VAT Text"
 msgstr "Including VAT Text"
 
-#: admin/class-woo-tax-switch-admin.php:100
+#: admin/class-wdevs-tax-switch-admin.php:100
 msgid "Text to append to prices including VAT."
 msgstr "Text to append to prices including VAT."
 
-#: admin/class-woo-tax-switch-admin.php:102
+#: admin/class-wdevs-tax-switch-admin.php:102
+#: public/class-wdevs-tax-switch-public.php:80
 msgid "Incl. VAT"
 msgstr "Incl. VAT"
 
-#: admin/class-woo-tax-switch-admin.php:105
+#: admin/class-wdevs-tax-switch-admin.php:105
 msgid "Excluding VAT Text"
 msgstr "Excluding VAT Text"
 
-#: admin/class-woo-tax-switch-admin.php:107
+#: admin/class-wdevs-tax-switch-admin.php:107
 msgid "Text to append to prices excluding VAT."
 msgstr "Text to append to prices excluding VAT."
 
-#: admin/class-woo-tax-switch-admin.php:109
+#: admin/class-wdevs-tax-switch-admin.php:109
+#: public/class-wdevs-tax-switch-public.php:81
 msgid "Excl. VAT"
 msgstr "Excl. VAT"
 
-#: block/class-woo-tax-switch-block.php:75
+#: block/class-wdevs-tax-switch-block.php:75
 msgid "Inline style"
 msgstr "Inline style"
 
@@ -77,7 +79,7 @@ msgstr "Background color"
 msgid "Background color checked"
 msgstr "Background color checked"
 
-#: includes/class-woo-tax-switch-activator.php:36
+#: includes/class-wdevs-tax-switch-activator.php:36
 msgid ""
 "This plugin requires WooCommerce. Please install and activate WooCommerce "
 "before activating this plugin."
@@ -86,8 +88,8 @@ msgstr ""
 "before activating this plugin."
 
 #. Plugin Name of the plugin/theme
-msgid "Woo Tax Switch"
-msgstr "Woo Tax Switch"
+msgid "Tax Switch for WooCommerce"
+msgstr "Tax Switch for WooCommerce"
 
 #. Plugin URI of the plugin/theme
 msgid "https://wijnberg.dev"
@@ -95,9 +97,11 @@ msgstr "https://wijnberg.dev"
 
 #. Description of the plugin/theme
 msgid ""
-"Display WooCommerce prices with or without VAT, switchable by customers."
+"Let customers toggle between inclusive and exclusive VAT pricing in your "
+"WooCommerce store."
 msgstr ""
-"Display WooCommerce prices with or without VAT, switchable by customers."
+"Let customers toggle between inclusive and exclusive VAT pricing in your "
+"WooCommerce store."
 
 #. Author of the plugin/theme
 msgid "Wijnberg Developments"
@@ -106,3 +110,11 @@ msgstr "Wijnberg Developments"
 #. Author URI of the plugin/theme
 msgid "https://wijnberg.dev/"
 msgstr "https://wijnberg.dev/"
+
+#~ msgid ""
+#~ "Display WooCommerce prices with or without VAT, switchable by customers."
+#~ msgstr ""
+#~ "Display WooCommerce prices with or without VAT, switchable by customers."
+
+#~ msgid "Wdevs Tax Switch"
+#~ msgstr "Wdevs Tax Switch"

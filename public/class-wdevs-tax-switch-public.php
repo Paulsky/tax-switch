@@ -6,8 +6,8 @@
  * @link       https://wijnberg.dev
  * @since      1.0.0
  *
- * @package    Woo_Tax_Switch
- * @subpackage Woo_Tax_Switch/public
+ * @package    Wdevs_Tax_Switch
+ * @subpackage Wdevs_Tax_Switch/public
  */
 
 /**
@@ -16,11 +16,11 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the public-facing stylesheet and JavaScript.
  *
- * @package    Woo_Tax_Switch
- * @subpackage Woo_Tax_Switch/public
+ * @package    Wdevs_Tax_Switch
+ * @subpackage Wdevs_Tax_Switch/public
  * @author     Wijnberg Developments <contact@wijnberg.dev>
  */
-class Woo_Tax_Switch_Public {
+class Wdevs_Tax_Switch_Public {
 
 	/**
 	 * The ID of this plugin.
@@ -62,7 +62,7 @@ class Woo_Tax_Switch_Public {
 	 */
 	public function enqueue_styles() {
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( dirname( __FILE__ ) ) . 'includes/assets/css/woo-tax-switch-shared.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( dirname( __FILE__ ) ) . 'includes/assets/css/wdevs-tax-switch-shared.css', array(), $this->version, 'all' );
 
 	}
 
@@ -77,8 +77,8 @@ class Woo_Tax_Switch_Public {
 		$filter = $shop_display_is_incl ? 'get_excl_option' : 'get_incl_option';
 
 		// Get VAT text options
-		$incl_vat_text = $this->get_vat_text(  'woo_tax_switch_incl_vat', 'Incl. VAT' );
-		$excl_vat_text = $this->get_vat_text(  'woo_tax_switch_excl_vat', 'Excl. VAT' );
+		$incl_vat_text = $this->get_vat_text('woo_tax_switch_incl_vat', __('Incl. VAT', 'wdevs-tax-switch'));
+		$excl_vat_text = $this->get_vat_text('woo_tax_switch_excl_vat', __('Excl. VAT', 'wdevs-tax-switch'));
 
 		// Generate prices
 		$current_price_text   = $this->generate_price_with_text( $price_html, $shop_display_is_incl ? $incl_vat_text : $excl_vat_text );
@@ -96,9 +96,9 @@ class Woo_Tax_Switch_Public {
 		return 'excl';
 	}
 
-	private function get_vat_text( $key, $default ) {
+	private function get_vat_text($key, $default) {
 		$text = get_option($key, $default);
-		return __($text, 'woo-tax-switch');
+		return esc_html($text);
 	}
 
 	private function generate_price_with_text( $price_text, $vat_text ) {

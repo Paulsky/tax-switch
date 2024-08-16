@@ -1,13 +1,13 @@
 <?php
 
 /**
- * The admin-specific functionality of the Woo Tax Switch plugin.
+ * The admin-specific functionality of the Wdevs Tax Switch plugin.
  *
  * @link       https://wijnberg.dev
  * @since      1.0.0
  *
- * @package    Woo_Tax_Switch
- * @subpackage Woo_Tax_Switch/admin
+ * @package    Wdevs_Tax_Switch
+ * @subpackage Wdevs_Tax_Switch/admin
  */
 
 /**
@@ -16,11 +16,11 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    Woo_Tax_Switch
- * @subpackage Woo_Tax_Switch/admin
+ * @package    Wdevs_Tax_Switch
+ * @subpackage Wdevs_Tax_Switch/admin
  * @author     Wijnberg Developments
  */
-class Woo_Tax_Switch_Admin {
+class Wdevs_Tax_Switch_Admin {
 
 	/**
 	 * The ID of this plugin.
@@ -63,7 +63,7 @@ class Woo_Tax_Switch_Admin {
 	 * @since    1.0.0
 	 */
 	public function enqueue_block_editor_assets() {
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( dirname( __FILE__ ) ) . 'includes/assets/css/woo-tax-switch-shared.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( dirname( __FILE__ ) ) . 'includes/assets/css/wdevs-tax-switch-shared.css', array(), $this->version, 'all' );
 	}
 
 	/**
@@ -75,13 +75,13 @@ class Woo_Tax_Switch_Admin {
 	 * @since    1.0.0
 	 */
 	public function add_settings_tab( $settings_tabs ) {
-		$settings_tabs['woo_tax_switch'] = __( 'Tax switch', 'woo-tax-switch' );
+		$settings_tabs['woo_tax_switch'] = __( 'Tax switch', 'wdevs-tax-switch' );
 
 		return $settings_tabs;
 	}
 
 	/**
-	 * Get settings for the Woo Tax Switch tab.
+	 * Get settings for the Wdevs Tax Switch tab.
 	 *
 	 * @return   array    $settings    Array of settings.
 	 * @since    1.0.0
@@ -89,22 +89,22 @@ class Woo_Tax_Switch_Admin {
 	public function get_settings() {
 		$settings = array(
 			array(
-				'name' => __( 'Tax switch settings', 'woo-tax-switch' ),
+				'name' => __( 'Tax switch settings', 'wdevs-tax-switch' ),
 				'type' => 'title',
-				'desc' => __( 'Customize the tax switch settings.', 'woo-tax-switch' ),
+				'desc' => __( 'Customize the tax switch settings.', 'wdevs-tax-switch' ),
 				'id'   => 'woo_tax_switch_section_title'
 			),
 			array(
-				'name'        => __( 'Including VAT Text', 'woo-tax-switch' ),
+				'name'        => __( 'Including VAT Text', 'wdevs-tax-switch' ),
 				'type'        => 'text',
-				'desc'        => __( 'Text to append to prices including VAT.', 'woo-tax-switch' ),
+				'desc'        => __( 'Text to append to prices including VAT.', 'wdevs-tax-switch' ),
 				'id'          => 'woo_tax_switch_incl_vat',
 				'placeholder' => __( 'Incl. VAT' )
 			),
 			array(
-				'name'        => __( 'Excluding VAT Text', 'woo-tax-switch' ),
+				'name'        => __( 'Excluding VAT Text', 'wdevs-tax-switch' ),
 				'type'        => 'text',
-				'desc'        => __( 'Text to append to prices excluding VAT.', 'woo-tax-switch' ),
+				'desc'        => __( 'Text to append to prices excluding VAT.', 'wdevs-tax-switch' ),
 				'id'          => 'woo_tax_switch_excl_vat',
 				'placeholder' => __( 'Excl. VAT' )
 			),

@@ -1,9 +1,9 @@
 # Changelog
-All notable changes to the Woo Tax Switch plugin will be documented in this file.
+All notable changes to the Wdevs Tax Switch plugin will be documented in this file.
 
 ## [1.0.0] - 2024-08-16
 ### Added
-- Initial release of Woo Tax Switch plugin.
+- Initial release of Wdevs Tax Switch plugin.
 - Feature to display WooCommerce prices with or without VAT.
 - Switch for customers to toggle between price displays.
 - Support for WordPress blocks.

@@ -6,8 +6,8 @@
  * @link       https://wijnberg.dev
  * @since      1.0.0
  *
- * @package    Woo_Tax_Switch
- * @subpackage Woo_Tax_Switch/includes
+ * @package    Wdevs_Tax_Switch
+ * @subpackage Wdevs_Tax_Switch/includes
  */
 
 /**
@@ -16,11 +16,11 @@
  * This class defines all code necessary to run during the plugin's deactivation.
  *
  * @since      1.0.0
- * @package    Woo_Tax_Switch
- * @subpackage Woo_Tax_Switch/includes
+ * @package    Wdevs_Tax_Switch
+ * @subpackage Wdevs_Tax_Switch/includes
  * @author     Wijnberg Developments <contact@wijnberg.dev>
  */
-class Woo_Tax_Switch_Deactivator {
+class Wdevs_Tax_Switch_Deactivator {
 
 	/**
 	 * Short Description. (use period)

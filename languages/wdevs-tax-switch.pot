@@ -1,8 +1,8 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Woo Tax Switch\n"
-"POT-Creation-Date: 2024-08-15 18:39+0200\n"
+"Project-Id-Version: Wdevs Tax Switch\n"
+"POT-Creation-Date: 2024-08-16 17:55+0200\n"
 "PO-Revision-Date: 2024-08-15 18:39+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -13,72 +13,81 @@ msgstr ""
 "X-Generator: Poedit 3.4.4\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
-"X-Poedit-WPHeader: woo-tax-switch.php\n"
+"X-Poedit-WPHeader: wdevs-tax-switch.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
-"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 "X-Poedit-SearchPathExcluded-1: node_modules\n"
 
-#: admin/class-woo-tax-switch-admin.php:66
-msgid "Customize the tax switch settings for your WooCommerce store."
+#: admin/class-wdevs-tax-switch-admin.php:78
+msgid "Tax switch"
 msgstr ""
 
-#: admin/class-woo-tax-switch-admin.php:115
-#: admin/class-woo-tax-switch-admin.php:116
-msgid "WooCommerce Tax Switch"
+#: admin/class-wdevs-tax-switch-admin.php:92
+msgid "Tax switch settings"
 msgstr ""
 
-#: admin/class-woo-tax-switch-admin.php:133
-msgid "Switch settings"
+#: admin/class-wdevs-tax-switch-admin.php:94
+msgid "Customize the tax switch settings."
 msgstr ""
 
-#: admin/class-woo-tax-switch-admin.php:141
+#: admin/class-wdevs-tax-switch-admin.php:98
 msgid "Including VAT Text"
 msgstr ""
 
-#: admin/class-woo-tax-switch-admin.php:147
+#: admin/class-wdevs-tax-switch-admin.php:100
 msgid "Text to append to prices including VAT."
 msgstr ""
 
-#: admin/class-woo-tax-switch-admin.php:154
+#: admin/class-wdevs-tax-switch-admin.php:102
+#: public/class-wdevs-tax-switch-public.php:80
+msgid "Incl. VAT"
+msgstr ""
+
+#: admin/class-wdevs-tax-switch-admin.php:105
 msgid "Excluding VAT Text"
 msgstr ""
 
-#: admin/class-woo-tax-switch-admin.php:160
+#: admin/class-wdevs-tax-switch-admin.php:107
 msgid "Text to append to prices excluding VAT."
 msgstr ""
 
-#: block/class-woo-tax-switch-block.php:75
-msgid "Apple Style"
+#: admin/class-wdevs-tax-switch-admin.php:109
+#: public/class-wdevs-tax-switch-public.php:81
+msgid "Excl. VAT"
 msgstr ""
 
-#: block/src/edit.js:40
+#: block/class-wdevs-tax-switch-block.php:75
+msgid "Inline style"
+msgstr ""
+
+#: block/src/edit.js:45
 msgid "Switch colors"
 msgstr ""
 
-#: block/src/edit.js:46
+#: block/src/edit.js:52
 msgid "Switch color"
 msgstr ""
 
-#: block/src/edit.js:51
+#: block/src/edit.js:60
 msgid "Background color"
 msgstr ""
 
-#: block/src/edit.js:56
+#: block/src/edit.js:69
 msgid "Background color checked"
 msgstr ""
 
-#: includes/class-woo-tax-switch-activator.php:36
+#: includes/class-wdevs-tax-switch-activator.php:36
 msgid ""
 "This plugin requires WooCommerce. Please install and activate WooCommerce "
 "before activating this plugin."
 msgstr ""
 
 #. Plugin Name of the plugin/theme
-msgid "Woo Tax Switch"
+msgid "Tax Switch for WooCommerce"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
@@ -86,7 +95,9 @@ msgid "https://wijnberg.dev"
 msgstr ""
 
 #. Description of the plugin/theme
-msgid "This is a description of the plugin."
+msgid ""
+"Let customers toggle between inclusive and exclusive VAT pricing in your "
+"WooCommerce store."
 msgstr ""
 
 #. Author of the plugin/theme

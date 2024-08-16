@@ -9,7 +9,7 @@ class SwitchComponent extends Component {
 		const readOnly = this.parseBooleanValue( props.readOnly );
 
 		this.state = {
-			isSwitched: select( 'woo-tax-switch/store' ).getIsSwitched(),
+			isSwitched: select( 'wdevs-tax-switch/store' ).getIsSwitched(),
 			readOnly: readOnly,
 		};
 
@@ -18,7 +18,7 @@ class SwitchComponent extends Component {
 
 		this.unsubscribe = subscribe( () => {
 			const newIsSwitched = select(
-				'woo-tax-switch/store'
+				'wdevs-tax-switch/store'
 			).getIsSwitched();
 
 			if ( this.state.isSwitched !== newIsSwitched ) {
@@ -28,7 +28,7 @@ class SwitchComponent extends Component {
 
 		if ( this.parseBooleanValue( props.isSwitched ) ) {
 			this.state.isSwitched = true;
-			dispatch( 'woo-tax-switch/store' ).setIsSwitched( true );
+			dispatch( 'wdevs-tax-switch/store' ).setIsSwitched( true );
 		}
 	}
 
@@ -48,7 +48,7 @@ class SwitchComponent extends Component {
 
 	handleChange( event ) {
 		const isSwitched = ! this.state.isSwitched;
-		dispatch( 'woo-tax-switch/store' ).setIsSwitched( isSwitched );
+		dispatch( 'wdevs-tax-switch/store' ).setIsSwitched( isSwitched );
 
 		if ( ! this.state.readOnly ) {
 			this.setCookie();
@@ -99,22 +99,22 @@ class SwitchComponent extends Component {
 
 		return (
 			<div
-				className="woo-tax-switch"
+				className="wdevs-tax-switch"
 				style={ {
 					'--wts-color': switchColor,
 					'--wts-bg-color': switchBackgroundColor,
 					'--wts-bg-checked-color': switchBackgroundColorChecked,
 				} }
 			>
-				<label className="woo-tax-switch-label">
+				<label className="wdevs-tax-switch-label">
 					<input
 						type="checkbox"
-						name="woo-tax-switch-checkbox"
+						name="wdevs-tax-switch-checkbox"
 						onChange={ this.handleChange }
 						checked={ isSwitched }
-						className="woo-tax-switch-checkbox"
+						className="wdevs-tax-switch-checkbox"
 					/>
-					<span className="woo-tax-switch-slider"></span>
+					<span className="wdevs-tax-switch-slider"></span>
 				</label>
 			</div>
 		);

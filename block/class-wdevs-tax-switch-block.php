@@ -5,8 +5,8 @@
  *
  * @since      1.0.0
  *
- * @package    Woo_Tax_Switch
- * @subpackage Woo_Tax_Switch/includes
+ * @package    Wdevs_Tax_Switch
+ * @subpackage Wdevs_Tax_Switch/includes
  */
 
 /**
@@ -15,11 +15,11 @@
  * This class defines all code necessary to run during the plugin's activation.
  *
  * @since      1.0.0
- * @package    Woo_Tax_Switch
- * @subpackage Woo_Tax_Switch/includes
+ * @package    Wdevs_Tax_Switch
+ * @subpackage Wdevs_Tax_Switch/includes
  * @author     Wijnberg Developments <contact@wijnberg.dev>
  */
-class Woo_Tax_Switch_Block {
+class Wdevs_Tax_Switch_Block {
 
 	/**
 	 * The ID of this plugin.
@@ -70,12 +70,12 @@ class Woo_Tax_Switch_Block {
 			'render_callback' => [ $this, 'block_render_callback' ],
 		) );
 
-		register_block_style( 'wdevs/woo-tax-switch', [
+		register_block_style( 'wdevs/tax-switch', [
 			'name'  => 'inline',
-			'label' => __( 'Inline style', 'woo-tax-switch' ),
+			'label' => __( 'Inline style', 'wdevs-tax-switch' ),
 		] );
 
-		wp_set_script_translations( 'wdevs-woo-tax-switch-editor-script', 'woo-tax-switch', plugin_dir_path( dirname( __FILE__ ) ) . 'languages' );
+		wp_set_script_translations( 'wdevs-tax-switch-editor-script', 'wdevs-tax-switch', plugin_dir_path( dirname( __FILE__ ) ) . 'languages' );
 	}
 
 	//https://developer.woocommerce.com/2021/11/15/how-does-woocommerce-blocks-render-interactive-blocks-in-the-frontend/
@@ -103,7 +103,7 @@ class Woo_Tax_Switch_Block {
 			'switch-background-color-checked' => ''
 		], $attributes );
 
-		$holder_class_name = 'wp-block-wdevs-woo-tax-switch'; //important for rendering JS
+		$holder_class_name = 'wp-block-wdevs-tax-switch'; //important for rendering JS
 		if ( isset( $attributes['class-name'] ) && ! empty( $attributes['class-name'] ) ) {
 			$holder_class_name .= ' ' . $attributes['class-name'];
 		}
@@ -121,7 +121,7 @@ class Woo_Tax_Switch_Block {
 		}
 
 		wp_localize_script(
-			'wdevs-woo-tax-switch-view-script',
+			'wdevs-tax-switch-view-script',
 			'wtsAjaxObject',
 			[
 				'ajaxUrl'    => admin_url( 'admin-ajax.php' ),
@@ -131,7 +131,7 @@ class Woo_Tax_Switch_Block {
 			]
 		);
 
-		wp_set_script_translations( 'wdevs-woo-tax-switch-view-script', 'woo-tax-switch', plugin_dir_path( dirname( __FILE__ ) ) . 'languages' );
+		wp_set_script_translations( 'wdevs-tax-switch-view-script', 'wdevs-tax-switch', plugin_dir_path( dirname( __FILE__ ) ) . 'languages' );
 
 	}
 

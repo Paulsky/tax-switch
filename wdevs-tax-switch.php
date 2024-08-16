@@ -10,19 +10,20 @@
  *
  * @link              https://wijnberg.dev
  * @since             1.0.0
- * @package           Woo_Tax_Switch
+ * @package           Wdevs_Tax_Switch
  *
  * @wordpress-plugin
- * Plugin Name:       Woo Tax Switch
+ * Plugin Name:       Tax Switch for WooCommerce
  * Plugin URI:        https://wijnberg.dev
- * Description:       Display WooCommerce prices with or without VAT, switchable by customers.
+ * Description:       Let customers toggle between inclusive and exclusive VAT pricing in your WooCommerce store.
  * Version:           1.0.0
  * Author:            Wijnberg Developments
  * Author URI:        https://wijnberg.dev/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       woo-tax-switch
+ * Text Domain:       wdevs-tax-switch
  * Domain Path:       /languages
+ * Requires PHP:      7.2
  */
 
 // If this file is called directly, abort.
@@ -39,20 +40,20 @@ define( 'WOO_TAX_SWITCH_VERSION', '1.0.0' );
 
 /**
  * The code that runs during plugin activation.
- * This action is documented in includes/class-woo-tax-switch-activator.php
+ * This action is documented in includes/class-wdevs-tax-switch-activator.php
  */
 function activate_woo_tax_switch() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-woo-tax-switch-activator.php';
-	Woo_Tax_Switch_Activator::activate();
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-wdevs-tax-switch-activator.php';
+	Wdevs_Tax_Switch_Activator::activate();
 }
 
 /**
  * The code that runs during plugin deactivation.
- * This action is documented in includes/class-woo-tax-switch-deactivator.php
+ * This action is documented in includes/class-wdevs-tax-switch-deactivator.php
  */
 function deactivate_woo_tax_switch() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-woo-tax-switch-deactivator.php';
-	Woo_Tax_Switch_Deactivator::deactivate();
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-wdevs-tax-switch-deactivator.php';
+	Wdevs_Tax_Switch_Deactivator::deactivate();
 }
 
 register_activation_hook( __FILE__, 'activate_woo_tax_switch' );
@@ -62,7 +63,7 @@ register_deactivation_hook( __FILE__, 'deactivate_woo_tax_switch' );
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require plugin_dir_path( __FILE__ ) . 'includes/class-woo-tax-switch.php';
+require plugin_dir_path( __FILE__ ) . 'includes/class-wdevs-tax-switch.php';
 
 /**
  * Begins execution of the plugin.
@@ -75,7 +76,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-woo-tax-switch.php';
  */
 function run_woo_tax_switch() {
 
-	$plugin = new Woo_Tax_Switch();
+	$plugin = new Wdevs_Tax_Switch();
 	$plugin->run();
 
 }

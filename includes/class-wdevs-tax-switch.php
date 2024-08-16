@@ -9,8 +9,8 @@
  * @link       https://wijnberg.dev
  * @since      1.0.0
  *
- * @package    Woo_Tax_Switch
- * @subpackage Woo_Tax_Switch/includes
+ * @package    Wdevs_Tax_Switch
+ * @subpackage Wdevs_Tax_Switch/includes
  */
 
 /**
@@ -23,11 +23,11 @@
  * version of the plugin.
  *
  * @since      1.0.0
- * @package    Woo_Tax_Switch
- * @subpackage Woo_Tax_Switch/includes
+ * @package    Wdevs_Tax_Switch
+ * @subpackage Wdevs_Tax_Switch/includes
  * @author     Wijnberg Developments <contact@wijnberg.dev>
  */
-class Woo_Tax_Switch {
+class Wdevs_Tax_Switch {
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
@@ -35,7 +35,7 @@ class Woo_Tax_Switch {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      Woo_Tax_Switch_Loader $loader Maintains and registers all hooks for the plugin.
+	 * @var      Wdevs_Tax_Switch_Loader $loader Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -81,7 +81,7 @@ class Woo_Tax_Switch {
 		} else {
 			$this->version = '1.0.0';
 		}
-		$this->plugin_name = 'woo-tax-switch';
+		$this->plugin_name = 'wdevs-tax-switch';
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -96,12 +96,12 @@ class Woo_Tax_Switch {
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - Woo_Tax_Switch_Loader. Orchestrates the hooks of the plugin.
-	 * - Woo_Tax_Switch_i18n. Defines internationalization functionality.
-	 * - Woo_Tax_Switch_Admin. Defines all hooks for the admin area.
-	 * - Woo_Tax_Switch_Public. Defines all hooks for the public side of the site.
-	 * - Woo_Tax_Switch_Block. Defines all hooks for the block functionality.
-	 * - Woo_Tax_Switch_Ajax. Handles AJAX functionality.
+	 * - Wdevs_Tax_Switch_Loader. Orchestrates the hooks of the plugin.
+	 * - Wdevs_Tax_Switch_i18n. Defines internationalization functionality.
+	 * - Wdevs_Tax_Switch_Admin. Defines all hooks for the admin area.
+	 * - Wdevs_Tax_Switch_Public. Defines all hooks for the public side of the site.
+	 * - Wdevs_Tax_Switch_Block. Defines all hooks for the block functionality.
+	 * - Wdevs_Tax_Switch_Ajax. Handles AJAX functionality.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -115,45 +115,45 @@ class Woo_Tax_Switch {
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-woo-tax-switch-loader.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wdevs-tax-switch-loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-woo-tax-switch-i18n.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wdevs-tax-switch-i18n.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-woo-tax-switch-admin.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-wdevs-tax-switch-admin.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the block-facing
 		 * side of the site.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'block/class-woo-tax-switch-block.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'block/class-wdevs-tax-switch-block.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-woo-tax-switch-public.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-wdevs-tax-switch-public.php';
 
 		/**
 		 * The class responsible for AJAX request form fields.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-woo-tax-switch-ajax.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wdevs-tax-switch-ajax.php';
 
-		$this->loader       = new Woo_Tax_Switch_Loader();
-		$this->ajax_manager = new Woo_Tax_Switch_Ajax();
+		$this->loader       = new Wdevs_Tax_Switch_Loader();
+		$this->ajax_manager = new Wdevs_Tax_Switch_Ajax();
 
 	}
 
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the Woo_Tax_Switch_i18n class in order to set the domain and to register the hook
+	 * Uses the Wdevs_Tax_Switch_i18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
@@ -161,7 +161,7 @@ class Woo_Tax_Switch {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new Woo_Tax_Switch_i18n();
+		$plugin_i18n = new Wdevs_Tax_Switch_i18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 
@@ -176,7 +176,7 @@ class Woo_Tax_Switch {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Woo_Tax_Switch_Admin( $this->get_plugin_name(), $this->get_version() );
+		$plugin_admin = new Wdevs_Tax_Switch_Admin( $this->get_plugin_name(), $this->get_version() );
 		$this->loader->add_action( 'enqueue_block_editor_assets', $plugin_admin, 'enqueue_block_editor_assets' );
 
 		$this->loader->add_filter( 'woocommerce_settings_tabs_array', $plugin_admin, 'add_settings_tab', 50 );
@@ -196,7 +196,7 @@ class Woo_Tax_Switch {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new Woo_Tax_Switch_Public( $this->get_plugin_name(), $this->get_version() );
+		$plugin_public = new Wdevs_Tax_Switch_Public( $this->get_plugin_name(), $this->get_version() );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_filter( 'woocommerce_get_price_html', $plugin_public, 'get_price_html', 10, 2 );
 		//$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
@@ -211,7 +211,7 @@ class Woo_Tax_Switch {
 	 */
 	private function define_block_hooks() {
 
-		$plugin_block = new Woo_Tax_Switch_Block( $this->get_plugin_name(), $this->get_version(), $this->ajax_manager );
+		$plugin_block = new Wdevs_Tax_Switch_Block( $this->get_plugin_name(), $this->get_version(), $this->ajax_manager );
 
 		$this->loader->add_action( 'init', $plugin_block, 'init_block' );
 		$this->loader->add_action( 'init', $plugin_block, 'register_shortcode' );
@@ -253,7 +253,7 @@ class Woo_Tax_Switch {
 	/**
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
-	 * @return    Woo_Tax_Switch_Loader    Orchestrates the hooks of the plugin.
+	 * @return    Wdevs_Tax_Switch_Loader    Orchestrates the hooks of the plugin.
 	 * @since     1.0.0
 	 */
 	public function get_loader() {

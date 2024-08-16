@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Woo Tax Switch\n"
-"POT-Creation-Date: 2024-08-16 12:07+0200\n"
-"PO-Revision-Date: 2024-08-16 12:11+0200\n"
+"Project-Id-Version: Tax Switch for WooCommerce\n"
+"POT-Creation-Date: 2024-08-16 17:56+0200\n"
+"PO-Revision-Date: 2024-08-16 17:58+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -12,7 +12,7 @@ msgstr ""
 "X-Generator: Poedit 3.4.4\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
-"X-Poedit-WPHeader: woo-tax-switch.php\n"
+"X-Poedit-WPHeader: wdevs-tax-switch.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
 "esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
@@ -21,43 +21,45 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 "X-Poedit-SearchPathExcluded-1: node_modules\n"
 
-#: admin/class-woo-tax-switch-admin.php:78
+#: admin/class-wdevs-tax-switch-admin.php:78
 msgid "Tax switch"
-msgstr "btw-schakelaar"
+msgstr "Btw-schakelaar"
 
-#: admin/class-woo-tax-switch-admin.php:92
+#: admin/class-wdevs-tax-switch-admin.php:92
 msgid "Tax switch settings"
-msgstr "btw-schakelaar instellingen"
+msgstr "Btw-schakelaar instellingen"
 
-#: admin/class-woo-tax-switch-admin.php:94
+#: admin/class-wdevs-tax-switch-admin.php:94
 msgid "Customize the tax switch settings."
 msgstr "Pas de instellingen van de btw-schakelaar aan."
 
-#: admin/class-woo-tax-switch-admin.php:98
+#: admin/class-wdevs-tax-switch-admin.php:98
 msgid "Including VAT Text"
 msgstr "Tekst inclusief btw"
 
-#: admin/class-woo-tax-switch-admin.php:100
+#: admin/class-wdevs-tax-switch-admin.php:100
 msgid "Text to append to prices including VAT."
 msgstr "Tekst om toe te voegen aan prijzen inclusief btw."
 
-#: admin/class-woo-tax-switch-admin.php:102
+#: admin/class-wdevs-tax-switch-admin.php:102
+#: public/class-wdevs-tax-switch-public.php:80
 msgid "Incl. VAT"
 msgstr "Incl. btw"
 
-#: admin/class-woo-tax-switch-admin.php:105
+#: admin/class-wdevs-tax-switch-admin.php:105
 msgid "Excluding VAT Text"
 msgstr "Tekst exclusief btw"
 
-#: admin/class-woo-tax-switch-admin.php:107
+#: admin/class-wdevs-tax-switch-admin.php:107
 msgid "Text to append to prices excluding VAT."
 msgstr "Tekst om toe te voegen aan prijzen exclusief btw."
 
-#: admin/class-woo-tax-switch-admin.php:109
+#: admin/class-wdevs-tax-switch-admin.php:109
+#: public/class-wdevs-tax-switch-public.php:81
 msgid "Excl. VAT"
 msgstr "Excl. btw"
 
-#: block/class-woo-tax-switch-block.php:75
+#: block/class-wdevs-tax-switch-block.php:75
 msgid "Inline style"
 msgstr "Inline stijl"
 
@@ -77,17 +79,17 @@ msgstr "Achtergrondkleur"
 msgid "Background color checked"
 msgstr "Achtergrondkleur ingeschakeld"
 
-#: includes/class-woo-tax-switch-activator.php:36
+#: includes/class-wdevs-tax-switch-activator.php:36
 msgid ""
 "This plugin requires WooCommerce. Please install and activate WooCommerce "
 "before activating this plugin."
 msgstr ""
-"Deze plugin vereist WooCommerce. Installeer en activeer WooCommerce "
-"voordat u deze plugin activeert."
+"Deze plugin vereist WooCommerce. Installeer en activeer WooCommerce voordat "
+"u deze plugin activeert."
 
 #. Plugin Name of the plugin/theme
-msgid "Woo Tax Switch"
-msgstr "Woo Tax Switch"
+msgid "Tax Switch for WooCommerce"
+msgstr "Btw-schakelaar voor Woocommerce"
 
 #. Plugin URI of the plugin/theme
 msgid "https://wijnberg.dev"
@@ -95,10 +97,11 @@ msgstr "https://wijnberg.dev"
 
 #. Description of the plugin/theme
 msgid ""
-"Display WooCommerce prices with or without VAT, switchable by customers."
+"Let customers toggle between inclusive and exclusive VAT pricing in your "
+"WooCommerce store."
 msgstr ""
-"Toon WooCommerce prijzen met of zonder btw, in- en uit te schakelen door "
-"klanten."
+"Laat klanten schakelen tussen prijzen inclusief en exclusief btw in uw "
+"WooCommerce webshop."
 
 #. Author of the plugin/theme
 msgid "Wijnberg Developments"
@@ -107,3 +110,12 @@ msgstr "Wijnberg Developments"
 #. Author URI of the plugin/theme
 msgid "https://wijnberg.dev/"
 msgstr "https://wijnberg.dev/"
+
+#~ msgid ""
+#~ "Display WooCommerce prices with or without VAT, switchable by customers."
+#~ msgstr ""
+#~ "Toon WooCommerce prijzen met of zonder btw, in- en uit te schakelen door "
+#~ "klanten."
+
+#~ msgid "Wdevs Tax Switch"
+#~ msgstr "Wdevs Tax Switch"

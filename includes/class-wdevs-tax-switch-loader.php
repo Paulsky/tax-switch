@@ -6,8 +6,8 @@
  * @link       https://wijnberg.dev
  * @since      1.0.0
  *
- * @package    Woo_Tax_Switch
- * @subpackage Woo_Tax_Switch/includes
+ * @package    Wdevs_Tax_Switch
+ * @subpackage Wdevs_Tax_Switch/includes
  */
 
 /**
@@ -17,11 +17,11 @@
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  *
- * @package    Woo_Tax_Switch
- * @subpackage Woo_Tax_Switch/includes
+ * @package    Wdevs_Tax_Switch
+ * @subpackage Wdevs_Tax_Switch/includes
  * @author     Wijnberg Developments <contact@wijnberg.dev>
  */
-class Woo_Tax_Switch_Loader {
+class Wdevs_Tax_Switch_Loader {
 
 	/**
 	 * The array of actions registered with WordPress.

@@ -3,7 +3,7 @@
 Enhances WooCommerce by allowing users to toggle between displaying prices including or excluding VAT. This plugin adds a customizable switch on product pages and provides a flexible way to display both price versions.
 
 <br/>
-<img src="https://github.com/user-attachments/assets/e0cacc7f-9530-4f83-be27-d231e82ee0d6" width="300" alt="Woo Tax Switch demo" style="max-width: 300px !important; height: auto !important;" />
+<img src="https://github.com/user-attachments/assets/e0cacc7f-9530-4f83-be27-d231e82ee0d6" width="300" alt="Wdevs Tax Switch demo" style="max-width: 300px !important; height: auto !important;" />
 <br/>
 <br/>
 
@@ -26,13 +26,13 @@ For more WordPress plugins, check out our products at [Wijnberg Developments](ht
 	1. Go to WooCommerce > Settings > Tax
 	2. Set up your tax rates and rules as needed for your store
 
-Without proper tax configuration in WooCommerce, the Woo Tax Switch plugin will not function as intended.
+Without proper tax configuration in WooCommerce, the Wdevs Tax Switch plugin will not function as intended.
 
 ## Installation
 
 To install the plugin, follow these steps:
 
-1. Download the `.zip` file from the [releases page](https://github.com/Paulsky/woo-tax-switch/releases/).
+1. Download the `.zip` file from the [releases page](https://github.com/Paulsky/wdevs-tax-switch/releases/).
 2. In your WordPress admin dashboard, go to `Plugins` > `Add New`.
 3. Click `Upload Plugin` at the top of the page.
 4. Click `Choose File`, select the `.zip` file you downloaded, then click `Install Now`.
@@ -42,13 +42,13 @@ The plugin is now ready for use.
 
 ## Getting started
 
-These instructions will guide you through the installation and basic setup of the Woo Tax Switch plugin, ensuring a smooth integration with your WooCommerce store.
+These instructions will guide you through the installation and basic setup of the Wdevs Tax Switch plugin, ensuring a smooth integration with your WooCommerce store.
 
 ### Configuration
 
-Once activated, Woo Tax Switch requires minimal configuration:
+Once activated, Wdevs Tax Switch requires minimal configuration:
 
-1. Go to the Woo Tax Switch settings page located under the 'WooCommerce' menu in the WordPress admin area.
+1. Go to the Wdevs Tax Switch settings page located under the 'WooCommerce' menu in the WordPress admin area.
 2. Customize the text for including and excluding VAT.
 3. Save your changes.
 
@@ -56,7 +56,7 @@ Once activated, Woo Tax Switch requires minimal configuration:
 
 After configuration, you can add the tax switch to your pages in two ways:
 
-1. Use the Gutenberg block "Woo Tax Switch" in your page or post editor.
+1. Use the Gutenberg block "Wdevs Tax Switch" in your page or post editor.
 2. Use the shortcode `[woo_tax_switch]` anywhere in your content.
 
 The switch will toggle the display of prices including or excluding VAT across your site.

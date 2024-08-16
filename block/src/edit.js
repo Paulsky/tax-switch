@@ -42,14 +42,14 @@ export default function Edit( { attributes, setAttributes } ) {
 		<div { ...useBlockProps() }>
 			<InspectorControls>
 				<PanelColorSettings
-					title={ __( 'Switch colors', 'woo-tax-switch' ) }
+					title={ __( 'Switch colors', 'wdevs-tax-switch' ) }
 					initialOpen={ true }
 					colorSettings={ [
 						{
 							value: switchColor,
 							onChange: ( color ) =>
 								setAttributes( { switchColor: color } ),
-							label: __( 'Switch color', 'woo-tax-switch' ),
+							label: __( 'Switch color', 'wdevs-tax-switch' ),
 						},
 						{
 							value: switchBackgroundColor,
@@ -57,7 +57,7 @@ export default function Edit( { attributes, setAttributes } ) {
 								setAttributes( {
 									switchBackgroundColor: color,
 								} ),
-							label: __( 'Background color', 'woo-tax-switch' ),
+							label: __( 'Background color', 'wdevs-tax-switch' ),
 						},
 						{
 							value: switchBackgroundColorChecked,
@@ -67,7 +67,7 @@ export default function Edit( { attributes, setAttributes } ) {
 								} ),
 							label: __(
 								'Background color checked',
-								'woo-tax-switch'
+								'wdevs-tax-switch'
 							),
 						},
 					] }

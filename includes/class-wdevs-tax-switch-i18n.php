@@ -9,8 +9,8 @@
  * @link       https://wijnberg.dev
  * @since      1.0.0
  *
- * @package    Woo_Tax_Switch
- * @subpackage Woo_Tax_Switch/includes
+ * @package    Wdevs_Tax_Switch
+ * @subpackage Wdevs_Tax_Switch/includes
  */
 
 /**
@@ -20,11 +20,11 @@
  * so that it is ready for translation.
  *
  * @since      1.0.0
- * @package    Woo_Tax_Switch
- * @subpackage Woo_Tax_Switch/includes
+ * @package    Wdevs_Tax_Switch
+ * @subpackage Wdevs_Tax_Switch/includes
  * @author     Wijnberg Developments <contact@wijnberg.dev>
  */
-class Woo_Tax_Switch_i18n {
+class Wdevs_Tax_Switch_i18n {
 
 
 	/**
@@ -35,7 +35,7 @@ class Woo_Tax_Switch_i18n {
 	public function load_plugin_textdomain() {
 
 		load_plugin_textdomain(
-			'woo-tax-switch',
+			'wdevs-tax-switch',
 			false,
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
 		);

@@ -1,6 +1,6 @@
 <?php
 
-class Woo_Tax_Switch_Ajax {
+class Wdevs_Tax_Switch_Ajax {
 	private $form_action = 'wts_set_cookie';
 
 	public function getFormAction() {

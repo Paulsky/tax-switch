@@ -1,21 +1,21 @@
-.wp-block-wdevs-woo-tax-switch {
+.wp-block-wdevs-tax-switch {
 
-	.woo-tax-switch {
+	.wdevs-tax-switch {
 
-		.woo-tax-switch-label {
+		.wdevs-tax-switch-label {
 			display: inline-block;
 			width: 60px;
 			height: 34px;
 			position: relative;
 		}
 
-		.woo-tax-switch-checkbox {
+		.wdevs-tax-switch-checkbox {
 			opacity: 0;
 			width: 0;
 			height: 0;
 		}
 
-		.woo-tax-switch-slider {
+		.wdevs-tax-switch-slider {
 			position: absolute;
 			cursor: pointer;
 			top: 0;
@@ -39,7 +39,7 @@
 			}
 		}
 
-		.woo-tax-switch-checkbox:checked + .woo-tax-switch-slider {
+		.wdevs-tax-switch-checkbox:checked + .wdevs-tax-switch-slider {
 			background-color: var(--wts-bg-checked-color, #2196f3);
 
 			&::before {
@@ -50,14 +50,14 @@
 
 	&.is-style-inline {
 
-		.woo-tax-switch {
+		.wdevs-tax-switch {
 
-			.woo-tax-switch-label {
+			.wdevs-tax-switch-label {
 				width: 50px;
 				height: 30px;
 			}
 
-			.woo-tax-switch-slider {
+			.wdevs-tax-switch-slider {
 				background-color: var(--wts-bg-color, #e9e9ea);
 				border-radius: 30px;
 
@@ -70,7 +70,7 @@
 				}
 			}
 
-			.woo-tax-switch-checkbox:checked + .woo-tax-switch-slider {
+			.wdevs-tax-switch-checkbox:checked + .wdevs-tax-switch-slider {
 				background-color: var(--wts-bg-checked-color, #34c759);
 
 				&::before {

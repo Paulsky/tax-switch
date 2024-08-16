@@ -6,8 +6,8 @@
  * @link       https://wijnberg.dev
  * @since      1.0.0
  *
- * @package    Woo_Tax_Switch
- * @subpackage Woo_Tax_Switch/includes
+ * @package    Wdevs_Tax_Switch
+ * @subpackage Wdevs_Tax_Switch/includes
  */
 
 /**
@@ -16,11 +16,11 @@
  * This class defines all code necessary to run during the plugin's activation.
  *
  * @since      1.0.0
- * @package    Woo_Tax_Switch
- * @subpackage Woo_Tax_Switch/includes
+ * @package    Wdevs_Tax_Switch
+ * @subpackage Wdevs_Tax_Switch/includes
  * @author     Wijnberg Developments <contact@wijnberg.dev>
  */
-class Woo_Tax_Switch_Activator {
+class Wdevs_Tax_Switch_Activator {
 
 	/**
 	 * Short Description. (use period)
@@ -33,7 +33,7 @@ class Woo_Tax_Switch_Activator {
 		if ( ! is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
 			deactivate_plugins( plugin_basename( __FILE__ ) );
 
-			wp_die( __( 'This plugin requires WooCommerce. Please install and activate WooCommerce before activating this plugin.', 'woo-tax-switch' ) );
+			wp_die( esc_html__( 'This plugin requires WooCommerce. Please install and activate WooCommerce before activating this plugin.', 'wdevs-tax-switch' ) );
 		}
 	}
 
