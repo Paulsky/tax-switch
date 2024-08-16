@@ -62,7 +62,7 @@ class Woo_Tax_Switch_Public {
 	 */
 	public function enqueue_styles() {
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( dirname( __FILE__ ) ) . 'shared/css/woo-tax-switch-shared.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( dirname( __FILE__ ) ) . 'includes/assets/css/woo-tax-switch-shared.css', array(), $this->version, 'all' );
 
 	}
 

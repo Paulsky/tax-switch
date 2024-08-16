@@ -63,7 +63,7 @@ class Woo_Tax_Switch_Admin {
 	 * @since    1.0.0
 	 */
 	public function enqueue_block_editor_assets() {
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( dirname( __FILE__ ) ) . 'shared/css/woo-tax-switch-shared.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( dirname( __FILE__ ) ) . 'includes/assets/css/woo-tax-switch-shared.css', array(), $this->version, 'all' );
 	}
 
 	/**
