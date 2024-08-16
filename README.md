@@ -57,7 +57,7 @@ Once activated, Wdevs Tax Switch requires minimal configuration:
 After configuration, you can add the tax switch to your pages in two ways:
 
 1. Use the Gutenberg block "Wdevs Tax Switch" in your page or post editor.
-2. Use the shortcode `[woo_tax_switch]` anywhere in your content.
+2. Use the shortcode `[wdevs_tax_switch]` anywhere in your content.
 
 The switch will toggle the display of prices including or excluding VAT across your site.
 
@@ -67,7 +67,7 @@ The plugin provides a shortcode that allows you to easily add the tax switch any
 
 Basic usage:
 
-[woo_tax_switch]
+[wdevs_tax_switch]
 
 This will display the default tax switch.
 
@@ -82,14 +82,14 @@ The shortcode also accepts several attributes to customize its appearance:
 
 Example with custom attributes:
 
-[woo_tax_switch class-name="is-style-inline" switch-color="#ffffff" switch-background-color="#000000" switch-background-color-checked="#4CAF50"]
+[wdevs_tax_switch class-name="is-style-inline" switch-color="#ffffff" switch-background-color="#000000" switch-background-color-checked="#4CAF50"]
 
 This will display an inline-style switch with a white handle, black background when off, and green background when on.
 
 You can use this shortcode in posts, pages, and even in your theme files by using the `do_shortcode()` function:
 
 ```php
-<?php echo do_shortcode('[woo_tax_switch]'); ?>
+<?php echo do_shortcode('[wdevs_tax_switch]'); ?>
 ```
 
 ## Compatibility

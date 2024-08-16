@@ -88,7 +88,7 @@ class Wdevs_Tax_Switch_Block {
 	}
 
 	public function register_shortcode() {
-		add_shortcode( 'woo_tax_switch', array( $this, 'shortcode_render_callback' ) );
+		add_shortcode( 'wdevs_tax_switch', array( $this, 'shortcode_render_callback' ) );
 	}
 
 	public function shortcode_render_callback( $attributes = [], $content = '' ) {

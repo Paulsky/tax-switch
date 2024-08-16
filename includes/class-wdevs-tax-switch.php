@@ -180,8 +180,8 @@ class Wdevs_Tax_Switch {
 		$this->loader->add_action( 'enqueue_block_editor_assets', $plugin_admin, 'enqueue_block_editor_assets' );
 
 		$this->loader->add_filter( 'woocommerce_settings_tabs_array', $plugin_admin, 'add_settings_tab', 50 );
-		$this->loader->add_action( 'woocommerce_settings_tabs_woo_tax_switch', $plugin_admin, 'settings_tab' );
-		$this->loader->add_action( 'woocommerce_update_options_woo_tax_switch', $plugin_admin, 'update_settings' );
+		$this->loader->add_action( 'woocommerce_settings_tabs_wdevs_tax_switch', $plugin_admin, 'settings_tab' );
+		$this->loader->add_action( 'woocommerce_update_options_wdevs_tax_switch', $plugin_admin, 'update_settings' );
 
 		$this->loader->add_filter( 'option_woocommerce_tax_display_shop', $plugin_admin, 'filter_woocommerce_tax_display_shop_option', 10, 2 );
 

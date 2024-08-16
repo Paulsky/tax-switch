@@ -77,8 +77,8 @@ class Wdevs_Tax_Switch_Public {
 		$filter = $shop_display_is_incl ? 'get_excl_option' : 'get_incl_option';
 
 		// Get VAT text options
-		$incl_vat_text = $this->get_vat_text('woo_tax_switch_incl_vat', __('Incl. VAT', 'wdevs-tax-switch'));
-		$excl_vat_text = $this->get_vat_text('woo_tax_switch_excl_vat', __('Excl. VAT', 'wdevs-tax-switch'));
+		$incl_vat_text = $this->get_vat_text('wdevs_tax_switch_incl_vat', __('Incl. VAT', 'wdevs-tax-switch'));
+		$excl_vat_text = $this->get_vat_text('wdevs_tax_switch_excl_vat', __('Excl. VAT', 'wdevs-tax-switch'));
 
 		// Generate prices
 		$current_price_text   = $this->generate_price_with_text( $price_html, $shop_display_is_incl ? $incl_vat_text : $excl_vat_text );

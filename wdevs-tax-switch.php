@@ -42,7 +42,7 @@ define( 'WOO_TAX_SWITCH_VERSION', '1.0.0' );
  * The code that runs during plugin activation.
  * This action is documented in includes/class-wdevs-tax-switch-activator.php
  */
-function activate_woo_tax_switch() {
+function activate_wdevs_tax_switch() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-wdevs-tax-switch-activator.php';
 	Wdevs_Tax_Switch_Activator::activate();
 }
@@ -51,13 +51,13 @@ function activate_woo_tax_switch() {
  * The code that runs during plugin deactivation.
  * This action is documented in includes/class-wdevs-tax-switch-deactivator.php
  */
-function deactivate_woo_tax_switch() {
+function deactivate_wdevs_tax_switch() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-wdevs-tax-switch-deactivator.php';
 	Wdevs_Tax_Switch_Deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'activate_woo_tax_switch' );
-register_deactivation_hook( __FILE__, 'deactivate_woo_tax_switch' );
+register_activation_hook( __FILE__, 'activate_wdevs_tax_switch' );
+register_deactivation_hook( __FILE__, 'deactivate_wdevs_tax_switch' );
 
 /**
  * The core plugin class that is used to define internationalization,
@@ -74,10 +74,10 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-wdevs-tax-switch.php';
  *
  * @since    1.0.0
  */
-function run_woo_tax_switch() {
+function run_wdevs_tax_switch() {
 
 	$plugin = new Wdevs_Tax_Switch();
 	$plugin->run();
 
 }
-run_woo_tax_switch();
+run_wdevs_tax_switch();

@@ -53,8 +53,8 @@ class Wdevs_Tax_Switch_Admin {
 		$this->version     = $version;
 
 		add_filter( 'woocommerce_settings_tabs_array', array( $this, 'add_settings_tab' ), 50 );
-		add_action( 'woocommerce_settings_tabs_woo_tax_switch', array( $this, 'settings_tab' ) );
-		add_action( 'woocommerce_update_options_woo_tax_switch', array( $this, 'update_settings' ) );
+		add_action( 'woocommerce_settings_tabs_wdevs_tax_switch', array( $this, 'settings_tab' ) );
+		add_action( 'woocommerce_update_options_wdevs_tax_switch', array( $this, 'update_settings' ) );
 	}
 
 	/**
@@ -75,7 +75,7 @@ class Wdevs_Tax_Switch_Admin {
 	 * @since    1.0.0
 	 */
 	public function add_settings_tab( $settings_tabs ) {
-		$settings_tabs['woo_tax_switch'] = __( 'Tax switch', 'wdevs-tax-switch' );
+		$settings_tabs['wdevs_tax_switch'] = __( 'Tax switch', 'wdevs-tax-switch' );
 
 		return $settings_tabs;
 	}
@@ -92,29 +92,29 @@ class Wdevs_Tax_Switch_Admin {
 				'name' => __( 'Tax switch settings', 'wdevs-tax-switch' ),
 				'type' => 'title',
 				'desc' => __( 'Customize the tax switch settings.', 'wdevs-tax-switch' ),
-				'id'   => 'woo_tax_switch_section_title'
+				'id'   => 'wdevs_tax_switch_section_title'
 			),
 			array(
 				'name'        => __( 'Including VAT Text', 'wdevs-tax-switch' ),
 				'type'        => 'text',
 				'desc'        => __( 'Text to append to prices including VAT.', 'wdevs-tax-switch' ),
-				'id'          => 'woo_tax_switch_incl_vat',
+				'id'          => 'wdevs_tax_switch_incl_vat',
 				'placeholder' => __( 'Incl. VAT' )
 			),
 			array(
 				'name'        => __( 'Excluding VAT Text', 'wdevs-tax-switch' ),
 				'type'        => 'text',
 				'desc'        => __( 'Text to append to prices excluding VAT.', 'wdevs-tax-switch' ),
-				'id'          => 'woo_tax_switch_excl_vat',
+				'id'          => 'wdevs_tax_switch_excl_vat',
 				'placeholder' => __( 'Excl. VAT' )
 			),
 			array(
 				'type' => 'sectionend',
-				'id'   => 'woo_tax_switch_section_end'
+				'id'   => 'wdevs_tax_switch_section_end'
 			)
 		);
 
-		return apply_filters( 'woo_tax_switch_settings', $settings );
+		return apply_filters( 'wdevs_tax_switch_settings', $settings );
 	}
 
 	/**
