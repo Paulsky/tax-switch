@@ -2,7 +2,10 @@
 
 Enhances WooCommerce by allowing users to toggle between displaying prices including or excluding VAT. This plugin adds a customizable switch on product pages and provides a flexible way to display both price versions.
 
+<br/>
 <img src="https://github.com/user-attachments/assets/e0cacc7f-9530-4f83-be27-d231e82ee0d6" width="300" alt="Woo Tax Switch demo" style="max-width: 300px !important; height: auto !important;" />
+<br/>
+<br/>
 
 For more WordPress plugins, check out our products at [Wijnberg Developments](https://wijnberg.dev).
 
@@ -29,7 +32,7 @@ Without proper tax configuration in WooCommerce, the Woo Tax Switch plugin will 
 
 To install the plugin, follow these steps:
 
-1. Download the `.zip` file from the [releases page](link_to_your_releases_page).
+1. Download the `.zip` file from the [releases page](https://github.com/Paulsky/woo-tax-switch/releases/).
 2. In your WordPress admin dashboard, go to `Plugins` > `Add New`.
 3. Click `Upload Plugin` at the top of the page.
 4. Click `Choose File`, select the `.zip` file you downloaded, then click `Install Now`.

@@ -1,0 +1,7 @@
+{
+	"block/src/components/SwitchComponent.js": [
+		"build/index.js",
+		"build/view.js"
+	],
+	"block/src/edit.js": [ "build/index.js" ]
+}

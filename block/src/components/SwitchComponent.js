@@ -6,7 +6,7 @@ class SwitchComponent extends Component {
 	constructor( props ) {
 		super( props );
 
-		let readOnly = this.parseBooleanValue( props.readOnly );
+		const readOnly = this.parseBooleanValue( props.readOnly );
 
 		this.state = {
 			isSwitched: select( 'woo-tax-switch/store' ).getIsSwitched(),
