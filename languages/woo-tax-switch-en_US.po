@@ -1,0 +1,108 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Woo Tax Switch\n"
+"POT-Creation-Date: 2024-08-16 12:00+0200\n"
+"PO-Revision-Date: 2024-08-16 12:06+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.4\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: woo-tax-switch.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+"X-Poedit-SearchPathExcluded-1: node_modules\n"
+
+#: admin/class-woo-tax-switch-admin.php:78
+msgid "Tax switch"
+msgstr "Tax switch"
+
+#: admin/class-woo-tax-switch-admin.php:92
+msgid "Tax switch settings"
+msgstr "Tax switch settings"
+
+#: admin/class-woo-tax-switch-admin.php:94
+msgid "Customize the tax switch settings."
+msgstr "Customize the tax switch settings."
+
+#: admin/class-woo-tax-switch-admin.php:98
+msgid "Including VAT Text"
+msgstr "Including VAT Text"
+
+#: admin/class-woo-tax-switch-admin.php:100
+msgid "Text to append to prices including VAT."
+msgstr "Text to append to prices including VAT."
+
+#: admin/class-woo-tax-switch-admin.php:102
+msgid "Incl. VAT"
+msgstr "Incl. VAT"
+
+#: admin/class-woo-tax-switch-admin.php:105
+msgid "Excluding VAT Text"
+msgstr "Excluding VAT Text"
+
+#: admin/class-woo-tax-switch-admin.php:107
+msgid "Text to append to prices excluding VAT."
+msgstr "Text to append to prices excluding VAT."
+
+#: admin/class-woo-tax-switch-admin.php:109
+msgid "Excl. VAT"
+msgstr "Excl. VAT"
+
+#: block/class-woo-tax-switch-block.php:75
+msgid "Inline style"
+msgstr "Inline style"
+
+#: block/src/edit.js:45
+msgid "Switch colors"
+msgstr "Switch colors"
+
+#: block/src/edit.js:52
+msgid "Switch color"
+msgstr "Switch color"
+
+#: block/src/edit.js:60
+msgid "Background color"
+msgstr "Background color"
+
+#: block/src/edit.js:69
+msgid "Background color checked"
+msgstr "Background color checked"
+
+#: includes/class-woo-tax-switch-activator.php:36
+msgid ""
+"This plugin requires WooCommerce. Please install and activate WooCommerce "
+"before activating this plugin."
+msgstr ""
+"This plugin requires WooCommerce. Please install and activate WooCommerce "
+"before activating this plugin."
+
+#. Plugin Name of the plugin/theme
+msgid "Woo Tax Switch"
+msgstr "Woo Tax Switch"
+
+#. Plugin URI of the plugin/theme
+msgid "https://wijnberg.dev"
+msgstr "https://wijnberg.dev"
+
+#. Description of the plugin/theme
+msgid ""
+"Display WooCommerce prices with or without VAT, switchable by customers."
+msgstr ""
+"Display WooCommerce prices with or without VAT, switchable by customers."
+
+#. Author of the plugin/theme
+msgid "Wijnberg Developments"
+msgstr "Wijnberg Developments"
+
+#. Author URI of the plugin/theme
+msgid "https://wijnberg.dev/"
+msgstr "https://wijnberg.dev/"
