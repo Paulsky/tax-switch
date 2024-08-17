@@ -59,6 +59,11 @@ Example with custom attributes:
 
 Some WooCommerce Blocks are not fully compatible with this plugin as they do not use standard WooCommerce filters for price display. This is a known limitation of WooCommerce Blocks and not specific to this plugin.
 
+== Changelog ==
+
+= 1.0.0 =
+* Initial release of Tax Switch for WooCommerce.
+
 == Additional Information ==
 
 For more information and other WordPress plugins, visit [Wijnberg Developments](https://wijnberg.dev).

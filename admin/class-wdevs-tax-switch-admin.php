@@ -51,10 +51,6 @@ class Wdevs_Tax_Switch_Admin {
 	public function __construct( $plugin_name, $version ) {
 		$this->plugin_name = $plugin_name;
 		$this->version     = $version;
-
-		add_filter( 'woocommerce_settings_tabs_array', array( $this, 'add_settings_tab' ), 50 );
-		add_action( 'woocommerce_settings_tabs_wdevs_tax_switch', array( $this, 'settings_tab' ) );
-		add_action( 'woocommerce_update_options_wdevs_tax_switch', array( $this, 'update_settings' ) );
 	}
 
 	/**
