@@ -32,7 +32,7 @@ Without proper tax configuration in WooCommerce, the Wdevs Tax Switch plugin wil
 
 To install the plugin, follow these steps:
 
-1. Download the `.zip` file from the [releases page](https://github.com/Paulsky/wdevs-tax-switch/releases/).
+1. Download the `.zip` file from the [releases page](https://github.com/Paulsky/tax-switch/releases/).
 2. In your WordPress admin dashboard, go to `Plugins` > `Add New`.
 3. Click `Upload Plugin` at the top of the page.
 4. Click `Choose File`, select the `.zip` file you downloaded, then click `Install Now`.

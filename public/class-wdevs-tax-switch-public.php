@@ -107,7 +107,7 @@ class Wdevs_Tax_Switch_Public {
 
 	private function generate_alternate_price( $product, $filter, $vat_text ) {
 		// Temporarily disable this filter and function to prevent infinite loop
-		remove_filter( 'woocommerce_get_price_html', [ $this, 'get_price_html' ] );
+		remove_filter( 'woocommerce_get_price_html', [ $this, 'get_price_html' ], 100 );
 
 		// Generate the alternate price
 		add_filter( 'pre_option_woocommerce_tax_display_shop', [ $this, $filter ], 1, 3 );
@@ -115,7 +115,7 @@ class Wdevs_Tax_Switch_Public {
 		remove_filter( 'pre_option_woocommerce_tax_display_shop', [ $this, $filter ], 1 );
 
 		// Re-enable this filter and function
-		add_filter( 'woocommerce_get_price_html', [ $this, 'get_price_html' ], 10, 2 );
+		add_filter( 'woocommerce_get_price_html', [ $this, 'get_price_html' ], 100, 2 );
 
 		return $this->generate_price_with_text( $alternate_price_html, $vat_text );
 	}

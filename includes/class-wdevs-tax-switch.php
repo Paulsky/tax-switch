@@ -132,7 +132,7 @@ class Wdevs_Tax_Switch {
 		 * The class responsible for defining all actions that occur in the block-facing
 		 * side of the site.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'block/class-wdevs-tax-switch-block.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wdevs-tax-switch-block.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
@@ -196,9 +196,11 @@ class Wdevs_Tax_Switch {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new Wdevs_Tax_Switch_Public( $this->get_plugin_name(), $this->get_version() );
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
-		$this->loader->add_filter( 'woocommerce_get_price_html', $plugin_public, 'get_price_html', 10, 2 );
+		if ( ! is_admin() || $this->is_post_editor() ) {
+			$plugin_public = new Wdevs_Tax_Switch_Public( $this->get_plugin_name(), $this->get_version() );
+			$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
+			$this->loader->add_filter( 'woocommerce_get_price_html', $plugin_public, 'get_price_html', 100, 2 );
+		}
 		//$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 	}
 
@@ -268,6 +270,19 @@ class Wdevs_Tax_Switch {
 	 */
 	public function get_version() {
 		return $this->version;
+	}
+
+	private function is_post_editor() {
+		if ( ! is_admin() ) {
+			return false;
+		}
+
+		global $pagenow;
+		if ( ( $pagenow == 'post.php' || $pagenow == 'post-new.php' ) || ( get_post_type() == 'post' ) ) {
+			return true;
+		}
+
+		return false;
 	}
 
 }
