@@ -22,6 +22,8 @@
  */
 class Wdevs_Tax_Switch_Public {
 
+	use Wdevs_Tax_Switch_Helper;
+
 	/**
 	 * The ID of this plugin.
 	 *
@@ -61,9 +63,8 @@ class Wdevs_Tax_Switch_Public {
 	 * @since    1.0.0
 	 */
 	public function enqueue_styles() {
-
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( dirname( __FILE__ ) ) . 'includes/assets/css/wdevs-tax-switch-shared.css', array(), $this->version, 'all' );
-
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( dirname( __FILE__ ) ) . 'includes/assets/css/wdevs-tax-switch-shared.css', array(), $this->version );
+		wp_enqueue_style( $this->plugin_name . '-public', plugin_dir_url( __FILE__ ) . 'css/wdevs-tax-switch-public.css', array(), $this->version );
 	}
 
 	public function get_price_html( $price_html, $product ) {
@@ -71,34 +72,28 @@ class Wdevs_Tax_Switch_Public {
 			return $price_html;
 		}
 
-		// Get the current setting and determine if it's inclusive
-		$shop_display_is_incl = get_option( 'woocommerce_tax_display_shop' ) === 'incl';
+		$shop_display_is_incl = $this->is_shop_display_inclusive();
 
 		$filter = $shop_display_is_incl ? 'get_excl_option' : 'get_incl_option';
 
 		// Get VAT text options
-		$incl_vat_text = $this->get_vat_text('wdevs_tax_switch_incl_vat', __('Incl. VAT', 'wdevs-tax-switch'));
-		$excl_vat_text = $this->get_vat_text('wdevs_tax_switch_excl_vat', __('Excl. VAT', 'wdevs-tax-switch'));
+		$incl_vat_text = $this->get_option_text('wdevs_tax_switch_incl_vat', __('Incl. VAT', 'wdevs-tax-switch'));
+		$excl_vat_text = $this->get_option_text('wdevs_tax_switch_excl_vat', __('Excl. VAT', 'wdevs-tax-switch'));
 
 		// Generate prices
-		$current_price_text   = $this->generate_price_with_text( $price_html, $shop_display_is_incl ? $incl_vat_text : $excl_vat_text );
-		$alternate_price_text = $this->generate_alternate_price( $product, $filter, $shop_display_is_incl ? $excl_vat_text : $incl_vat_text );
+		$current_price_text = $this->generate_price_with_text($price_html, $shop_display_is_incl ? $incl_vat_text : $excl_vat_text);
+		$alternate_price_text = $this->generate_alternate_price($product, $filter, $shop_display_is_incl ? $excl_vat_text : $incl_vat_text);
 
 		// Combine both price displays into one HTML string
-		return $this->combine_price_displays( $current_price_text, $alternate_price_text, $shop_display_is_incl );
+		return $this->combine_price_displays($current_price_text, $alternate_price_text, $shop_display_is_incl);
 	}
 
-	public function get_incl_option($pre_option, $option, $default_value) {
+	public function get_incl_option( $pre_option, $option, $default_value ) {
 		return 'incl';
 	}
 
-	public function get_excl_option($pre_option, $option, $default_value) {
+	public function get_excl_option( $pre_option, $option, $default_value ) {
 		return 'excl';
-	}
-
-	private function get_vat_text($key, $default) {
-		$text = get_option($key, $default);
-		return esc_html($text);
 	}
 
 	private function generate_price_with_text( $price_text, $vat_text ) {

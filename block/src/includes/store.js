@@ -1,7 +1,12 @@
 import { registerStore } from '@wordpress/data';
 
-const DEFAULT_STATE = {
-	isSwitched: false,
+const STORAGE_KEY = 'wdevs_tax_switch_is_switched';
+
+const getInitialState = () => {
+	const storedValue = localStorage.getItem( STORAGE_KEY );
+	return {
+		isSwitched: storedValue ? JSON.parse( storedValue ) : false,
+	};
 };
 
 const actions = {
@@ -11,9 +16,16 @@ const actions = {
 			value,
 		};
 	},
+	saveIsSwitched( value ) {
+		localStorage.setItem( STORAGE_KEY, JSON.stringify( value ) );
+		return {
+			type: 'SET_IS_SWITCHED',
+			value,
+		};
+	},
 };
 
-const reducer = ( state = DEFAULT_STATE, action ) => {
+const reducer = ( state = getInitialState(), action ) => {
 	switch ( action.type ) {
 		case 'SET_IS_SWITCHED':
 			return {

@@ -17,6 +17,8 @@ import {
 	useBlockProps,
 } from '@wordpress/block-editor';
 
+import { TextControl, PanelBody } from '@wordpress/components';
+
 import SwitchComponent from './components/SwitchComponent';
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -35,8 +37,18 @@ import './editor.scss';
  * @return {Element} Element to render.
  */
 export default function Edit( { attributes, setAttributes } ) {
-	const { switchColor, switchBackgroundColor, switchBackgroundColorChecked } =
-		attributes;
+	const {
+		switchColor,
+		switchColorChecked,
+		switchBackgroundColor,
+		switchBackgroundColorChecked,
+		switchLabelIncl,
+		switchLabelExcl,
+	} = attributes;
+
+	const { originalTaxDisplay } = window.wtsEditorObject || {
+		originalTaxDisplay: 'incl',
+	};
 
 	return (
 		<div { ...useBlockProps() }>
@@ -50,6 +62,17 @@ export default function Edit( { attributes, setAttributes } ) {
 							onChange: ( color ) =>
 								setAttributes( { switchColor: color } ),
 							label: __( 'Switch color', 'wdevs-tax-switch' ),
+						},
+						{
+							value: switchColorChecked,
+							onChange: ( color ) =>
+								setAttributes( {
+									switchColorChecked: color,
+								} ),
+							label: __(
+								'Switch color checked',
+								'wdevs-tax-switch'
+							),
 						},
 						{
 							value: switchBackgroundColor,
@@ -72,9 +95,37 @@ export default function Edit( { attributes, setAttributes } ) {
 						},
 					] }
 				/>
+				<PanelBody
+					title={ __( 'Switch Labels', 'wdevs-tax-switch' ) }
+					initialOpen={ true }
+				>
+					<TextControl
+						label={ __(
+							'Including VAT Label',
+							'wdevs-tax-switch'
+						) }
+						value={ switchLabelIncl }
+						onChange={ ( value ) =>
+							setAttributes( { switchLabelIncl: value } )
+						}
+					/>
+					<TextControl
+						label={ __(
+							'Excluding VAT Label',
+							'wdevs-tax-switch'
+						) }
+						value={ switchLabelExcl }
+						onChange={ ( value ) =>
+							setAttributes( { switchLabelExcl: value } )
+						}
+					/>
+				</PanelBody>
 			</InspectorControls>
-			{ ( attributes.readOnly = true ) }
-			<SwitchComponent { ...attributes } />
+			<SwitchComponent
+				{ ...attributes }
+				readOnly={ true }
+				originalTaxDisplay={ originalTaxDisplay }
+			/>
 		</div>
 	);
 }

@@ -1,109 +1,111 @@
 import { Component } from '@wordpress/element';
 import { dispatch, select, subscribe } from '@wordpress/data';
+import TaxSwitchHelper from '../includes/TaxSwitchHelper';
 import '../includes/store';
 
 class SwitchComponent extends Component {
 	constructor( props ) {
 		super( props );
 
-		const readOnly = this.parseBooleanValue( props.readOnly );
+		const { readOnly, isSwitched } = this.getInitialState( props );
 
 		this.state = {
-			isSwitched: select( 'wdevs-tax-switch/store' ).getIsSwitched(),
-			readOnly: readOnly,
+			readOnly,
+			isSwitched,
 		};
 
 		this.handleChange = this.handleChange.bind( this );
-		this.setCookie = this.setCookie.bind( this );
 
 		this.unsubscribe = subscribe( () => {
 			const newIsSwitched = select(
 				'wdevs-tax-switch/store'
 			).getIsSwitched();
-
 			if ( this.state.isSwitched !== newIsSwitched ) {
 				this.setState( { isSwitched: newIsSwitched } );
 			}
 		} );
-
-		if ( this.parseBooleanValue( props.isSwitched ) ) {
-			this.state.isSwitched = true;
-			dispatch( 'wdevs-tax-switch/store' ).setIsSwitched( true );
-		}
 	}
 
-	parseBooleanValue( value ) {
-		if ( value ) {
-			return JSON.parse( value );
+	getInitialState( props ) {
+		const readOnly = TaxSwitchHelper.parseBooleanValue( props.readOnly );
+		const originalTaxDisplay = props.originalTaxDisplay || 'incl';
+		let isSwitched;
+
+		if ( readOnly ) {
+			isSwitched = ! ( originalTaxDisplay === 'incl' );
+		} else {
+			isSwitched = select( 'wdevs-tax-switch/store' ).getIsSwitched();
 		}
-		return false;
+
+		return { readOnly, isSwitched };
 	}
 
 	componentWillUnmount() {
-		// Unsubscribe from the store when the component is unmounted
 		if ( this.unsubscribe ) {
 			this.unsubscribe();
 		}
 	}
 
-	handleChange( event ) {
-		const isSwitched = ! this.state.isSwitched;
-		dispatch( 'wdevs-tax-switch/store' ).setIsSwitched( isSwitched );
-
-		if ( ! this.state.readOnly ) {
-			this.setCookie();
-		}
-		const elements = document.querySelectorAll(
-			'.wts-inactive, .wts-active'
-		);
-		elements.forEach( ( element ) => {
-			if ( element.classList.contains( 'wts-active' ) ) {
-				element.classList.replace( 'wts-active', 'wts-inactive' );
-			} else if ( element.classList.contains( 'wts-inactive' ) ) {
-				element.classList.replace( 'wts-inactive', 'wts-active' );
+	handleChange() {
+		const newIsSwitched = ! this.state.isSwitched;
+		this.setState( { isSwitched: newIsSwitched }, () => {
+			if ( ! this.state.readOnly ) {
+				dispatch( 'wdevs-tax-switch/store' ).saveIsSwitched(
+					newIsSwitched
+				);
+			} else {
+				dispatch( 'wdevs-tax-switch/store' ).setIsSwitched(
+					newIsSwitched
+				);
 			}
+
+			this.togglePriceClasses();
 		} );
 	}
 
-	setCookie() {
-		const { ajaxUrl, ajaxNonce, ajaxAction } = this.props;
+	getCurrentLabel() {
+		const { switchLabelIncl, switchLabelExcl } = this.props;
+		return this.displayIncludingVat() ? switchLabelIncl : switchLabelExcl;
+	}
 
-		if ( ! ajaxUrl || ! ajaxNonce || ! ajaxAction ) {
-			return;
-		}
+	displayIncludingVat() {
+		const { originalTaxDisplay = 'incl' } = this.props;
+		const { isSwitched } = this.state;
 
-		const data = new FormData();
-		data.append( 'action', ajaxAction );
-		data.append( 'nonce', ajaxNonce );
-		data.append( 'is_switched', ! this.state.isSwitched );
+		return TaxSwitchHelper.displayIncludingVat(
+			originalTaxDisplay,
+			isSwitched
+		);
+	}
 
-		fetch( ajaxUrl, {
-			method: 'POST',
-			credentials: 'same-origin',
-			body: data,
-		} )
-			.then( ( response ) => response.json() )
-			.then( ( data ) => {} )
-			.catch( ( error ) => {
-				console.error( error );
-			} );
+	togglePriceClasses() {
+		const { originalTaxDisplay = 'incl' } = this.props;
+		const { isSwitched } = this.state;
+
+		return TaxSwitchHelper.togglePriceClasses(
+			originalTaxDisplay,
+			isSwitched
+		);
 	}
 
 	render() {
 		const {
 			switchColor,
+			switchColorChecked,
 			switchBackgroundColor,
 			switchBackgroundColorChecked,
 		} = this.props;
-		const { isSwitched } = this.state;
+
+		const isChecked = this.displayIncludingVat();
 
 		return (
 			<div
 				className="wdevs-tax-switch"
 				style={ {
 					'--wts-color': switchColor,
+					'--wts-color-checked': switchColorChecked,
 					'--wts-bg-color': switchBackgroundColor,
-					'--wts-bg-checked-color': switchBackgroundColorChecked,
+					'--wts-bg-color-checked': switchBackgroundColorChecked,
 				} }
 			>
 				<label className="wdevs-tax-switch-label">
@@ -111,11 +113,17 @@ class SwitchComponent extends Component {
 						type="checkbox"
 						name="wdevs-tax-switch-checkbox"
 						onChange={ this.handleChange }
-						checked={ isSwitched }
+						checked={ isChecked }
 						className="wdevs-tax-switch-checkbox"
 					/>
 					<span className="wdevs-tax-switch-slider"></span>
 				</label>
+				<span
+					className="wdevs-tax-switch-label-text"
+					onClick={ this.handleChange }
+				>
+					{ this.getCurrentLabel() }
+				</span>
 			</div>
 		);
 	}

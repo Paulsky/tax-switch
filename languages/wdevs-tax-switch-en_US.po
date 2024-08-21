@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Wdevs Tax Switch\n"
-"POT-Creation-Date: 2024-08-16 17:56+0200\n"
-"PO-Revision-Date: 2024-08-16 17:56+0200\n"
+"POT-Creation-Date: 2024-08-21 11:47+0200\n"
+"PO-Revision-Date: 2024-08-21 11:47+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -21,63 +21,75 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 "X-Poedit-SearchPathExcluded-1: node_modules\n"
 
-#: admin/class-wdevs-tax-switch-admin.php:78
+#: admin/class-wdevs-tax-switch-admin.php:86
 msgid "Tax switch"
 msgstr "Tax switch"
 
-#: admin/class-wdevs-tax-switch-admin.php:92
+#: admin/class-wdevs-tax-switch-admin.php:100
 msgid "Tax switch settings"
 msgstr "Tax switch settings"
 
-#: admin/class-wdevs-tax-switch-admin.php:94
+#: admin/class-wdevs-tax-switch-admin.php:102
 msgid "Customize the tax switch settings."
 msgstr "Customize the tax switch settings."
 
-#: admin/class-wdevs-tax-switch-admin.php:98
-msgid "Including VAT Text"
-msgstr "Including VAT Text"
+#: admin/class-wdevs-tax-switch-admin.php:106
+msgid "Including VAT text"
+msgstr "Including VAT text"
 
-#: admin/class-wdevs-tax-switch-admin.php:100
+#: admin/class-wdevs-tax-switch-admin.php:108
 msgid "Text to append to prices including VAT."
 msgstr "Text to append to prices including VAT."
 
-#: admin/class-wdevs-tax-switch-admin.php:102
+#: admin/class-wdevs-tax-switch-admin.php:110
 #: public/class-wdevs-tax-switch-public.php:80
 msgid "Incl. VAT"
 msgstr "Incl. VAT"
 
-#: admin/class-wdevs-tax-switch-admin.php:105
-msgid "Excluding VAT Text"
-msgstr "Excluding VAT Text"
+#: admin/class-wdevs-tax-switch-admin.php:113
+msgid "Excluding VAT text"
+msgstr "Excluding VAT text"
 
-#: admin/class-wdevs-tax-switch-admin.php:107
+#: admin/class-wdevs-tax-switch-admin.php:115
 msgid "Text to append to prices excluding VAT."
 msgstr "Text to append to prices excluding VAT."
 
-#: admin/class-wdevs-tax-switch-admin.php:109
+#: admin/class-wdevs-tax-switch-admin.php:117
 #: public/class-wdevs-tax-switch-public.php:81
 msgid "Excl. VAT"
 msgstr "Excl. VAT"
 
-#: block/class-wdevs-tax-switch-block.php:75
-msgid "Inline style"
-msgstr "Inline style"
-
-#: block/src/edit.js:45
+#: block/src/edit.js:57
 msgid "Switch colors"
 msgstr "Switch colors"
 
-#: block/src/edit.js:52
+#: block/src/edit.js:64
 msgid "Switch color"
 msgstr "Switch color"
 
-#: block/src/edit.js:60
+#: block/src/edit.js:73
+msgid "Switch color checked"
+msgstr "Switch color checked"
+
+#: block/src/edit.js:83
 msgid "Background color"
 msgstr "Background color"
 
-#: block/src/edit.js:69
+#: block/src/edit.js:92
 msgid "Background color checked"
 msgstr "Background color checked"
+
+#: block/src/edit.js:99
+msgid "Switch Labels"
+msgstr "Switch Labels"
+
+#: block/src/edit.js:104
+msgid "Including VAT Label"
+msgstr "Including VAT Label"
+
+#: block/src/edit.js:114
+msgid "Excluding VAT Label"
+msgstr "Excluding VAT Label"
 
 #: includes/class-wdevs-tax-switch-activator.php:36
 msgid ""
@@ -86,6 +98,10 @@ msgid ""
 msgstr ""
 "This plugin requires WooCommerce. Please install and activate WooCommerce "
 "before activating this plugin."
+
+#: includes/class-wdevs-tax-switch-block.php:67
+msgid "Inline style"
+msgstr "Inline style"
 
 #. Plugin Name of the plugin/theme
 msgid "Tax Switch for WooCommerce"
@@ -110,6 +126,24 @@ msgstr "Wijnberg Developments"
 #. Author URI of the plugin/theme
 msgid "https://wijnberg.dev/"
 msgstr "https://wijnberg.dev/"
+
+#~ msgid "Switch Label including VAT"
+#~ msgstr "Switch Label including VAT"
+
+#~ msgid "Label to display when prices are shown including VAT."
+#~ msgstr "Label to display when prices are shown including VAT."
+
+#~ msgid "Prices include VAT"
+#~ msgstr "Prices include VAT"
+
+#~ msgid "Switch Label excluding VAT"
+#~ msgstr "Switch Label excluding VAT"
+
+#~ msgid "Label to display when prices are shown excluding VAT."
+#~ msgstr "Label to display when prices are shown excluding VAT."
+
+#~ msgid "Prices exclude VAT"
+#~ msgstr "Prices exclude VAT"
 
 #~ msgid ""
 #~ "Display WooCommerce prices with or without VAT, switchable by customers."

@@ -22,6 +22,8 @@
  */
 class Wdevs_Tax_Switch_Admin {
 
+	use Wdevs_Tax_Switch_Helper;
+
 	/**
 	 * The ID of this plugin.
 	 *
@@ -59,7 +61,17 @@ class Wdevs_Tax_Switch_Admin {
 	 * @since    1.0.0
 	 */
 	public function enqueue_block_editor_assets() {
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( dirname( __FILE__ ) ) . 'includes/assets/css/wdevs-tax-switch-shared.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( dirname( __FILE__ ) ) . 'includes/assets/css/wdevs-tax-switch-shared.css', array(), $this->version );
+
+		$original_tax_display = $this->get_original_tax_display();
+
+		wp_localize_script(
+			'wdevs-tax-switch-edit-script',
+			'wtsEditorObject',
+			[
+				'originalTaxDisplay' => $original_tax_display
+			]
+		);
 	}
 
 	/**
@@ -91,14 +103,14 @@ class Wdevs_Tax_Switch_Admin {
 				'id'   => 'wdevs_tax_switch_section_title'
 			),
 			array(
-				'name'        => __( 'Including VAT Text', 'wdevs-tax-switch' ),
+				'name'        => __( 'Including VAT text', 'wdevs-tax-switch' ),
 				'type'        => 'text',
 				'desc'        => __( 'Text to append to prices including VAT.', 'wdevs-tax-switch' ),
 				'id'          => 'wdevs_tax_switch_incl_vat',
 				'placeholder' => __( 'Incl. VAT' )
 			),
 			array(
-				'name'        => __( 'Excluding VAT Text', 'wdevs-tax-switch' ),
+				'name'        => __( 'Excluding VAT text', 'wdevs-tax-switch' ),
 				'type'        => 'text',
 				'desc'        => __( 'Text to append to prices excluding VAT.', 'wdevs-tax-switch' ),
 				'id'          => 'wdevs_tax_switch_excl_vat',
@@ -107,7 +119,7 @@ class Wdevs_Tax_Switch_Admin {
 			array(
 				'type' => 'sectionend',
 				'id'   => 'wdevs_tax_switch_section_end'
-			)
+			),
 		);
 
 		return apply_filters( 'wdevs_tax_switch_settings', $settings );
@@ -129,32 +141,5 @@ class Wdevs_Tax_Switch_Admin {
 	 */
 	public function update_settings() {
 		woocommerce_update_options( $this->get_settings() );
-	}
-
-	/**
-	 * Filter the WooCommerce tax display option.
-	 *
-	 * @param string $value The current value of the option.
-	 * @param string $option The name of the option.
-	 *
-	 * @return   string    The filtered value of the option.
-	 * @since    1.0.0
-	 */
-	public function filter_woocommerce_tax_display_shop_option( $value, $option ) {
-		if ( ! is_admin() && ! wp_doing_ajax() && ! defined( 'REST_REQUEST' ) ) {
-			if ( isset( $_COOKIE['wts_is_switched'] ) ) {
-				$is_switched = filter_var( $_COOKIE['wts_is_switched'], FILTER_VALIDATE_BOOLEAN );
-				if ( $is_switched ) {
-					//standard value
-					if ( $value === 'incl' ) {
-						return 'excl';
-					} else {
-						return 'incl';
-					}
-				}
-			}
-		}
-
-		return $value;
 	}
 }

@@ -1,82 +1,98 @@
 .wp-block-wdevs-tax-switch {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 
+  .wdevs-tax-switch {
+	display: flex;
+	align-items: center;
+
+	.wdevs-tax-switch-label {
+	  display: inline-block;
+	  width: 60px;
+	  height: 34px;
+	  position: relative;
+	}
+
+	.wdevs-tax-switch-checkbox {
+	  opacity: 0;
+	  width: 0;
+	  height: 0;
+	}
+
+	.wdevs-tax-switch-slider {
+	  position: absolute;
+	  cursor: pointer;
+	  top: 0;
+	  left: 0;
+	  right: 0;
+	  bottom: 0;
+	  background-color: var(--wts-bg-color, #ccc);
+	  transition: background-color 0.4s;
+	  border-radius: 34px;
+
+	  &::before {
+		position: absolute;
+		content: "";
+		height: 26px;
+		width: 26px;
+		left: 4px;
+		bottom: 4px;
+		background-color: var(--wts-color, #fff);
+		transition: transform 0.4s;
+		border-radius: 50%;
+	  }
+	}
+
+	.wdevs-tax-switch-checkbox:checked + .wdevs-tax-switch-slider {
+	  background-color: var(--wts-bg-color-checked, #34c759);
+
+	  &::before {
+		transform: translateX(26px);
+		background-color: var(--wts-color-checked, var(--wts-color, #fff));
+	  }
+	}
+
+	.wdevs-tax-switch-label-text {
+	  font-size: 14px;
+	  font-weight: 500;
+	  color: #333;
+	  margin-left: 10px;
+	  cursor: pointer;
+	  user-select: none;
+	}
+  }
+
+  &.is-style-inline {
 	.wdevs-tax-switch {
+	  .wdevs-tax-switch-label {
+		width: 50px;
+		height: 30px;
+	  }
 
-		.wdevs-tax-switch-label {
-			display: inline-block;
-			width: 60px;
-			height: 34px;
-			position: relative;
+	  .wdevs-tax-switch-slider {
+		background-color: var(--wts-bg-color, #e9e9ea);
+		border-radius: 30px;
+
+		&::before {
+		  height: 28px;
+		  width: 28px;
+		  left: 1px;
+		  bottom: 1px;
+		  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 		}
+	  }
 
-		.wdevs-tax-switch-checkbox {
-			opacity: 0;
-			width: 0;
-			height: 0;
+	  .wdevs-tax-switch-checkbox:checked + .wdevs-tax-switch-slider {
+
+		&::before {
+		  transform: translateX(20px);
 		}
+	  }
 
-		.wdevs-tax-switch-slider {
-			position: absolute;
-			cursor: pointer;
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			background-color: var(--wts-bg-color, #ccc);
-			transition: background-color 0.4s;
-			border-radius: 34px;
-
-			&::before {
-				position: absolute;
-				content: "";
-				height: 26px;
-				width: 26px;
-				left: 4px;
-				bottom: 4px;
-				background-color: var(--wts-color, #fff);
-				transition: transform 0.4s;
-				border-radius: 50%;
-			}
-		}
-
-		.wdevs-tax-switch-checkbox:checked + .wdevs-tax-switch-slider {
-			background-color: var(--wts-bg-checked-color, #2196f3);
-
-			&::before {
-				transform: translateX(26px);
-			}
-		}
+	  .wdevs-tax-switch-label-text {
+		font-size: 13px;
+	  }
 	}
-
-	&.is-style-inline {
-
-		.wdevs-tax-switch {
-
-			.wdevs-tax-switch-label {
-				width: 50px;
-				height: 30px;
-			}
-
-			.wdevs-tax-switch-slider {
-				background-color: var(--wts-bg-color, #e9e9ea);
-				border-radius: 30px;
-
-				&::before {
-					height: 28px;
-					width: 28px;
-					left: 1px;
-					bottom: 1px;
-					box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-				}
-			}
-
-			.wdevs-tax-switch-checkbox:checked + .wdevs-tax-switch-slider {
-				background-color: var(--wts-bg-checked-color, #34c759);
-
-				&::before {
-					transform: translateX(20px);
-				}
-			}
-		}
-	}
+  }
 }

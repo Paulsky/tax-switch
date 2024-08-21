@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Tax Switch for WooCommerce\n"
-"POT-Creation-Date: 2024-08-16 17:56+0200\n"
-"PO-Revision-Date: 2024-08-16 17:58+0200\n"
+"POT-Creation-Date: 2024-08-21 11:47+0200\n"
+"PO-Revision-Date: 2024-08-21 11:48+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -21,63 +21,75 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 "X-Poedit-SearchPathExcluded-1: node_modules\n"
 
-#: admin/class-wdevs-tax-switch-admin.php:78
+#: admin/class-wdevs-tax-switch-admin.php:86
 msgid "Tax switch"
 msgstr "Btw-schakelaar"
 
-#: admin/class-wdevs-tax-switch-admin.php:92
+#: admin/class-wdevs-tax-switch-admin.php:100
 msgid "Tax switch settings"
 msgstr "Btw-schakelaar instellingen"
 
-#: admin/class-wdevs-tax-switch-admin.php:94
+#: admin/class-wdevs-tax-switch-admin.php:102
 msgid "Customize the tax switch settings."
 msgstr "Pas de instellingen van de btw-schakelaar aan."
 
-#: admin/class-wdevs-tax-switch-admin.php:98
-msgid "Including VAT Text"
+#: admin/class-wdevs-tax-switch-admin.php:106
+msgid "Including VAT text"
 msgstr "Tekst inclusief btw"
 
-#: admin/class-wdevs-tax-switch-admin.php:100
+#: admin/class-wdevs-tax-switch-admin.php:108
 msgid "Text to append to prices including VAT."
 msgstr "Tekst om toe te voegen aan prijzen inclusief btw."
 
-#: admin/class-wdevs-tax-switch-admin.php:102
+#: admin/class-wdevs-tax-switch-admin.php:110
 #: public/class-wdevs-tax-switch-public.php:80
 msgid "Incl. VAT"
 msgstr "Incl. btw"
 
-#: admin/class-wdevs-tax-switch-admin.php:105
-msgid "Excluding VAT Text"
+#: admin/class-wdevs-tax-switch-admin.php:113
+msgid "Excluding VAT text"
 msgstr "Tekst exclusief btw"
 
-#: admin/class-wdevs-tax-switch-admin.php:107
+#: admin/class-wdevs-tax-switch-admin.php:115
 msgid "Text to append to prices excluding VAT."
 msgstr "Tekst om toe te voegen aan prijzen exclusief btw."
 
-#: admin/class-wdevs-tax-switch-admin.php:109
+#: admin/class-wdevs-tax-switch-admin.php:117
 #: public/class-wdevs-tax-switch-public.php:81
 msgid "Excl. VAT"
 msgstr "Excl. btw"
 
-#: block/class-wdevs-tax-switch-block.php:75
-msgid "Inline style"
-msgstr "Inline stijl"
-
-#: block/src/edit.js:45
+#: block/src/edit.js:57
 msgid "Switch colors"
 msgstr "Schakelaar kleuren"
 
-#: block/src/edit.js:52
+#: block/src/edit.js:64
 msgid "Switch color"
-msgstr "Schakelaar kleur"
+msgstr "Schakelaarkleur"
 
-#: block/src/edit.js:60
+#: block/src/edit.js:73
+msgid "Switch color checked"
+msgstr "Schakelaarkleur ingeschakeld"
+
+#: block/src/edit.js:83
 msgid "Background color"
 msgstr "Achtergrondkleur"
 
-#: block/src/edit.js:69
+#: block/src/edit.js:92
 msgid "Background color checked"
 msgstr "Achtergrondkleur ingeschakeld"
+
+#: block/src/edit.js:99
+msgid "Switch Labels"
+msgstr "Schakelaar labels"
+
+#: block/src/edit.js:104
+msgid "Including VAT Label"
+msgstr "Label inclusief btw"
+
+#: block/src/edit.js:114
+msgid "Excluding VAT Label"
+msgstr "Label exclusief btw"
 
 #: includes/class-wdevs-tax-switch-activator.php:36
 msgid ""
@@ -86,6 +98,10 @@ msgid ""
 msgstr ""
 "Deze plugin vereist WooCommerce. Installeer en activeer WooCommerce voordat "
 "u deze plugin activeert."
+
+#: includes/class-wdevs-tax-switch-block.php:67
+msgid "Inline style"
+msgstr "Inline stijl"
 
 #. Plugin Name of the plugin/theme
 msgid "Tax Switch for WooCommerce"

@@ -1,5 +1,8 @@
 import { render, Suspense } from '@wordpress/element';
 import SwitchComponent from './components/SwitchComponent';
+import TaxSwitchHelper from './includes/TaxSwitchHelper';
+import { select } from '@wordpress/data';
+import './includes/store';
 
 const renderSwitchComponent = ( element, ajaxConfig ) => {
 	const attributes = {
@@ -17,18 +20,20 @@ const renderSwitchComponent = ( element, ajaxConfig ) => {
 
 window.addEventListener( 'DOMContentLoaded', () => {
 	const elements = document.querySelectorAll( '.wp-block-wdevs-tax-switch' );
-	const ajaxConfig = window.wtsAjaxObject || {
-		ajaxUrl: null,
-		ajaxNonce: null,
-		ajaxAction: null,
-		isSwitched: false,
+	const viewConfig = window.wtsViewObject || {
+		originalTaxDisplay: 'incl',
 	};
 
 	if ( elements.length > 0 ) {
 		elements.forEach( ( element ) => {
 			if ( element ) {
-				renderSwitchComponent( element, ajaxConfig );
+				renderSwitchComponent( element, viewConfig );
 			}
 		} );
+
+		TaxSwitchHelper.togglePriceClasses(
+			viewConfig.originalTaxDisplay,
+			select( 'wdevs-tax-switch/store' ).getIsSwitched()
+		);
 	}
 } );

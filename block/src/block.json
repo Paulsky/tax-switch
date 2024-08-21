@@ -14,11 +14,22 @@
 		"switchColor": {
 			"type": "string"
 		},
+		"switchColorChecked": {
+			"type": "string"
+		},
 		"switchBackgroundColor": {
 			"type": "string"
 		},
 		"switchBackgroundColorChecked": {
 			"type": "string"
+		},
+		"switchLabelIncl": {
+			"type": "string",
+			"default": "Prices include VAT"
+		},
+		"switchLabelExcl": {
+			"type": "string",
+			"default": "Prices exclude VAT"
 		}
 	},
 	"textdomain": "wdevs-tax-switch",

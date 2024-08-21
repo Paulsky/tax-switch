@@ -1,8 +1,9 @@
 <?php
 
 /**
- * Fired during plugin activation
+ * The block functionality of the plugin.
  *
+ * @link       https://wijnberg.dev
  * @since      1.0.0
  *
  * @package    Wdevs_Tax_Switch
@@ -10,16 +11,18 @@
  */
 
 /**
- * Fired during plugin activation.
+ * The block functionality of the plugin.
  *
- * This class defines all code necessary to run during the plugin's activation.
+ * Defines the plugin name, version, and hooks for the block functionality.
+ * This class is responsible for registering and rendering the tax switch block and shortcode.
  *
- * @since      1.0.0
  * @package    Wdevs_Tax_Switch
  * @subpackage Wdevs_Tax_Switch/includes
  * @author     Wijnberg Developments <contact@wijnberg.dev>
  */
 class Wdevs_Tax_Switch_Block {
+
+	use Wdevs_Tax_Switch_Helper;
 
 	/**
 	 * The ID of this plugin.
@@ -39,30 +42,19 @@ class Wdevs_Tax_Switch_Block {
 	 */
 	private $version;
 
-	/**
-	 * Ajax Manager class
-	 *
-	 * @since    1.0.0
-	 * @access   protected
-	 * @var      object $ajax_manager The Ajax Manager class
-	 */
-	protected $ajax_manager;
-
 
 	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @param string $plugin_name The name of this plugin.
 	 * @param string $version The version of this plugin.
-	 * @param object $ajax_manager The Ajax Manager class
 	 *
 	 * @since    1.0.0
 	 */
-	public function __construct( $plugin_name, $version, $ajax_manager ) {
+	public function __construct( $plugin_name, $version ) {
 
-		$this->plugin_name  = $plugin_name;
-		$this->version      = $version;
-		$this->ajax_manager = $ajax_manager;
+		$this->plugin_name = $plugin_name;
+		$this->version     = $version;
 	}
 
 	public function init_block() {
@@ -99,8 +91,11 @@ class Wdevs_Tax_Switch_Block {
 		$attributes = shortcode_atts( [
 			'class-name'                      => 'is-style-default',
 			'switch-color'                    => '',
+			'switch-color-checked'            => '',
 			'switch-background-color'         => '',
-			'switch-background-color-checked' => ''
+			'switch-background-color-checked' => '',
+			'switch-label-incl'               => '',
+			'switch-label-excl'               => ''
 		], $attributes );
 
 		$holder_class_name = 'wp-block-wdevs-tax-switch'; //important for rendering JS
@@ -114,25 +109,21 @@ class Wdevs_Tax_Switch_Block {
 	}
 
 	public function enqueue_frontend_script() {
-
-		$is_switched = false;
-		if ( isset( $_COOKIE['wts_is_switched'] ) ) {
-			$is_switched = filter_var( $_COOKIE['wts_is_switched'], FILTER_VALIDATE_BOOLEAN );
-		}
+		$original_tax_display = $this->get_original_tax_display();
 
 		wp_localize_script(
 			'wdevs-tax-switch-view-script',
-			'wtsAjaxObject',
+			'wtsViewObject',
 			[
-				'ajaxUrl'    => admin_url( 'admin-ajax.php' ),
-				'ajaxNonce'  => wp_create_nonce( 'ajax-nonce' ),
-				'ajaxAction' => $this->ajax_manager->getFormAction(),
-				'isSwitched' => $is_switched
+				'originalTaxDisplay' => $original_tax_display
 			]
 		);
 
-		wp_set_script_translations( 'wdevs-tax-switch-view-script', 'wdevs-tax-switch', plugin_dir_path( dirname( __FILE__ ) ) . 'languages' );
-
+		wp_set_script_translations(
+			'wdevs-tax-switch-view-script',
+			'wdevs-tax-switch',
+			plugin_dir_path( dirname( __FILE__ ) ) . 'languages'
+		);
 	}
 
 	public function add_attributes_to_block( $attributes = [], $content = '' ) {

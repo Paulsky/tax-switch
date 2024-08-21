@@ -57,14 +57,6 @@ class Wdevs_Tax_Switch {
 	 */
 	protected $version;
 
-	/**
-	 * Ajax Manager class
-	 *
-	 * @since    1.0.0
-	 * @access   protected
-	 * @var      object $ajax_manager The Ajax Manager class
-	 */
-	protected $ajax_manager;
 
 	/**
 	 * Define the core functionality of the plugin.
@@ -88,7 +80,6 @@ class Wdevs_Tax_Switch {
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
 		$this->define_block_hooks();
-		$this->define_ajax_hooks();
 	}
 
 	/**
@@ -110,6 +101,11 @@ class Wdevs_Tax_Switch {
 	 * @access   private
 	 */
 	private function load_dependencies() {
+
+		/**
+		 * The trait with helper functions.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/trait-wdevs-tax-switch-helper.php';
 
 		/**
 		 * The class responsible for orchestrating the actions and filters of the
@@ -140,14 +136,7 @@ class Wdevs_Tax_Switch {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-wdevs-tax-switch-public.php';
 
-		/**
-		 * The class responsible for AJAX request form fields.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wdevs-tax-switch-ajax.php';
-
 		$this->loader       = new Wdevs_Tax_Switch_Loader();
-		$this->ajax_manager = new Wdevs_Tax_Switch_Ajax();
-
 	}
 
 	/**
@@ -175,16 +164,14 @@ class Wdevs_Tax_Switch {
 	 * @access   private
 	 */
 	private function define_admin_hooks() {
+		if(is_admin()){
+			$plugin_admin = new Wdevs_Tax_Switch_Admin( $this->get_plugin_name(), $this->get_version() );
+			$this->loader->add_action( 'enqueue_block_editor_assets', $plugin_admin, 'enqueue_block_editor_assets' );
 
-		$plugin_admin = new Wdevs_Tax_Switch_Admin( $this->get_plugin_name(), $this->get_version() );
-		$this->loader->add_action( 'enqueue_block_editor_assets', $plugin_admin, 'enqueue_block_editor_assets' );
-
-		$this->loader->add_filter( 'woocommerce_settings_tabs_array', $plugin_admin, 'add_settings_tab', 50 );
-		$this->loader->add_action( 'woocommerce_settings_tabs_wdevs_tax_switch', $plugin_admin, 'settings_tab' );
-		$this->loader->add_action( 'woocommerce_update_options_wdevs_tax_switch', $plugin_admin, 'update_settings' );
-
-		$this->loader->add_filter( 'option_woocommerce_tax_display_shop', $plugin_admin, 'filter_woocommerce_tax_display_shop_option', 10, 2 );
-
+			$this->loader->add_filter( 'woocommerce_settings_tabs_array', $plugin_admin, 'add_settings_tab', 50 );
+			$this->loader->add_action( 'woocommerce_settings_tabs_wdevs_tax_switch', $plugin_admin, 'settings_tab' );
+			$this->loader->add_action( 'woocommerce_update_options_wdevs_tax_switch', $plugin_admin, 'update_settings' );
+		}
 	}
 
 	/**
@@ -213,23 +200,11 @@ class Wdevs_Tax_Switch {
 	 */
 	private function define_block_hooks() {
 
-		$plugin_block = new Wdevs_Tax_Switch_Block( $this->get_plugin_name(), $this->get_version(), $this->ajax_manager );
+		$plugin_block = new Wdevs_Tax_Switch_Block( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'init', $plugin_block, 'init_block' );
 		$this->loader->add_action( 'init', $plugin_block, 'register_shortcode' );
 
-	}
-
-	/**
-	 * Register all of the hooks related to the AJAX functionality
-	 * of the plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 */
-	private function define_ajax_hooks() {
-		$this->loader->add_action( 'wp_ajax_' . $this->ajax_manager->getFormAction(), $this->ajax_manager, $this->ajax_manager->getFormAction() . '_endpoint' );
-		$this->loader->add_action( 'wp_ajax_nopriv_' . $this->ajax_manager->getFormAction(), $this->ajax_manager, $this->ajax_manager->getFormAction() . '_endpoint' );
 	}
 
 	/**

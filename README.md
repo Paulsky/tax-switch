@@ -74,17 +74,22 @@ This will display the default tax switch.
 The shortcode also accepts several attributes to customize its appearance:
 
 - `class-name`: Adds custom CSS classes to the switch.
-	- Default: `is-style-default`
-	- Options: `is-style-default`, `is-style-inline`, custom classes
+    - Default: `is-style-default`
+    - Options: `is-style-default`, `is-style-inline`, custom classes
 - `switch-color`: Sets the color of the switch handle.
+- `switch-color-checked`: Sets the color of the switch when it's in the "on" position.
 - `switch-background-color`: Sets the background color of the switch.
 - `switch-background-color-checked`: Sets the background color of the switch when it's in the "on" position.
+- `switch-label-incl`: Sets the text for the "including VAT" label.
+    - Default: Uses the text set in the plugin settings or "Incl. VAT" if not set.
+- `switch-label-excl`: Sets the text for the "excluding VAT" label.
+    - Default: Uses the text set in the plugin settings or "Excl. VAT" if not set.
 
 Example with custom attributes:
 
-[wdevs_tax_switch class-name="is-style-inline" switch-color="#ffffff" switch-background-color="#000000" switch-background-color-checked="#4CAF50"]
+`[wdevs_tax_switch class-name="is-style-inline" switch-color="#ffffff" switch-color-checked="#000000" switch-background-color="#000000" switch-background-color-checked="#4CAF50" switch-label-incl="Inc. Tax" switch-label-excl="Ex. Tax"]`
 
-This will display an inline-style switch with a white handle, black background when off, and green background when on.
+This will display an inline-style switch with a white handle that turns black when on, a black background when off, green background when on, and custom labels for including and excluding tax.
 
 You can use this shortcode in posts, pages, and even in your theme files by using the `do_shortcode()` function:
 
@@ -99,6 +104,10 @@ This plugin is tested and compatible with the following:
 ### Themes
 
 - GeneratePress
+
+### Plugins
+
+- Measurement Price Calculator for WooCommerce
 
 If you encounter any conflicts with other themes or plugins, please report them by opening an issue or through our website.
 
