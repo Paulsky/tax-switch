@@ -7,8 +7,12 @@ class TaxSwitchHelper {
 		const elements = document.querySelectorAll( '.wts-price-wrapper' );
 
 		elements.forEach( ( element ) => {
-			const inclElement = element.querySelector( '.wts-price-incl' );
-			const exclElement = element.querySelector( '.wts-price-excl' );
+			const inclElement = element.querySelector(
+				':scope > .wts-price-incl'
+			);
+			const exclElement = element.querySelector(
+				':scope > .wts-price-excl'
+			);
 
 			if ( displayIncludingVat ) {
 				inclElement.classList.remove( 'wts-inactive' );

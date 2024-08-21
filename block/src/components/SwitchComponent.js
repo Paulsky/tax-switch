@@ -84,8 +84,8 @@ class SwitchComponent extends Component {
 	}
 
 	getCurrentLabel() {
-		const {switchLabelIncl, switchLabelExcl} = this.props;
-		if (this.displayIncludingVat()) {
+		const { switchLabelIncl, switchLabelExcl } = this.props;
+		if ( this.displayIncludingVat() ) {
 			return switchLabelIncl || '';
 		} else {
 			return switchLabelExcl || '';
