@@ -63,11 +63,6 @@ class SwitchComponent extends Component {
 		} );
 	}
 
-	getCurrentLabel() {
-		const { switchLabelIncl, switchLabelExcl } = this.props;
-		return this.displayIncludingVat() ? switchLabelIncl : switchLabelExcl;
-	}
-
 	displayIncludingVat() {
 		const { originalTaxDisplay = 'incl' } = this.props;
 		const { isSwitched } = this.state;
@@ -88,15 +83,27 @@ class SwitchComponent extends Component {
 		);
 	}
 
+	getCurrentLabel() {
+		const {switchLabelIncl, switchLabelExcl} = this.props;
+		if (this.displayIncludingVat()) {
+			return switchLabelIncl || '';
+		} else {
+			return switchLabelExcl || '';
+		}
+	}
+
 	render() {
 		const {
 			switchColor,
 			switchColorChecked,
 			switchBackgroundColor,
 			switchBackgroundColorChecked,
+			switchLabelIncl,
+			switchLabelExcl,
 		} = this.props;
 
 		const isChecked = this.displayIncludingVat();
+		const showLabel = switchLabelIncl || switchLabelExcl;
 
 		return (
 			<div
@@ -118,12 +125,14 @@ class SwitchComponent extends Component {
 					/>
 					<span className="wdevs-tax-switch-slider"></span>
 				</label>
-				<span
-					className="wdevs-tax-switch-label-text"
-					onClick={ this.handleChange }
-				>
-					{ this.getCurrentLabel() }
-				</span>
+				{ showLabel && (
+					<span
+						className="wdevs-tax-switch-label-text"
+						onClick={ this.handleChange }
+					>
+						{ this.getCurrentLabel() }
+					</span>
+				) }
 			</div>
 		);
 	}

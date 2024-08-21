@@ -24,12 +24,10 @@
 			"type": "string"
 		},
 		"switchLabelIncl": {
-			"type": "string",
-			"default": "Prices include VAT"
+			"type": "string"
 		},
 		"switchLabelExcl": {
-			"type": "string",
-			"default": "Prices exclude VAT"
+			"type": "string"
 		}
 	},
 	"textdomain": "wdevs-tax-switch",
