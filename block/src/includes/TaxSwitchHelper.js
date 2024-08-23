@@ -1,3 +1,6 @@
+import { select } from '@wordpress/data';
+import './store';
+
 class TaxSwitchHelper {
 	static togglePriceClasses( originalTaxDisplay, isSwitched ) {
 		const displayIncludingVat = this.displayIncludingVat(
@@ -40,6 +43,13 @@ class TaxSwitchHelper {
 			return JSON.parse( value );
 		}
 		return false;
+	}
+
+	static setPriceClasses( originalTaxDisplay ) {
+		return this.togglePriceClasses(
+			originalTaxDisplay,
+			select( 'wdevs-tax-switch/store' ).getIsSwitched()
+		);
 	}
 }
 

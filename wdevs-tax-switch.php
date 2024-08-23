@@ -13,19 +13,22 @@
  * @package           Wdevs_Tax_Switch
  *
  * @wordpress-plugin
- * Plugin Name:       Tax Switch for WooCommerce
- * Plugin URI:        https://wijnberg.dev
- * Description:       Let customers toggle between inclusive and exclusive VAT pricing in your WooCommerce store.
- * Version:           1.0.0
- * Author:            Wijnberg Developments
- * Author URI:        https://wijnberg.dev/
- * License:           GPL-2.0+
- * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       wdevs-tax-switch
- * Domain Path:       /languages
- * Tested up to:      6.6
- * Requires PHP:      7.2
- * Requires at least: 5.0
+ * Plugin Name:          Tax Switch for WooCommerce
+ * Plugin URI:           https://wijnberg.dev
+ * Description:          Let customers toggle between inclusive and exclusive VAT pricing in your WooCommerce store.
+ * Version:              1.0.0
+ * Author:               Wijnberg Developments
+ * Author URI:           https://wijnberg.dev/
+ * License:              GPL-2.0+
+ * License URI:          http://www.gnu.org/licenses/gpl-2.0.txt
+ * Text Domain:          wdevs-tax-switch
+ * Domain Path:          /languages
+ * Tested up to:         6.6
+ * Requires PHP:         7.2
+ * Requires at least:    5.0
+ * WC requires at least: 7.0.0
+ * WC tested up to:      9.2.2
+ * Requires Plugins:     woocommerce
  */
 
 // If this file is called directly, abort.

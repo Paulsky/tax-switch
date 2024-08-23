@@ -79,6 +79,7 @@ class Wdevs_Tax_Switch {
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
+		$this->define_woocommerce_hooks();
 		$this->define_block_hooks();
 	}
 
@@ -91,8 +92,8 @@ class Wdevs_Tax_Switch {
 	 * - Wdevs_Tax_Switch_i18n. Defines internationalization functionality.
 	 * - Wdevs_Tax_Switch_Admin. Defines all hooks for the admin area.
 	 * - Wdevs_Tax_Switch_Public. Defines all hooks for the public side of the site.
+	 * - Wdevs_Tax_Switch_WooCommerce. Defines all hooks for the WooCommerce functionality.
 	 * - Wdevs_Tax_Switch_Block. Defines all hooks for the block functionality.
-	 * - Wdevs_Tax_Switch_Ajax. Handles AJAX functionality.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -125,18 +126,24 @@ class Wdevs_Tax_Switch {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-wdevs-tax-switch-admin.php';
 
 		/**
-		 * The class responsible for defining all actions that occur in the block-facing
-		 * side of the site.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wdevs-tax-switch-block.php';
-
-		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-wdevs-tax-switch-public.php';
 
-		$this->loader       = new Wdevs_Tax_Switch_Loader();
+		/**
+		 * The class responsible for defining the WooCommerce functionality
+		 * of the plugin.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wdevs-tax-switch-woocommerce.php';
+
+		/**
+		 * The class responsible for defining all actions that occur in the block-facing
+		 * side of the site.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wdevs-tax-switch-block.php';
+
+		$this->loader = new Wdevs_Tax_Switch_Loader();
 	}
 
 	/**
@@ -164,13 +171,9 @@ class Wdevs_Tax_Switch {
 	 * @access   private
 	 */
 	private function define_admin_hooks() {
-		if(is_admin()){
+		if ( is_admin() ) {
 			$plugin_admin = new Wdevs_Tax_Switch_Admin( $this->get_plugin_name(), $this->get_version() );
 			$this->loader->add_action( 'enqueue_block_editor_assets', $plugin_admin, 'enqueue_block_editor_assets' );
-
-			$this->loader->add_filter( 'woocommerce_settings_tabs_array', $plugin_admin, 'add_settings_tab', 50 );
-			$this->loader->add_action( 'woocommerce_settings_tabs_wdevs_tax_switch', $plugin_admin, 'settings_tab' );
-			$this->loader->add_action( 'woocommerce_update_options_wdevs_tax_switch', $plugin_admin, 'update_settings' );
 		}
 	}
 
@@ -189,6 +192,23 @@ class Wdevs_Tax_Switch {
 			$this->loader->add_filter( 'woocommerce_get_price_html', $plugin_public, 'get_price_html', 100, 2 );
 		}
 		//$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+	}
+
+	/**
+	 * Register all of the hooks related to the Woocommerce functionality
+	 * of the plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 */
+	private function define_woocommerce_hooks() {
+		$plugin_woocommerce = new Wdevs_Tax_Switch_Woocommerce( $this->get_plugin_name(), $this->get_version() );
+		$this->loader->add_filter( 'before_woocommerce_init', $plugin_woocommerce, 'declare_compatibility' );
+		if ( is_admin() ) {
+			$this->loader->add_filter( 'woocommerce_settings_tabs_array', $plugin_woocommerce, 'add_settings_tab', 50 );
+			$this->loader->add_action( 'woocommerce_settings_tabs_wdevs_tax_switch', $plugin_woocommerce, 'settings_tab' );
+			$this->loader->add_action( 'woocommerce_update_options_wdevs_tax_switch', $plugin_woocommerce, 'update_settings' );
+		}
 	}
 
 	/**
