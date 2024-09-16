@@ -30,7 +30,7 @@
 			"type": "string"
 		}
 	},
-	"textdomain": "wdevs-tax-switch",
+	"textdomain": "tax-switch-for-woocommerce",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",

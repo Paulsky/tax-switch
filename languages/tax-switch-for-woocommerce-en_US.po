@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Wdevs Tax Switch\n"
-"POT-Creation-Date: 2024-08-21 11:47+0200\n"
-"PO-Revision-Date: 2024-08-21 11:47+0200\n"
+"Project-Id-Version: Tax Switch for WooCommerce\n"
+"POT-Creation-Date: 2024-09-16 10:22+0200\n"
+"PO-Revision-Date: 2024-09-16 10:27+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Poedit 3.5\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: wdevs-tax-switch.php\n"
@@ -20,44 +20,6 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 "X-Poedit-SearchPathExcluded-1: node_modules\n"
-
-#: admin/class-wdevs-tax-switch-admin.php:86
-msgid "Tax switch"
-msgstr "Tax switch"
-
-#: admin/class-wdevs-tax-switch-admin.php:100
-msgid "Tax switch settings"
-msgstr "Tax switch settings"
-
-#: admin/class-wdevs-tax-switch-admin.php:102
-msgid "Customize the tax switch settings."
-msgstr "Customize the tax switch settings."
-
-#: admin/class-wdevs-tax-switch-admin.php:106
-msgid "Including VAT text"
-msgstr "Including VAT text"
-
-#: admin/class-wdevs-tax-switch-admin.php:108
-msgid "Text to append to prices including VAT."
-msgstr "Text to append to prices including VAT."
-
-#: admin/class-wdevs-tax-switch-admin.php:110
-#: public/class-wdevs-tax-switch-public.php:80
-msgid "Incl. VAT"
-msgstr "Incl. VAT"
-
-#: admin/class-wdevs-tax-switch-admin.php:113
-msgid "Excluding VAT text"
-msgstr "Excluding VAT text"
-
-#: admin/class-wdevs-tax-switch-admin.php:115
-msgid "Text to append to prices excluding VAT."
-msgstr "Text to append to prices excluding VAT."
-
-#: admin/class-wdevs-tax-switch-admin.php:117
-#: public/class-wdevs-tax-switch-public.php:81
-msgid "Excl. VAT"
-msgstr "Excl. VAT"
 
 #: block/src/edit.js:57
 msgid "Switch colors"
@@ -103,6 +65,44 @@ msgstr ""
 msgid "Inline style"
 msgstr "Inline style"
 
+#: includes/class-wdevs-tax-switch-woocommerce.php:78
+msgid "Tax switch"
+msgstr "Tax switch"
+
+#: includes/class-wdevs-tax-switch-woocommerce.php:92
+msgid "Tax switch settings"
+msgstr "Tax switch settings"
+
+#: includes/class-wdevs-tax-switch-woocommerce.php:94
+msgid "Customize the tax switch settings."
+msgstr "Customize the tax switch settings."
+
+#: includes/class-wdevs-tax-switch-woocommerce.php:98
+msgid "Including VAT text"
+msgstr "Including VAT text"
+
+#: includes/class-wdevs-tax-switch-woocommerce.php:100
+msgid "Text to append to prices including VAT."
+msgstr "Text to append to prices including VAT."
+
+#: includes/class-wdevs-tax-switch-woocommerce.php:102
+#: public/class-wdevs-tax-switch-public.php:80
+msgid "Incl. VAT"
+msgstr "Incl. VAT"
+
+#: includes/class-wdevs-tax-switch-woocommerce.php:105
+msgid "Excluding VAT text"
+msgstr "Excluding VAT text"
+
+#: includes/class-wdevs-tax-switch-woocommerce.php:107
+msgid "Text to append to prices excluding VAT."
+msgstr "Text to append to prices excluding VAT."
+
+#: includes/class-wdevs-tax-switch-woocommerce.php:109
+#: public/class-wdevs-tax-switch-public.php:81
+msgid "Excl. VAT"
+msgstr "Excl. VAT"
+
 #. Plugin Name of the plugin/theme
 msgid "Tax Switch for WooCommerce"
 msgstr "Tax Switch for WooCommerce"
@@ -126,29 +126,3 @@ msgstr "Wijnberg Developments"
 #. Author URI of the plugin/theme
 msgid "https://wijnberg.dev/"
 msgstr "https://wijnberg.dev/"
-
-#~ msgid "Switch Label including VAT"
-#~ msgstr "Switch Label including VAT"
-
-#~ msgid "Label to display when prices are shown including VAT."
-#~ msgstr "Label to display when prices are shown including VAT."
-
-#~ msgid "Prices include VAT"
-#~ msgstr "Prices include VAT"
-
-#~ msgid "Switch Label excluding VAT"
-#~ msgstr "Switch Label excluding VAT"
-
-#~ msgid "Label to display when prices are shown excluding VAT."
-#~ msgstr "Label to display when prices are shown excluding VAT."
-
-#~ msgid "Prices exclude VAT"
-#~ msgstr "Prices exclude VAT"
-
-#~ msgid ""
-#~ "Display WooCommerce prices with or without VAT, switchable by customers."
-#~ msgstr ""
-#~ "Display WooCommerce prices with or without VAT, switchable by customers."
-
-#~ msgid "Wdevs Tax Switch"
-#~ msgstr "Wdevs Tax Switch"

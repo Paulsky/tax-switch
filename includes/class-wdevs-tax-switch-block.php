@@ -64,10 +64,10 @@ class Wdevs_Tax_Switch_Block {
 
 		register_block_style( 'wdevs/tax-switch', [
 			'name'  => 'inline',
-			'label' => __( 'Inline style', 'wdevs-tax-switch' ),
+			'label' => __( 'Inline style', 'tax-switch-for-woocommerce' ),
 		] );
 
-		wp_set_script_translations( 'wdevs-tax-switch-editor-script', 'wdevs-tax-switch', plugin_dir_path( dirname( __FILE__ ) ) . 'languages' );
+		wp_set_script_translations( 'wdevs-tax-switch-editor-script', 'tax-switch-for-woocommerce', plugin_dir_path( dirname( __FILE__ ) ) . 'languages' );
 	}
 
 	//https://developer.woocommerce.com/2021/11/15/how-does-woocommerce-blocks-render-interactive-blocks-in-the-frontend/
@@ -121,7 +121,7 @@ class Wdevs_Tax_Switch_Block {
 
 		wp_set_script_translations(
 			'wdevs-tax-switch-view-script',
-			'wdevs-tax-switch',
+			'tax-switch-for-woocommerce',
 			plugin_dir_path( dirname( __FILE__ ) ) . 'languages'
 		);
 	}

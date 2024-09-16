@@ -75,7 +75,7 @@ class Wdevs_Tax_Switch_Woocommerce {
 	 * @since    1.0.0
 	 */
 	public function add_settings_tab( $settings_tabs ) {
-		$settings_tabs['wdevs_tax_switch'] = __( 'Tax switch', 'wdevs-tax-switch' );
+		$settings_tabs['wdevs_tax_switch'] = __( 'Tax switch', 'tax-switch-for-woocommerce' );
 
 		return $settings_tabs;
 	}
@@ -89,24 +89,24 @@ class Wdevs_Tax_Switch_Woocommerce {
 	public function get_settings() {
 		$settings = array(
 			array(
-				'name' => __( 'Tax switch settings', 'wdevs-tax-switch' ),
+				'name' => __( 'Tax switch settings', 'tax-switch-for-woocommerce' ),
 				'type' => 'title',
-				'desc' => __( 'Customize the tax switch settings.', 'wdevs-tax-switch' ),
+				'desc' => __( 'Customize the tax switch settings.', 'tax-switch-for-woocommerce' ),
 				'id'   => 'wdevs_tax_switch_section_title'
 			),
 			array(
-				'name'        => __( 'Including VAT text', 'wdevs-tax-switch' ),
+				'name'        => __( 'Including VAT text', 'tax-switch-for-woocommerce' ),
 				'type'        => 'text',
-				'desc'        => __( 'Text to append to prices including VAT.', 'wdevs-tax-switch' ),
+				'desc'        => __( 'Text to append to prices including VAT.', 'tax-switch-for-woocommerce' ),
 				'id'          => 'wdevs_tax_switch_incl_vat',
-				'placeholder' => __( 'Incl. VAT' )
+				'placeholder' => __( 'Incl. VAT', 'tax-switch-for-woocommerce' )
 			),
 			array(
-				'name'        => __( 'Excluding VAT text', 'wdevs-tax-switch' ),
+				'name'        => __( 'Excluding VAT text', 'tax-switch-for-woocommerce' ),
 				'type'        => 'text',
-				'desc'        => __( 'Text to append to prices excluding VAT.', 'wdevs-tax-switch' ),
+				'desc'        => __( 'Text to append to prices excluding VAT.', 'tax-switch-for-woocommerce' ),
 				'id'          => 'wdevs_tax_switch_excl_vat',
-				'placeholder' => __( 'Excl. VAT' )
+				'placeholder' => __( 'Excl. VAT', 'tax-switch-for-woocommerce' )
 			),
 			array(
 				'type' => 'sectionend',

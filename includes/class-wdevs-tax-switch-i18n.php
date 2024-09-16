@@ -35,7 +35,7 @@ class Wdevs_Tax_Switch_i18n {
 	public function load_plugin_textdomain() {
 
 		load_plugin_textdomain(
-			'wdevs-tax-switch',
+			'tax-switch-for-woocommerce',
 			false,
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
 		);
