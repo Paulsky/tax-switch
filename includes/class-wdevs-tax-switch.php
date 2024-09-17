@@ -68,8 +68,8 @@ class Wdevs_Tax_Switch {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
-		if ( defined( 'WOO_TAX_SWITCH_VERSION' ) ) {
-			$this->version = WOO_TAX_SWITCH_VERSION;
+		if ( defined( 'WDEVS_TAX_SWITCH_VERSION' ) ) {
+			$this->version = WDEVS_TAX_SWITCH_VERSION;
 		} else {
 			$this->version = '1.0.0';
 		}

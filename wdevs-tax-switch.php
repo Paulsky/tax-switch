@@ -41,13 +41,13 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'WOO_TAX_SWITCH_VERSION', '1.0.0' );
+define( 'WDEVS_TAX_SWITCH_VERSION', '1.0.0' );
 
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-wdevs-tax-switch-activator.php
  */
-function activate_wdevs_tax_switch() {
+function wdevs_tax_switch_activate() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-wdevs-tax-switch-activator.php';
 	Wdevs_Tax_Switch_Activator::activate();
 }
@@ -56,13 +56,13 @@ function activate_wdevs_tax_switch() {
  * The code that runs during plugin deactivation.
  * This action is documented in includes/class-wdevs-tax-switch-deactivator.php
  */
-function deactivate_wdevs_tax_switch() {
+function wdevs_tax_switch_deactivate() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-wdevs-tax-switch-deactivator.php';
 	Wdevs_Tax_Switch_Deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'activate_wdevs_tax_switch' );
-register_deactivation_hook( __FILE__, 'deactivate_wdevs_tax_switch' );
+register_activation_hook( __FILE__, 'wdevs_tax_switch_activate' );
+register_deactivation_hook( __FILE__, 'wdevs_tax_switch_deactivate' );
 
 /**
  * The core plugin class that is used to define internationalization,
@@ -79,11 +79,11 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-wdevs-tax-switch.php';
  *
  * @since    1.0.0
  */
-function run_wdevs_tax_switch() {
+function wdevs_tax_switch_run() {
 
 	$plugin = new Wdevs_Tax_Switch();
 	$plugin->run();
 
 }
 
-run_wdevs_tax_switch();
+wdevs_tax_switch_run();
