@@ -20,6 +20,8 @@ Key features:
 * Shortcode for easy integration
 * Flexible display options for prices with and without VAT
 
+For more information about this plugin, please visit the [plugin page](https://products.wijnberg.dev/product/wordpress/plugins/tax-switch-for-woocommerce/).
+
 = Requirements =
 
 * WooCommerce plugin installed and activated
@@ -29,7 +31,7 @@ Key features:
 
 After installation and configuration, you can add the tax switch to your pages in two ways:
 
-1. Use the Gutenberg block "Wdevs Tax Switch" in your page or post editor.
+1. Use the Gutenberg block "Tax Switch for WooCommerce" in your page or post editor.
 2. Use the shortcode `[wdevs_tax_switch]` anywhere in your content.
 
 = Shortcode Usage =
@@ -52,7 +54,8 @@ The shortcode accepts several attributes to customize its appearance and behavio
     - Default: Uses the text set in the plugin settings or "Excl. VAT" if not set.
 
 Example with custom attributes:
-[wdevs_tax_switch class-name="is-style-inline" switch-color="#ffffff" switch-color-checked="#000000" switch-background-color="#000000" switch-background-color-checked="#4CAF50" switch-label-incl="Inc. Tax" switch-label-excl="Ex. Tax"]
+
+`[wdevs_tax_switch class-name="is-style-inline" switch-color="#ffffff" switch-color-checked="#000000" switch-background-color="#000000" switch-background-color-checked="#4CAF50" switch-label-incl="Inc. Tax" switch-label-excl="Ex. Tax"]`
 
 This will display an inline-style switch with a white handle that turns black when on, a black background when off, green background when on, and custom labels for including and excluding tax.
 
@@ -69,7 +72,7 @@ You can also use this shortcode in your theme files with the do_shortcode() func
 
 = Are there any known compatibility issues? =
 
-Some WooCommerce Blocks are not fully compatible with this plugin as they do not use standard WooCommerce filters for price display. This is a known limitation of WooCommerce Blocks and not specific to this plugin.
+Some WooCommerce Blocks are not fully compatible with this plugin as they do not use standard WooCommerce filters for price display. This is a known limitation of WooCommerce Blocks and not specific to this plugin. You can fix this by using WooCommerce shortcodes instead of the WooCommerce Blocks.
 
 == Changelog ==
 
@@ -78,4 +81,4 @@ Some WooCommerce Blocks are not fully compatible with this plugin as they do not
 
 == Additional Information ==
 
-For more information and other WordPress plugins, visit [Wijnberg Developments](https://wijnberg.dev).
+For more information and other WordPress plugins, visit [Wijnberg Developments](https://products.wijnberg.dev/product-category/wordpress/plugins/).

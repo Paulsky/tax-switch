@@ -56,7 +56,7 @@ Once activated, Wdevs Tax Switch requires minimal configuration:
 
 After configuration, you can add the tax switch to your pages in two ways:
 
-1. Use the Gutenberg block "Wdevs Tax Switch" in your page or post editor.
+1. Use the Gutenberg block "Tax Switch for WooCommerce" in your page or post editor.
 2. Use the shortcode `[wdevs_tax_switch]` anywhere in your content.
 
 The switch will toggle the display of prices including or excluding VAT across your site.
@@ -115,7 +115,7 @@ If you encounter any conflicts with other themes or plugins, please report them 
 
 ### Compatibility with WooCommerce Blocks
 
-Some WooCommerce Blocks are not fully compatible with this plugin as they do not use standard WooCommerce filters for price display. This is a known limitation of WooCommerce Blocks and not specific to this plugin.
+Some WooCommerce Blocks are not fully compatible with this plugin as they do not use standard WooCommerce filters for price display. This is a known limitation of WooCommerce Blocks and not specific to this plugin. You can fix this by using WooCommerce shortcodes instead of the WooCommerce Blocks.
 
 For more information and updates on this issue, please refer to the following GitHub issue:
 [WooCommerce Blocks Issue #8972](https://github.com/woocommerce/woocommerce-blocks/issues/8972)
