@@ -15,6 +15,7 @@ Let customers toggle between inclusive and exclusive VAT pricing in your WooComm
 Tax Switch for WooCommerce enhances your WooCommerce store by allowing users to toggle between displaying prices including or excluding VAT. This plugin adds a customizable switch on product pages and provides a flexible way to display both price versions.
 
 Key features:
+
 * Display customizable switches where you want
 * Gutenberg block support
 * Shortcode for easy integration
@@ -60,11 +61,12 @@ Example with custom attributes:
 This will display an inline-style switch with a white handle that turns black when on, a black background when off, green background when on, and custom labels for including and excluding tax.
 
 You can also use this shortcode in your theme files with the do_shortcode() function:
-<?php echo do_shortcode('[wdevs_tax_switch]'); ?>
+
+`<?php echo do_shortcode('[wdevs_tax_switch]'); ?>`
 
 == Installation ==
 
-1. Upload the plugin files to the `/wp-content/plugins/wdevs-tax-switch` directory, or install the plugin through the WordPress plugins screen directly.
+1. Upload the plugin files to the `/wp-content/plugins/tax-switch-for-woocommerce` directory, or install the plugin through the WordPress plugins screen directly.
 2. Activate the plugin through the 'Plugins' screen in WordPress.
 3. Use the WooCommerce -> Settings -> Tax Switch screen to configure the plugin.
 
@@ -82,3 +84,7 @@ Some WooCommerce Blocks are not fully compatible with this plugin as they do not
 == Additional Information ==
 
 For more information and other WordPress plugins, visit [Wijnberg Developments](https://products.wijnberg.dev/product-category/wordpress/plugins/).
+
+== Screenshots ==
+
+1. This GIF demonstrates the main functionality of the plugin.

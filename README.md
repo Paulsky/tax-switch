@@ -3,7 +3,7 @@
 Enhances WooCommerce by allowing users to toggle between displaying prices including or excluding VAT. This plugin adds a customizable switch on product pages and provides a flexible way to display both price versions.
 
 <br/>
-<img src="https://github.com/user-attachments/assets/a76b1145-b4c2-4ff8-83c1-2d721caefaa7" width="300" alt="Wdevs Tax Switch demo" style="max-width: 300px !important; height: auto !important;" />
+<img src="https://github.com/user-attachments/assets/a76b1145-b4c2-4ff8-83c1-2d721caefaa7" width="300" alt="Tax Switch for WooCommerce demo" style="max-width: 300px !important; height: auto !important;" />
 <br/>
 <br/>
 
@@ -26,7 +26,7 @@ For more WordPress plugins, check out our products at [Wijnberg Developments](ht
 	1. Go to WooCommerce > Settings > Tax
 	2. Set up your tax rates and rules as needed for your store
 
-Without proper tax configuration in WooCommerce, the Wdevs Tax Switch plugin will not function as intended.
+Without proper tax configuration in WooCommerce, the Tax Switch for WooCommerce plugin will not function as intended.
 
 ## Installation
 
@@ -42,13 +42,13 @@ The plugin is now ready for use.
 
 ## Getting started
 
-These instructions will guide you through the installation and basic setup of the Wdevs Tax Switch plugin, ensuring a smooth integration with your WooCommerce store.
+These instructions will guide you through the installation and basic setup of the Tax Switch for WooCommerce plugin, ensuring a smooth integration with your WooCommerce store.
 
 ### Configuration
 
-Once activated, Wdevs Tax Switch requires minimal configuration:
+Once activated, Tax Switch for WooCommerce requires minimal configuration:
 
-1. Go to the Wdevs Tax Switch settings page located under the 'WooCommerce' menu in the WordPress admin area.
+1. Go to the Tax Switch for WooCommerce settings page located under the 'WooCommerce' menu in the WordPress admin area.
 2. Customize the text for including and excluding VAT.
 3. Save your changes.
 
