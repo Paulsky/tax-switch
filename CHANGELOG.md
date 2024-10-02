@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to the Wdevs Tax Switch plugin will be documented in this file.
 
+## [1.0.1] - 2024-10-02
+### Updated
+- Fixed bug where JS was not loaded when element was rendered by shortcode.
+
 ## [1.0.0] - 2024-08-16
 ### Added
 - Initial release of Wdevs Tax Switch plugin.
