@@ -1,4 +1,4 @@
-import { registerStore } from '@wordpress/data';
+import { registerStore, select } from '@wordpress/data';
 
 const STORAGE_KEY = 'wdevs_tax_switch_is_switched';
 
@@ -43,10 +43,16 @@ const selectors = {
 	},
 };
 
-const store = registerStore( 'wdevs-tax-switch/store', {
-	reducer,
-	actions,
-	selectors,
-} );
+let store;
+
+if ( ! select( 'wdevs-tax-switch/store' ) ) {
+	store = registerStore( 'wdevs-tax-switch/store', {
+		reducer,
+		actions,
+		selectors,
+	} );
+} else {
+	store = select( 'wdevs-tax-switch/store' );
+}
 
 export default store;

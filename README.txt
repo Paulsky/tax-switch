@@ -78,6 +78,10 @@ Some WooCommerce Blocks are not fully compatible with this plugin as they do not
 
 == Changelog ==
 
+= 1.1.0 =
+* Added compatibility for [Tiered Pricing Table for WooCommerce](https://wordpress.org/plugins/tier-pricing-table/) (single product page).
+* Added compatibility for [WooCommerce Product Table](https://wordpress.org/plugins/wc-product-table-lite/)
+
 = 1.0.1 =
 * Fixed bug where JS was not loaded when element was rendered by shortcode.
 

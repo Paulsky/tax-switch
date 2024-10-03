@@ -32,6 +32,9 @@ class TaxSwitchHelper {
 	}
 
 	static displayIncludingVat( originalTaxDisplay, isSwitched ) {
+		if ( isSwitched === null || isSwitched === undefined ) {
+			isSwitched = select( 'wdevs-tax-switch/store' ).getIsSwitched();
+		}
 		return (
 			( originalTaxDisplay === 'incl' && ! isSwitched ) ||
 			( originalTaxDisplay === 'excl' && isSwitched )

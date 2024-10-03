@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to the Wdevs Tax Switch plugin will be documented in this file.
 
+## [1.1.0] - 2024-10-04
+### Added
+- Compatibility for [Tiered Pricing Table for WooCommerce](https://wordpress.org/plugins/tier-pricing-table/) (Single product page)
+- Compatibility for [WooCommerce Product Table](https://wordpress.org/plugins/wc-product-table-lite/)
+
 ## [1.0.1] - 2024-10-02
 ### Updated
 - Fixed bug where JS was not loaded when element was rendered by shortcode.

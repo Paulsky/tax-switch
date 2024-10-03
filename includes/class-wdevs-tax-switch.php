@@ -81,6 +81,7 @@ class Wdevs_Tax_Switch {
 		$this->define_public_hooks();
 		$this->define_woocommerce_hooks();
 		$this->define_block_hooks();
+		$this->define_compatibility_hooks();
 	}
 
 	/**
@@ -94,6 +95,7 @@ class Wdevs_Tax_Switch {
 	 * - Wdevs_Tax_Switch_Public. Defines all hooks for the public side of the site.
 	 * - Wdevs_Tax_Switch_WooCommerce. Defines all hooks for the WooCommerce functionality.
 	 * - Wdevs_Tax_Switch_Block. Defines all hooks for the block functionality.
+	 * - Wdevs_Tax_Switch_Compatibility. Defines all functions for third party compatibility.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -143,6 +145,12 @@ class Wdevs_Tax_Switch {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wdevs-tax-switch-block.php';
 
+		/**
+		 * The class responsible for defining all functionality from adding compatibility with third party code
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wdevs-tax-switch-compatibility.php';
+
+
 		$this->loader = new Wdevs_Tax_Switch_Loader();
 	}
 
@@ -189,7 +197,7 @@ class Wdevs_Tax_Switch {
 		if ( ! is_admin() || $this->is_post_editor() ) {
 			$plugin_public = new Wdevs_Tax_Switch_Public( $this->get_plugin_name(), $this->get_version() );
 			$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
-			$this->loader->add_filter( 'woocommerce_get_price_html', $plugin_public, 'get_price_html', 100, 2 );
+			$this->loader->add_filter( 'woocommerce_get_price_html', $plugin_public, 'get_price_html', 300, 2 );
 		}
 		//$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 	}
@@ -225,6 +233,22 @@ class Wdevs_Tax_Switch {
 		$this->loader->add_action( 'init', $plugin_block, 'init_block' );
 		$this->loader->add_action( 'init', $plugin_block, 'register_shortcode' );
 
+	}
+
+	/**
+	 * Register all the hooks related to the third party functionality
+	 * of the plugin.
+	 *
+	 * @since    1.1.0
+	 * @access   private
+	 */
+	private function define_compatibility_hooks() {
+		if ( ! is_admin() ) {
+			$plugin_compatibility = new Wdevs_Tax_Switch_Compatibility( $this->get_plugin_name(), $this->get_version() );
+			$this->loader->add_action( 'wp_enqueue_scripts', $plugin_compatibility, 'enqueue_compatibility_scripts' );
+			//wc product table compatibility
+			$this->loader->add_filter( 'wcpt_element', $plugin_compatibility, 'activate_wc_product_table_compatibility', 10, 1 );
+		}
 	}
 
 	/**
