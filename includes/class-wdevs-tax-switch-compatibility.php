@@ -54,9 +54,11 @@ class Wdevs_Tax_Switch_Compatibility {
 	}
 
 	public function enqueue_compatibility_scripts() {
-		if ( is_plugin_active( 'tier-pricing-table/tier-pricing-table.php' ) ) {
-			$wctpt_asset = require( plugin_dir_path( dirname( __FILE__ ) ) . 'build/woocommerce-tiered-price-table.asset.php' );
-			wp_enqueue_script( 'wdevs-tax-switch-woocommerce-tiered-price-table', plugin_dir_url( dirname( __FILE__ ) ) . 'build/woocommerce-tiered-price-table.js', $wctpt_asset['dependencies'], $wctpt_asset['version'] );
+		if ( is_plugin_active( 'tier-pricing-table/tier-pricing-table.php' ) || is_plugin_active( 'tier-pricing-table-premium/tier-pricing-table.php' ) ) {
+			if ( is_product() ) {
+				$wctpt_asset = require( plugin_dir_path( dirname( __FILE__ ) ) . 'build/woocommerce-tiered-price-table.asset.php' );
+				wp_enqueue_script( 'wdevs-tax-switch-woocommerce-tiered-price-table', plugin_dir_url( dirname( __FILE__ ) ) . 'build/woocommerce-tiered-price-table.js', $wctpt_asset['dependencies'], $wctpt_asset['version'] );
+			}
 		}
 	}
 
