@@ -11,5 +11,10 @@ module.exports = {
 			'block/src',
 			'woocommerce-tiered-price-table.js'
 		),
+		'woocommerce-measurement-price-calculator': path.resolve(
+			process.cwd(),
+			'block/src',
+			'woocommerce-measurement-price-calculator.js'
+		),
 	},
 };

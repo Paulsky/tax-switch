@@ -51,10 +51,8 @@ class Wdevs_Tax_Switch_Public {
 	 * @since    1.0.0
 	 */
 	public function __construct( $plugin_name, $version ) {
-
 		$this->plugin_name = $plugin_name;
 		$this->version     = $version;
-
 	}
 
 	/**
@@ -67,57 +65,84 @@ class Wdevs_Tax_Switch_Public {
 		wp_enqueue_style( $this->plugin_name . '-public', plugin_dir_url( __FILE__ ) . 'css/wdevs-tax-switch-public.css', array(), $this->version );
 	}
 
+	public function wrap_wc_price( $return, $price, $args, $unformatted_price, $original_price ) {
+
+		if ( is_cart() || is_checkout() ) {
+			return $return;
+		}
+
+		//already wrapped?
+//		if ( str_contains( $return, 'wts-price-wrapper' ) ) {
+//			return $return;
+//		}
+
+		if ( empty( $unformatted_price ) ) {
+			return $return;
+		}
+
+		$shop_display_is_incl = $this->is_shop_display_inclusive();
+
+		//Temporarily disable this filter and function to prevent infinite loop
+		remove_filter( 'wc_price', [ $this, 'wrap_wc_price' ], PHP_INT_MAX );
+
+		$alternate_price = wc_price( $this->calculate_alternate_price( $unformatted_price, $shop_display_is_incl ) );
+
+		//Re-enable this filter and function
+		add_filter( 'wc_price', [ $this, 'wrap_wc_price' ], PHP_INT_MAX, 5 );
+
+		// Combine both price displays into one HTML string
+		return $this->combine_price_displays( $return, $alternate_price, $shop_display_is_incl );
+	}
+
+	/**
+	 * Add 'excl. vat' or 'incl. vat' text
+	 *
+	 * @param $price_html
+	 * @param $product
+	 *
+	 * @return mixed|string
+	 */
 	public function get_price_html( $price_html, $product ) {
-		if ( empty( trim($price_html) ) ) {
+
+		if ( ! str_contains( $price_html, 'amount' ) ) {
 			return $price_html;
 		}
 
-		//shouldn't be necessary. But some third party plug-ins are adding empty HTML if there is no price
-		if ( $product && $product->get_price() === '' ) {
+		if ( ! $this->is_woocommerce_product( $product ) ) {
+			return $price_html;
+		}
+
+		//Temporarily disable this filter and function to prevent infinite loop
+		remove_filter( 'woocommerce_get_price_html', [ $this, 'get_price_html' ], PHP_INT_MIN );
+
+		//Execute all others filters
+		$price_html = apply_filters( 'woocommerce_get_price_html', $price_html, $product );
+
+		if ( empty( trim( $price_html ) ) ) {
 			return $price_html;
 		}
 
 		$shop_display_is_incl = $this->is_shop_display_inclusive();
 
-		$filter = $shop_display_is_incl ? 'get_excl_option' : 'get_incl_option';
-
 		// Get VAT text options
-		$incl_vat_text = $this->get_option_text('wdevs_tax_switch_incl_vat', __('Incl. VAT', 'tax-switch-for-woocommerce'));
-		$excl_vat_text = $this->get_option_text('wdevs_tax_switch_excl_vat', __('Excl. VAT', 'tax-switch-for-woocommerce'));
+		$incl_vat_text = $this->get_option_text( 'wdevs_tax_switch_incl_vat', __( 'Incl. VAT', 'tax-switch-for-woocommerce' ) );
+		$excl_vat_text = $this->get_option_text( 'wdevs_tax_switch_excl_vat', __( 'Excl. VAT', 'tax-switch-for-woocommerce' ) );
 
-		// Generate prices
-		$current_price_text = $this->generate_price_with_text($price_html, $shop_display_is_incl ? $incl_vat_text : $excl_vat_text);
-		$alternate_price_text = $this->generate_alternate_price($product, $filter, $shop_display_is_incl ? $excl_vat_text : $incl_vat_text);
+		if ( $shop_display_is_incl ) {
+			$vat_text           = $incl_vat_text;
+			$alternate_vat_text = $excl_vat_text;
+		} else {
+			$vat_text           = $excl_vat_text;
+			$alternate_vat_text = $incl_vat_text;
+		}
+		//Re-enable this filter and function
+		add_filter( 'woocommerce_get_price_html', [ $this, 'get_price_html' ], PHP_INT_MIN, 2 );
 
 		// Combine both price displays into one HTML string
-		return $this->combine_price_displays($current_price_text, $alternate_price_text, $shop_display_is_incl);
-	}
+		$html = $this->wrap_price_displays( $price_html, $shop_display_is_incl, $vat_text, $alternate_vat_text );;
 
-	public function get_incl_option( $pre_option, $option, $default_value ) {
-		return 'incl';
-	}
+		return $html;
 
-	public function get_excl_option( $pre_option, $option, $default_value ) {
-		return 'excl';
-	}
-
-	private function generate_price_with_text( $price_text, $vat_text ) {
-		return sprintf( '%s <span class="wts-vat-text">%s</span>', $price_text, $vat_text );
-	}
-
-	private function generate_alternate_price( $product, $filter, $vat_text ) {
-		// Temporarily disable this filter and function to prevent infinite loop
-		remove_filter( 'woocommerce_get_price_html', [ $this, 'get_price_html' ], 300 );
-
-		// Generate the alternate price
-		add_filter( 'pre_option_woocommerce_tax_display_shop', [ $this, $filter ], 1, 3 );
-		$alternate_price_html = $product->get_price_html();
-		remove_filter( 'pre_option_woocommerce_tax_display_shop', [ $this, $filter ], 1 );
-
-		// Re-enable this filter and function
-		add_filter( 'woocommerce_get_price_html', [ $this, 'get_price_html' ], 300, 2 );
-
-		return $this->generate_price_with_text( $alternate_price_html, $vat_text );
 	}
 
 	private function combine_price_displays( $current_price_text, $alternate_price_text, $shop_display_is_incl ) {
@@ -127,7 +152,7 @@ class Wdevs_Tax_Switch_Public {
 		}
 
 		return sprintf(
-			'<span class="wts-price-wrapper"><span class="%s wts-active" >%s</span> <span class="%s wts-inactive">%s</span></span>',
+			'<span class="wts-price-wrapper"><span class="%s wts-active" >%s</span><span class="%s wts-inactive">%s</span></span>',
 			$classes[0],
 			$current_price_text,
 			$classes[1],
@@ -135,4 +160,86 @@ class Wdevs_Tax_Switch_Public {
 		);
 	}
 
+	private function wrap_price_displays( $price_html, $shop_display_is_incl, $vat_text, $alternate_vat_text ) {
+		$classes = [ 'wts-price-incl', 'wts-price-excl' ];
+		if ( ! $shop_display_is_incl ) {
+			$classes = array_reverse( $classes );
+		}
+
+		return sprintf(
+			'<span class="wts-price-container">%s <span class="wts-vat-text-container"><span class="wts-price-wrapper "><span class="%s wts-active" ><span class=" wts-vat-text">%s</span></span><span class="%s wts-inactive"><span class=" wts-vat-text">%s</span></span></span></span></span>',
+			$price_html,
+			$classes[0],
+			$vat_text,
+			$classes[1],
+			$alternate_vat_text
+		);
+
+	}
+
+	private function calculate_alternate_price( $price, $shop_display_is_incl ) {
+		$prices_include_tax = wc_prices_include_tax();
+
+		$calculator = new WC_Product_Simple();
+		$calculator->set_price( $price );
+
+		$product = wc_get_product();
+		if ( $product ) {
+			$calculator->set_tax_class( $product->get_tax_class() );
+			$calculator->set_tax_status( $product->get_tax_status() );
+		} else {
+			$calculator->set_tax_status( 'taxable' );
+		}
+
+		if ( $shop_display_is_incl ) {
+			$pre_option_woocommerce_tax_display_shop_filter = 'get_excl_option';
+		} else {
+			$pre_option_woocommerce_tax_display_shop_filter = 'get_incl_option';
+		}
+
+		// Temporarily change the tax display setting
+		add_filter( 'pre_option_woocommerce_tax_display_shop', [
+			$this,
+			$pre_option_woocommerce_tax_display_shop_filter
+		], 1, 3 );
+
+		// Temporarily change the prices_include_tax setting if necessary
+		if ( $shop_display_is_incl !== $prices_include_tax ) {
+			if ( $prices_include_tax ) {
+				$woocommerce_prices_include_tax_filter = 'get_prices_exclude_tax_option';
+			} else {
+				$woocommerce_prices_include_tax_filter = 'get_prices_include_tax_option';
+			}
+			add_filter( 'woocommerce_prices_include_tax', [ $this, $woocommerce_prices_include_tax_filter ], 99, 1 );
+		}
+
+		$price = wc_get_price_to_display( $calculator, [ 'price' => $price ] );
+
+		// Remove our temporary filters
+		remove_filter( 'pre_option_woocommerce_tax_display_shop', [
+			$this,
+			$pre_option_woocommerce_tax_display_shop_filter
+		], 1 );
+		if ( $shop_display_is_incl !== $prices_include_tax ) {
+			remove_filter( 'woocommerce_prices_include_tax', [ $this, $woocommerce_prices_include_tax_filter ], 99 );
+		}
+
+		return $price;
+	}
+
+	public function get_prices_include_tax_option( $include_tax ) {
+		return true;
+	}
+
+	public function get_prices_exclude_tax_option( $exclude_tax ) {
+		return false;
+	}
+
+	public function get_incl_option( $pre_option, $option, $default_value ) {
+		return 'incl';
+	}
+
+	public function get_excl_option( $pre_option, $option, $default_value ) {
+		return 'excl';
+	}
 }

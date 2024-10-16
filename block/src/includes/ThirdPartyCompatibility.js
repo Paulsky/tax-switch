@@ -12,6 +12,22 @@ class ThirdPartyCompatibility {
 				TaxSwitchHelper.setPriceClasses( originalTaxDisplay );
 			}, 10 );
 		} );
+
+		jQuery( document ).ajaxSuccess( function ( event, xhr, settings ) {
+			const methods = [
+				'get_variable_product_bulk_table', //Flycart Discount Rules for WooCommerce compatibility
+			];
+
+			const isMethodMatched = methods.some( ( method ) =>
+				settings.data.includes( method )
+			);
+
+			if ( isMethodMatched ) {
+				setTimeout( function () {
+					TaxSwitchHelper.setPriceClasses( originalTaxDisplay );
+				}, 10 );
+			}
+		} );
 	}
 }
 

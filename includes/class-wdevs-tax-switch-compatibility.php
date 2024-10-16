@@ -54,11 +54,15 @@ class Wdevs_Tax_Switch_Compatibility {
 	}
 
 	public function enqueue_compatibility_scripts() {
-		if ( is_plugin_active( 'tier-pricing-table/tier-pricing-table.php' ) || is_plugin_active( 'tier-pricing-table-premium/tier-pricing-table.php' ) ) {
-			if ( is_product() ) {
-				$wctpt_asset = require( plugin_dir_path( dirname( __FILE__ ) ) . 'build/woocommerce-tiered-price-table.asset.php' );
-				wp_enqueue_script( 'wdevs-tax-switch-woocommerce-tiered-price-table', plugin_dir_url( dirname( __FILE__ ) ) . 'build/woocommerce-tiered-price-table.js', $wctpt_asset['dependencies'], $wctpt_asset['version'] );
+		if ( is_product() ) {
+			if ( is_plugin_active( 'woocommerce-measurement-price-calculator/woocommerce-measurement-price-calculator.php' ) ) {
+				$wcmpc_asset = require( plugin_dir_path( dirname( __FILE__ ) ) . 'build/woocommerce-measurement-price-calculator.asset.php' );
+				wp_enqueue_script( 'wdevs-tax-switch-woocommerce-measurement-price-calculator', plugin_dir_url( dirname( __FILE__ ) ) . 'build/woocommerce-measurement-price-calculator.js', $wcmpc_asset['dependencies'], $wcmpc_asset['version'] );
 			}
+		}
+		if ( is_plugin_active( 'tier-pricing-table/tier-pricing-table.php' ) || is_plugin_active( 'tier-pricing-table-premium/tier-pricing-table.php' ) ) {
+			$wctpt_asset = require( plugin_dir_path( dirname( __FILE__ ) ) . 'build/woocommerce-tiered-price-table.asset.php' );
+			wp_enqueue_script( 'wdevs-tax-switch-woocommerce-tiered-price-table', plugin_dir_url( dirname( __FILE__ ) ) . 'build/woocommerce-tiered-price-table.js', $wctpt_asset['dependencies'], $wctpt_asset['version'] );
 		}
 	}
 
@@ -66,5 +70,12 @@ class Wdevs_Tax_Switch_Compatibility {
 		$element['use_default_template'] = true;
 
 		return $element;
+	}
+
+	public function add_prices_to_variation( $variation_data, $product, $variation ) {
+		$variation_data['price_incl_vat'] = $variation->get_price_including_tax();
+		$variation_data['price_excl_vat'] = $variation->get_price_excluding_tax();
+
+		return $variation_data;
 	}
 }

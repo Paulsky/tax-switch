@@ -1,3 +1,6 @@
 .wc-measurement-price-calculator-price .wts-vat-text{
 	display: none;
 }
+.tiered-pricing--active .wts-vat-text{
+	color: #ffffff;
+}

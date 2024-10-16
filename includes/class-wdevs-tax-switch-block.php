@@ -111,6 +111,7 @@ class Wdevs_Tax_Switch_Block {
 	public function enqueue_frontend_script() {
 		$script_asset = require( plugin_dir_path( dirname( __FILE__ ) ) . 'build/view.asset.php' );
 		wp_enqueue_script( 'wdevs-tax-switch-view-script', plugin_dir_url( dirname( __FILE__ ) ) . 'build/view.js', $script_asset['dependencies'], $script_asset['version'] );
+		wp_enqueue_style( 'wdevs-tax-switch-style', plugin_dir_url( dirname( __FILE__ ) ) . 'build/style-index.css', [], $this->version );
 
 		$original_tax_display = $this->get_original_tax_display();
 

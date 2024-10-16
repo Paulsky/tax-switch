@@ -37,4 +37,16 @@ trait Wdevs_Tax_Switch_Helper {
 
 		return $current_value;
 	}
+
+	public function is_woocommerce_product( $product ) {
+		if ( ! isset( $product ) ) {
+			return false;
+		}
+
+		if ( ! ( $product instanceof WC_Product ) ) {
+			return false;
+		}
+
+		return true;
+	}
 }

@@ -194,12 +194,14 @@ class Wdevs_Tax_Switch {
 	 */
 	private function define_public_hooks() {
 
-		if ( ! is_admin() || $this->is_post_editor() ) {
+		if ( ! is_admin() || $this->is_post_editor() || wp_doing_ajax() ) {
 			$plugin_public = new Wdevs_Tax_Switch_Public( $this->get_plugin_name(), $this->get_version() );
-			$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
-			$this->loader->add_filter( 'woocommerce_get_price_html', $plugin_public, 'get_price_html', 300, 2 );
+			if ( ! wp_doing_ajax() ) {
+				$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
+			}
+			$this->loader->add_filter( 'wc_price', $plugin_public, 'wrap_wc_price', PHP_INT_MAX, 5 );
+			$this->loader->add_filter( 'woocommerce_get_price_html', $plugin_public, 'get_price_html', PHP_INT_MIN, 2 );
 		}
-		//$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 	}
 
 	/**
@@ -243,11 +245,18 @@ class Wdevs_Tax_Switch {
 	 * @access   private
 	 */
 	private function define_compatibility_hooks() {
-		if ( ! is_admin() ) {
+		if ( ! is_admin() || wp_doing_ajax() ) {
 			$plugin_compatibility = new Wdevs_Tax_Switch_Compatibility( $this->get_plugin_name(), $this->get_version() );
-			$this->loader->add_action( 'wp_enqueue_scripts', $plugin_compatibility, 'enqueue_compatibility_scripts' );
+			if ( ! wp_doing_ajax() ) {
+				$this->loader->add_action( 'wp_enqueue_scripts', $plugin_compatibility, 'enqueue_compatibility_scripts' );
+			}
 			//wc product table compatibility
 			$this->loader->add_filter( 'wcpt_element', $plugin_compatibility, 'activate_wc_product_table_compatibility', 10, 1 );
+
+			//TODO: move check to somewhere else?
+			if ( is_plugin_active( 'woocommerce-measurement-price-calculator/woocommerce-measurement-price-calculator.php' ) ) {
+				$this->loader->add_filter( 'woocommerce_available_variation', $plugin_compatibility, 'add_prices_to_variation', 10, 3 );
+			}
 		}
 	}
 

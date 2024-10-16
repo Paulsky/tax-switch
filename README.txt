@@ -3,7 +3,7 @@ Contributors: wijnbergdevelopments
 Tags: woocommerce, tax, vat
 Requires at least: 5.0
 Tested up to: 6.6
-Stable tag: 1.1.1
+Stable tag: 1.1.3
 Requires PHP: 7.2
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
@@ -77,6 +77,14 @@ You can also use this shortcode in your theme files with the do_shortcode() func
 Some WooCommerce Blocks are not fully compatible with this plugin as they do not use standard WooCommerce filters for price display. This is a known limitation of WooCommerce Blocks and not specific to this plugin. You can fix this by using WooCommerce shortcodes instead of the WooCommerce Blocks.
 
 == Changelog ==
+
+= 1.1.3 =
+* Migrated filters from only using 'woocommerce_get_price_html' to 'woocommerce_get_price_html' in combination with 'wc_price'. This way, the plugin should be more compatible with other plugins.
+* Added compatibility for [Discount Rules for WooCommerce](https://wordpress.org/plugins/woo-discount-rules/)
+* Added compatibility for Tiered Pricing Table for WooCommerce on catalog pages
+
+= 1.1.2 =
+* Added Measurement Price Calculator for WooCommerce.
 
 = 1.1.1 =
 * Added Compatibility for Tiered Pricing Table for WooCommerce Premium (single product page).
