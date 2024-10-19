@@ -253,9 +253,11 @@ class Wdevs_Tax_Switch {
 			//wc product table compatibility
 			$this->loader->add_filter( 'wcpt_element', $plugin_compatibility, 'activate_wc_product_table_compatibility', 10, 1 );
 
-			//TODO: move check to somewhere else?
-			if ( is_plugin_active( 'woocommerce-measurement-price-calculator/woocommerce-measurement-price-calculator.php' ) ) {
-				$this->loader->add_filter( 'woocommerce_available_variation', $plugin_compatibility, 'add_prices_to_variation', 10, 3 );
+			if(function_exists('is_plugin_active')){
+				//TODO: move check to somewhere else?
+				if ( is_plugin_active( 'woocommerce-measurement-price-calculator/woocommerce-measurement-price-calculator.php' ) ) {
+					$this->loader->add_filter( 'woocommerce_available_variation', $plugin_compatibility, 'add_prices_to_variation', 10, 3 );
+				}
 			}
 		}
 	}

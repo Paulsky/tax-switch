@@ -149,9 +149,6 @@ class TieredPriceTable {
 			data.__instance.formatting.formatPrice( data.price_excl_tax ),
 			true
 		);
-		summaryTable
-			.find( '[data-tier-pricing-table-summary-product-price]' )
-			.html( productPriceHtml );
 
 		// Update total price
 		const totalHtml = this.getWtsHtml(
@@ -164,9 +161,14 @@ class TieredPriceTable {
 			),
 			true
 		);
-		summaryTable
-			.find( '[data-tier-pricing-table-summary-total]' )
-			.html( totalHtml );
+		setTimeout( function () {
+			summaryTable
+				.find( '[data-tier-pricing-table-summary-product-price]' )
+				.html( productPriceHtml );
+			summaryTable
+				.find( '[data-tier-pricing-table-summary-total]' )
+				.html( totalHtml );
+		}, 10 );
 	}
 
 	getSummaryTable( productId ) {

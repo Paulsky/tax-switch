@@ -152,7 +152,7 @@ class Wdevs_Tax_Switch_Public {
 		}
 
 		return sprintf(
-			'<span class="wts-price-wrapper"><span class="%s wts-active" >%s</span><span class="%s wts-inactive">%s</span></span>',
+			'<span class="wts-price-wrapper"><span class="%s wts-active">%s</span><span class="%s wts-inactive">%s</span></span>',
 			$classes[0],
 			$current_price_text,
 			$classes[1],
@@ -223,6 +223,8 @@ class Wdevs_Tax_Switch_Public {
 		if ( $shop_display_is_incl !== $prices_include_tax ) {
 			remove_filter( 'woocommerce_prices_include_tax', [ $this, $woocommerce_prices_include_tax_filter ], 99 );
 		}
+
+		unset($calculator);
 
 		return $price;
 	}

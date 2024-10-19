@@ -2,6 +2,10 @@
 All notable changes to the Wdevs Tax Switch plugin will be documented in this file.
 
 
+## [1.1.4] - 2024-10-19
+### Updated
+- Improved compatibility for Tiered Pricing Table for WooCommerce
+
 ## [1.1.3] - 2024-10-15
 ### Added
 - Compatibility for [Discount Rules for WooCommerce](https://wordpress.org/plugins/woo-discount-rules/)
