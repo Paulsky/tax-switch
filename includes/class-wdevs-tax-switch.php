@@ -194,9 +194,9 @@ class Wdevs_Tax_Switch {
 	 */
 	private function define_public_hooks() {
 
-		if ( ! is_admin() || $this->is_post_editor() || wp_doing_ajax() ) {
+		if ( ! $this->is_admin_request() || $this->is_post_editor() ) {
 			$plugin_public = new Wdevs_Tax_Switch_Public( $this->get_plugin_name(), $this->get_version() );
-			if ( ! wp_doing_ajax() ) {
+			if ( ! $this->is_doing_ajax() ) {
 				$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 			}
 			$this->loader->add_filter( 'wc_price', $plugin_public, 'wrap_wc_price', PHP_INT_MAX, 5 );
@@ -245,15 +245,15 @@ class Wdevs_Tax_Switch {
 	 * @access   private
 	 */
 	private function define_compatibility_hooks() {
-		if ( ! is_admin() || wp_doing_ajax() ) {
+		if ( ! $this->is_admin_request() ) {
 			$plugin_compatibility = new Wdevs_Tax_Switch_Compatibility( $this->get_plugin_name(), $this->get_version() );
-			if ( ! wp_doing_ajax() ) {
+			if ( ! $this->is_doing_ajax() ) {
 				$this->loader->add_action( 'wp_enqueue_scripts', $plugin_compatibility, 'enqueue_compatibility_scripts' );
 			}
 			//wc product table compatibility
 			$this->loader->add_filter( 'wcpt_element', $plugin_compatibility, 'activate_wc_product_table_compatibility', 10, 1 );
 
-			if(function_exists('is_plugin_active')){
+			if ( function_exists( 'is_plugin_active' ) ) {
 				//TODO: move check to somewhere else?
 				if ( is_plugin_active( 'woocommerce-measurement-price-calculator/woocommerce-measurement-price-calculator.php' ) ) {
 					$this->loader->add_filter( 'woocommerce_available_variation', $plugin_compatibility, 'add_prices_to_variation', 10, 3 );
@@ -302,17 +302,103 @@ class Wdevs_Tax_Switch {
 		return $this->version;
 	}
 
+	/**
+	 * Check for enabling the switch in the editor
+	 *
+	 * @return bool
+	 * @since     1.0.0
+	 */
 	private function is_post_editor() {
+
 		if ( ! is_admin() ) {
 			return false;
 		}
 
 		global $pagenow;
-		if ( ( $pagenow == 'post.php' || $pagenow == 'post-new.php' ) || ( get_post_type() == 'post' ) ) {
+
+		$post_id = isset( $_GET['post'] ) ? (int) $_GET['post'] : null;
+		if ( $post_id ) {
+			$post_type = get_post_type( $post_id );
+		} else {
+			$post_type = get_post_type();
+		}
+
+		if ( $post_type == 'post' || $post_type == 'page' ) {
+			return true;
+		}
+
+		//In older versions of Woocommerce, the URL is like this:
+		//wp-admin/edit.php?post_type=shop_order
+		//wp-admin/post.php?post=orderId&action=edit
+
+		//but new versions are like this (will not enter this condition)
+		//wp-admin/admin.php?page=wc-orders
+		//wp-admin/admin.php?page=wc-orders&action=edit&id=orderId
+		if ( $post_type == 'shop_order' ) {
+			return false;
+		}
+
+		if ( ( $pagenow == 'post.php' || $pagenow == 'post-new.php' ) ) {
 			return true;
 		}
 
 		return false;
+	}
+
+	/**
+	 * Check if this is a request at the backend.
+	 *
+	 * @link https://florianbrinkmann.com/en/wordpress-backend-request-3815/
+	 * @return bool true if is admin request, otherwise false.
+	 * @since 1.1.5
+	 */
+	private function is_admin_request() {
+		/**
+		 * Get current URL.
+		 *
+		 * @link https://wordpress.stackexchange.com/a/126534
+		 */
+		$current_url = home_url( add_query_arg( null, null ) );
+
+		/**
+		 * Get admin URL and referrer.
+		 *
+		 * @link https://core.trac.wordpress.org/browser/tags/4.8/src/wp-includes/pluggable.php#L1076
+		 */
+		$admin_url = strtolower( admin_url() );
+		$referrer  = strtolower( wp_get_referer() );
+
+		/**
+		 * Check if this is an admin request. If true, it
+		 * could also be an AJAX request from the frontend.
+		 */
+		if ( 0 === strpos( $current_url, $admin_url ) ) {
+			/**
+			 * Check if the user comes from an admin page.
+			 */
+			if ( 0 === strpos( $referrer, $admin_url ) ) {
+				return true;
+			} else {
+				return ! $this->is_doing_ajax();
+			}
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * Check for AJAX requests.
+	 *
+	 * @link https://gist.github.com/zitrusblau/58124d4b2c56d06b070573a99f33b9ed#file-lazy-load-responsive-images-php-L193
+	 * @since 1.1.5
+	 */
+	private function is_doing_ajax() {
+
+		if ( function_exists( 'wp_doing_ajax' ) ) {
+			return wp_doing_ajax();
+		} else {
+			return ( defined( 'DOING_AJAX' ) && DOING_AJAX );
+		}
 	}
 
 }

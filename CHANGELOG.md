@@ -1,6 +1,9 @@
 # Changelog
-All notable changes to the Wdevs Tax Switch plugin will be documented in this file.
+All notable changes to the Tax Switch for Woocommerce plugin will be documented in this file.
 
+## [1.1.5] - 2024-10-22
+### Added
+- Added extra checks for only executing the filters on the frontend
 
 ## [1.1.4] - 2024-10-19
 ### Updated

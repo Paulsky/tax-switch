@@ -67,7 +67,7 @@ class Wdevs_Tax_Switch_Public {
 
 	public function wrap_wc_price( $return, $price, $args, $unformatted_price, $original_price ) {
 
-		if ( is_cart() || is_checkout() ) {
+		if ( is_cart() || is_checkout() || $this->is_mail_context() ) {
 			return $return;
 		}
 
@@ -224,7 +224,7 @@ class Wdevs_Tax_Switch_Public {
 			remove_filter( 'woocommerce_prices_include_tax', [ $this, $woocommerce_prices_include_tax_filter ], 99 );
 		}
 
-		unset($calculator);
+		unset( $calculator );
 
 		return $price;
 	}
@@ -243,5 +243,12 @@ class Wdevs_Tax_Switch_Public {
 
 	public function get_excl_option( $pre_option, $option, $default_value ) {
 		return 'excl';
+	}
+
+	private function is_mail_context() {
+		return (
+			did_action( 'woocommerce_email_header' ) ||
+			did_action( 'woocommerce_email_order_details' )
+		);
 	}
 }
