@@ -116,7 +116,8 @@ class Wdevs_Tax_Switch_Public {
 		remove_filter( 'woocommerce_get_price_html', [ $this, 'get_price_html' ], PHP_INT_MIN );
 
 		//Execute all others filters
-		$price_html = apply_filters( 'woocommerce_get_price_html', $price_html, $product );
+		//Causes duplications
+		//$price_html = apply_filters( 'woocommerce_get_price_html', $price_html, $product );
 
 		if ( empty( trim( $price_html ) ) ) {
 			return $price_html;
