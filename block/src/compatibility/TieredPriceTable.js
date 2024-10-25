@@ -5,6 +5,7 @@ class TieredPriceTable {
 	constructor( originalTaxDisplay ) {
 		this.originalTaxDisplay = originalTaxDisplay;
 		this.priceBackups = new Map(); // Store backups for multiple elements
+		this.vatTexts = null;
 	}
 
 	init() {
@@ -34,20 +35,25 @@ class TieredPriceTable {
 			}
 		);
 
-		// Handle variation resets
-		jQuery( document ).on( 'reset_data', ( e ) => {
-			const $form = jQuery( e.target ).closest( '.variations_form' );
-			if ( $form.length ) {
-				const productId = $form.data( 'product_id' );
-				this.resetPrices( productId );
-			}
-		} );
+		const mainElement = jQuery( '.tpt__tiered-pricing' ).first();
+		//mainElement is always inserted if the plugin is active...
+		//but do NOT have children if there are no prices
+		if ( mainElement.children().length ) {
+			// Handle variation resets
+			jQuery( document ).on( 'reset_data', ( e ) => {
+				const $form = jQuery( e.target ).closest( '.variations_form' );
+				if ( $form.length ) {
+					const productId = $form.data( 'product_id' );
+					this.resetPrices( productId );
+				}
+			} );
 
-		// Handle variation changes
-		jQuery( document ).on( 'found_variation', ( e, variation ) => {
-			const productId = variation.variation_id;
-			this.resetPrices( productId );
-		} );
+			// Handle variation changes
+			jQuery( document ).on( 'found_variation', ( e, variation ) => {
+				const productId = variation.variation_id;
+				this.resetPrices( productId );
+			} );
+		}
 	}
 
 	updateAllPrices( data ) {
@@ -77,7 +83,6 @@ class TieredPriceTable {
 		$priceContainers.each( ( _, container ) => {
 			const $container = jQuery( container );
 			if ( $container.data( 'price-type' ) === 'dynamic' ) {
-				// Bepaal of we de originele prijs moeten tonen
 				const showOriginalPrice = this.shouldShowOriginalPrice( data );
 				const originalPriceInclTax = showOriginalPrice
 					? this.getOriginalPrice( data, true )
@@ -197,15 +202,7 @@ class TieredPriceTable {
 		originalPriceInclHTML = null,
 		originalPriceExclHTML = null
 	) {
-		let includingTextHtml = '';
-		let excludingTextHtml = '';
-
-		if ( setText ) {
-			const vatTexts = this.getVatTexts();
-			includingTextHtml = vatTexts.including;
-			excludingTextHtml = vatTexts.excluding;
-		}
-
+		const vm = this;
 		// Helper function for price with optional original price
 		const getPriceHtml = ( currentPrice, originalPrice ) => {
 			if ( originalPrice ) {
@@ -214,63 +211,62 @@ class TieredPriceTable {
 			return currentPrice;
 		};
 
-		return `
-            <span class="wts-price-container">
+		const priceSection = `
+        <span class="wts-price-wrapper">
+            <span class="wts-price-incl ${
+				displayIncludingVat ? 'wts-active' : 'wts-inactive'
+			}">
+                ${ getPriceHtml(
+					tieredIncludingVatHTML,
+					originalPriceInclHTML
+				) }
+            </span>
+            <span class="wts-price-excl ${
+				! displayIncludingVat ? 'wts-active' : 'wts-inactive'
+			}">
+                ${ getPriceHtml(
+					tieredExcludingVatHTML,
+					originalPriceExclHTML
+				) }
+            </span>
+        </span>
+    `;
+
+		if ( setText ) {
+			if ( ! vm.vatTexts ) {
+				vm.vatTexts = TaxSwitchHelper.getVatTexts();
+			}
+
+			if ( vm.vatTexts ) {
+				const textSection = `
                 <span class="wts-price-wrapper">
                     <span class="wts-price-incl ${
 						displayIncludingVat ? 'wts-active' : 'wts-inactive'
 					}">
-                        ${ getPriceHtml(
-							tieredIncludingVatHTML,
-							originalPriceInclHTML
-						) }
+                        ${ vm.vatTexts.including }
                     </span>
                     <span class="wts-price-excl ${
 						! displayIncludingVat ? 'wts-active' : 'wts-inactive'
 					}">
-                        ${ getPriceHtml(
-							tieredExcludingVatHTML,
-							originalPriceExclHTML
-						) }
+                        ${ vm.vatTexts.excluding }
                     </span>
                 </span>
-                <span class="wts-vat-text-container">
-                    <span class="wts-price-wrapper">
-                        <span class="wts-price-incl ${
-							displayIncludingVat ? 'wts-active' : 'wts-inactive'
-						}">
-                            ${ includingTextHtml }
-                        </span>
-                        <span class="wts-price-excl ${
-							! displayIncludingVat
-								? 'wts-active'
-								: 'wts-inactive'
-						}">
-                            ${ excludingTextHtml }
-                        </span>
-                    </span>
+            `;
+
+				return `
+                <span class="wts-price-container">
+                    ${ priceSection }
+                    ${ textSection }
                 </span>
-            </span>
-        `;
-	}
+            `;
+			}
+		}
 
-	getVatTexts() {
-		const space = document.createTextNode( ' ' ).nodeValue;
-		const $includingText = jQuery(
-			'.wts-price-wrapper .wts-price-incl .wts-vat-text'
-		).first();
-		const $excludingText = jQuery(
-			'.wts-price-wrapper .wts-price-excl .wts-vat-text'
-		).first();
-
-		return {
-			including: $includingText.length
-				? space + $includingText.clone().prop( 'outerHTML' )
-				: '',
-			excluding: $excludingText.length
-				? space + $excludingText.clone().prop( 'outerHTML' )
-				: '',
-		};
+		return `
+        <span class="wts-price-container">
+            ${ priceSection }
+        </span>
+    `;
 	}
 }
 

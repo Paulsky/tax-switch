@@ -54,6 +54,47 @@ class TaxSwitchHelper {
 			select( 'wdevs-tax-switch/store' ).getIsSwitched()
 		);
 	}
+
+	static getVatTexts( existingWrapper = null ) {
+		const space = document.createTextNode( ' ' ).nodeValue;
+		let $includingText, $excludingText;
+		if ( existingWrapper ) {
+			const $wrapper = jQuery( existingWrapper );
+			$includingText = $wrapper
+				.find( '.wts-price-incl .wts-vat-text' )
+				.first();
+			$excludingText = $wrapper
+				.find( '.wts-price-excl .wts-vat-text' )
+				.first();
+
+			if ( $includingText.length || $excludingText.length ) {
+				return {
+					including: $includingText.length
+						? space + $includingText.clone().prop( 'outerHTML' )
+						: '',
+					excluding: $excludingText.length
+						? space + $excludingText.clone().prop( 'outerHTML' )
+						: '',
+				};
+			}
+		}
+
+		$includingText = jQuery(
+			'.wts-price-wrapper .wts-price-incl .wts-vat-text'
+		).first();
+		$excludingText = jQuery(
+			'.wts-price-wrapper .wts-price-excl .wts-vat-text'
+		).first();
+
+		return {
+			including: $includingText.length
+				? space + $includingText.clone().prop( 'outerHTML' )
+				: '',
+			excluding: $excludingText.length
+				? space + $excludingText.clone().prop( 'outerHTML' )
+				: '',
+		};
+	}
 }
 
 export default TaxSwitchHelper;

@@ -16,5 +16,10 @@ module.exports = {
 			'block/src',
 			'woocommerce-measurement-price-calculator.js'
 		),
+		'yith-woocommerce-product-add-ons': path.resolve(
+			process.cwd(),
+			'block/src',
+			'yith-woocommerce-product-add-ons.js'
+		),
 	},
 };

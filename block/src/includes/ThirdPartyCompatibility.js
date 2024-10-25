@@ -13,6 +13,12 @@ class ThirdPartyCompatibility {
 			}, 10 );
 		} );
 
+		jQuery( '.variations_form' ).on( 'reset_data', function () {
+			setTimeout( function () {
+				TaxSwitchHelper.setPriceClasses( originalTaxDisplay );
+			}, 10 );
+		} );
+
 		jQuery( document ).ajaxSuccess( function ( event, xhr, settings ) {
 			const methods = [
 				'get_variable_product_bulk_table', //Flycart Discount Rules for WooCommerce compatibility

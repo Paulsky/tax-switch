@@ -85,7 +85,7 @@ class Wdevs_Tax_Switch_Public {
 		//Temporarily disable this filter and function to prevent infinite loop
 		remove_filter( 'wc_price', [ $this, 'wrap_wc_price' ], PHP_INT_MAX );
 
-		$alternate_price = wc_price( $this->calculate_alternate_price( $unformatted_price, $shop_display_is_incl ) );
+		$alternate_price = wc_price( $this->calculate_alternate_price( $unformatted_price ) );
 
 		//Re-enable this filter and function
 		add_filter( 'wc_price', [ $this, 'wrap_wc_price' ], PHP_INT_MAX, 5 );
@@ -113,6 +113,7 @@ class Wdevs_Tax_Switch_Public {
 		}
 
 		//Temporarily disable this filter and function to prevent infinite loop
+		//Is this still needed?
 		remove_filter( 'woocommerce_get_price_html', [ $this, 'get_price_html' ], PHP_INT_MIN );
 
 		//Execute all others filters
@@ -136,7 +137,9 @@ class Wdevs_Tax_Switch_Public {
 			$vat_text           = $excl_vat_text;
 			$alternate_vat_text = $incl_vat_text;
 		}
+
 		//Re-enable this filter and function
+		//Is this still needed?
 		add_filter( 'woocommerce_get_price_html', [ $this, 'get_price_html' ], PHP_INT_MIN, 2 );
 
 		// Combine both price displays into one HTML string
@@ -168,7 +171,7 @@ class Wdevs_Tax_Switch_Public {
 		}
 
 		return sprintf(
-			'<span class="wts-price-container">%s <span class="wts-vat-text-container"><span class="wts-price-wrapper "><span class="%s wts-active" ><span class=" wts-vat-text">%s</span></span><span class="%s wts-inactive"><span class=" wts-vat-text">%s</span></span></span></span></span>',
+			'<span class="wts-price-container">%s <span class="wts-price-wrapper "><span class="%s wts-active" ><span class=" wts-vat-text">%s</span></span><span class="%s wts-inactive"><span class=" wts-vat-text">%s</span></span></span></span>',
 			$price_html,
 			$classes[0],
 			$vat_text,
@@ -176,74 +179,6 @@ class Wdevs_Tax_Switch_Public {
 			$alternate_vat_text
 		);
 
-	}
-
-	private function calculate_alternate_price( $price, $shop_display_is_incl ) {
-		$prices_include_tax = wc_prices_include_tax();
-
-		$calculator = new WC_Product_Simple();
-		$calculator->set_price( $price );
-
-		$product = wc_get_product();
-		if ( $product ) {
-			$calculator->set_tax_class( $product->get_tax_class() );
-			$calculator->set_tax_status( $product->get_tax_status() );
-		} else {
-			$calculator->set_tax_status( 'taxable' );
-		}
-
-		if ( $shop_display_is_incl ) {
-			$pre_option_woocommerce_tax_display_shop_filter = 'get_excl_option';
-		} else {
-			$pre_option_woocommerce_tax_display_shop_filter = 'get_incl_option';
-		}
-
-		// Temporarily change the tax display setting
-		add_filter( 'pre_option_woocommerce_tax_display_shop', [
-			$this,
-			$pre_option_woocommerce_tax_display_shop_filter
-		], 1, 3 );
-
-		// Temporarily change the prices_include_tax setting if necessary
-		if ( $shop_display_is_incl !== $prices_include_tax ) {
-			if ( $prices_include_tax ) {
-				$woocommerce_prices_include_tax_filter = 'get_prices_exclude_tax_option';
-			} else {
-				$woocommerce_prices_include_tax_filter = 'get_prices_include_tax_option';
-			}
-			add_filter( 'woocommerce_prices_include_tax', [ $this, $woocommerce_prices_include_tax_filter ], 99, 1 );
-		}
-
-		$price = wc_get_price_to_display( $calculator, [ 'price' => $price ] );
-
-		// Remove our temporary filters
-		remove_filter( 'pre_option_woocommerce_tax_display_shop', [
-			$this,
-			$pre_option_woocommerce_tax_display_shop_filter
-		], 1 );
-		if ( $shop_display_is_incl !== $prices_include_tax ) {
-			remove_filter( 'woocommerce_prices_include_tax', [ $this, $woocommerce_prices_include_tax_filter ], 99 );
-		}
-
-		unset( $calculator );
-
-		return $price;
-	}
-
-	public function get_prices_include_tax_option( $include_tax ) {
-		return true;
-	}
-
-	public function get_prices_exclude_tax_option( $exclude_tax ) {
-		return false;
-	}
-
-	public function get_incl_option( $pre_option, $option, $default_value ) {
-		return 'incl';
-	}
-
-	public function get_excl_option( $pre_option, $option, $default_value ) {
-		return 'excl';
 	}
 
 	private function is_mail_context() {

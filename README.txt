@@ -3,7 +3,7 @@ Contributors: wijnbergdevelopments
 Tags: woocommerce, tax, vat
 Requires at least: 5.0
 Tested up to: 6.6
-Stable tag: 1.1.6
+Stable tag: 1.1.7
 Requires PHP: 7.2
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
@@ -78,7 +78,10 @@ Some WooCommerce Blocks are not fully compatible with this plugin as they do not
 
 == Changelog ==
 
-= 1.1.5 =
+= 1.1.7 =
+* Added compatibility for [YITH WooCommerce Product Add-Ons](https://wordpress.org/plugins/yith-woocommerce-product-add-ons/)
+
+= 1.1.6 =
 * Removed applying 'woocommerce_get_price_html' filter a second time to prevent nested duplications
 
 = 1.1.5 =
