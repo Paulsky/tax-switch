@@ -62,7 +62,7 @@ class Wdevs_Tax_Switch_Woocommerce {
 	 */
 	public function declare_compatibility(){
 		if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
-			\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', 'wdevs-tax-switch/wdevs-tax-switch.php', true );
+			\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', 'tax-switch-for-woocommerce/wdevs-tax-switch.php', true );
 		}
 	}
 

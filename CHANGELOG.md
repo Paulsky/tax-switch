@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to the Tax Switch for Woocommerce plugin will be documented in this file.
 
+## [1.1.8] - 2024-10-25
+### Added
+- Compatibility for YITH WooCommerce Product Add-ons & Extra Options Premium
+
 ## [1.1.7] - 2024-10-24
 ### Added
 - Compatibility for [YITH WooCommerce Product Add-Ons](https://wordpress.org/plugins/yith-woocommerce-product-add-ons/)

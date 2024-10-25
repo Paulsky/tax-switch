@@ -260,11 +260,12 @@ class Wdevs_Tax_Switch {
 			//TODO: move check to somewhere else?
 			$wmpc_plugin_path = trailingslashit( WP_PLUGIN_DIR ) . 'woocommerce-measurement-price-calculator/woocommerce-measurement-price-calculator.php';
 			$ywpado           = trailingslashit( WP_PLUGIN_DIR ) . 'yith-woocommerce-product-add-ons/init.php';
+			$ywpadop          = trailingslashit( WP_PLUGIN_DIR ) . 'yith-woocommerce-advanced-product-options-premium/init.php';
 
 			if ( in_array( $wmpc_plugin_path, $active_plugins ) ) {
 				$this->loader->add_filter( 'woocommerce_available_variation', $plugin_compatibility, 'add_prices_to_variation', 10, 3 );
 			}
-			if ( in_array( $ywpado, $active_plugins ) ) {
+			if ( in_array( $ywpado, $active_plugins ) || in_array( $ywpadop, $active_plugins ) ) {
 				$this->loader->add_filter( 'woocommerce_available_variation', $plugin_compatibility, 'add_tax_rate_to_variation', 10, 3 );
 			}
 
