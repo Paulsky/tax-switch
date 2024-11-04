@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to the Tax Switch for Woocommerce plugin will be documented in this file.
 
+## [1.1.9] - 2024-11-04
+### Added
+- Extra check for filtering backend and frontend AJAX requests (which adds compatibility for [PDF Invoices & Packing Slips for WooCommerce](https://wordpress.org/plugins/woocommerce-pdf-invoices-packing-slips/)).
+### Updated
+- Fixed a bug where the admin request checks failed when Wordpress is installed in a subdirectory.
+
 ## [1.1.8] - 2024-10-25
 ### Added
 - Compatibility for YITH WooCommerce Product Add-ons & Extra Options Premium

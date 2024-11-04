@@ -366,9 +366,16 @@ class Wdevs_Tax_Switch {
 		/**
 		 * Get current URL.
 		 *
-		 * @link https://wordpress.stackexchange.com/a/126534
+		 * @link https://wordpress.stackexchange.com/a/237498/178511
 		 */
-		$current_url = home_url( add_query_arg( null, null ) );
+		$parts = parse_url(home_url());
+		$current_url   = $parts['scheme'] . '://' . $parts['host'];
+
+		if (array_key_exists('port', $parts)) {
+			$current_url .= ':' . $parts['port'];
+		}
+
+		$current_url .= add_query_arg([]);
 
 		/**
 		 * Get admin URL and referrer.
@@ -389,7 +396,7 @@ class Wdevs_Tax_Switch {
 			if ( 0 === strpos( $referrer, $admin_url ) ) {
 				return true;
 			} else {
-				return ! $this->is_doing_ajax();
+				return ! $this->is_frontend_ajax_request();
 			}
 		} else {
 			return false;
@@ -409,6 +416,30 @@ class Wdevs_Tax_Switch {
 		} else {
 			return ( defined( 'DOING_AJAX' ) && DOING_AJAX );
 		}
+	}
+
+	/**
+	 * @return bool
+	 * @since 1.1.9
+	 */
+	private function is_frontend_ajax_request() {
+
+		$script_filename = isset( $_SERVER['SCRIPT_FILENAME'] ) ? $_SERVER['SCRIPT_FILENAME'] : '';
+
+		if ( $this->is_doing_ajax() ) {
+			$referrer_raw = wp_get_raw_referer();
+			if ( $referrer_raw === false ) {
+				return false;
+			}
+
+			//If referer does not contain admin URL and we are using the admin-ajax.php endpoint, this is likely a frontend AJAX request
+			if ( ( ( strpos( $referrer_raw, admin_url() ) === false ) && ( basename( $script_filename ) === 'admin-ajax.php' ) ) ) {
+				return true;
+			}
+		}
+
+		//If no checks triggered, we end up here - not an AJAX request.
+		return false;
 	}
 
 }

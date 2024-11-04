@@ -88,8 +88,8 @@ class ProductAddOns {
 							}
 						}
 					}
-					vm.handlePriceUpdate();
 				}
+				vm.handlePriceUpdate();
 			}
 		}, 10 );
 	}
@@ -132,6 +132,7 @@ class ProductAddOns {
 
 	handlePriceUpdate() {
 		const elements = {
+			productPrice: jQuery( '#wapo-total-product-price' ),
 			options: jQuery( '#wapo-total-options-price' ),
 			order: jQuery( '#wapo-total-order-price' ),
 		};
