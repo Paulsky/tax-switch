@@ -3,7 +3,7 @@ Contributors: wijnbergdevelopments
 Tags: woocommerce, tax, vat
 Requires at least: 5.0
 Tested up to: 6.6
-Stable tag: 1.1.9
+Stable tag: 1.1.10
 Requires PHP: 7.2
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
@@ -11,8 +11,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 Let customers toggle between inclusive and exclusive VAT pricing in your WooCommerce store.
 
 == Description ==
-
-Tax Switch for WooCommerce enhances your WooCommerce store by allowing users to toggle between displaying prices including or excluding VAT. This plugin adds a customizable switch on product pages and provides a flexible way to display both price versions.
+Tax Switch for WooCommerce enhances your WooCommerce store by allowing users to toggle between displaying prices including or excluding VAT. This plugin adds a customizable switch component and provides a flexible way to display both price versions.
 
 Key features:
 
@@ -20,6 +19,7 @@ Key features:
 * Gutenberg block support
 * Shortcode for easy integration
 * Flexible display options for prices with and without VAT
+* Saves the state of the switch for the user
 
 For more information about this plugin, please visit the [plugin page](https://products.wijnberg.dev/product/wordpress/plugins/tax-switch-for-woocommerce/).
 
@@ -77,6 +77,9 @@ You can also use this shortcode in your theme files with the do_shortcode() func
 Some WooCommerce Blocks are not fully compatible with this plugin as they do not use standard WooCommerce filters for price display. This is a known limitation of WooCommerce Blocks and not specific to this plugin. You can fix this by using WooCommerce shortcodes instead of the WooCommerce Blocks.
 
 == Changelog ==
+= 1.1.10 =
+* Added compatibility for JetEngine Listing Grid 'infinity scroll'
+
 = 1.1.9 =
 * Added extra check for filtering backend and frontend AJAX requests (which adds compatibility for [PDF Invoices & Packing Slips for WooCommerce](https://wordpress.org/plugins/woocommerce-pdf-invoices-packing-slips/))
 * Fixed a bug where the admin request checks failed when Wordpress is installed in a subdirectory

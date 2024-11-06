@@ -20,19 +20,31 @@ class ThirdPartyCompatibility {
 		} );
 
 		jQuery( document ).ajaxSuccess( function ( event, xhr, settings ) {
-			const methods = [
-				'get_variable_product_bulk_table', //Flycart Discount Rules for WooCommerce compatibility
-			];
+			if ( settings && settings.data ) {
+				const methods = [
+					'get_variable_product_bulk_table', //Flycart Discount Rules for WooCommerce compatibility
+				];
 
-			const isMethodMatched = methods.some( ( method ) =>
-				settings.data.includes( method )
-			);
+				const isMethodMatched = methods.some( ( method ) =>
+					settings.data.includes( method )
+				);
 
-			if ( isMethodMatched ) {
-				setTimeout( function () {
-					TaxSwitchHelper.setPriceClasses( originalTaxDisplay );
-				}, 10 );
+				if ( isMethodMatched ) {
+					setTimeout( function () {
+						TaxSwitchHelper.setPriceClasses( originalTaxDisplay );
+					}, 10 );
+				}
 			}
+		} );
+
+		const thirdPartyEvents = [
+			'jet-engine/listing-grid/after-load-more', //JetEngine Listing Grid 'infinity scroll' compatibility
+		];
+
+		thirdPartyEvents.forEach( function ( eventName ) {
+			jQuery( document ).on( eventName, function ( event, response ) {
+				TaxSwitchHelper.setPriceClasses( originalTaxDisplay );
+			} );
 		} );
 	}
 }

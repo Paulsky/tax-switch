@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to the Tax Switch for Woocommerce plugin will be documented in this file.
 
+## [1.1.10] - 2024-11-05
+### Added
+- Compatibility for JetEngine Listing Grid 'infinity scroll'
+
 ## [1.1.9] - 2024-11-04
 ### Added
 - Extra check for filtering backend and frontend AJAX requests (which adds compatibility for [PDF Invoices & Packing Slips for WooCommerce](https://wordpress.org/plugins/woocommerce-pdf-invoices-packing-slips/)).

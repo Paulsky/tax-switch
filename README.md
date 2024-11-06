@@ -1,6 +1,6 @@
 # Tax Switch for WooCommerce
 
-Enhances WooCommerce by allowing users to toggle between displaying prices including or excluding VAT. This plugin adds a customizable switch on product pages and provides a flexible way to display both price versions.
+Enhances WooCommerce by allowing users to toggle between displaying prices including or excluding VAT. This plugin adds a customizable switch component and provides a flexible way to display both price versions.
 
 <br/>
 <img src="https://github.com/user-attachments/assets/a76b1145-b4c2-4ff8-83c1-2d721caefaa7" width="300" alt="Tax Switch for WooCommerce demo" style="max-width: 300px !important; height: auto !important;" />
