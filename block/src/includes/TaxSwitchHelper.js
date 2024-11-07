@@ -55,45 +55,23 @@ class TaxSwitchHelper {
 		);
 	}
 
-	static getVatTexts( existingWrapper = null ) {
-		const space = document.createTextNode( ' ' ).nodeValue;
-		let $includingText, $excludingText;
-		if ( existingWrapper ) {
-			const $wrapper = jQuery( existingWrapper );
-			$includingText = $wrapper
-				.find( '.wts-price-incl .wts-vat-text' )
-				.first();
-			$excludingText = $wrapper
-				.find( '.wts-price-excl .wts-vat-text' )
-				.first();
-
-			if ( $includingText.length || $excludingText.length ) {
-				return {
-					including: $includingText.length
-						? space + $includingText.clone().prop( 'outerHTML' )
-						: '',
-					excluding: $excludingText.length
-						? space + $excludingText.clone().prop( 'outerHTML' )
-						: '',
-				};
-			}
+	static calculateAlternatePrice( price, originalTaxDisplay, taxRate ) {
+		// Guard clauses
+		if ( ! price || price <= 0 || ! taxRate ) {
+			return price;
 		}
 
-		$includingText = jQuery(
-			'.wts-price-wrapper .wts-price-incl .wts-vat-text'
-		).first();
-		$excludingText = jQuery(
-			'.wts-price-wrapper .wts-price-excl .wts-vat-text'
-		).first();
+		const displayIncludingVat = originalTaxDisplay === 'incl';
+		const taxMultiplier = 1 + taxRate / 100;
 
-		return {
-			including: $includingText.length
-				? space + $includingText.clone().prop( 'outerHTML' )
-				: '',
-			excluding: $excludingText.length
-				? space + $excludingText.clone().prop( 'outerHTML' )
-				: '',
-		};
+		let alternatePrice;
+		if ( displayIncludingVat ) {
+			alternatePrice = price / taxMultiplier;
+		} else {
+			alternatePrice = price * taxMultiplier;
+		}
+
+		return Number( alternatePrice.toFixed( 2 ) );
 	}
 }
 

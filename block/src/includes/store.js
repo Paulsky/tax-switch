@@ -43,16 +43,14 @@ const selectors = {
 	},
 };
 
-let store;
+let store = select( 'wdevs-tax-switch/store' );
 
-if ( ! select( 'wdevs-tax-switch/store' ) ) {
+if ( store === undefined ) {
 	store = registerStore( 'wdevs-tax-switch/store', {
 		reducer,
 		actions,
 		selectors,
 	} );
-} else {
-	store = select( 'wdevs-tax-switch/store' );
 }
 
 export default store;

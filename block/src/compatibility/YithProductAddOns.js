@@ -1,7 +1,8 @@
 import jQuery from 'jquery';
 import TaxSwitchHelper from '../includes/TaxSwitchHelper';
+import TaxSwitchElementBuilder from '../includes/TaxSwitchElementBuilder';
 
-class ProductAddOns {
+class YithProductAddOns {
 	constructor( originalTaxDisplay, baseTaxRate ) {
 		this.originalTaxDisplay = originalTaxDisplay;
 		this.taxRate = baseTaxRate;
@@ -17,6 +18,9 @@ class ProductAddOns {
 			).clone();
 		}
 		this.vatTexts = null;
+		this.taxSwitchElementBuilder = new TaxSwitchElementBuilder(
+			this.originalTaxDisplay
+		);
 	}
 
 	init() {
@@ -111,7 +115,11 @@ class ProductAddOns {
 				if ( ! isNaN( parseFloat( price ) ) ) {
 					// Calculate alternate price
 					const alternatePrice =
-						this.calculateAlternatePrice( price );
+						TaxSwitchHelper.calculateAlternatePrice(
+							price,
+							this.originalTaxDisplay,
+							this.taxRate
+						);
 
 					// Format prices
 					const formattedOriginal = window.floatToWcPrice( price );
@@ -154,7 +162,11 @@ class ProductAddOns {
 		if ( ! price ) return;
 
 		// Calculate alternate price
-		const alternatePrice = this.calculateAlternatePrice( price );
+		const alternatePrice = TaxSwitchHelper.calculateAlternatePrice(
+			price,
+			this.originalTaxDisplay,
+			this.taxRate
+		);
 
 		// Format prices using YITH WAPO's formatting function
 		const formattedOriginal = window.floatToWcPrice( price );
@@ -167,25 +179,6 @@ class ProductAddOns {
 		);
 	}
 
-	calculateAlternatePrice( price ) {
-		// Guard clauses
-		if ( ! price || price <= 0 || ! this.taxRate ) {
-			return price;
-		}
-
-		const displayIncludingVat = this.originalTaxDisplay === 'incl';
-		const taxMultiplier = 1 + this.taxRate / 100;
-
-		let alternatePrice;
-		if ( displayIncludingVat ) {
-			alternatePrice = price / taxMultiplier;
-		} else {
-			alternatePrice = price * taxMultiplier;
-		}
-
-		return Number( alternatePrice.toFixed( 2 ) );
-	}
-
 	replacePriceDisplay(
 		$element,
 		originalPrice,
@@ -193,90 +186,28 @@ class ProductAddOns {
 		setText = false
 	) {
 		const vm = this;
-		const displayIncludingVat = TaxSwitchHelper.displayIncludingVat(
-			this.originalTaxDisplay
-		);
-
-		const prices = this.getPricesBasedOnTaxDisplay(
-			originalPrice,
-			alternatePrice
-		);
-		const includingPrice = prices.including;
-		const excludingPrice = prices.excluding;
-
-		function getVisibilityClass( isVisible ) {
-			return isVisible ? 'wts-active' : 'wts-inactive';
-		}
-
-		function createPriceElement( price, isIncludingVat ) {
-			const visibilityClass = getVisibilityClass(
-				isIncludingVat === displayIncludingVat
-			);
-			const priceType = isIncludingVat ? 'incl' : 'excl';
-
-			return `
-         <span class="wts-price-${ priceType } ${ visibilityClass }">
-            ${ price }
-         </span>
-      `;
-		}
-
-		let template = `
-      <span class="wts-price-container">
-         <span class="wts-price-wrapper">
-            ${ createPriceElement( includingPrice, true ) }
-            ${ createPriceElement( excludingPrice, false ) }
-         </span>
-   `;
-
+		let texts = null;
 		if ( setText ) {
 			if ( ! vm.vatTexts ) {
-				vm.vatTexts = TaxSwitchHelper.getVatTexts(
-					this.initialPriceElement
+				vm.vatTexts = TaxSwitchElementBuilder.getVatTexts(
+					vm.initialPriceElement
 				);
 			}
 
-			if ( vm.vatTexts ) {
-				function createTextElement( text, isIncludingVat ) {
-					const visibilityClass = getVisibilityClass(
-						isIncludingVat === displayIncludingVat
-					);
-					const priceType = isIncludingVat ? 'incl' : 'excl';
-
-					return `
-            <span class="wts-price-${ priceType } ${ visibilityClass }">
-               ${ text }
-            </span>
-         `;
-				}
-
-				template += `
-         <span class="wts-price-wrapper">
-            ${ createTextElement( vm.vatTexts.including, true ) }
-            ${ createTextElement( vm.vatTexts.excluding, false ) }
-         </span>
-      `;
-			}
+			texts = vm.vatTexts;
 		}
+		const displayIncludingVat = TaxSwitchHelper.displayIncludingVat(
+			this.originalTaxDisplay
+		);
+		const template = vm.taxSwitchElementBuilder.build(
+			displayIncludingVat,
+			originalPrice,
+			alternatePrice,
+			texts
+		);
 
-		template += '</span>';
-
-		$element.html( template.trim() );
-	}
-
-	getPricesBasedOnTaxDisplay( originalPrice, alternatePrice ) {
-		if ( this.originalTaxDisplay === 'incl' ) {
-			return {
-				including: originalPrice,
-				excluding: alternatePrice,
-			};
-		}
-
-		return {
-			including: alternatePrice,
-			excluding: originalPrice,
-		};
+		$element.html( template );
 	}
 }
 
-export default ProductAddOns;
+export default YithProductAddOns;

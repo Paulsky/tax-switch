@@ -3,7 +3,7 @@ Contributors: wijnbergdevelopments
 Tags: woocommerce, tax, vat
 Requires at least: 5.0
 Tested up to: 6.6
-Stable tag: 1.1.10
+Stable tag: 1.1.11
 Requires PHP: 7.2
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
@@ -13,15 +13,29 @@ Let customers toggle between inclusive and exclusive VAT pricing in your WooComm
 == Description ==
 Tax Switch for WooCommerce enhances your WooCommerce store by allowing users to toggle between displaying prices including or excluding VAT. This plugin adds a customizable switch component and provides a flexible way to display both price versions.
 
-Key features:
+=== Key features ===
 
 * Display customizable switches where you want
 * Gutenberg block support
 * Shortcode for easy integration
 * Flexible display options for prices with and without VAT
-* Saves the state of the switch for the user
+* Remembers the user's preference for future visits
 
 For more information about this plugin, please visit the [plugin page](https://products.wijnberg.dev/product/wordpress/plugins/tax-switch-for-woocommerce/).
+
+=== Compatibility ===
+
+This plugin integrates with WooCommerce's standard filters and actions for price display and calculation. While most plugins work out of the box, some third-party plugins use custom price building methods that require specific compatibility integrations. The following plugins have been tested and confirmed compatible:
+
+* WooCommerce Product Table
+* Tiered Pricing Table for WooCommerce (+ Premium)
+* Measurement Price Calculator for WooCommerce
+* Discount Rules for WooCommerce
+* YITH WooCommerce Product Add-Ons (+ & Extra Options Premium)
+* JetEngine Listing Grid (Elementor)
+* Product Add-Ons for WooCommerce
+
+If you encounter any compatibility issues with other plugins not listed above, please let us know. Your feedback helps us improve the plugin and extend compatibility to more third-party solutions.
 
 = Requirements =
 
@@ -77,6 +91,9 @@ You can also use this shortcode in your theme files with the do_shortcode() func
 Some WooCommerce Blocks are not fully compatible with this plugin as they do not use standard WooCommerce filters for price display. This is a known limitation of WooCommerce Blocks and not specific to this plugin. You can fix this by using WooCommerce shortcodes instead of the WooCommerce Blocks.
 
 == Changelog ==
+= 1.1.11 =
+* Added compatibility for Product Add-Ons for WooCommerce
+
 = 1.1.10 =
 * Added compatibility for JetEngine Listing Grid 'infinity scroll'
 

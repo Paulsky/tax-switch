@@ -1,5 +1,6 @@
 import jQuery from 'jquery';
 import TaxSwitchHelper from '../includes/TaxSwitchHelper';
+import TaxSwitchElementBuilder from '../includes/TaxSwitchElementBuilder';
 
 class TieredPriceTable {
 	constructor( originalTaxDisplay ) {
@@ -234,7 +235,7 @@ class TieredPriceTable {
 
 		if ( setText ) {
 			if ( ! vm.vatTexts ) {
-				vm.vatTexts = TaxSwitchHelper.getVatTexts();
+				vm.vatTexts = TaxSwitchElementBuilder.getVatTexts();
 			}
 
 			if ( vm.vatTexts ) {

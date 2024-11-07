@@ -64,18 +64,33 @@ class Wdevs_Tax_Switch_Compatibility {
 				$wcmpc_asset = require( plugin_dir_path( dirname( __FILE__ ) ) . 'build/woocommerce-measurement-price-calculator.asset.php' );
 				wp_enqueue_script( 'wdevs-tax-switch-woocommerce-measurement-price-calculator', plugin_dir_url( dirname( __FILE__ ) ) . 'build/woocommerce-measurement-price-calculator.js', $wcmpc_asset['dependencies'], $wcmpc_asset['version'] );
 			}
+
+			$tax_rate = $this->get_product_tax_rate( wc_get_product() );
+
 			$ywpado_plugin_path  = trailingslashit( WP_PLUGIN_DIR ) . 'yith-woocommerce-product-add-ons/init.php';
 			$ywpadop_plugin_path = trailingslashit( WP_PLUGIN_DIR ) . 'yith-woocommerce-advanced-product-options-premium/init.php';
 			if ( in_array( $ywpado_plugin_path, $active_plugins ) || in_array( $ywpadop_plugin_path, $active_plugins ) ) {
 				$ywpado_asset = require( plugin_dir_path( dirname( __FILE__ ) ) . 'build/yith-woocommerce-product-add-ons.asset.php' );
 				wp_enqueue_script( 'wdevs-tax-switch-yith-woocommerce-product-add-ons', plugin_dir_url( dirname( __FILE__ ) ) . 'build/yith-woocommerce-product-add-ons.js', array_merge( $ywpado_asset['dependencies'], [ 'yith_wapo_front' ] ), $ywpado_asset['version'] );
 
-				// Localize de script met extra data
 				wp_localize_script(
 					'wdevs-tax-switch-yith-woocommerce-product-add-ons',
 					'wtsCompatibilityObject',
 					[
-						'baseTaxRate' => $this->get_product_tax_rate( wc_get_product() )
+						'baseTaxRate' => $tax_rate
+					]
+				);
+			}
+
+			$wpado_plugin_path = trailingslashit( WP_PLUGIN_DIR ) . 'woocommerce-product-addons/woocommerce-product-addons.php';
+			if ( in_array( $wpado_plugin_path, $active_plugins ) ) {
+				$wpado_asset = require( plugin_dir_path( dirname( __FILE__ ) ) . 'build/woocommerce-product-addons.asset.php' );
+				wp_enqueue_script( 'wdevs-tax-switch-woocommerce-product-addons', plugin_dir_url( dirname( __FILE__ ) ) . 'build/woocommerce-product-addons.js', $wpado_asset['dependencies'], $wpado_asset['version'] );
+				wp_localize_script(
+					'wdevs-tax-switch-woocommerce-product-addons',
+					'wtsCompatibilityObject',
+					[
+						'baseTaxRate' => $tax_rate
 					]
 				);
 			}
@@ -86,6 +101,7 @@ class Wdevs_Tax_Switch_Compatibility {
 			$wctpt_asset = require( plugin_dir_path( dirname( __FILE__ ) ) . 'build/woocommerce-tiered-price-table.asset.php' );
 			wp_enqueue_script( 'wdevs-tax-switch-woocommerce-tiered-price-table', plugin_dir_url( dirname( __FILE__ ) ) . 'build/woocommerce-tiered-price-table.js', $wctpt_asset['dependencies'], $wctpt_asset['version'] );
 		}
+
 
 	}
 

@@ -1,4 +1,4 @@
-import YithProductAddOns from './compatibility/YithProductAddOns';
+import WoocommerceProductAddOns from './compatibility/WoocommerceProductAddons';
 
 window.addEventListener( 'DOMContentLoaded', () => {
 	const viewConfig = window.wtsViewObject || {
@@ -8,9 +8,10 @@ window.addEventListener( 'DOMContentLoaded', () => {
 	const wtsCompatibilityObject = window.wtsCompatibilityObject || {
 		baseTaxRate: 0,
 	};
-	const ywpado = new YithProductAddOns(
+
+	const wpado = new WoocommerceProductAddOns(
 		viewConfig.originalTaxDisplay,
 		wtsCompatibilityObject.baseTaxRate
 	);
-	ywpado.init();
+	wpado.init();
 } );

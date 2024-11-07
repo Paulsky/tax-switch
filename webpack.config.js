@@ -21,5 +21,10 @@ module.exports = {
 			'block/src',
 			'yith-woocommerce-product-add-ons.js'
 		),
+		'woocommerce-product-addons': path.resolve(
+			process.cwd(),
+			'block/src',
+			'woocommerce-product-addons.js'
+		),
 	},
 };

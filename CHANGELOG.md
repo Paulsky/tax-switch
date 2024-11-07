@@ -1,5 +1,9 @@
 # Changelog
-All notable changes to the Tax Switch for Woocommerce plugin will be documented in this file.
+All notable changes to the Tax Switch for WooCommerce plugin will be documented in this file.
+
+## [1.1.11] - 2024-11-06
+### Added
+- Compatibility for Product Add-Ons for WooCommerce
 
 ## [1.1.10] - 2024-11-05
 ### Added
