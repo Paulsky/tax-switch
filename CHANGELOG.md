@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to the Tax Switch for WooCommerce plugin will be documented in this file.
 
+## [1.2.0] - 2024-11-07
+### Added
+- Disable the plugin in the WooCommerce mini cart widget
+
 ## [1.1.11] - 2024-11-06
 ### Added
 - Compatibility for Product Add-Ons for WooCommerce

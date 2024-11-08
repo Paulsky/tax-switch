@@ -67,12 +67,15 @@ class Wdevs_Tax_Switch_Public {
 
 	public function wrap_wc_price( $return, $price, $args, $unformatted_price, $original_price ) {
 
-		if ( is_cart() || is_checkout() || $this->is_mail_context() ) {
+		if ( $this->is_in_cart_or_checkout() ) {
 			return $return;
 		}
 
-		//compatibility with YITH WooCommerce Oroduct Add Ons select
-		if ( did_filter( 'yith_wapo_option_price' ) ) {
+		if ( $this->is_mail_context() ) {
+			return $return;
+		}
+
+		if ( $this->should_be_disabled_in_action() ) {
 			return $return;
 		}
 
@@ -192,4 +195,35 @@ class Wdevs_Tax_Switch_Public {
 			did_action( 'woocommerce_email_order_details' )
 		);
 	}
+
+	/**
+	 * @return bool
+	 * @since 1.2.0
+	 */
+	private function is_in_cart_or_checkout() {
+		if ( is_cart() || is_checkout() ) {
+			return true;
+		}
+		//in shopping cart widget
+		if ( Wdevs_Tax_Switch_Mini_Cart_Context::is_in_mini_cart() ) {
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * @return bool
+	 * @since 1.2.0
+	 */
+	private function should_be_disabled_in_action() {
+
+		//compatibility with YITH WooCommerce Oroduct Add Ons select
+		if ( did_filter( 'yith_wapo_option_price' ) ) {
+			return true;
+		}
+
+		return false;
+	}
+
 }

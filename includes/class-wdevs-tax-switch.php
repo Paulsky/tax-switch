@@ -96,6 +96,7 @@ class Wdevs_Tax_Switch {
 	 * - Wdevs_Tax_Switch_WooCommerce. Defines all hooks for the WooCommerce functionality.
 	 * - Wdevs_Tax_Switch_Block. Defines all hooks for the block functionality.
 	 * - Wdevs_Tax_Switch_Compatibility. Defines all functions for third party compatibility.
+	 * - Wdevs_Tax_Switch_Mini_Cart_Context. Controls the mini cart context state.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -128,6 +129,11 @@ class Wdevs_Tax_Switch {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-wdevs-tax-switch-admin.php';
 
 		/**
+		 * The class responsible for tracking whether the code is currently in the mini cart context
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wdevs-tax-switch-mini-cart-context.php';
+
+		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
@@ -149,7 +155,6 @@ class Wdevs_Tax_Switch {
 		 * The class responsible for defining all functionality from adding compatibility with third party code
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wdevs-tax-switch-compatibility.php';
-
 
 		$this->loader = new Wdevs_Tax_Switch_Loader();
 	}
@@ -195,10 +200,14 @@ class Wdevs_Tax_Switch {
 	private function define_public_hooks() {
 
 		if ( ! $this->is_admin_request() || $this->is_post_editor() ) {
+			$this->loader->add_action( 'woocommerce_before_mini_cart', Wdevs_Tax_Switch_Mini_Cart_Context::class, 'before_mini_cart' );
+			$this->loader->add_action( 'woocommerce_after_mini_cart', Wdevs_Tax_Switch_Mini_Cart_Context::class, 'after_mini_cart' );
+
 			$plugin_public = new Wdevs_Tax_Switch_Public( $this->get_plugin_name(), $this->get_version() );
 			if ( ! $this->is_doing_ajax() ) {
 				$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 			}
+
 			$this->loader->add_filter( 'wc_price', $plugin_public, 'wrap_wc_price', PHP_INT_MAX, 5 );
 			$this->loader->add_filter( 'woocommerce_get_price_html', $plugin_public, 'get_price_html', PHP_INT_MIN, 2 );
 		}
@@ -368,14 +377,14 @@ class Wdevs_Tax_Switch {
 		 *
 		 * @link https://wordpress.stackexchange.com/a/237498/178511
 		 */
-		$parts = parse_url(home_url());
-		$current_url   = $parts['scheme'] . '://' . $parts['host'];
+		$parts       = parse_url( home_url() );
+		$current_url = $parts['scheme'] . '://' . $parts['host'];
 
-		if (array_key_exists('port', $parts)) {
+		if ( array_key_exists( 'port', $parts ) ) {
 			$current_url .= ':' . $parts['port'];
 		}
 
-		$current_url .= add_query_arg([]);
+		$current_url .= add_query_arg( [] );
 
 		/**
 		 * Get admin URL and referrer.
