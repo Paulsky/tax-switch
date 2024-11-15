@@ -3,7 +3,7 @@ Contributors: wijnbergdevelopments
 Tags: woocommerce, tax, vat
 Requires at least: 5.0
 Tested up to: 6.6
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 Requires PHP: 7.2
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
@@ -36,6 +36,13 @@ This plugin integrates with WooCommerce's standard filters and actions for price
 * Product Add-Ons for WooCommerce
 
 If you encounter any compatibility issues with other plugins not listed above, please let us know. Your feedback helps us improve the plugin and extend compatibility to more third-party solutions.
+
+=== WPML ===
+
+To translate the option texts via WPML:
+
+1. Save your options first in: WooCommerce -> Settings -> Tax Switch
+2. Then translate the texts in: WPML -> String Translations and search for your option values in the domain 'tax-switch-for-woocommerce'
 
 = Requirements =
 
@@ -91,7 +98,10 @@ You can also use this shortcode in your theme files with the do_shortcode() func
 Some WooCommerce Blocks are not fully compatible with this plugin as they do not use standard WooCommerce filters for price display. This is a known limitation of WooCommerce Blocks and not specific to this plugin. You can fix this by using WooCommerce shortcodes instead of the WooCommerce Blocks.
 
 == Changelog ==
-= 1.2.0=
+= 1.2.1 =
+* Added compatibility for WPML
+
+= 1.2.0 =
 * Disable the plugin in the WooCommerce mini cart widget
 
 = 1.1.11 =

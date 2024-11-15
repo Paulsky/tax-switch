@@ -29,6 +29,11 @@ trait Wdevs_Tax_Switch_Helper {
 	public function get_option_text( $key, $default ) {
 		$text = get_option( $key, $default );
 
+		// Check if WPML is active
+		if ( defined( 'ICL_SITEPRESS_VERSION' ) ) {
+			$text = apply_filters( 'wpml_translate_single_string', $text, 'tax-switch-for-woocommerce', $key );
+		}
+
 		return esc_html( $text );
 	}
 
@@ -73,7 +78,7 @@ trait Wdevs_Tax_Switch_Helper {
 		$tax_rate = ( ( $price_incl_tax - $price_excl_tax ) / $price_excl_tax ) * 100;
 
 		return $tax_rate;
-	//	return round($tax_rate, 2);
+		//return round($tax_rate, 2);
 	}
 
 	public function calculate_alternate_price( $price ) {

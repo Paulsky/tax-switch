@@ -60,7 +60,7 @@ class Wdevs_Tax_Switch_Woocommerce {
 	 *
 	 * @since 1.0.0
 	 */
-	public function declare_compatibility(){
+	public function declare_compatibility() {
 		if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
 			\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', 'tax-switch-for-woocommerce/wdevs-tax-switch.php', true );
 		}
@@ -133,6 +133,26 @@ class Wdevs_Tax_Switch_Woocommerce {
 	 */
 	public function update_settings() {
 		woocommerce_update_options( $this->get_settings() );
+
+		$this->register_translations();
+	}
+
+	/**
+	 * Register string translations
+	 *
+	 * @since 1.2.1
+	 */
+	private function register_translations() {
+		// Check if WPML is active
+		if ( ! defined( 'ICL_SITEPRESS_VERSION' ) ) {
+			return;
+		}
+
+		$incl_text = get_option( 'wdevs_tax_switch_incl_vat' );
+		$excl_text = get_option( 'wdevs_tax_switch_excl_vat' );
+
+		do_action( 'wpml_register_single_string', 'tax-switch-for-woocommerce', 'wdevs_tax_switch_incl_vat', $incl_text );
+		do_action( 'wpml_register_single_string', 'tax-switch-for-woocommerce', 'wdevs_tax_switch_excl_vat', $excl_text );
 	}
 
 }
