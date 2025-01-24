@@ -277,7 +277,6 @@ class Wdevs_Tax_Switch {
 			if ( in_array( $ywpado, $active_plugins ) || in_array( $ywpadop, $active_plugins ) ) {
 				$this->loader->add_filter( 'woocommerce_available_variation', $plugin_compatibility, 'add_tax_rate_to_variation', 10, 3 );
 			}
-
 		}
 	}
 

@@ -112,6 +112,10 @@ class Wdevs_Tax_Switch_Public {
 	 */
 	public function get_price_html( $price_html, $product ) {
 
+		if ( empty( trim( $price_html ) ) ) {
+			return $price_html;
+		}
+
 		if ( ! str_contains( $price_html, 'amount' ) ) {
 			return $price_html;
 		}
@@ -122,15 +126,11 @@ class Wdevs_Tax_Switch_Public {
 
 		//Temporarily disable this filter and function to prevent infinite loop
 		//Is this still needed?
-		remove_filter( 'woocommerce_get_price_html', [ $this, 'get_price_html' ], PHP_INT_MIN );
+		//remove_filter( 'woocommerce_get_price_html', [ $this, 'get_price_html' ], PHP_INT_MIN );
 
 		//Execute all others filters
 		//Causes duplications
 		//$price_html = apply_filters( 'woocommerce_get_price_html', $price_html, $product );
-
-		if ( empty( trim( $price_html ) ) ) {
-			return $price_html;
-		}
 
 		$shop_display_is_incl = $this->is_shop_display_inclusive();
 
@@ -148,13 +148,12 @@ class Wdevs_Tax_Switch_Public {
 
 		//Re-enable this filter and function
 		//Is this still needed?
-		add_filter( 'woocommerce_get_price_html', [ $this, 'get_price_html' ], PHP_INT_MIN, 2 );
+		//add_filter( 'woocommerce_get_price_html', [ $this, 'get_price_html' ], PHP_INT_MIN, 2 );
 
 		// Combine both price displays into one HTML string
-		$html = $this->wrap_price_displays( $price_html, $shop_display_is_incl, $vat_text, $alternate_vat_text );;
+		$html = $this->wrap_price_displays( $price_html, $shop_display_is_incl, $vat_text, $alternate_vat_text );
 
 		return $html;
-
 	}
 
 	private function combine_price_displays( $current_price_text, $alternate_price_text, $shop_display_is_incl ) {
@@ -179,7 +178,7 @@ class Wdevs_Tax_Switch_Public {
 		}
 
 		return sprintf(
-			'<span class="wts-price-container">%s <span class="wts-price-wrapper "><span class="%s wts-active" ><span class=" wts-vat-text">%s</span></span><span class="%s wts-inactive"><span class=" wts-vat-text">%s</span></span></span></span>',
+			'<span class="wts-price-container">%s <span class="wts-price-wrapper"><span class="%s wts-active" ><span class="wts-vat-text">%s</span></span><span class="%s wts-inactive"><span class="wts-vat-text">%s</span></span></span></span>',
 			$price_html,
 			$classes[0],
 			$vat_text,
