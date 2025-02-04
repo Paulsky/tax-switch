@@ -106,7 +106,9 @@ class Wdevs_Tax_Switch_Compatibility {
 	}
 
 	public function activate_wc_product_table_compatibility( $element ) {
-		$element['use_default_template'] = true;
+		if ( isset( $element ) && isset( $element['type'] ) && $element['type'] === 'price' ) {
+			$element['use_default_template'] = true;
+		}
 
 		return $element;
 	}

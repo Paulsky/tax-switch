@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to the Tax Switch for WooCommerce plugin will be documented in this file.
 
+## [1.2.2] - 2025-02-03
+### Updated
+- Compatibility with WooCommerce Product Table Lite / PRO
+
 ## [1.2.1] - 2024-11-14
 ### Added
 - Compatibility for WPML

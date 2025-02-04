@@ -109,7 +109,7 @@ This plugin is tested and compatible with the following:
 
 - Measurement Price Calculator for WooCommerce
 - Tiered Pricing Table for WooCommerce (single product page)
-- WooCommerce Product Table
+- WooCommerce Product Table Lite / PRO
 
 If you encounter any conflicts with other themes or plugins, please report them by opening an issue or through our website.
 

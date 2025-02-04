@@ -27,7 +27,7 @@ For more information about this plugin, please visit the [plugin page](https://p
 
 This plugin integrates with WooCommerce's standard filters and actions for price display and calculation. While most plugins work out of the box, some third-party plugins use custom price building methods that require specific compatibility integrations. The following plugins have been tested and confirmed compatible:
 
-* WooCommerce Product Table
+* WooCommerce Product Table Lite / PRO
 * Tiered Pricing Table for WooCommerce (+ Premium)
 * Measurement Price Calculator for WooCommerce
 * Discount Rules for WooCommerce
@@ -98,6 +98,9 @@ You can also use this shortcode in your theme files with the do_shortcode() func
 Some WooCommerce Blocks are not fully compatible with this plugin as they do not use standard WooCommerce filters for price display. This is a known limitation of WooCommerce Blocks and not specific to this plugin. You can fix this by using WooCommerce shortcodes instead of the WooCommerce Blocks.
 
 == Changelog ==
+= 1.2.2 =
+* Updated compatibility for WooCommerce Product Table Lite / PRO
+
 = 1.2.1 =
 * Added compatibility for WPML
 
