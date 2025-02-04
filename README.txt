@@ -3,7 +3,7 @@ Contributors: wijnbergdevelopments
 Tags: woocommerce, tax, vat
 Requires at least: 5.0
 Tested up to: 6.6
-Stable tag: 1.2.2
+Stable tag: 1.2.3
 Requires PHP: 7.2
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
@@ -27,7 +27,7 @@ For more information about this plugin, please visit the [plugin page](https://p
 
 This plugin integrates with WooCommerce's standard filters and actions for price display and calculation. While most plugins work out of the box, some third-party plugins use custom price building methods that require specific compatibility integrations. The following plugins have been tested and confirmed compatible:
 
-* WooCommerce Product Table Lite / PRO
+* WooCommerce Product Table Lite (+ PRO)
 * Tiered Pricing Table for WooCommerce (+ Premium)
 * Measurement Price Calculator for WooCommerce
 * Discount Rules for WooCommerce
@@ -36,6 +36,12 @@ This plugin integrates with WooCommerce's standard filters and actions for price
 * Product Add-Ons for WooCommerce
 
 If you encounter any compatibility issues with other plugins not listed above, please let us know. Your feedback helps us improve the plugin and extend compatibility to more third-party solutions.
+
+=== Incompatibility ===
+
+After multiple attempts to create compatibility functions, reaching out to the plugin developers several times, and still finding no viable solution, the following plugins remain incompatible:
+
+* Unlimited Elements for Elementor (+ Pro): AJAX pagination and filtering issues
 
 === WPML ===
 
@@ -98,6 +104,10 @@ You can also use this shortcode in your theme files with the do_shortcode() func
 Some WooCommerce Blocks are not fully compatible with this plugin as they do not use standard WooCommerce filters for price display. This is a known limitation of WooCommerce Blocks and not specific to this plugin. You can fix this by using WooCommerce shortcodes instead of the WooCommerce Blocks.
 
 == Changelog ==
+= 1.2.3 =
+* Added incompatibility list
+* Updated incompatibility for Unlimited Elements for Elementor (+ Pro)
+
 = 1.2.2 =
 * Updated compatibility for WooCommerce Product Table Lite / PRO
 

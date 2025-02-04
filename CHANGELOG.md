@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to the Tax Switch for WooCommerce plugin will be documented in this file.
 
+## [1.2.3] - 2025-02-04
+### Added
+- Incompatibility list
+### Updated
+- Incompatibility with Unlimited Elements for Elementor (+ Pro)
+
 ## [1.2.2] - 2025-02-03
 ### Updated
 - Compatibility with WooCommerce Product Table Lite / PRO
