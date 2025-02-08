@@ -73,7 +73,7 @@ class Wdevs_Tax_Switch_Block {
 	//https://developer.woocommerce.com/2021/11/15/how-does-woocommerce-blocks-render-interactive-blocks-in-the-frontend/
 	public function block_render_callback( $attributes = [], $content = '' ) {
 		if ( ! is_admin() ) {
-			$this->enqueue_frontend_script();
+			$this->enqueue_frontend_scripts();
 		}
 
 		return $this->add_attributes_to_block( $attributes, $content );
@@ -85,7 +85,7 @@ class Wdevs_Tax_Switch_Block {
 
 	public function shortcode_render_callback( $attributes = [], $content = '' ) {
 		if ( ! is_admin() ) {
-			$this->enqueue_frontend_script();
+			$this->enqueue_frontend_scripts();
 		}
 
 		$attributes = shortcode_atts( [
@@ -108,26 +108,50 @@ class Wdevs_Tax_Switch_Block {
 		return $this->add_attributes_to_block( $attributes, $content );
 	}
 
-	public function enqueue_frontend_script() {
+	/**
+	 * @since 1.2.4
+	 */
+	public function register_frontend_scripts() {
 		$script_asset = require( plugin_dir_path( dirname( __FILE__ ) ) . 'build/view.asset.php' );
-		wp_enqueue_script( 'wdevs-tax-switch-view-script', plugin_dir_url( dirname( __FILE__ ) ) . 'build/view.js', $script_asset['dependencies'], $script_asset['version'] );
-		wp_enqueue_style( 'wdevs-tax-switch-style', plugin_dir_url( dirname( __FILE__ ) ) . 'build/style-index.css', [], $this->version );
 
-		$original_tax_display = $this->get_original_tax_display();
-
-		wp_localize_script(
+		wp_register_script(
 			'wdevs-tax-switch-view-script',
-			'wtsViewObject',
-			[
-				'originalTaxDisplay' => $original_tax_display
-			]
+			plugin_dir_url( dirname( __FILE__ ) ) . 'build/view.js',
+			$script_asset['dependencies'],
+			$script_asset['version']
 		);
 
-		wp_set_script_translations(
-			'wdevs-tax-switch-view-script',
-			'tax-switch-for-woocommerce',
-			plugin_dir_path( dirname( __FILE__ ) ) . 'languages'
+		wp_register_style(
+			'wdevs-tax-switch-style',
+			plugin_dir_url( dirname( __FILE__ ) ) . 'build/style-index.css',
+			[],
+			$script_asset['version']
 		);
+	}
+
+	public function enqueue_frontend_scripts() {
+		if ( wp_style_is( 'wdevs-tax-switch-style', 'registered' ) ) {
+			wp_enqueue_style( 'wdevs-tax-switch-style' );
+		}
+
+		if ( wp_script_is( 'wdevs-tax-switch-view-script', 'registered' ) ) {
+			wp_enqueue_script( 'wdevs-tax-switch-view-script' );
+
+			$original_tax_display = $this->get_original_tax_display();
+			wp_localize_script(
+				'wdevs-tax-switch-view-script',
+				'wtsViewObject',
+				[
+					'originalTaxDisplay' => $original_tax_display
+				]
+			);
+
+			wp_set_script_translations(
+				'wdevs-tax-switch-view-script',
+				'tax-switch-for-woocommerce',
+				plugin_dir_path( dirname( __FILE__ ) ) . 'languages'
+			);
+		}
 	}
 
 	public function add_attributes_to_block( $attributes = [], $content = '' ) {

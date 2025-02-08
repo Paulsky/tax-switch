@@ -22,8 +22,14 @@
  */
 trait Wdevs_Tax_Switch_Helper {
 
-	public function is_shop_display_inclusive() {
-		return get_option( 'woocommerce_tax_display_shop' ) === 'incl';
+	public function shop_prices_include_tax() {
+		return $this->get_original_tax_display() === 'incl';
+	}
+
+	public function get_original_tax_display() {
+		$current_value = get_option( 'woocommerce_tax_display_shop' );
+
+		return $current_value;
 	}
 
 	public function get_option_text( $key, $default ) {
@@ -35,12 +41,6 @@ trait Wdevs_Tax_Switch_Helper {
 		}
 
 		return esc_html( $text );
-	}
-
-	public function get_original_tax_display() {
-		$current_value = get_option( 'woocommerce_tax_display_shop' );
-
-		return $current_value;
 	}
 
 	public function is_woocommerce_product( $product ) {
@@ -83,7 +83,7 @@ trait Wdevs_Tax_Switch_Helper {
 
 	public function calculate_alternate_price( $price ) {
 		$prices_include_tax   = wc_prices_include_tax();
-		$shop_display_is_incl = $this->is_shop_display_inclusive();
+		$shop_prices_include_tax = $this->shop_prices_include_tax();
 
 		$calculator = new WC_Product_Simple();
 		$calculator->set_price( $price );
@@ -98,7 +98,7 @@ trait Wdevs_Tax_Switch_Helper {
 			$calculator->set_tax_status( 'taxable' );
 		}
 
-		if ( $shop_display_is_incl ) {
+		if ( $shop_prices_include_tax ) {
 			$pre_option_woocommerce_tax_display_shop_filter = 'get_excl_option';
 		} else {
 			$pre_option_woocommerce_tax_display_shop_filter = 'get_incl_option';
@@ -111,7 +111,7 @@ trait Wdevs_Tax_Switch_Helper {
 		], 1, 3 );
 
 		// Temporarily change the prices_include_tax setting if necessary
-		if ( $shop_display_is_incl !== $prices_include_tax ) {
+		if ( $shop_prices_include_tax !== $prices_include_tax ) {
 			if ( $prices_include_tax ) {
 				$woocommerce_prices_include_tax_filter = 'get_prices_exclude_tax_option';
 			} else {

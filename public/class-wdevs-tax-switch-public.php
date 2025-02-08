@@ -88,8 +88,6 @@ class Wdevs_Tax_Switch_Public {
 			return $return;
 		}
 
-		$shop_display_is_incl = $this->is_shop_display_inclusive();
-
 		//Temporarily disable this filter and function to prevent infinite loop
 		remove_filter( 'wc_price', [ $this, 'wrap_wc_price' ], PHP_INT_MAX );
 
@@ -99,7 +97,7 @@ class Wdevs_Tax_Switch_Public {
 		add_filter( 'wc_price', [ $this, 'wrap_wc_price' ], PHP_INT_MAX, 5 );
 
 		// Combine both price displays into one HTML string
-		return $this->combine_price_displays( $return, $alternate_price, $shop_display_is_incl );
+		return $this->combine_price_displays( $return, $alternate_price );
 	}
 
 	/**
@@ -132,13 +130,13 @@ class Wdevs_Tax_Switch_Public {
 		//Causes duplications
 		//$price_html = apply_filters( 'woocommerce_get_price_html', $price_html, $product );
 
-		$shop_display_is_incl = $this->is_shop_display_inclusive();
+		$shop_prices_include_tax = $this->shop_prices_include_tax();
 
 		// Get VAT text options
 		$incl_vat_text = $this->get_option_text( 'wdevs_tax_switch_incl_vat', __( 'Incl. VAT', 'tax-switch-for-woocommerce' ) );
 		$excl_vat_text = $this->get_option_text( 'wdevs_tax_switch_excl_vat', __( 'Excl. VAT', 'tax-switch-for-woocommerce' ) );
 
-		if ( $shop_display_is_incl ) {
+		if ( $shop_prices_include_tax ) {
 			$vat_text           = $incl_vat_text;
 			$alternate_vat_text = $excl_vat_text;
 		} else {
@@ -151,14 +149,16 @@ class Wdevs_Tax_Switch_Public {
 		//add_filter( 'woocommerce_get_price_html', [ $this, 'get_price_html' ], PHP_INT_MIN, 2 );
 
 		// Combine both price displays into one HTML string
-		$html = $this->wrap_price_displays( $price_html, $shop_display_is_incl, $vat_text, $alternate_vat_text );
+		$html = $this->wrap_price_displays( $price_html, $shop_prices_include_tax, $vat_text, $alternate_vat_text );
 
 		return $html;
 	}
 
-	private function combine_price_displays( $current_price_text, $alternate_price_text, $shop_display_is_incl ) {
+	private function combine_price_displays( $current_price_text, $alternate_price_text ) {
+		$shop_prices_include_tax = $this->shop_prices_include_tax();
+
 		$classes = [ 'wts-price-incl', 'wts-price-excl' ];
-		if ( ! $shop_display_is_incl ) {
+		if ( ! $shop_prices_include_tax ) {
 			$classes = array_reverse( $classes );
 		}
 
@@ -171,9 +171,9 @@ class Wdevs_Tax_Switch_Public {
 		);
 	}
 
-	private function wrap_price_displays( $price_html, $shop_display_is_incl, $vat_text, $alternate_vat_text ) {
+	private function wrap_price_displays( $price_html, $shop_prices_include_tax, $vat_text, $alternate_vat_text ) {
 		$classes = [ 'wts-price-incl', 'wts-price-excl' ];
-		if ( ! $shop_display_is_incl ) {
+		if ( ! $shop_prices_include_tax ) {
 			$classes = array_reverse( $classes );
 		}
 

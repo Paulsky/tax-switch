@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to the Tax Switch for WooCommerce plugin will be documented in this file.
 
+## [1.2.4] - 2025-02-06
+### Updated
+- Always register the block/shortcode scripts and styles. Only enqueue them if the block or shortcode is executed
+- Fixed price display issues in Tiered Pricing Table for WooCommerce when shop prices are set to display excluding VAT by default
+
 ## [1.2.3] - 2025-02-04
 ### Added
 - Incompatibility list

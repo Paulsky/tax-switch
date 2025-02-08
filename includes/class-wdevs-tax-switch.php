@@ -241,9 +241,9 @@ class Wdevs_Tax_Switch {
 
 		$plugin_block = new Wdevs_Tax_Switch_Block( $this->get_plugin_name(), $this->get_version() );
 
+		$this->loader->add_action( 'init', $plugin_block, 'register_frontend_scripts' );
 		$this->loader->add_action( 'init', $plugin_block, 'init_block' );
 		$this->loader->add_action( 'init', $plugin_block, 'register_shortcode' );
-
 	}
 
 	/**

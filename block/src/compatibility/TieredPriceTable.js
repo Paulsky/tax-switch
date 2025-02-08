@@ -5,6 +5,7 @@ import TaxSwitchElementBuilder from '../includes/TaxSwitchElementBuilder';
 class TieredPriceTable {
 	constructor( originalTaxDisplay ) {
 		this.originalTaxDisplay = originalTaxDisplay;
+		this.isInclTaxDisplay = originalTaxDisplay === 'incl';
 		this.priceBackups = new Map(); // Store backups for multiple elements
 		this.vatTexts = null;
 	}
@@ -60,61 +61,55 @@ class TieredPriceTable {
 	updateAllPrices( data ) {
 		if ( ! data.__instance ) return;
 
+		const vm = this;
 		const displayIncludingVat = TaxSwitchHelper.displayIncludingVat(
 			this.originalTaxDisplay
 		);
+		const showOriginalPrice = vm.shouldShowOriginalPrice( data );
 
-		// Update all price containers for this product
+		const current = data.__instance.formatting.formatPrice( data.price );
+		const alternate = data.__instance.formatting.formatPrice(
+			vm.getAlternatePrice( data )
+		);
+		const original = showOriginalPrice
+			? data.__instance.formatting.formatPrice(
+					vm.getOriginalPrice( data, true )
+			  )
+			: null;
+		const alternateOriginal = showOriginalPrice
+			? data.__instance.formatting.formatPrice(
+					vm.getOriginalPrice( data, false )
+			  )
+			: null;
+
 		const $priceContainers = jQuery(
 			'.tiered-pricing-dynamic-price-wrapper'
 		).filter( ( _, container ) => {
 			const $container = jQuery( container );
-			const containerProductId = parseInt(
-				$container.data( 'product-id' )
-			);
-			const containerParentId = parseInt(
-				$container.data( 'parent-id' )
-			);
+			const productId = parseInt( $container.data( 'product-id' ) );
+			const parentId = parseInt( $container.data( 'parent-id' ) );
 
-			return containerProductId === containerParentId
-				? containerParentId === data.parentId
-				: containerProductId === data.productId;
+			return productId === parentId
+				? parentId === data.parentId
+				: productId === data.productId;
 		} );
 
 		$priceContainers.each( ( _, container ) => {
 			const $container = jQuery( container );
-			if ( $container.data( 'price-type' ) === 'dynamic' ) {
-				const showOriginalPrice = this.shouldShowOriginalPrice( data );
-				const originalPriceInclTax = showOriginalPrice
-					? this.getOriginalPrice( data, true )
-					: null;
-				const originalPriceExclTax = showOriginalPrice
-					? this.getOriginalPrice( data, false )
-					: null;
-
-				const newHtml = this.getWtsHtml(
+			if ( $container.data( 'price-type' ) !== 'dynamic' ) return;
+			$container.html(
+				vm.getWtsHtml(
 					displayIncludingVat,
-					data.__instance.formatting.formatPrice( data.price ),
-					data.__instance.formatting.formatPrice(
-						data.price_excl_tax
-					),
+					current,
+					alternate,
 					true,
-					originalPriceInclTax
-						? data.__instance.formatting.formatPrice(
-								originalPriceInclTax
-						  )
-						: null,
-					originalPriceExclTax
-						? data.__instance.formatting.formatPrice(
-								originalPriceExclTax
-						  )
-						: null
-				);
-				$container.html( newHtml );
-			}
+					original,
+					alternateOriginal
+				)
+			);
 		} );
 
-		this.updateSummaryTable( data, displayIncludingVat );
+		vm.updateSummaryTable( data, displayIncludingVat );
 	}
 
 	shouldShowOriginalPrice( data ) {
@@ -130,17 +125,18 @@ class TieredPriceTable {
 		);
 	}
 
-	getOriginalPrice( data, includingTax = true ) {
+	getOriginalPrice( data, getOriginalTaxPrice = true ) {
+		const alternatePrice = this.getAlternatePrice( data );
 		if ( data.__instance.dataProvider.isProductOnSale() ) {
-			return includingTax
+			return getOriginalTaxPrice
 				? data.__instance.dataProvider.getRegularPrice()
 				: data.__instance.dataProvider.getRegularPrice() *
-						( data.price_excl_tax / data.price );
+						( alternatePrice / data.price );
 		} else {
-			return includingTax
+			return getOriginalTaxPrice
 				? data.__instance.dataProvider.getOriginalPrice()
 				: data.__instance.dataProvider.getOriginalPrice() *
-						( data.price_excl_tax / data.price );
+						( alternatePrice / data.price );
 		}
 	}
 
@@ -148,25 +144,26 @@ class TieredPriceTable {
 		const summaryTable = this.getSummaryTable( data.parentId );
 		if ( ! summaryTable || ! summaryTable.length ) return;
 
-		// Update product price
+		const alternatePrice = this.getAlternatePrice( data );
+
 		const productPriceHtml = this.getWtsHtml(
 			displayIncludingVat,
 			data.__instance.formatting.formatPrice( data.price ),
-			data.__instance.formatting.formatPrice( data.price_excl_tax ),
+			data.__instance.formatting.formatPrice( alternatePrice ),
 			true
 		);
 
-		// Update total price
 		const totalHtml = this.getWtsHtml(
 			displayIncludingVat,
 			data.__instance.formatting.formatPrice(
 				data.price * data.quantity
 			),
 			data.__instance.formatting.formatPrice(
-				data.price_excl_tax * data.quantity
+				alternatePrice * data.quantity
 			),
 			true
 		);
+
 		setTimeout( function () {
 			summaryTable
 				.find( '[data-tier-pricing-table-summary-product-price]' )
@@ -197,14 +194,14 @@ class TieredPriceTable {
 
 	getWtsHtml(
 		displayIncludingVat,
-		tieredIncludingVatHTML,
-		tieredExcludingVatHTML,
+		tieredVatHTML,
+		tieredAlternateVatHTML,
 		setText = false,
-		originalPriceInclHTML = null,
-		originalPriceExclHTML = null
+		originalPriceHTML = null,
+		originalPriceAlternateHTML = null
 	) {
 		const vm = this;
-		// Helper function for price with optional original price
+
 		const getPriceHtml = ( currentPrice, originalPrice ) => {
 			if ( originalPrice ) {
 				return `<del>${ originalPrice }</del> <ins>${ currentPrice }</ins>`;
@@ -212,23 +209,26 @@ class TieredPriceTable {
 			return currentPrice;
 		};
 
+		// If original tax display is exclusive, we need to switch the order of the prices
+		const [ inclPrice, exclPrice ] = this.isInclTaxDisplay
+			? [ tieredVatHTML, tieredAlternateVatHTML ]
+			: [ tieredAlternateVatHTML, tieredVatHTML ];
+
+		const [ inclOriginalPrice, exclOriginalPrice ] = this.isInclTaxDisplay
+			? [ originalPriceHTML, originalPriceAlternateHTML ]
+			: [ originalPriceAlternateHTML, originalPriceHTML ];
+
 		const priceSection = `
         <span class="wts-price-wrapper">
             <span class="wts-price-incl ${
 				displayIncludingVat ? 'wts-active' : 'wts-inactive'
 			}">
-                ${ getPriceHtml(
-					tieredIncludingVatHTML,
-					originalPriceInclHTML
-				) }
+                ${ getPriceHtml( inclPrice, inclOriginalPrice ) }
             </span>
             <span class="wts-price-excl ${
 				! displayIncludingVat ? 'wts-active' : 'wts-inactive'
 			}">
-                ${ getPriceHtml(
-					tieredExcludingVatHTML,
-					originalPriceExclHTML
-				) }
+                ${ getPriceHtml( exclPrice, exclOriginalPrice ) }
             </span>
         </span>
     `;
@@ -268,6 +268,13 @@ class TieredPriceTable {
             ${ priceSection }
         </span>
     `;
+	}
+
+	getAlternatePrice( data ) {
+		if ( this.isInclTaxDisplay ) {
+			return data.pricing.price_excl_tax;
+		}
+		return data.pricing.price_incl_tax;
 	}
 }
 
