@@ -34,9 +34,9 @@ This plugin integrates with WooCommerce's standard filters and actions for price
 * YITH WooCommerce Product Add-Ons (+ & Extra Options Premium)
 * JetEngine Listing Grid (Elementor)
 * Product Add-Ons for WooCommerce
-* B2BKing — Ultimate WooCommerce Wholesale and B2B Solution (+ Premium)
+* B2BKing – Ultimate WooCommerce Wholesale and B2B Solution (+ Premium)
 
-If you encounter any compatibility issues with other plugins not listed above, please let us know. Your feedback helps us improve the plugin and extend compatibility to more third-party solutions.
+If you encounter any compatibility issues with other plugins, please let us know. Your feedback helps us improve the plugin and extend compatibility to more third-party solutions.
 
 === Incompatibility ===
 
