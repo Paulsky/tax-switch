@@ -3,7 +3,7 @@ Contributors: wijnbergdevelopments
 Tags: woocommerce, tax, vat
 Requires at least: 5.0
 Tested up to: 6.6
-Stable tag: 1.2.4
+Stable tag: 1.2.5
 Requires PHP: 7.2
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
@@ -34,6 +34,7 @@ This plugin integrates with WooCommerce's standard filters and actions for price
 * YITH WooCommerce Product Add-Ons (+ & Extra Options Premium)
 * JetEngine Listing Grid (Elementor)
 * Product Add-Ons for WooCommerce
+* B2BKing — Ultimate WooCommerce Wholesale and B2B Solution (+ Premium)
 
 If you encounter any compatibility issues with other plugins not listed above, please let us know. Your feedback helps us improve the plugin and extend compatibility to more third-party solutions.
 
@@ -104,6 +105,9 @@ You can also use this shortcode in your theme files with the do_shortcode() func
 Some WooCommerce Blocks are not fully compatible with this plugin as they do not use standard WooCommerce filters for price display. This is a known limitation of WooCommerce Blocks and not specific to this plugin. You can fix this by using WooCommerce shortcodes instead of the WooCommerce Blocks.
 
 == Changelog ==
+= 1.2.5 =
+* Fixed tax calculation if customer is VAT exempt
+
 = 1.2.4 =
 * Always register the block/shortcode scripts and styles. Only enqueue them if the block or shortcode is executed
 * Fixed price display issues in Tiered Pricing Table for WooCommerce when shop prices are set to display excluding VAT by default

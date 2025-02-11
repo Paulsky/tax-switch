@@ -130,7 +130,7 @@ class Wdevs_Tax_Switch_Public {
 		//Causes duplications
 		//$price_html = apply_filters( 'woocommerce_get_price_html', $price_html, $product );
 
-		$shop_prices_include_tax = $this->shop_prices_include_tax();
+		$shop_prices_include_tax = $this->shop_displays_price_including_tax_by_default();
 
 		// Get VAT text options
 		$incl_vat_text = $this->get_option_text( 'wdevs_tax_switch_incl_vat', __( 'Incl. VAT', 'tax-switch-for-woocommerce' ) );
@@ -155,7 +155,7 @@ class Wdevs_Tax_Switch_Public {
 	}
 
 	private function combine_price_displays( $current_price_text, $alternate_price_text ) {
-		$shop_prices_include_tax = $this->shop_prices_include_tax();
+		$shop_prices_include_tax = $this->shop_displays_price_including_tax_by_default();
 
 		$classes = [ 'wts-price-incl', 'wts-price-excl' ];
 		if ( ! $shop_prices_include_tax ) {
@@ -223,6 +223,18 @@ class Wdevs_Tax_Switch_Public {
 		}
 
 		return false;
+	}
+
+	/**
+	 * @return bool
+	 * @since 1.2.5
+	 */
+	private function shop_displays_price_including_tax_by_default() {
+		if ( ! empty( WC()->customer ) && WC()->customer->get_is_vat_exempt() ) {
+			return false;
+		}
+
+		return $this->shop_prices_include_tax();
 	}
 
 }

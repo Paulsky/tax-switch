@@ -101,8 +101,6 @@ class Wdevs_Tax_Switch_Compatibility {
 			$wctpt_asset = require( plugin_dir_path( dirname( __FILE__ ) ) . 'build/woocommerce-tiered-price-table.asset.php' );
 			wp_enqueue_script( 'wdevs-tax-switch-woocommerce-tiered-price-table', plugin_dir_url( dirname( __FILE__ ) ) . 'build/woocommerce-tiered-price-table.js', $wctpt_asset['dependencies'], $wctpt_asset['version'] );
 		}
-
-
 	}
 
 	public function activate_wc_product_table_compatibility( $element ) {

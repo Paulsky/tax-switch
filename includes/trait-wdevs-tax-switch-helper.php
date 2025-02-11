@@ -82,8 +82,9 @@ trait Wdevs_Tax_Switch_Helper {
 	}
 
 	public function calculate_alternate_price( $price ) {
-		$prices_include_tax   = wc_prices_include_tax();
+		$prices_include_tax      = wc_prices_include_tax();
 		$shop_prices_include_tax = $this->shop_prices_include_tax();
+		$is_vat_exempt           = ! empty( WC()->customer ) && WC()->customer->get_is_vat_exempt();
 
 		$calculator = new WC_Product_Simple();
 		$calculator->set_price( $price );
@@ -98,10 +99,15 @@ trait Wdevs_Tax_Switch_Helper {
 			$calculator->set_tax_status( 'taxable' );
 		}
 
-		if ( $shop_prices_include_tax ) {
-			$pre_option_woocommerce_tax_display_shop_filter = 'get_excl_option';
-		} else {
+		if ( $is_vat_exempt ) {
+			WC()->customer->set_is_vat_exempt( false );
 			$pre_option_woocommerce_tax_display_shop_filter = 'get_incl_option';
+		} else {
+			if ( $shop_prices_include_tax ) {
+				$pre_option_woocommerce_tax_display_shop_filter = 'get_excl_option';
+			} else {
+				$pre_option_woocommerce_tax_display_shop_filter = 'get_incl_option';
+			}
 		}
 
 		// Temporarily change the tax display setting
@@ -111,11 +117,15 @@ trait Wdevs_Tax_Switch_Helper {
 		], 1, 3 );
 
 		// Temporarily change the prices_include_tax setting if necessary
-		if ( $shop_prices_include_tax !== $prices_include_tax ) {
-			if ( $prices_include_tax ) {
+		if ( $shop_prices_include_tax !== $prices_include_tax || $is_vat_exempt ) {
+			if ( $is_vat_exempt ) {
 				$woocommerce_prices_include_tax_filter = 'get_prices_exclude_tax_option';
 			} else {
-				$woocommerce_prices_include_tax_filter = 'get_prices_include_tax_option';
+				if ( $prices_include_tax ) {
+					$woocommerce_prices_include_tax_filter = 'get_prices_exclude_tax_option';
+				} else {
+					$woocommerce_prices_include_tax_filter = 'get_prices_include_tax_option';
+				}
 			}
 			$pricesIncludeTaxFilter = true;
 			add_filter( 'woocommerce_prices_include_tax', [ $this, $woocommerce_prices_include_tax_filter ], 99, 1 );
@@ -131,6 +141,10 @@ trait Wdevs_Tax_Switch_Helper {
 
 		if ( $pricesIncludeTaxFilter ) {
 			remove_filter( 'woocommerce_prices_include_tax', [ $this, $woocommerce_prices_include_tax_filter ], 99 );
+		}
+
+		if ( $is_vat_exempt ) {
+			WC()->customer->set_is_vat_exempt( true );
 		}
 
 		unset( $calculator );
