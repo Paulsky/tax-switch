@@ -80,6 +80,7 @@ The shortcode also accepts several attributes to customize its appearance:
 - `switch-color-checked`: Sets the color of the switch when it's in the "on" position.
 - `switch-background-color`: Sets the background color of the switch.
 - `switch-background-color-checked`: Sets the background color of the switch when it's in the "on" position.
+- `switch-text-color`: Sets the text color of the switch labels.
 - `switch-label-incl`: Sets the text for the "including VAT" label.
     - Default: Uses the text set in the plugin settings or "Incl. VAT" if not set.
 - `switch-label-excl`: Sets the text for the "excluding VAT" label.
@@ -87,7 +88,7 @@ The shortcode also accepts several attributes to customize its appearance:
 
 Example with custom attributes:
 
-`[wdevs_tax_switch class-name="is-style-inline" switch-color="#ffffff" switch-color-checked="#000000" switch-background-color="#000000" switch-background-color-checked="#4CAF50" switch-label-incl="Inc. Tax" switch-label-excl="Ex. Tax"]`
+`[wdevs_tax_switch class-name="is-style-inline" switch-color="#ffffff" switch-color-checked="#000000" switch-background-color="#000000" switch-background-color-checked="#4CAF50" switch-text-color="#FF0000" switch-label-incl="Inc. Tax" switch-label-excl="Ex. Tax"]`
 
 This will display an inline-style switch with a white handle that turns black when on, a black background when off, green background when on, and custom labels for including and excluding tax.
 

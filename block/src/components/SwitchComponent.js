@@ -98,6 +98,7 @@ class SwitchComponent extends Component {
 			switchColorChecked,
 			switchBackgroundColor,
 			switchBackgroundColorChecked,
+			switchTextColor,
 			switchLabelIncl,
 			switchLabelExcl,
 		} = this.props;
@@ -113,6 +114,7 @@ class SwitchComponent extends Component {
 					'--wts-color-checked': switchColorChecked,
 					'--wts-bg-color': switchBackgroundColor,
 					'--wts-bg-color-checked': switchBackgroundColorChecked,
+					'--wts-text-color': switchTextColor,
 				} }
 			>
 				<label className="wdevs-tax-switch-label">

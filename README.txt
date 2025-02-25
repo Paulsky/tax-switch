@@ -76,6 +76,7 @@ The shortcode accepts several attributes to customize its appearance and behavio
 * `switch-color`: Sets the color of the switch handle.
 * `switch-color-checked`: Sets the color of the switch when it's in the "on" position.
 * `switch-background-color`: Sets the background color of the switch.
+* `switch-text-color`: Sets the text color of the switch labels.
 * `switch-background-color-checked`: Sets the background color of the switch when it's in the "on" position.
 * `switch-label-incl`: Sets the text for the "including VAT" label.
     - Default: Uses the text set in the plugin settings or "Incl. VAT" if not set.
@@ -84,7 +85,7 @@ The shortcode accepts several attributes to customize its appearance and behavio
 
 Example with custom attributes:
 
-`[wdevs_tax_switch class-name="is-style-inline" switch-color="#ffffff" switch-color-checked="#000000" switch-background-color="#000000" switch-background-color-checked="#4CAF50" switch-label-incl="Inc. Tax" switch-label-excl="Ex. Tax"]`
+`[wdevs_tax_switch class-name="is-style-inline" switch-color="#ffffff" switch-color-checked="#000000" switch-background-color="#000000" switch-background-color-checked="#4CAF50" switch-text-color="#FF0000" switch-label-incl="Inc. Tax" switch-label-excl="Ex. Tax"]`
 
 This will display an inline-style switch with a white handle that turns black when on, a black background when off, green background when on, and custom labels for including and excluding tax.
 
@@ -106,7 +107,8 @@ Some WooCommerce Blocks are not fully compatible with this plugin as they do not
 
 == Changelog ==
 = 1.2.6 =
-* Added Swedish language
+* Added Swedish language (thanks to Martin Hult)
+* Added color setting for label text
 
 = 1.2.5 =
 * Fixed tax calculation if customer is VAT exempt

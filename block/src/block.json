@@ -23,6 +23,9 @@
 		"switchBackgroundColorChecked": {
 			"type": "string"
 		},
+		"switchTextColor": {
+			"type": "string"
+		},
 		"switchLabelIncl": {
 			"type": "string"
 		},

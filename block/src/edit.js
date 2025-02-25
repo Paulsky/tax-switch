@@ -42,6 +42,7 @@ export default function Edit( { attributes, setAttributes } ) {
 		switchColorChecked,
 		switchBackgroundColor,
 		switchBackgroundColorChecked,
+		switchTextColor,
 		switchLabelIncl,
 		switchLabelExcl,
 	} = attributes;
@@ -92,6 +93,14 @@ export default function Edit( { attributes, setAttributes } ) {
 								'Background color checked',
 								'wdevs-tax-switch'
 							),
+						},
+						{
+							value: switchTextColor,
+							onChange: ( color ) =>
+								setAttributes( {
+									switchTextColor: color,
+								} ),
+							label: __( 'Text color', 'wdevs-tax-switch' ),
 						},
 					] }
 				/>

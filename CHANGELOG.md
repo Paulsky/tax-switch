@@ -3,7 +3,8 @@ All notable changes to the Tax Switch for WooCommerce plugin will be documented 
 
 ## [1.2.6] - 2025-02-25
 ### Added
-- Swedish language
+- Swedish language (special thanks to Martin Hult)
+- Color setting for label text
 
 ## [1.2.5] - 2025-02-11
 ### Updated

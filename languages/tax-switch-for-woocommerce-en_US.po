@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Tax Switch for WooCommerce\n"
-"POT-Creation-Date: 2024-09-16 10:22+0200\n"
-"PO-Revision-Date: 2024-09-16 10:27+0200\n"
+"POT-Creation-Date: 2025-02-25 18:14+0100\n"
+"PO-Revision-Date: 2025-02-25 18:14+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -21,35 +21,41 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 "X-Poedit-SearchPathExcluded-1: node_modules\n"
 
-#: block/src/edit.js:57
+#: block/src/edit.js:58
 msgid "Switch colors"
 msgstr "Switch colors"
 
-#: block/src/edit.js:64
+#: block/src/edit.js:65
 msgid "Switch color"
 msgstr "Switch color"
 
-#: block/src/edit.js:73
+#: block/src/edit.js:74
 msgid "Switch color checked"
 msgstr "Switch color checked"
 
-#: block/src/edit.js:83
+#: block/src/edit.js:84
 msgid "Background color"
 msgstr "Background color"
 
-#: block/src/edit.js:92
+#: block/src/edit.js:93
 msgid "Background color checked"
 msgstr "Background color checked"
 
-#: block/src/edit.js:99
+#: block/src/edit.js:103
+#, fuzzy
+#| msgid "Switch color"
+msgid "Text color"
+msgstr "Switch color"
+
+#: block/src/edit.js:108
 msgid "Switch Labels"
 msgstr "Switch Labels"
 
-#: block/src/edit.js:104
+#: block/src/edit.js:113
 msgid "Including VAT Label"
 msgstr "Including VAT Label"
 
-#: block/src/edit.js:114
+#: block/src/edit.js:123
 msgid "Excluding VAT Label"
 msgstr "Excluding VAT Label"
 
@@ -86,7 +92,7 @@ msgid "Text to append to prices including VAT."
 msgstr "Text to append to prices including VAT."
 
 #: includes/class-wdevs-tax-switch-woocommerce.php:102
-#: public/class-wdevs-tax-switch-public.php:80
+#: public/class-wdevs-tax-switch-public.php:136
 msgid "Incl. VAT"
 msgstr "Incl. VAT"
 
@@ -99,7 +105,7 @@ msgid "Text to append to prices excluding VAT."
 msgstr "Text to append to prices excluding VAT."
 
 #: includes/class-wdevs-tax-switch-woocommerce.php:109
-#: public/class-wdevs-tax-switch-public.php:81
+#: public/class-wdevs-tax-switch-public.php:137
 msgid "Excl. VAT"
 msgstr "Excl. VAT"
 

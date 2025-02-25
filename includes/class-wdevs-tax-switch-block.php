@@ -94,6 +94,7 @@ class Wdevs_Tax_Switch_Block {
 			'switch-color-checked'            => '',
 			'switch-background-color'         => '',
 			'switch-background-color-checked' => '',
+			'switch-text-color'               => '',
 			'switch-label-incl'               => '',
 			'switch-label-excl'               => ''
 		], $attributes );
