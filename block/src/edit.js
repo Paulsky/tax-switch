@@ -56,22 +56,31 @@ export default function Edit( { attributes, setAttributes } ) {
 		<div { ...useBlockProps() }>
 			<InspectorControls>
 				<PanelBody
-					title={ __( 'Display options', 'wdevs-tax-switch' ) }
+					title={ __(
+						'Display options',
+						'tax-switch-for-woocommerce'
+					) }
 					initialOpen={ true }
 				>
 					<SelectControl
-						label={ __( 'Switch type', 'wdevs-tax-switch' ) }
+						label={ __(
+							'Switch type',
+							'tax-switch-for-woocommerce'
+						) }
 						value={ switchType }
 						options={ [
 							{
 								label: __(
 									'Toggle switch',
-									'wdevs-tax-switch'
+									'tax-switch-for-woocommerce'
 								),
 								value: 'switch',
 							},
 							{
-								label: __( 'Buttons', 'wdevs-tax-switch' ),
+								label: __(
+									'Buttons',
+									'tax-switch-for-woocommerce'
+								),
 								value: 'buttons',
 							},
 						] }
@@ -81,14 +90,20 @@ export default function Edit( { attributes, setAttributes } ) {
 					/>
 				</PanelBody>
 				<PanelColorSettings
-					title={ __( 'Switch colors', 'wdevs-tax-switch' ) }
+					title={ __(
+						'Switch colors',
+						'tax-switch-for-woocommerce'
+					) }
 					initialOpen={ true }
 					colorSettings={ [
 						{
 							value: switchColor,
 							onChange: ( color ) =>
 								setAttributes( { switchColor: color } ),
-							label: __( 'Switch color', 'wdevs-tax-switch' ),
+							label: __(
+								'Switch color',
+								'tax-switch-for-woocommerce'
+							),
 						},
 						{
 							value: switchColorChecked,
@@ -98,7 +113,7 @@ export default function Edit( { attributes, setAttributes } ) {
 								} ),
 							label: __(
 								'Switch color checked',
-								'wdevs-tax-switch'
+								'tax-switch-for-woocommerce'
 							),
 						},
 						{
@@ -107,7 +122,10 @@ export default function Edit( { attributes, setAttributes } ) {
 								setAttributes( {
 									switchBackgroundColor: color,
 								} ),
-							label: __( 'Background color', 'wdevs-tax-switch' ),
+							label: __(
+								'Background color',
+								'tax-switch-for-woocommerce'
+							),
 						},
 						{
 							value: switchBackgroundColorChecked,
@@ -117,7 +135,7 @@ export default function Edit( { attributes, setAttributes } ) {
 								} ),
 							label: __(
 								'Background color checked',
-								'wdevs-tax-switch'
+								'tax-switch-for-woocommerce'
 							),
 						},
 						{
@@ -126,18 +144,24 @@ export default function Edit( { attributes, setAttributes } ) {
 								setAttributes( {
 									switchTextColor: color,
 								} ),
-							label: __( 'Text color', 'wdevs-tax-switch' ),
+							label: __(
+								'Text color',
+								'tax-switch-for-woocommerce'
+							),
 						},
 					] }
 				/>
 				<PanelBody
-					title={ __( 'Switch Labels', 'wdevs-tax-switch' ) }
+					title={ __(
+						'Switch labels',
+						'tax-switch-for-woocommerce'
+					) }
 					initialOpen={ true }
 				>
 					<TextControl
 						label={ __(
 							'Including VAT Label',
-							'wdevs-tax-switch'
+							'tax-switch-for-woocommerce'
 						) }
 						value={ switchLabelIncl }
 						onChange={ ( value ) =>
@@ -147,7 +171,7 @@ export default function Edit( { attributes, setAttributes } ) {
 					<TextControl
 						label={ __(
 							'Excluding VAT Label',
-							'wdevs-tax-switch'
+							'tax-switch-for-woocommerce'
 						) }
 						value={ switchLabelExcl }
 						onChange={ ( value ) =>

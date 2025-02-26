@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Tax Switch for WooCommerce\n"
-"POT-Creation-Date: 2025-02-25 18:14+0100\n"
-"PO-Revision-Date: 2025-02-25 18:14+0100\n"
+"POT-Creation-Date: 2025-02-26 14:27+0100\n"
+"PO-Revision-Date: 2025-02-26 14:27+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -21,41 +21,55 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 "X-Poedit-SearchPathExcluded-1: node_modules\n"
 
-#: block/src/edit.js:58
+#: block/src/edit.js:59
+msgid "Display options"
+msgstr "Display options"
+
+#: block/src/edit.js:63
+msgid "Switch type"
+msgstr "Switchtype"
+
+#: block/src/edit.js:68
+msgid "Toggle switch"
+msgstr "Toggle switch"
+
+#: block/src/edit.js:74
+msgid "Buttons"
+msgstr "Buttons"
+
+#: block/src/edit.js:84
 msgid "Switch colors"
 msgstr "Switch colors"
 
-#: block/src/edit.js:65
+#: block/src/edit.js:91
 msgid "Switch color"
 msgstr "Switch color"
 
-#: block/src/edit.js:74
+#: block/src/edit.js:100
 msgid "Switch color checked"
 msgstr "Switch color checked"
 
-#: block/src/edit.js:84
+#: block/src/edit.js:110
 msgid "Background color"
 msgstr "Background color"
 
-#: block/src/edit.js:93
+#: block/src/edit.js:119
 msgid "Background color checked"
 msgstr "Background color checked"
 
-#: block/src/edit.js:103
-#, fuzzy
-#| msgid "Switch color"
+#: block/src/edit.js:129
 msgid "Text color"
-msgstr "Switch color"
+msgstr "Text color"
 
-#: block/src/edit.js:108
-msgid "Switch Labels"
-msgstr "Switch Labels"
+#: block/src/edit.js:134
+msgid "Switch labels"
+msgstr "Switch labels"
 
-#: block/src/edit.js:113
+#: block/src/edit.js:139
 msgid "Including VAT Label"
 msgstr "Including VAT Label"
 
-#: block/src/edit.js:123
+#: block/src/edit.js:149
 msgid "Excluding VAT Label"
 msgstr "Excluding VAT Label"
 
