@@ -17,7 +17,7 @@ import {
 	useBlockProps,
 } from '@wordpress/block-editor';
 
-import { TextControl, PanelBody } from '@wordpress/components';
+import { TextControl, PanelBody, SelectControl } from '@wordpress/components';
 
 import SwitchComponent from './components/SwitchComponent';
 /**
@@ -38,6 +38,7 @@ import './editor.scss';
  */
 export default function Edit( { attributes, setAttributes } ) {
 	const {
+		switchType,
 		switchColor,
 		switchColorChecked,
 		switchBackgroundColor,
@@ -54,6 +55,31 @@ export default function Edit( { attributes, setAttributes } ) {
 	return (
 		<div { ...useBlockProps() }>
 			<InspectorControls>
+				<PanelBody
+					title={ __( 'Display options', 'wdevs-tax-switch' ) }
+					initialOpen={ true }
+				>
+					<SelectControl
+						label={ __( 'Switch type', 'wdevs-tax-switch' ) }
+						value={ switchType }
+						options={ [
+							{
+								label: __(
+									'Toggle switch',
+									'wdevs-tax-switch'
+								),
+								value: 'switch',
+							},
+							{
+								label: __( 'Buttons', 'wdevs-tax-switch' ),
+								value: 'buttons',
+							},
+						] }
+						onChange={ ( value ) =>
+							setAttributes( { switchType: value } )
+						}
+					/>
+				</PanelBody>
 				<PanelColorSettings
 					title={ __( 'Switch colors', 'wdevs-tax-switch' ) }
 					initialOpen={ true }

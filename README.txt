@@ -3,7 +3,7 @@ Contributors: wijnbergdevelopments
 Tags: woocommerce, tax, vat
 Requires at least: 5.0
 Tested up to: 6.7
-Stable tag: 1.2.6
+Stable tag: 1.3.0
 Requires PHP: 7.2
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
@@ -73,6 +73,9 @@ The shortcode accepts several attributes to customize its appearance and behavio
 * `class-name`: Adds custom CSS classes to the switch.
     - Default: is-style-default
     - Options: is-style-default, is-style-inline, or custom classes
+* `switch-type`: Determines the style of the toggle.
+ 	- Default: `switch`
+ 	- Options: `switch`, `buttons`
 * `switch-color`: Sets the color of the switch handle.
 * `switch-color-checked`: Sets the color of the switch when it's in the "on" position.
 * `switch-background-color`: Sets the background color of the switch.
@@ -85,7 +88,7 @@ The shortcode accepts several attributes to customize its appearance and behavio
 
 Example with custom attributes:
 
-`[wdevs_tax_switch class-name="is-style-inline" switch-color="#ffffff" switch-color-checked="#000000" switch-background-color="#000000" switch-background-color-checked="#4CAF50" switch-text-color="#FF0000" switch-label-incl="Inc. Tax" switch-label-excl="Ex. Tax"]`
+`[wdevs_tax_switch class-name="is-style-inline" switch-type="switch" switch-color="#ffffff" switch-color-checked="#000000" switch-background-color="#000000" switch-background-color-checked="#4CAF50" switch-text-color="#FF0000" switch-label-incl="Inc. Tax" switch-label-excl="Ex. Tax"]`
 
 This will display an inline-style switch with a white handle that turns black when on, a black background when off, green background when on, and custom labels for including and excluding tax.
 
@@ -106,8 +109,9 @@ You can also use this shortcode in your theme files with the do_shortcode() func
 Some WooCommerce Blocks are not fully compatible with this plugin as they do not use standard WooCommerce filters for price display. This is a known limitation of WooCommerce Blocks and not specific to this plugin. You can fix this by using WooCommerce shortcodes instead of the WooCommerce Blocks.
 
 == Changelog ==
-= 1.2.6 =
-* Added Swedish language (thanks to Martin Hult)
+= 1.3.0 =
+* Added 'buttons' switch type
+* Added Swedish language (special thanks to Martin Hult)
 * Added color setting for label text
 
 = 1.2.5 =

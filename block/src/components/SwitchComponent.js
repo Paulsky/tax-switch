@@ -92,7 +92,7 @@ class SwitchComponent extends Component {
 		}
 	}
 
-	render() {
+	renderToggleSwitch() {
 		const {
 			switchColor,
 			switchColorChecked,
@@ -137,6 +137,74 @@ class SwitchComponent extends Component {
 				) }
 			</div>
 		);
+	}
+
+	renderButtons() {
+		const {
+			switchColor,
+			switchColorChecked,
+			switchBackgroundColor,
+			switchBackgroundColorChecked,
+			switchTextColor,
+			switchLabelIncl,
+			switchLabelExcl,
+		} = this.props;
+
+		const isIncl = this.displayIncludingVat();
+
+		const setInclusive = () => {
+			if ( ! isIncl ) {
+				this.handleChange();
+			}
+		};
+
+		const setExclusive = () => {
+			if ( isIncl ) {
+				this.handleChange();
+			}
+		};
+
+		return (
+			<div
+				className="wdevs-tax-switch wdevs-tax-buttons"
+				style={ {
+					'--wts-color': switchColor,
+					'--wts-color-checked': switchColorChecked,
+					'--wts-bg-color': switchBackgroundColor,
+					'--wts-bg-color-checked': switchBackgroundColorChecked,
+					'--wts-text-color': switchTextColor,
+				} }
+			>
+				<button
+					type="button"
+					className={ `wdevs-tax-button ${
+						isIncl ? 'wdevs-tax-button-active' : ''
+					}` }
+					onClick={ setInclusive }
+				>
+					{ switchLabelIncl || 'Incl. VAT' }
+				</button>
+				<button
+					type="button"
+					className={ `wdevs-tax-button ${
+						! isIncl ? 'wdevs-tax-button-active' : ''
+					}` }
+					onClick={ setExclusive }
+				>
+					{ switchLabelExcl || 'Excl. VAT' }
+				</button>
+			</div>
+		);
+	}
+
+	render() {
+		const { switchType = 'switch' } = this.props;
+
+		if ( switchType === 'buttons' ) {
+			return this.renderButtons();
+		}
+
+		return this.renderToggleSwitch();
 	}
 }
 

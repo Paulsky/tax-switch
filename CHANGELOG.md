@@ -1,8 +1,9 @@
 # Changelog
 All notable changes to the Tax Switch for WooCommerce plugin will be documented in this file.
 
-## [1.2.6] - 2025-02-25
+## [1.3.0] - 2025-02-25
 ### Added
+- 'buttons' switch type
 - Swedish language (special thanks to Martin Hult)
 - Color setting for label text
 

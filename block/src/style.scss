@@ -56,10 +56,35 @@
 	.wdevs-tax-switch-label-text {
 	  font-size: 14px;
 	  font-weight: 500;
-	  color: var(--wts-text-color, #333333);
+	  color: var(--wts-text-color, #333);
 	  margin-left: 10px;
 	  cursor: pointer;
 	  user-select: none;
+	}
+  }
+
+  .wdevs-tax-buttons {
+	display: flex;
+	gap: 4px;
+
+	.wdevs-tax-button {
+	  all: unset;
+	  margin: 0;
+	  padding: 4px 8px;
+	  background: none;
+	  cursor: pointer;
+	  font: inherit;
+	  border-radius: 4px;
+
+	  background-color: var(--wts-bg-color, #e9e9ea);
+	  color: var(--wts-text-color, var(--wts-color, #333));
+	  border: 1px solid var(--wts-color, #333);
+	}
+
+	.wdevs-tax-button.wdevs-tax-button-active {
+	  background-color: var(--wts-bg-color-checked, #333);
+	  color: var(--wts-text-color, var(--wts-color-checked, #fff));
+	  border-color: var(--wts-color-checked, #fff);
 	}
   }
 
@@ -92,6 +117,40 @@
 
 	  .wdevs-tax-switch-label-text {
 		font-size: 13px;
+	  }
+	}
+
+	.wdevs-tax-buttons {
+	  gap: 15px;
+
+	  .wdevs-tax-button {
+		background-color: transparent;
+		border: none;
+		position: relative;
+		color: var(--wts-text-color, var(--wts-color, #333));
+		padding: 0;
+
+		&:first-child::after {
+		  content: "";
+		  width: 1px;
+		  display: block;
+		  position: absolute;
+		  top: 30%;
+		  height: 55%;
+		  right: -7.5px;
+		  background-color: var(--wts-bg-color, #333);
+		}
+
+		&:hover:not(.wdevs-tax-button-active) {
+		  text-decoration: underline;
+		  color: var(--wts-text-color, var(--wts-color-checked, #333));
+		}
+
+		&.wdevs-tax-button-active {
+		  text-decoration: underline;
+		  background-color: transparent;
+		  color: var(--wts-text-color, var(--wts-color-checked, #333));
+		}
 	  }
 	}
   }

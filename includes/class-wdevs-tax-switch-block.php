@@ -90,13 +90,14 @@ class Wdevs_Tax_Switch_Block {
 
 		$attributes = shortcode_atts( [
 			'class-name'                      => 'is-style-default',
+			'switch-type'                     => 'switch',
 			'switch-color'                    => '',
 			'switch-color-checked'            => '',
 			'switch-background-color'         => '',
 			'switch-background-color-checked' => '',
 			'switch-text-color'               => '',
 			'switch-label-incl'               => '',
-			'switch-label-excl'               => ''
+			'switch-label-excl'               => '',
 		], $attributes );
 
 		$holder_class_name = 'wp-block-wdevs-tax-switch'; //important for rendering JS
