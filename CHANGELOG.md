@@ -1,11 +1,12 @@
 # Changelog
 All notable changes to the Tax Switch for WooCommerce plugin will be documented in this file.
 
-## [1.3.0] - 2025-02-25
+## [1.3.0] - 2025-02-26
 ### Added
 - 'buttons' switch type
 - Swedish language (special thanks to Martin Hult)
 - Color setting for label text
+- JavaScript 'wdevs-tax-switch-changed' event
 
 ## [1.2.5] - 2025-02-11
 ### Updated

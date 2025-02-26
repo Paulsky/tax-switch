@@ -101,6 +101,19 @@ You can use this shortcode in posts, pages, and even in your theme files by usin
 <?php echo do_shortcode('[wdevs_tax_switch]'); ?>
 ```
 
+### JavaScript Events
+
+The switch fires a JavaScript event when the tax display is toggled. You can listen for this event to execute custom code when a user switches between inclusive and exclusive tax display. This is useful for when you need to perform additional actions based on the tax display state.
+
+```
+document.addEventListener('wdevs-tax-switch-changed', function(event) {
+    console.log(event.detail);
+	// event.detail contains:
+	// - isSwitched: boolean - the raw switch state
+	// - displayIncludingVat: boolean - whether prices now display including VAT
+});
+```
+
 ## Compatibility
 
 This plugin is tested and compatible with the following:

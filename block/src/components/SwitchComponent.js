@@ -53,6 +53,8 @@ class SwitchComponent extends Component {
 				dispatch( 'wdevs-tax-switch/store' ).saveIsSwitched(
 					newIsSwitched
 				);
+
+				this.fireSwitchChangeEvent( newIsSwitched );
 			} else {
 				dispatch( 'wdevs-tax-switch/store' ).setIsSwitched(
 					newIsSwitched
@@ -90,6 +92,18 @@ class SwitchComponent extends Component {
 		} else {
 			return switchLabelExcl || '';
 		}
+	}
+
+	fireSwitchChangeEvent( isSwitched ) {
+		const vm = this;
+		const switchEvent = new CustomEvent( 'wdevs-tax-switch-changed', {
+			detail: {
+				isSwitched: isSwitched,
+				displayIncludingVat: vm.displayIncludingVat(),
+			},
+		} );
+
+		document.dispatchEvent( switchEvent );
 	}
 
 	renderToggleSwitch() {

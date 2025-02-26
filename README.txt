@@ -51,12 +51,12 @@ To translate the option texts via WPML:
 1. Save your options first in: WooCommerce -> Settings -> Tax Switch
 2. Then translate the texts in: WPML -> String Translations and search for your option values in the domain 'tax-switch-for-woocommerce'
 
-= Requirements =
+=== Requirements ===
 
 * WooCommerce plugin installed and activated
 * WooCommerce tax calculations enabled and configured
 
-= Usage =
+=== Usage ===
 
 After installation and configuration, you can add the tax switch to your pages in two ways:
 
@@ -96,6 +96,18 @@ You can also use this shortcode in your theme files with the do_shortcode() func
 
 `<?php echo do_shortcode('[wdevs_tax_switch]'); ?>`
 
+= JavaScript Events =
+
+The switch fires a JavaScript event when the tax display is toggled. You can listen for this event to execute custom code when a user switches between inclusive and exclusive tax display. This is useful for when you need to perform additional actions based on the tax display state.
+
+`document.addEventListener('wdevs-tax-switch-changed', function(event) {
+   console.log(event.detail);
+   // event.detail contains:
+   // - isSwitched: boolean - the raw switch state
+   // - displayIncludingVat: boolean - whether prices now display including VAT
+ });`
+
+
 == Installation ==
 
 1. Upload the plugin files to the `/wp-content/plugins/tax-switch-for-woocommerce` directory, or install the plugin through the WordPress plugins screen directly.
@@ -113,6 +125,7 @@ Some WooCommerce Blocks are not fully compatible with this plugin as they do not
 * Added 'buttons' switch type
 * Added Swedish language (special thanks to Martin Hult)
 * Added color setting for label text
+* Added JavaScript 'wdevs-tax-switch-changed' event
 
 = 1.2.5 =
 * Fixed tax calculation if customer is VAT exempt
