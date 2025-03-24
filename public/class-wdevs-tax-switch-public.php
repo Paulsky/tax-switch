@@ -217,7 +217,7 @@ class Wdevs_Tax_Switch_Public {
 	 */
 	private function should_be_disabled_in_action() {
 
-		//compatibility with YITH WooCommerce Oroduct Add Ons select
+		//compatibility with YITH WooCommerce Product Add Ons select
 		if ( did_filter( 'yith_wapo_option_price' ) ) {
 			return true;
 		}

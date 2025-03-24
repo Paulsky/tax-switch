@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to the Tax Switch for WooCommerce plugin will be documented in this file.
 
+## [1.3.1] - 2025-03-24
+### Updated
+- Tested with WooCommerce 9.7.1
+
 ## [1.3.0] - 2025-02-26
 ### Added
 - 'buttons' switch type

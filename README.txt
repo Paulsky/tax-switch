@@ -20,6 +20,7 @@ Tax Switch for WooCommerce enhances your WooCommerce store by allowing users to 
 * Shortcode for easy integration
 * Flexible display options for prices with and without VAT
 * Remembers the user's preference for future visits
+* Choose between a toggle switch or buttons
 
 For more information about this plugin, please visit the [plugin page](https://products.wijnberg.dev/product/wordpress/plugins/tax-switch-for-woocommerce/).
 
@@ -100,13 +101,14 @@ You can also use this shortcode in your theme files with the do_shortcode() func
 
 The switch fires a JavaScript event when the tax display is toggled. You can listen for this event to execute custom code when a user switches between inclusive and exclusive tax display. This is useful for when you need to perform additional actions based on the tax display state.
 
-`document.addEventListener('wdevs-tax-switch-changed', function(event) {
+`
+document.addEventListener('wdevs-tax-switch-changed', function(event) {
    console.log(event.detail);
    // event.detail contains:
    // - isSwitched: boolean - the raw switch state
    // - displayIncludingVat: boolean - whether prices now display including VAT
- });`
-
+ });
+`
 
 == Installation ==
 
@@ -121,6 +123,9 @@ The switch fires a JavaScript event when the tax display is toggled. You can lis
 Some WooCommerce Blocks are not fully compatible with this plugin as they do not use standard WooCommerce filters for price display. This is a known limitation of WooCommerce Blocks and not specific to this plugin. You can fix this by using WooCommerce shortcodes instead of the WooCommerce Blocks.
 
 == Changelog ==
+= 1.3.1 =
+* Tested with WooCommerce 9.7.1
+
 = 1.3.0 =
 * Added 'buttons' switch type
 * Added Swedish language (special thanks to Martin Hult)

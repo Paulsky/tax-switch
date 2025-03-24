@@ -52,6 +52,14 @@ Once activated, Tax Switch for WooCommerce requires minimal configuration:
 2. Customize the text for including and excluding VAT.
 3. Save your changes.
 
+### WPML
+
+To translate the option texts via WPML:
+
+1. Save your options first in: WooCommerce -> Settings -> Tax Switch
+2. Then translate the texts in: WPML -> String Translations and search for your option values in the domain 'tax-switch-for-woocommerce'
+
+
 ### Usage
 
 After configuration, you can add the tax switch to your pages in two ways:
@@ -121,12 +129,19 @@ This plugin is tested and compatible with the following:
 ### Themes
 
 - GeneratePress
+- Blocksy
+- Thrive
 
 ### Plugins
 
+- WooCommerce Product Table Lite (+ PRO)
+- Tiered Pricing Table for WooCommerce (+ Premium)
 - Measurement Price Calculator for WooCommerce
-- Tiered Pricing Table for WooCommerce (single product page)
-- WooCommerce Product Table Lite / PRO
+- Discount Rules for WooCommerce
+- YITH WooCommerce Product Add-Ons (+ & Extra Options Premium)
+- JetEngine Listing Grid (Elementor)
+- Product Add-Ons for WooCommerce
+- B2BKing – Ultimate WooCommerce Wholesale and B2B Solution (+ Premium)
 
 If you encounter any conflicts with other themes or plugins, please report them by opening an issue or through our website.
 
@@ -141,11 +156,18 @@ For more information and updates on this issue, please refer to the following Gi
 
 We are monitoring this issue and will update the plugin accordingly when a solution becomes available. In the meantime, the tax switch functionality may not work as expected with certain WooCommerce Blocks.
 
+### Incompatibility
+
+After multiple attempts to create compatibility functions, reaching out to the plugin developers several times, and still finding no viable solution, the following plugins remain incompatible:
+
+- Unlimited Elements for Elementor (+ Pro): AJAX pagination and filtering issues
+
 ## Language support
 
 Currently supported languages:
 - English
-- Dutch (Nederlands)
+- Dutch
+- Swedish
 
 If you would like to add support for a new language or improve existing translations, please let us know by opening an issue or contacting us through our website.
 
