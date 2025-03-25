@@ -40,6 +40,14 @@ class Wdevs_Tax_Switch_Woocommerce {
 	 */
 	private $version;
 
+	/**
+	 * The current settings section.
+	 *
+	 * @since    1.4.0
+	 * @access   private
+	 * @var      string $current_section The current settings section.
+	 */
+	private $current_section;
 
 	/**
 	 * Initialize the class and set its properties.
@@ -50,9 +58,14 @@ class Wdevs_Tax_Switch_Woocommerce {
 	 * @since    1.0.0
 	 */
 	public function __construct( $plugin_name, $version ) {
-
 		$this->plugin_name = $plugin_name;
-		$this->version     = $version;
+		$this->version = $version;
+
+		$this->current_section = isset( $_GET['section'] ) ? sanitize_text_field( $_GET['section'] ) : '';
+
+		if ( is_admin() && isset( $_GET['page'] ) && $_GET['page'] === 'wc-settings' && isset( $_GET['tab'] ) && $_GET['tab'] === 'wdevs_tax_switch' ) {
+			$this->handle_sections();
+		}
 	}
 
 	/**
@@ -76,17 +89,120 @@ class Wdevs_Tax_Switch_Woocommerce {
 	 */
 	public function add_settings_tab( $settings_tabs ) {
 		$settings_tabs['wdevs_tax_switch'] = __( 'Tax switch', 'tax-switch-for-woocommerce' );
-
 		return $settings_tabs;
 	}
 
 	/**
-	 * Get settings for the Wdevs Tax Switch tab.
+	 * Get settings for the current section.
 	 *
-	 * @return   array    $settings    Array of settings.
+	 * @return   array    Array of settings.
 	 * @since    1.0.0
 	 */
 	public function get_settings() {
+		switch ( $this->current_section ) {
+			case 'shortcode':
+				return $this->get_shortcode_settings();
+			default:
+				return $this->get_main_settings();
+		}
+	}
+
+	/**
+	 * Output the settings.
+	 *
+	 * @since    1.0.0
+	 */
+	public function settings_tab() {
+		if ($this->current_section === 'shortcode') {
+			$GLOBALS['hide_save_button'] = true;
+		}
+
+		woocommerce_admin_fields($this->get_settings());
+
+		if ($this->current_section === 'shortcode') {
+			include_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/partials/section-wdevs-tax-switch-shortcode.php';
+		}
+	}
+
+	/**
+	 * Save the settings.
+	 *
+	 * @since    1.0.0
+	 */
+	public function update_settings() {
+		woocommerce_update_options( $this->get_settings() );
+
+		// Only register translations if we're on the main settings section
+		if ( empty( $this->current_section ) ) {
+			$this->register_translations();
+		}
+	}
+
+	/**
+	 * Handle sections for the settings tab.
+	 *
+	 * @since    1.4.0
+	 * @access   private
+	 */
+	private function handle_sections() {
+		add_action( 'woocommerce_sections_wdevs_tax_switch', array( $this, 'output_sections' ) );
+
+		if ( ! empty( $this->current_section ) ) {
+			add_action( 'woocommerce_update_options_wdevs_tax_switch_' . $this->current_section, array( $this, 'update_settings' ) );
+		} else {
+			add_action( 'woocommerce_update_options_wdevs_tax_switch', array( $this, 'update_settings' ) );
+		}
+	}
+
+	/**
+	 * Get available sections for the settings tab.
+	 *
+	 * @return array Array of sections.
+	 * @since    1.4.0
+	 */
+	public function get_sections() {
+		return array(
+			''          => __( 'Settings', 'tax-switch-for-woocommerce' ),
+			'shortcode' => __( 'Shortcode', 'tax-switch-for-woocommerce' )
+		);
+	}
+
+
+	/**
+	 * Output sections navigation.
+	 *
+	 * @since    1.4.0
+	 */
+	public function output_sections() {
+		$sections = $this->get_sections();
+
+		if ( empty( $sections ) || 1 === count( $sections ) ) {
+			return;
+		}
+
+		echo '<ul class="subsubsub">';
+
+		$array_keys = array_keys( $sections );
+
+		foreach ( $sections as $id => $label ) {
+			$url       = admin_url( 'admin.php?page=wc-settings&tab=wdevs_tax_switch&section=' . sanitize_title( $id ) );
+			$class     = ( $this->current_section === $id ? 'current' : '' );
+			$separator = ( end( $array_keys ) === $id ? '' : '|' );
+			$text      = esc_html( $label );
+			echo "<li><a href='$url' class='$class'>$text</a> $separator </li>";
+		}
+
+		echo '</ul><br class="clear" />';
+	}
+
+
+	/**
+	 * Get main settings fields.
+	 *
+	 * @return array Array of settings.
+	 * @since    1.0.0
+	 */
+	private function get_main_settings() {
 		$settings = array(
 			array(
 				'name' => __( 'Tax switch settings', 'tax-switch-for-woocommerce' ),
@@ -118,24 +234,28 @@ class Wdevs_Tax_Switch_Woocommerce {
 	}
 
 	/**
-	 * Output the settings.
+	 * Get shortcode generator settings fields.
 	 *
-	 * @since    1.0.0
+	 * @return array Array of settings.
+	 * @since    1.4.0
 	 */
-	public function settings_tab() {
-		woocommerce_admin_fields( $this->get_settings() );
+	private function get_shortcode_settings() {
+		$settings = array(
+			array(
+				'name' => __( 'Shortcode settings', 'tax-switch-for-woocommerce' ),
+				'type' => 'title',
+				'desc' => __( 'Generate a tax switch shortcode.', 'tax-switch-for-woocommerce' ),
+				'id'   => 'wdevs_tax_switch_section_title'
+			),
+			array(
+				'type' => 'sectionend',
+				'id'   => 'wdevs_tax_switch_section_end'
+			),
+		);
+
+		return apply_filters( 'wdevs_tax_switch_settings_shortcode', $settings );
 	}
 
-	/**
-	 * Save the settings.
-	 *
-	 * @since    1.0.0
-	 */
-	public function update_settings() {
-		woocommerce_update_options( $this->get_settings() );
-
-		$this->register_translations();
-	}
 
 	/**
 	 * Register string translations
@@ -154,5 +274,4 @@ class Wdevs_Tax_Switch_Woocommerce {
 		do_action( 'wpml_register_single_string', 'tax-switch-for-woocommerce', 'wdevs_tax_switch_incl_vat', $incl_text );
 		do_action( 'wpml_register_single_string', 'tax-switch-for-woocommerce', 'wdevs_tax_switch_excl_vat', $excl_text );
 	}
-
 }

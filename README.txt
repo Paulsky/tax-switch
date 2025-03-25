@@ -3,7 +3,7 @@ Contributors: wijnbergdevelopments
 Tags: woocommerce, tax, vat
 Requires at least: 5.0
 Tested up to: 6.7
-Stable tag: 1.3.2
+Stable tag: 1.4.0
 Requires PHP: 7.2
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
@@ -17,7 +17,7 @@ Tax Switch for WooCommerce enhances your WooCommerce store by allowing users to 
 
 * Display customizable switches where you want
 * Gutenberg block support
-* Shortcode for easy integration
+* Shortcode for easy integration (including shortcode generator)
 * Flexible display options for prices with and without VAT
 * Remembers the user's preference for future visits
 * Choose between a toggle switch or buttons
@@ -89,7 +89,7 @@ The shortcode accepts several attributes to customize its appearance and behavio
 
 Example with custom attributes:
 
-`[wdevs_tax_switch class-name="is-style-inline" switch-type="switch" switch-color="#ffffff" switch-color-checked="#000000" switch-background-color="#000000" switch-background-color-checked="#4CAF50" switch-text-color="#FF0000" switch-label-incl="Inc. Tax" switch-label-excl="Ex. Tax"]`
+`[wdevs_tax_switch class-name="is-style-inline" switch-type="switch" switch-color="#ffffff" switch-color-checked="#000000" switch-background-color="#000000" switch-background-color-checked="#4CAF50" switch-text-color="#FF0000" switch-label-incl="Incl. tax" switch-label-excl="Excl. tax"]`
 
 This will display an inline-style switch with a white handle that turns black when on, a black background when off, green background when on, and custom labels for including and excluding tax.
 
@@ -123,6 +123,9 @@ document.addEventListener('wdevs-tax-switch-changed', function(event) {
 Some WooCommerce Blocks are not fully compatible with this plugin as they do not use standard WooCommerce filters for price display. This is a known limitation of WooCommerce Blocks and not specific to this plugin. You can fix this by using WooCommerce shortcodes instead of the WooCommerce Blocks.
 
 == Changelog ==
+= 1.4.0 =
+* Added shortcode generator
+
 = 1.3.2 =
 * Translate shortcode switch labels. [See this topic](https://wordpress.org/support/topic/language-support-in-shortcode/#post-18379279)
 

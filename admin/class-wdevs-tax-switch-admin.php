@@ -73,4 +73,21 @@ class Wdevs_Tax_Switch_Admin {
 			]
 		);
 	}
+
+	/**
+	 * Enqueue scripts for the admin section.
+	 *
+	 * @since    1.4.0
+	 */
+	public function enqueue_admin_scripts() {
+		if ( is_admin() && isset( $_GET['page'] ) && $_GET['page'] === 'wc-settings' && isset( $_GET['tab'] ) && $_GET['tab'] === 'wdevs_tax_switch' ) {
+			wp_enqueue_script( $this->plugin_name . '-admin-woocommerce', plugin_dir_url( __FILE__ ) . 'js/wdevs-tax-switch-woocommerce.js', [
+				'jquery',
+				'wc-backbone-modal',
+				'wp-color-picker'
+			], $this->version, true );
+
+			wp_enqueue_style('wp-color-picker');
+		}
+	}
 }

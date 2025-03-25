@@ -160,7 +160,7 @@ export default function Edit( { attributes, setAttributes } ) {
 				>
 					<TextControl
 						label={ __(
-							'Including VAT Label',
+							'Including VAT label',
 							'tax-switch-for-woocommerce'
 						) }
 						value={ switchLabelIncl }
@@ -170,7 +170,7 @@ export default function Edit( { attributes, setAttributes } ) {
 					/>
 					<TextControl
 						label={ __(
-							'Excluding VAT Label',
+							'Excluding VAT label',
 							'tax-switch-for-woocommerce'
 						) }
 						value={ switchLabelExcl }

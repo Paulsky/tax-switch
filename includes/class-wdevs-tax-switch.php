@@ -187,6 +187,7 @@ class Wdevs_Tax_Switch {
 		if ( is_admin() ) {
 			$plugin_admin = new Wdevs_Tax_Switch_Admin( $this->get_plugin_name(), $this->get_version() );
 			$this->loader->add_action( 'enqueue_block_editor_assets', $plugin_admin, 'enqueue_block_editor_assets' );
+			$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_admin_scripts' );
 		}
 	}
 
@@ -226,7 +227,7 @@ class Wdevs_Tax_Switch {
 		if ( is_admin() ) {
 			$this->loader->add_filter( 'woocommerce_settings_tabs_array', $plugin_woocommerce, 'add_settings_tab', 50 );
 			$this->loader->add_action( 'woocommerce_settings_tabs_wdevs_tax_switch', $plugin_woocommerce, 'settings_tab' );
-			$this->loader->add_action( 'woocommerce_update_options_wdevs_tax_switch', $plugin_woocommerce, 'update_settings' );
+
 		}
 	}
 
