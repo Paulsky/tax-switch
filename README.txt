@@ -3,7 +3,7 @@ Contributors: wijnbergdevelopments
 Tags: woocommerce, tax, vat
 Requires at least: 5.0
 Tested up to: 6.7
-Stable tag: 1.3.0
+Stable tag: 1.3.2
 Requires PHP: 7.2
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
@@ -123,6 +123,9 @@ document.addEventListener('wdevs-tax-switch-changed', function(event) {
 Some WooCommerce Blocks are not fully compatible with this plugin as they do not use standard WooCommerce filters for price display. This is a known limitation of WooCommerce Blocks and not specific to this plugin. You can fix this by using WooCommerce shortcodes instead of the WooCommerce Blocks.
 
 == Changelog ==
+= 1.3.2 =
+* Translate shortcode switch labels. [See this topic](https://wordpress.org/support/topic/language-support-in-shortcode/#post-18379279)
+
 = 1.3.1 =
 * Tested with WooCommerce 9.7.1
 

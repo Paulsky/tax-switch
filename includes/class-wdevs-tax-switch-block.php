@@ -100,6 +100,13 @@ class Wdevs_Tax_Switch_Block {
 			'switch-label-excl'               => '',
 		], $attributes );
 
+		$translatable_attributes = ['switch-label-incl', 'switch-label-excl'];
+		foreach ( $translatable_attributes as $label_key ) {
+			if ( ! empty( $attributes[$label_key] ) ) {
+				$attributes[$label_key] = __( $attributes[$label_key], 'tax-switch-for-woocommerce' );
+			}
+		}
+
 		$holder_class_name = 'wp-block-wdevs-tax-switch'; //important for rendering JS
 		if ( isset( $attributes['class-name'] ) && ! empty( $attributes['class-name'] ) ) {
 			$holder_class_name .= ' ' . $attributes['class-name'];

@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to the Tax Switch for WooCommerce plugin will be documented in this file.
 
+## [1.3.2] - 2025-03-25
+### Updated
+- Translate shortcode switch labels. [See this topic](https://wordpress.org/support/topic/language-support-in-shortcode/#post-18379279)
+
 ## [1.3.1] - 2025-03-24
 ### Updated
 - Tested with WooCommerce 9.7.1
