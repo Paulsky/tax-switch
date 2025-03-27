@@ -3,7 +3,7 @@ Contributors: wijnbergdevelopments
 Tags: woocommerce, tax, vat
 Requires at least: 5.0
 Tested up to: 6.7
-Stable tag: 1.4.0
+Stable tag: 1.4.1
 Requires PHP: 7.2
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
@@ -36,6 +36,7 @@ This plugin integrates with WooCommerce's standard filters and actions for price
 * JetEngine Listing Grid (Elementor)
 * Product Add-Ons for WooCommerce
 * B2BKing – Ultimate WooCommerce Wholesale and B2B Solution (+ Premium)
+* Advanced Product Fields Pro for WooCommerce
 
 If you encounter any compatibility issues with other plugins, please let us know. Your feedback helps us improve the plugin and extend compatibility to more third-party solutions.
 
@@ -127,6 +128,9 @@ Some WooCommerce Blocks are not fully compatible with this plugin as they do not
 Sometimes prices may not appear to change when toggled. This is often related to WooCommerce tax settings. If possible, select 'Shop based' in WooCommerce → Settings → Tax → "Calculate tax based on". Otherwise, WooCommerce requires a billing/shipping address to calculate taxes, which is typically only available after login or during checkout.
 
 == Changelog ==
+= 1.4.1 =
+* Added compatibility for Advanced Product Fields Pro for WooCommerce
+
 = 1.4.0 =
 * Added shortcode generator
 

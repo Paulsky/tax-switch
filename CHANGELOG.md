@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to the Tax Switch for WooCommerce plugin will be documented in this file.
 
+## [1.4.1] - 2025-03-27
+### Added
+- Compatibility for Advanced Product Fields Pro for WooCommerce
+
 ## [1.4.0] - 2025-03-25
 ### Added
 - Shortcode generator

@@ -114,6 +114,11 @@ class Wdevs_Tax_Switch {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/trait-wdevs-tax-switch-helper.php';
 
 		/**
+		 * The trait with display functions.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/trait-wdevs-tax-switch-display.php';
+
+		/**
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
@@ -287,6 +292,17 @@ class Wdevs_Tax_Switch {
 					'add_tax_rate_to_variation',
 					10,
 					3
+				);
+			}
+
+			// Advanced Product Fields Pro for WooCommerce
+			if ($this->is_plugin_active( 'advanced-product-fields-for-woocommerce-pro/advanced-product-fields-for-woocommerce-pro.php' ) ){
+				$this->loader->add_filter(
+					'wapf/html/pricing_hint',
+					$plugin_compatibility,
+					'render_wapf_pricing_hint',
+					10,
+					6
 				);
 			}
 		}

@@ -81,7 +81,7 @@ trait Wdevs_Tax_Switch_Helper {
 		//return round($tax_rate, 2);
 	}
 
-	public function calculate_alternate_price( $price ) {
+	public function calculate_alternate_price( $price, $product = null ) {
 		$prices_include_tax      = wc_prices_include_tax();
 		$shop_prices_include_tax = $this->shop_prices_include_tax();
 		$is_vat_exempt           = ! empty( WC()->customer ) && WC()->customer->get_is_vat_exempt();
@@ -91,8 +91,10 @@ trait Wdevs_Tax_Switch_Helper {
 
 		$pricesIncludeTaxFilter = false;
 
-		$product = wc_get_product();
-		if ( $product ) {
+		if ( ! isset( $product ) ) {
+			$product = wc_get_product();
+		}
+		if ( isset( $product ) ) {
 			$calculator->set_tax_class( $product->get_tax_class() );
 			$calculator->set_tax_status( $product->get_tax_status() );
 		} else {
@@ -166,5 +168,40 @@ trait Wdevs_Tax_Switch_Helper {
 
 	public function get_excl_option( $pre_option, $option, $default_value ) {
 		return 'excl';
+	}
+
+	public function is_mail_context() {
+		return (
+			did_action( 'woocommerce_email_header' ) ||
+			did_action( 'woocommerce_email_order_details' )
+		);
+	}
+
+	/**
+	 * @return bool
+	 * @since 1.2.0
+	 */
+	public function is_in_cart_or_checkout() {
+		if ( is_cart() || is_checkout() ) {
+			return true;
+		}
+		//in shopping cart widget
+		if ( Wdevs_Tax_Switch_Mini_Cart_Context::is_in_mini_cart() ) {
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * @return bool
+	 * @since 1.2.5
+	 */
+	public function shop_displays_price_including_tax_by_default() {
+		if ( ! empty( WC()->customer ) && WC()->customer->get_is_vat_exempt() ) {
+			return false;
+		}
+
+		return $this->shop_prices_include_tax();
 	}
 }

@@ -22,7 +22,7 @@
  */
 class Wdevs_Tax_Switch_Public {
 
-	use Wdevs_Tax_Switch_Helper;
+	use Wdevs_Tax_Switch_Helper, Wdevs_Tax_Switch_Display;
 
 	/**
 	 * The ID of this plugin.
@@ -96,8 +96,10 @@ class Wdevs_Tax_Switch_Public {
 		//Re-enable this filter and function
 		add_filter( 'wc_price', [ $this, 'wrap_wc_price' ], PHP_INT_MAX, 5 );
 
+		$shop_prices_include_tax = $this->shop_displays_price_including_tax_by_default();
+
 		// Combine both price displays into one HTML string
-		return $this->combine_price_displays( $return, $alternate_price );
+		return $this->combine_price_displays( $return, $alternate_price, $shop_prices_include_tax );
 	}
 
 	/**
@@ -154,62 +156,6 @@ class Wdevs_Tax_Switch_Public {
 		return $html;
 	}
 
-	private function combine_price_displays( $current_price_text, $alternate_price_text ) {
-		$shop_prices_include_tax = $this->shop_displays_price_including_tax_by_default();
-
-		$classes = [ 'wts-price-incl', 'wts-price-excl' ];
-		if ( ! $shop_prices_include_tax ) {
-			$classes = array_reverse( $classes );
-		}
-
-		return sprintf(
-			'<span class="wts-price-wrapper"><span class="%s wts-active">%s</span><span class="%s wts-inactive">%s</span></span>',
-			$classes[0],
-			$current_price_text,
-			$classes[1],
-			$alternate_price_text
-		);
-	}
-
-	private function wrap_price_displays( $price_html, $shop_prices_include_tax, $vat_text, $alternate_vat_text ) {
-		$classes = [ 'wts-price-incl', 'wts-price-excl' ];
-		if ( ! $shop_prices_include_tax ) {
-			$classes = array_reverse( $classes );
-		}
-
-		return sprintf(
-			'<span class="wts-price-container">%s <span class="wts-price-wrapper"><span class="%s wts-active" ><span class="wts-vat-text">%s</span></span><span class="%s wts-inactive"><span class="wts-vat-text">%s</span></span></span></span>',
-			$price_html,
-			$classes[0],
-			$vat_text,
-			$classes[1],
-			$alternate_vat_text
-		);
-
-	}
-
-	private function is_mail_context() {
-		return (
-			did_action( 'woocommerce_email_header' ) ||
-			did_action( 'woocommerce_email_order_details' )
-		);
-	}
-
-	/**
-	 * @return bool
-	 * @since 1.2.0
-	 */
-	private function is_in_cart_or_checkout() {
-		if ( is_cart() || is_checkout() ) {
-			return true;
-		}
-		//in shopping cart widget
-		if ( Wdevs_Tax_Switch_Mini_Cart_Context::is_in_mini_cart() ) {
-			return true;
-		}
-
-		return false;
-	}
 
 	/**
 	 * @return bool
@@ -223,18 +169,6 @@ class Wdevs_Tax_Switch_Public {
 		}
 
 		return false;
-	}
-
-	/**
-	 * @return bool
-	 * @since 1.2.5
-	 */
-	private function shop_displays_price_including_tax_by_default() {
-		if ( ! empty( WC()->customer ) && WC()->customer->get_is_vat_exempt() ) {
-			return false;
-		}
-
-		return $this->shop_prices_include_tax();
 	}
 
 }

@@ -26,5 +26,10 @@ module.exports = {
 			'block/src',
 			'woocommerce-product-addons.js'
 		),
+		'advanced-product-fields-for-woocommerce': path.resolve(
+			process.cwd(),
+			'block/src',
+			'advanced-product-fields-for-woocommerce.js'
+		),
 	},
 };

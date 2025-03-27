@@ -21,7 +21,7 @@
  */
 class Wdevs_Tax_Switch_Compatibility {
 
-	use Wdevs_Tax_Switch_Helper, Wdevs_Tax_Switch_Plugins;
+	use Wdevs_Tax_Switch_Helper, Wdevs_Tax_Switch_Plugins, Wdevs_Tax_Switch_Display;
 
 	/**
 	 * The ID of this plugin.
@@ -96,7 +96,7 @@ class Wdevs_Tax_Switch_Compatibility {
 				wp_enqueue_script(
 					'wdevs-tax-switch-woocommerce-product-addons',
 					plugin_dir_url( dirname( __FILE__ ) ) . 'build/woocommerce-product-addons.js',
-					$wpado_asset['dependencies'],
+					array_merge( $wpado_asset['dependencies'], [ 'accounting' ] ),
 					$wpado_asset['version']
 				);
 				wp_localize_script(
@@ -104,6 +104,22 @@ class Wdevs_Tax_Switch_Compatibility {
 					'wtsCompatibilityObject',
 					[ 'baseTaxRate' => $tax_rate ]
 				);
+			}
+
+			// Advanced Product Fields Pro for WooCommerce
+			if ( $this->is_plugin_active( 'advanced-product-fields-for-woocommerce-pro/advanced-product-fields-for-woocommerce-pro.php' ) ) {
+				$apffw_asset = require( plugin_dir_path( dirname( __FILE__ ) ) . 'build/advanced-product-fields-for-woocommerce.asset.php' );
+				wp_enqueue_script(
+					'wdevs-tax-switch-advanced-product-fields-for-woocommerce',
+					plugin_dir_url( dirname( __FILE__ ) ) . 'build/advanced-product-fields-for-woocommerce.js',
+					array_merge( $apffw_asset['dependencies'], [ 'wapf-frontend', 'accounting' ] ),
+					$apffw_asset['version']
+				);
+//				wp_localize_script(
+//					'wdevs-tax-switch-advanced-product-fields-for-woocommerce',
+//					'wtsCompatibilityObject',
+//					[ 'baseTaxRate' => $tax_rate ]
+//				);
 			}
 		}
 
@@ -148,6 +164,43 @@ class Wdevs_Tax_Switch_Compatibility {
 		$variation_data['tax_rate'] = $this->get_product_tax_rate( $variation );
 
 		return $variation_data;
+	}
+
+	/**
+	 * Adds the alternate price to the Advanced Product Fields Pro hints
+	 * @since 1.4.1
+	 */
+	public function render_wapf_pricing_hint($original_output, $product, $amount, $type, $field = null, $option = null) {
+		if ( $this->is_in_cart_or_checkout() ) {
+			return $original_output;
+		}
+
+		if (!class_exists('SW_WAPF_PRO\Includes\Classes\Helper')) {
+			return $original_output;
+		}
+
+		$alternate_amount = $this->calculate_alternate_price( $amount, $product );
+
+		//Temporarily disable this filter and function to prevent infinite loop
+		remove_filter( 'wapf/html/pricing_hint', [ $this, 'render_wapf_pricing_hint' ], 10 );
+
+		//get the pricing format for the alternate amount
+		$alternate_hint = \SW_WAPF_PRO\Includes\Classes\Helper::format_pricing_hint(
+			$type,
+			$alternate_amount,
+			$product,
+			'shop',
+			$field,
+			$option
+		);
+
+		//Re-enable this filter and function
+		add_filter( 'wapf/html/pricing_hint', [ $this, 'render_wapf_pricing_hint' ], 10, 6 );
+
+		$shop_prices_include_tax = $this->shop_displays_price_including_tax_by_default();
+
+		// Combine both price displays into one HTML string
+		return $this->combine_price_displays( $original_output, $alternate_hint, $shop_prices_include_tax );
 	}
 
 }
