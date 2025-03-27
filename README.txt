@@ -122,6 +122,10 @@ document.addEventListener('wdevs-tax-switch-changed', function(event) {
 
 Some WooCommerce Blocks are not fully compatible with this plugin as they do not use standard WooCommerce filters for price display. This is a known limitation of WooCommerce Blocks and not specific to this plugin. You can fix this by using WooCommerce shortcodes instead of the WooCommerce Blocks.
 
+= Why do prices stay the same after switching? =
+
+Sometimes prices may not appear to change when toggled. This is often related to WooCommerce tax settings. If possible, select 'Shop based' in WooCommerce → Settings → Tax → "Calculate tax based on". Otherwise, WooCommerce requires a billing/shipping address to calculate taxes, which is typically only available after login or during checkout.
+
 == Changelog ==
 = 1.4.0 =
 * Added shortcode generator

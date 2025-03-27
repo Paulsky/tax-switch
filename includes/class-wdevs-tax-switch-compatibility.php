@@ -21,7 +21,7 @@
  */
 class Wdevs_Tax_Switch_Compatibility {
 
-	use Wdevs_Tax_Switch_Helper;
+	use Wdevs_Tax_Switch_Helper, Wdevs_Tax_Switch_Plugins;
 
 	/**
 	 * The ID of this plugin.
@@ -56,50 +56,69 @@ class Wdevs_Tax_Switch_Compatibility {
 	}
 
 	public function enqueue_compatibility_scripts() {
-		$active_plugins = wp_get_active_and_valid_plugins();
-		//$active_network_plugins = wp_get_active_network_plugins();
 		if ( is_product() ) {
-			$wmpc_plugin_path = trailingslashit( WP_PLUGIN_DIR ) . 'woocommerce-measurement-price-calculator/woocommerce-measurement-price-calculator.php';
-			if ( in_array( $wmpc_plugin_path, $active_plugins ) ) {
+			// WooCommerce Measurement Price Calculator
+			if ( $this->is_plugin_active( 'woocommerce-measurement-price-calculator/woocommerce-measurement-price-calculator.php' ) ) {
 				$wcmpc_asset = require( plugin_dir_path( dirname( __FILE__ ) ) . 'build/woocommerce-measurement-price-calculator.asset.php' );
-				wp_enqueue_script( 'wdevs-tax-switch-woocommerce-measurement-price-calculator', plugin_dir_url( dirname( __FILE__ ) ) . 'build/woocommerce-measurement-price-calculator.js', $wcmpc_asset['dependencies'], $wcmpc_asset['version'] );
+				wp_enqueue_script(
+					'wdevs-tax-switch-woocommerce-measurement-price-calculator',
+					plugin_dir_url( dirname( __FILE__ ) ) . 'build/woocommerce-measurement-price-calculator.js',
+					$wcmpc_asset['dependencies'],
+					$wcmpc_asset['version']
+				);
 			}
 
 			$tax_rate = $this->get_product_tax_rate( wc_get_product() );
 
-			$ywpado_plugin_path  = trailingslashit( WP_PLUGIN_DIR ) . 'yith-woocommerce-product-add-ons/init.php';
-			$ywpadop_plugin_path = trailingslashit( WP_PLUGIN_DIR ) . 'yith-woocommerce-advanced-product-options-premium/init.php';
-			if ( in_array( $ywpado_plugin_path, $active_plugins ) || in_array( $ywpadop_plugin_path, $active_plugins ) ) {
+			// YITH WooCommerce Product Add-Ons (both free and premium)
+			if ( $this->is_any_plugin_active( [
+				'yith-woocommerce-product-add-ons/init.php',
+				'yith-woocommerce-advanced-product-options-premium/init.php'
+			] ) ) {
 				$ywpado_asset = require( plugin_dir_path( dirname( __FILE__ ) ) . 'build/yith-woocommerce-product-add-ons.asset.php' );
-				wp_enqueue_script( 'wdevs-tax-switch-yith-woocommerce-product-add-ons', plugin_dir_url( dirname( __FILE__ ) ) . 'build/yith-woocommerce-product-add-ons.js', array_merge( $ywpado_asset['dependencies'], [ 'yith_wapo_front' ] ), $ywpado_asset['version'] );
+				wp_enqueue_script(
+					'wdevs-tax-switch-yith-woocommerce-product-add-ons',
+					plugin_dir_url( dirname( __FILE__ ) ) . 'build/yith-woocommerce-product-add-ons.js',
+					array_merge( $ywpado_asset['dependencies'], [ 'yith_wapo_front' ] ),
+					$ywpado_asset['version']
+				);
 
 				wp_localize_script(
 					'wdevs-tax-switch-yith-woocommerce-product-add-ons',
 					'wtsCompatibilityObject',
-					[
-						'baseTaxRate' => $tax_rate
-					]
+					[ 'baseTaxRate' => $tax_rate ]
 				);
 			}
 
-			$wpado_plugin_path = trailingslashit( WP_PLUGIN_DIR ) . 'woocommerce-product-addons/woocommerce-product-addons.php';
-			if ( in_array( $wpado_plugin_path, $active_plugins ) ) {
+			// WooCommerce Product Addons
+			if ( $this->is_plugin_active( 'woocommerce-product-addons/woocommerce-product-addons.php' ) ) {
 				$wpado_asset = require( plugin_dir_path( dirname( __FILE__ ) ) . 'build/woocommerce-product-addons.asset.php' );
-				wp_enqueue_script( 'wdevs-tax-switch-woocommerce-product-addons', plugin_dir_url( dirname( __FILE__ ) ) . 'build/woocommerce-product-addons.js', $wpado_asset['dependencies'], $wpado_asset['version'] );
+				wp_enqueue_script(
+					'wdevs-tax-switch-woocommerce-product-addons',
+					plugin_dir_url( dirname( __FILE__ ) ) . 'build/woocommerce-product-addons.js',
+					$wpado_asset['dependencies'],
+					$wpado_asset['version']
+				);
 				wp_localize_script(
 					'wdevs-tax-switch-woocommerce-product-addons',
 					'wtsCompatibilityObject',
-					[
-						'baseTaxRate' => $tax_rate
-					]
+					[ 'baseTaxRate' => $tax_rate ]
 				);
 			}
 		}
-		$tpt_plugin_path  = trailingslashit( WP_PLUGIN_DIR ) . 'tier-pricing-table/tier-pricing-table.php';
-		$tptp_plugin_path = trailingslashit( WP_PLUGIN_DIR ) . 'tier-pricing-table-premium/tier-pricing-table.php';
-		if ( in_array( $tpt_plugin_path, $active_plugins ) || in_array( $tptp_plugin_path, $active_plugins ) ) {
+
+		// Tier Pricing Table (both free and premium)
+		if ( $this->is_any_plugin_active( [
+			'tier-pricing-table/tier-pricing-table.php',
+			'tier-pricing-table-premium/tier-pricing-table.php'
+		] ) ) {
 			$wctpt_asset = require( plugin_dir_path( dirname( __FILE__ ) ) . 'build/woocommerce-tiered-price-table.asset.php' );
-			wp_enqueue_script( 'wdevs-tax-switch-woocommerce-tiered-price-table', plugin_dir_url( dirname( __FILE__ ) ) . 'build/woocommerce-tiered-price-table.js', $wctpt_asset['dependencies'], $wctpt_asset['version'] );
+			wp_enqueue_script(
+				'wdevs-tax-switch-woocommerce-tiered-price-table',
+				plugin_dir_url( dirname( __FILE__ ) ) . 'build/woocommerce-tiered-price-table.js',
+				$wctpt_asset['dependencies'],
+				$wctpt_asset['version']
+			);
 		}
 	}
 

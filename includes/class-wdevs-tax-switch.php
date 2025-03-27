@@ -29,6 +29,8 @@
  */
 class Wdevs_Tax_Switch {
 
+	use Wdevs_Tax_Switch_Plugins;
+
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
 	 * the plugin.
@@ -263,20 +265,29 @@ class Wdevs_Tax_Switch {
 			//wc product table compatibility
 			$this->loader->add_filter( 'wcpt_element', $plugin_compatibility, 'activate_wc_product_table_compatibility', 10, 1 );
 
-			//see https://woocommerce.com/document/create-a-plugin/
-			$active_plugins = wp_get_active_and_valid_plugins();
-			//$active_network_plugins = wp_get_active_network_plugins();
-
-			//TODO: move check to somewhere else?
-			$wmpc_plugin_path = trailingslashit( WP_PLUGIN_DIR ) . 'woocommerce-measurement-price-calculator/woocommerce-measurement-price-calculator.php';
-			$ywpado           = trailingslashit( WP_PLUGIN_DIR ) . 'yith-woocommerce-product-add-ons/init.php';
-			$ywpadop          = trailingslashit( WP_PLUGIN_DIR ) . 'yith-woocommerce-advanced-product-options-premium/init.php';
-
-			if ( in_array( $wmpc_plugin_path, $active_plugins ) ) {
-				$this->loader->add_filter( 'woocommerce_available_variation', $plugin_compatibility, 'add_prices_to_variation', 10, 3 );
+			// Check for WooCommerce Measurement Price Calculator plugin
+			if ($this->is_plugin_active('woocommerce-measurement-price-calculator/woocommerce-measurement-price-calculator.php')) {
+				$this->loader->add_filter(
+					'woocommerce_available_variation',
+					$plugin_compatibility,
+					'add_prices_to_variation',
+					10,
+					3
+				);
 			}
-			if ( in_array( $ywpado, $active_plugins ) || in_array( $ywpadop, $active_plugins ) ) {
-				$this->loader->add_filter( 'woocommerce_available_variation', $plugin_compatibility, 'add_tax_rate_to_variation', 10, 3 );
+
+			// Check for YITH WooCommerce Product Add-Ons (both free and premium versions)
+			if ($this->is_any_plugin_active([
+				'yith-woocommerce-product-add-ons/init.php',
+				'yith-woocommerce-advanced-product-options-premium/init.php'
+			])) {
+				$this->loader->add_filter(
+					'woocommerce_available_variation',
+					$plugin_compatibility,
+					'add_tax_rate_to_variation',
+					10,
+					3
+				);
 			}
 		}
 	}

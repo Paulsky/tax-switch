@@ -100,10 +100,14 @@ class Wdevs_Tax_Switch_Block {
 			'switch-label-excl'               => '',
 		], $attributes );
 
-		$translatable_attributes = ['switch-label-incl', 'switch-label-excl'];
+		$wpml_active             = defined( 'ICL_SITEPRESS_VERSION' );
+		$translatable_attributes = [ 'switch-label-incl', 'switch-label-excl' ];
 		foreach ( $translatable_attributes as $label_key ) {
-			if ( ! empty( $attributes[$label_key] ) ) {
-				$attributes[$label_key] = __( $attributes[$label_key], 'tax-switch-for-woocommerce' );
+			if ( ! empty( $attributes[ $label_key ] ) ) {
+				$attributes[ $label_key ] = __( $attributes[ $label_key ], 'tax-switch-for-woocommerce' );
+				if ( $wpml_active ) {
+					do_action( 'wpml_register_single_string', 'tax-switch-for-woocommerce', 'Tax switch shortcode - ' . $label_key, $attributes[ $label_key ] );
+				}
 			}
 		}
 

@@ -65,6 +65,12 @@ register_activation_hook( __FILE__, 'wdevs_tax_switch_activate' );
 register_deactivation_hook( __FILE__, 'wdevs_tax_switch_deactivate' );
 
 /**
+ * The trait with plugin helper functions.
+ */
+require_once plugin_dir_path(  __FILE__ ) . 'includes/trait-wdevs-tax-switch-plugins.php';
+
+
+/**
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
