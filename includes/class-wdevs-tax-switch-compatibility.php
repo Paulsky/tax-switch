@@ -115,11 +115,6 @@ class Wdevs_Tax_Switch_Compatibility {
 					array_merge( $apffw_asset['dependencies'], [ 'wapf-frontend', 'accounting' ] ),
 					$apffw_asset['version']
 				);
-//				wp_localize_script(
-//					'wdevs-tax-switch-advanced-product-fields-for-woocommerce',
-//					'wtsCompatibilityObject',
-//					[ 'baseTaxRate' => $tax_rate ]
-//				);
 			}
 		}
 

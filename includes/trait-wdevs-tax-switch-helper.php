@@ -91,10 +91,11 @@ trait Wdevs_Tax_Switch_Helper {
 
 		$pricesIncludeTaxFilter = false;
 
-		if ( ! isset( $product ) ) {
+		if ( ! $product ) {
 			$product = wc_get_product();
 		}
-		if ( isset( $product ) ) {
+
+		if ( $product instanceof WC_Product ) {
 			$calculator->set_tax_class( $product->get_tax_class() );
 			$calculator->set_tax_status( $product->get_tax_status() );
 		} else {
