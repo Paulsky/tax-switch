@@ -116,6 +116,22 @@ class Wdevs_Tax_Switch_Compatibility {
 					$apffw_asset['version']
 				);
 			}
+			// Woocommerce Quantity Manager
+			if ( $this->is_plugin_active( 'woocommerce-quantity-manager-pro/woocommerce-quantity-manager-pro.php' ) ) {
+				$wqm_asset = require( plugin_dir_path( dirname( __FILE__ ) ) . 'build/woocommerce-quantity-manager.asset.php' );
+				wp_enqueue_script(
+					'wdevs-tax-switch-woocommerce-quantity-manager',
+					plugin_dir_url( dirname( __FILE__ ) ) . 'build/woocommerce-quantity-manager.js',
+					array_merge( $wqm_asset['dependencies'], [ 'accounting' ] ), //'wqm-frontend',
+					$wqm_asset['version']
+				);
+
+				wp_localize_script(
+					'wdevs-tax-switch-woocommerce-quantity-manager',
+					'wtsCompatibilityObject',
+					[ 'baseTaxRate' => $tax_rate ]
+				);
+			}
 		}
 
 		// Tier Pricing Table (both free and premium)
@@ -165,12 +181,12 @@ class Wdevs_Tax_Switch_Compatibility {
 	 * Adds the alternate price to the Advanced Product Fields Pro hints
 	 * @since 1.4.1
 	 */
-	public function render_wapf_pricing_hint($original_output, $product, $amount, $type, $field = null, $option = null) {
+	public function render_wapf_pricing_hint( $original_output, $product, $amount, $type, $field = null, $option = null ) {
 		if ( $this->is_in_cart_or_checkout() ) {
 			return $original_output;
 		}
 
-		if (!class_exists('SW_WAPF_PRO\Includes\Classes\Helper')) {
+		if ( ! class_exists( 'SW_WAPF_PRO\Includes\Classes\Helper' ) ) {
 			return $original_output;
 		}
 

@@ -31,5 +31,10 @@ module.exports = {
 			'block/src',
 			'advanced-product-fields-for-woocommerce.js'
 		),
+		'woocommerce-quantity-manager': path.resolve(
+			process.cwd(),
+			'block/src',
+			'woocommerce-quantity-manager.js'
+		),
 	},
 };
