@@ -22,8 +22,14 @@ class WoocommerceQuantityManager {
 		jQuery( document ).on(
 			'found_variation',
 			function ( event, variation ) {
-				if ( variation && variation.tax_rate ) {
-					vm.taxRate = variation.tax_rate;
+				if ( variation ) {
+					if ( variation.taxFactor ) {
+						const taxRateAsPercentage =
+							( variation.taxFactor - 1 ) * 100;
+						vm.taxRate = taxRateAsPercentage;
+					} else if ( variation.tax_rate ) {
+						vm.taxRate = variation.tax_rate;
+					}
 				}
 			}
 		);
@@ -31,43 +37,6 @@ class WoocommerceQuantityManager {
 
 	registerObservers() {
 		const vm = this;
-		const handleMutation = ( mutationsList ) => {
-			for ( const mutation of mutationsList ) {
-				if (
-					mutation.type !== 'childList' ||
-					mutation.addedNodes.length === 0
-				) {
-					continue;
-				}
-
-				const shouldSkip = Array.from( mutation.addedNodes ).some(
-					( node ) =>
-						node.nodeType === Node.ELEMENT_NODE &&
-						node.classList.contains( 'wts-price-container' )
-				);
-
-				if ( ! shouldSkip ) {
-					vm.updateAllPriceElements();
-				}
-			}
-		};
-
-		const tableContainer = document.querySelector(
-			'.wqm-pricing-table-wrapper'
-		);
-		if ( ! tableContainer ) return;
-
-		vm.observer = new MutationObserver( handleMutation );
-		vm.observer.observe( tableContainer, {
-			childList: true,
-			subtree: true,
-		} );
-	}
-
-	updateAllPriceElements() {
-		const vm = this;
-		vm.observer.disconnect();
-
 		const baseSelectors = [
 			'[data-item="price"]',
 			'[data-item="sale_price"]',
@@ -83,84 +52,104 @@ class WoocommerceQuantityManager {
 			','
 		);
 
-		document.querySelectorAll( allSelectors ).forEach( ( element ) => {
-			vm.updatePriceElement( element );
-		} );
+		const config = {
+			childList: true,
+			subtree: true,
+			characterData: false,
+			attributes: true,
+			attributeFilter: [ 'data-raw' ],
+		};
 
-		const tableContainer = document.querySelector(
+		const callback = ( mutationsList, observer ) => {
+			for ( const mutation of mutationsList ) {
+				if ( mutation.type === 'childList' ) {
+					mutation.addedNodes.forEach( ( node ) => {
+						if ( node.nodeType === Node.ELEMENT_NODE ) {
+							const elements = node.matches( allSelectors )
+								? [ node ]
+								: node.querySelectorAll( allSelectors );
+
+							elements.forEach( ( el ) =>
+								vm.updatePriceElement( el )
+							);
+						}
+					} );
+				} else if (
+					( mutation.type === 'attributes' ||
+						mutation.type === 'characterData' ) &&
+					mutation.target.matches( allSelectors )
+				) {
+					vm.updatePriceElement( mutation.target );
+				}
+			}
+		};
+
+		vm.observer = new MutationObserver( callback );
+
+		const tableWrappers = document.querySelectorAll(
 			'.wqm-pricing-table-wrapper'
 		);
-
-		if ( tableContainer ) {
-			vm.observer.observe( tableContainer, {
-				childList: true,
-				subtree: true,
-			} );
-		}
+		tableWrappers.forEach( ( wrapper ) => {
+			vm.observer.observe( wrapper, config );
+		} );
 	}
 
 	updatePriceElement( element ) {
 		const vm = this;
 		const $element = jQuery( element );
+		const displayIncludingVat = TaxSwitchHelper.displayIncludingVat(
+			vm.originalTaxDisplay
+		);
 
 		const processPrice = ( priceString ) => {
 			const unformatted = window.accounting.unformat(
 				priceString,
 				window.wqm_config?.display_options.decimal
 			);
-
-			const alternatePrice = vm.formatPrice(
+			return vm.formatPrice(
 				TaxSwitchHelper.calculateAlternatePrice(
 					unformatted,
 					vm.originalTaxDisplay,
 					vm.taxRate
 				)
 			);
-
-			return {
-				original: vm.formatPrice( unformatted ),
-				alternate: alternatePrice,
-			};
 		};
 
-		const displayIncludingVat = TaxSwitchHelper.displayIncludingVat(
-			vm.originalTaxDisplay
-		);
-
 		if ( $element.find( 'del' ).length ) {
-			const originalPriceContent = $element.find( 'del' ).text();
-			const salePriceContent = $element.find( 'ins' ).text();
+			const originalPriceContent = $element.find( 'del' ).text().trim();
+			const salePriceContent = $element.find( 'ins' ).text().trim();
 
-			const originalPriceData = processPrice( originalPriceContent );
-			const originalPriceNewContent = vm.taxSwitchElementBuilder.build(
-				displayIncludingVat,
-				originalPriceData.original,
-				originalPriceData.alternate,
-				null
-			);
+			$element
+				.find( 'del' )
+				.html(
+					vm.taxSwitchElementBuilder.build(
+						displayIncludingVat,
+						originalPriceContent,
+						processPrice( originalPriceContent ),
+						null
+					)
+				);
 
-			const salePriceData = processPrice( salePriceContent );
-			const salePriceNewContent = vm.taxSwitchElementBuilder.build(
-				displayIncludingVat,
-				salePriceData.original,
-				salePriceData.alternate,
-				null
-			);
-
-			$element.find( 'del' ).html( originalPriceNewContent );
-			$element.find( 'ins' ).html( salePriceNewContent );
+			$element
+				.find( 'ins' )
+				.html(
+					vm.taxSwitchElementBuilder.build(
+						displayIncludingVat,
+						salePriceContent,
+						processPrice( salePriceContent ),
+						null
+					)
+				);
 		} else {
-			const originalPrice = $element.text();
-			const priceData = processPrice( originalPrice );
-
-			const newContent = vm.taxSwitchElementBuilder.build(
-				displayIncludingVat,
-				priceData.original,
-				priceData.alternate,
-				null
+			const originalPrice = $element.text().trim();
+			$element.html(
+				vm.taxSwitchElementBuilder.build(
+					displayIncludingVat,
+					originalPrice,
+					processPrice( originalPrice ),
+					null
+				)
 			);
-
-			$element.html( newContent );
 		}
 	}
 
