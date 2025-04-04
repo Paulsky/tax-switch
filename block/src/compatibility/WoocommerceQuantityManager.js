@@ -48,47 +48,44 @@ class WoocommerceQuantityManager {
 			? [ '[data-item="discount"]', '[data-item="total_discount"]' ]
 			: [];
 
-		const allSelectors = [ ...baseSelectors, ...discountSelectors ].join(
-			','
-		);
-
-		const config = {
-			childList: true,
-			subtree: true,
-			characterData: false,
-			attributes: true,
-			attributeFilter: [ 'data-raw' ],
-		};
+		const allSelectors = [ ...baseSelectors, ...discountSelectors ];
 
 		const callback = ( mutationsList, observer ) => {
-			for ( const mutation of mutationsList ) {
-				if ( mutation.type === 'childList' ) {
-					mutation.addedNodes.forEach( ( node ) => {
-						if ( node.nodeType === Node.ELEMENT_NODE ) {
-							const elements = node.matches( allSelectors )
-								? [ node ]
-								: node.querySelectorAll( allSelectors );
-
-							elements.forEach( ( el ) =>
-								vm.updatePriceElement( el )
-							);
-						}
-					} );
-				} else if (
-					( mutation.type === 'attributes' ||
-						mutation.type === 'characterData' ) &&
-					mutation.target.matches( allSelectors )
+			mutationsList.forEach( ( mutation ) => {
+				if (
+					mutation.type === 'childList' ||
+					mutation.type === 'characterData'
 				) {
-					vm.updatePriceElement( mutation.target );
+					const targetElement = mutation.target;
+
+					if (
+						mutation.target.querySelector( '.wts-price-container' )
+					) {
+						return;
+					}
+
+					if ( targetElement.matches( allSelectors ) ) {
+						vm.updatePriceElement( targetElement );
+					} else {
+						const parentMatch = targetElement.closest(
+							allSelectors.join( ',' )
+						);
+						if ( parentMatch ) {
+							vm.updatePriceElement( parentMatch );
+						}
+					}
 				}
-			}
+			} );
 		};
+
+		const config = { childList: true, subtree: true, characterData: false };
 
 		vm.observer = new MutationObserver( callback );
 
 		const tableWrappers = document.querySelectorAll(
 			'.wqm-pricing-table-wrapper'
 		);
+
 		tableWrappers.forEach( ( wrapper ) => {
 			vm.observer.observe( wrapper, config );
 		} );
@@ -141,12 +138,12 @@ class WoocommerceQuantityManager {
 					)
 				);
 		} else {
-			const originalPrice = $element.text().trim();
+			const originalPriceContent = $element.text().trim();
 			$element.html(
 				vm.taxSwitchElementBuilder.build(
 					displayIncludingVat,
-					originalPrice,
-					processPrice( originalPrice ),
+					originalPriceContent,
+					processPrice( originalPriceContent ),
 					null
 				)
 			);
