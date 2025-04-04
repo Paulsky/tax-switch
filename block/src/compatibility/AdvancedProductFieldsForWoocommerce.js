@@ -4,7 +4,7 @@ import TaxSwitchElementBuilder from '../includes/TaxSwitchElementBuilder';
 
 class AdvancedProductFieldsForWoocommerce {
 	constructor( originalTaxDisplay ) {
-		this.originalTaxDisplay = originalTaxDisplay || 'incl';
+		this.originalTaxDisplay = originalTaxDisplay;
 		this.taxSwitchElementBuilder = new TaxSwitchElementBuilder(
 			this.originalTaxDisplay
 		);
