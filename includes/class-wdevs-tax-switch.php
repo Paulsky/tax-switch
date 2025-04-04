@@ -282,9 +282,11 @@ class Wdevs_Tax_Switch {
 			}
 
 			// Check for YITH WooCommerce Product Add-Ons (both free and premium versions)
+			// and for Woocommerce Quantity Manager
 			if ($this->is_any_plugin_active([
 				'yith-woocommerce-product-add-ons/init.php',
-				'yith-woocommerce-advanced-product-options-premium/init.php'
+				'yith-woocommerce-advanced-product-options-premium/init.php',
+				'woocommerce-quantity-manager-pro/woocommerce-quantity-manager-pro.php'
 			])) {
 				$this->loader->add_filter(
 					'woocommerce_available_variation',

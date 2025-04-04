@@ -13,7 +13,20 @@ class WoocommerceQuantityManager {
 	}
 
 	init() {
+		this.registerWooCommerceEvents();
 		this.registerObservers();
+	}
+
+	registerWooCommerceEvents() {
+		const vm = this;
+		jQuery( document ).on(
+			'found_variation',
+			function ( event, variation ) {
+				if ( variation && variation.tax_rate ) {
+					vm.taxRate = variation.tax_rate;
+				}
+			}
+		);
 	}
 
 	registerObservers() {
