@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to the Tax Switch for WooCommerce plugin will be documented in this file.
 
+## [1.4.3] - 16-04-2025
+### Updated
+- Tested WordPress 6.8.0
+- Tested WooCommerce 9.8.1
+
 ## [1.4.2] - 2025-04-03
 ### Added
 - Compatibility for WooCommerce Quantity Discounts, Rules & Swatches

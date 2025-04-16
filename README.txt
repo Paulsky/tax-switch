@@ -2,8 +2,8 @@
 Contributors: wijnbergdevelopments
 Tags: woocommerce, tax, vat
 Requires at least: 5.0
-Tested up to: 6.7
-Stable tag: 1.4.2
+Tested up to: 6.8
+Stable tag: 1.4.3
 Requires PHP: 7.2
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
@@ -129,6 +129,10 @@ Some WooCommerce Blocks are not fully compatible with this plugin as they do not
 Sometimes prices may not appear to change when toggled. This is often related to WooCommerce tax settings. If possible, select 'Shop based' in WooCommerce → Settings → Tax → "Calculate tax based on". Otherwise, WooCommerce requires a billing/shipping address to calculate taxes, which is typically only available after login or during checkout.
 
 == Changelog ==
+= 1.4.3 =
+* Tested WordPress 6.8.0
+* Tested WooCommerce 9.8.1
+
 = 1.4.2 =
 * Added compatibility for WooCommerce Quantity Discounts, Rules & Swatches
 
