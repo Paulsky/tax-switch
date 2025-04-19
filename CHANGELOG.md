@@ -5,6 +5,7 @@ All notable changes to the Tax Switch for WooCommerce plugin will be documented 
 ### Updated
 - Tested WordPress 6.8.0
 - Tested WooCommerce 9.8.1
+- Security improvement: escaped dynamic class names in HTML output (reported by Peter Thaleikis).
 
 ## [1.4.2] - 2025-04-03
 ### Added

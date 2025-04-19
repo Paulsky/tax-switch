@@ -113,7 +113,7 @@ class Wdevs_Tax_Switch_Block {
 
 		$holder_class_name = 'wp-block-wdevs-tax-switch'; //important for rendering JS
 		if ( isset( $attributes['class-name'] ) && ! empty( $attributes['class-name'] ) ) {
-			$holder_class_name .= ' ' . $attributes['class-name'];
+			$holder_class_name .= ' ' . esc_attr($attributes['class-name']);
 		}
 
 		$content = '<div class="' . $holder_class_name . '"></div>';
