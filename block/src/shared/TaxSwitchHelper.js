@@ -1,5 +1,4 @@
-import { select } from '@wordpress/data';
-import './store';
+import { getIsSwitched } from './store';
 
 class TaxSwitchHelper {
 	static togglePriceClasses( originalTaxDisplay, isSwitched ) {
@@ -33,7 +32,7 @@ class TaxSwitchHelper {
 
 	static displayIncludingVat( originalTaxDisplay, isSwitched ) {
 		if ( isSwitched === null || isSwitched === undefined ) {
-			isSwitched = select( 'wdevs-tax-switch/store' ).getIsSwitched();
+			isSwitched = getIsSwitched();
 		}
 		return (
 			( originalTaxDisplay === 'incl' && ! isSwitched ) ||
@@ -49,10 +48,7 @@ class TaxSwitchHelper {
 	}
 
 	static setPriceClasses( originalTaxDisplay ) {
-		return this.togglePriceClasses(
-			originalTaxDisplay,
-			select( 'wdevs-tax-switch/store' ).getIsSwitched()
-		);
+		return this.togglePriceClasses( originalTaxDisplay, getIsSwitched() );
 	}
 
 	static calculateAlternatePrice( price, originalTaxDisplay, taxRate ) {

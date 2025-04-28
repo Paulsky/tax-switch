@@ -1,5 +1,5 @@
 import jQuery from 'jquery';
-import TaxSwitchHelper from '../includes/TaxSwitchHelper';
+import TaxSwitchHelper from '../../shared/TaxSwitchHelper';
 import TaxSwitchElementBuilder from '../includes/TaxSwitchElementBuilder';
 
 class WoocommerceProductAddOns {

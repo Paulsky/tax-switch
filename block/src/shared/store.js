@@ -1,6 +1,8 @@
-import { registerStore, select } from '@wordpress/data';
+import { createReduxStore, select, register, dispatch } from '@wordpress/data';
 
 const STORAGE_KEY = 'wdevs_tax_switch_is_switched';
+const STORE_NAME = 'wdevs-tax-switch/store';
+const SWITCH_TYPE = 'SET_IS_SWITCHED';
 
 const getInitialState = () => {
 	const storedValue = localStorage.getItem( STORAGE_KEY );
@@ -12,14 +14,14 @@ const getInitialState = () => {
 const actions = {
 	setIsSwitched( value ) {
 		return {
-			type: 'SET_IS_SWITCHED',
+			type: SWITCH_TYPE,
 			value,
 		};
 	},
 	saveIsSwitched( value ) {
 		localStorage.setItem( STORAGE_KEY, JSON.stringify( value ) );
 		return {
-			type: 'SET_IS_SWITCHED',
+			type: SWITCH_TYPE,
 			value,
 		};
 	},
@@ -27,7 +29,7 @@ const actions = {
 
 const reducer = ( state = getInitialState(), action ) => {
 	switch ( action.type ) {
-		case 'SET_IS_SWITCHED':
+		case SWITCH_TYPE:
 			return {
 				...state,
 				isSwitched: action.value,
@@ -43,14 +45,26 @@ const selectors = {
 	},
 };
 
-let store = select( 'wdevs-tax-switch/store' );
+let store = select( STORE_NAME );
 
 if ( store === undefined ) {
-	store = registerStore( 'wdevs-tax-switch/store', {
+	store = createReduxStore( STORE_NAME, {
 		reducer,
 		actions,
 		selectors,
 	} );
+
+	register( store );
 }
 
-export default store;
+export function getIsSwitched() {
+	return select( STORE_NAME ).getIsSwitched();
+}
+
+export function saveIsSwitched( value ) {
+	return dispatch( STORE_NAME ).saveIsSwitched( value );
+}
+
+export function setIsSwitched( value ) {
+	return dispatch( STORE_NAME ).setIsSwitched( value );
+}

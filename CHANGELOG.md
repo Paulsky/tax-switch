@@ -1,7 +1,14 @@
 # Changelog
 All notable changes to the Tax Switch for WooCommerce plugin will be documented in this file.
 
-## [1.4.3] - 16-04-2025
+## [1.5.0] - 2025-04-26
+### Added
+- Gutenberg block/shortcode for showing text about the currently selected tax setting. [See this topic](https://wordpress.org/support/topic/shortcode-for-wdevs-tax-switch-label-text/)
+### Updated
+- Tested WooCommerce 9.8.2
+- Possible breaking change: refactored the code base for registering multiple blocks
+
+## [1.4.3] - 2025-04-16
 ### Updated
 - Tested WordPress 6.8.0
 - Tested WooCommerce 9.8.1

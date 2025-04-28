@@ -1,0 +1,11 @@
+.wp-block-wdevs-tax-switch-label {
+  display: inline-block;
+
+  .wdevs-tax-switch-labels {
+	color: var(--wts-text-color, #333);
+
+	&.wts-price-incl {
+	  color: var(--wts-text-color-checked, #333);
+	}
+  }
+}

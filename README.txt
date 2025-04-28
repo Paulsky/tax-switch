@@ -3,7 +3,7 @@ Contributors: wijnbergdevelopments
 Tags: woocommerce, tax, vat
 Requires at least: 5.0
 Tested up to: 6.8
-Stable tag: 1.4.3
+Stable tag: 1.5.0
 Requires PHP: 7.2
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
@@ -68,6 +68,8 @@ After installation and configuration, you can add the tax switch to your pages i
 
 = Shortcode Usage =
 
+== Switch/buttons ==
+
 Basic usage:
 [wdevs_tax_switch]
 
@@ -95,11 +97,35 @@ Example with custom attributes:
 
 This will display an inline-style switch with a white handle that turns black when on, a black background when off, green background when on, and custom labels for including and excluding tax.
 
-You can also use this shortcode in your theme files with the do_shortcode() function:
+== Label ==
+
+Basic usage:
+[wdevs_tax_switch_label]
+
+Displays text indicating the currently selected tax setting. The text updates automatically when the tax switch is toggled.
+
+Attributes:
+* `class-name`: Adds custom CSS classes to the label.
+    - Default: is-style-default
+    - Options: is-style-default or custom classes
+* `label-text-incl`: Sets the text to display when "including VAT" is selected.
+    - Default: Uses the text set in the plugin settings or "Incl. VAT" if not set.
+* `label-text-excl`: Sets the text to display when "excluding VAT" is selected.
+    - Default: Uses the text set in the plugin settings or "Excl. VAT" if not set.
+* `label-text-color`: Sets the "excluding VAT" text color.
+* `label-text-color-checked`: Sets the "including VAT" text color.
+
+Example with custom attributes:
+`[wdevs_tax_switch_label class-name="tax-indicator" label-text-incl="Prices include tax" label-text-excl="Prices exclude tax" label-text-color="#FF0000" label-text-color-checked="#4CAF50"]`
+
+== PHP implementation ==
+
+You can use these shortcodes with PHP with the do_shortcode() function:
 
 `<?php echo do_shortcode('[wdevs_tax_switch]'); ?>`
+`<?php echo do_shortcode('[wdevs_tax_switch_label]'); ?>`
 
-= JavaScript Events =
+= JavaScript events =
 
 The switch fires a JavaScript event when the tax display is toggled. You can listen for this event to execute custom code when a user switches between inclusive and exclusive tax display. This is useful for when you need to perform additional actions based on the tax display state.
 
@@ -129,6 +155,11 @@ Some WooCommerce Blocks are not fully compatible with this plugin as they do not
 Sometimes prices may not appear to change when toggled. This is often related to WooCommerce tax settings. If possible, select 'Shop based' in WooCommerce → Settings → Tax → "Calculate tax based on". Otherwise, WooCommerce requires a billing/shipping address to calculate taxes, which is typically only available after login or during checkout.
 
 == Changelog ==
+= 1.5.0 =
+* Gutenberg block/shortcode for showing text about the currently selected tax setting. [See this topic](https://wordpress.org/support/topic/shortcode-for-wdevs-tax-switch-label-text/)
+* Tested WooCommerce 9.8.2
+* Possible breaking change: refactored the code base for registering multiple blocks
+
 = 1.4.3 =
 * Tested WordPress 6.8.0
 * Tested WooCommerce 9.8.1

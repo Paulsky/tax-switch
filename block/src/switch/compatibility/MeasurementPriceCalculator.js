@@ -1,4 +1,4 @@
-import TaxSwitchHelper from '../includes/TaxSwitchHelper';
+import TaxSwitchHelper from '../../shared/TaxSwitchHelper';
 import jQuery from 'jquery';
 import { select, subscribe } from '@wordpress/data';
 
@@ -72,9 +72,9 @@ class MeasurementPriceCalculator {
 			);
 			if ( displayIncludingVat ) {
 				return parseFloat( this.currentVariation.price_incl_vat );
-			} else {
-				return parseFloat( this.currentVariation.price_excl_vat );
 			}
+
+			return parseFloat( this.currentVariation.price_excl_vat );
 		}
 
 		return null;

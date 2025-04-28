@@ -1,0 +1,33 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wdevs/tax-switch-label",
+	"version": "1.5.0",
+	"title": "Tax Switch text label",
+	"category": "woocommerce",
+	"icon": "tag",
+	"description": "Show text label whether prices include or exclude VAT.",
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"attributes": {
+		"labelTextColor": {
+			"type": "string"
+		},
+		"labelTextColorChecked": {
+			"type": "string"
+		},
+		"labelTextIncl": {
+			"type": "string"
+		},
+		"labelTextExcl": {
+			"type": "string"
+		}
+	},
+	"textdomain": "tax-switch-for-woocommerce",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js"
+}

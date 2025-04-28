@@ -1,5 +1,5 @@
 import jQuery from 'jquery';
-import TaxSwitchHelper from '../includes/TaxSwitchHelper';
+import TaxSwitchHelper from '../../shared/TaxSwitchHelper';
 import TaxSwitchElementBuilder from '../includes/TaxSwitchElementBuilder';
 
 class TieredPriceTable {
@@ -59,7 +59,9 @@ class TieredPriceTable {
 	}
 
 	updateAllPrices( data ) {
-		if ( ! data.__instance ) return;
+		if ( ! data.__instance ) {
+			return;
+		}
 
 		const vm = this;
 		const displayIncludingVat = TaxSwitchHelper.displayIncludingVat(
@@ -96,7 +98,9 @@ class TieredPriceTable {
 
 		$priceContainers.each( ( _, container ) => {
 			const $container = jQuery( container );
-			if ( $container.data( 'price-type' ) !== 'dynamic' ) return;
+			if ( $container.data( 'price-type' ) !== 'dynamic' ) {
+				return;
+			}
 			$container.html(
 				vm.getWtsHtml(
 					displayIncludingVat,
@@ -132,17 +136,18 @@ class TieredPriceTable {
 				? data.__instance.dataProvider.getRegularPrice()
 				: data.__instance.dataProvider.getRegularPrice() *
 						( alternatePrice / data.price );
-		} else {
-			return getOriginalTaxPrice
-				? data.__instance.dataProvider.getOriginalPrice()
-				: data.__instance.dataProvider.getOriginalPrice() *
-						( alternatePrice / data.price );
 		}
+		return getOriginalTaxPrice
+			? data.__instance.dataProvider.getOriginalPrice()
+			: data.__instance.dataProvider.getOriginalPrice() *
+					( alternatePrice / data.price );
 	}
 
 	updateSummaryTable( data, displayIncludingVat ) {
 		const summaryTable = this.getSummaryTable( data.parentId );
-		if ( ! summaryTable || ! summaryTable.length ) return;
+		if ( ! summaryTable || ! summaryTable.length ) {
+			return;
+		}
 
 		const alternatePrice = this.getAlternatePrice( data );
 

@@ -59,10 +59,10 @@ class Wdevs_Tax_Switch_Compatibility {
 		if ( is_product() ) {
 			// WooCommerce Measurement Price Calculator
 			if ( $this->is_plugin_active( 'woocommerce-measurement-price-calculator/woocommerce-measurement-price-calculator.php' ) ) {
-				$wcmpc_asset = require( plugin_dir_path( dirname( __FILE__ ) ) . 'build/woocommerce-measurement-price-calculator.asset.php' );
+				$wcmpc_asset = require( plugin_dir_path( dirname( __FILE__ ) ) . 'build/switch/woocommerce-measurement-price-calculator.asset.php' );
 				wp_enqueue_script(
 					'wdevs-tax-switch-woocommerce-measurement-price-calculator',
-					plugin_dir_url( dirname( __FILE__ ) ) . 'build/woocommerce-measurement-price-calculator.js',
+					plugin_dir_url( dirname( __FILE__ ) ) . 'build/switch/woocommerce-measurement-price-calculator.js',
 					$wcmpc_asset['dependencies'],
 					$wcmpc_asset['version']
 				);
@@ -75,10 +75,10 @@ class Wdevs_Tax_Switch_Compatibility {
 				'yith-woocommerce-product-add-ons/init.php',
 				'yith-woocommerce-advanced-product-options-premium/init.php'
 			] ) ) {
-				$ywpado_asset = require( plugin_dir_path( dirname( __FILE__ ) ) . 'build/yith-woocommerce-product-add-ons.asset.php' );
+				$ywpado_asset = require( plugin_dir_path( dirname( __FILE__ ) ) . 'build/switch/yith-woocommerce-product-add-ons.asset.php' );
 				wp_enqueue_script(
 					'wdevs-tax-switch-yith-woocommerce-product-add-ons',
-					plugin_dir_url( dirname( __FILE__ ) ) . 'build/yith-woocommerce-product-add-ons.js',
+					plugin_dir_url( dirname( __FILE__ ) ) . 'build/switch/yith-woocommerce-product-add-ons.js',
 					array_merge( $ywpado_asset['dependencies'], [ 'yith_wapo_front' ] ),
 					$ywpado_asset['version']
 				);
@@ -92,10 +92,10 @@ class Wdevs_Tax_Switch_Compatibility {
 
 			// WooCommerce Product Addons
 			if ( $this->is_plugin_active( 'woocommerce-product-addons/woocommerce-product-addons.php' ) ) {
-				$wpado_asset = require( plugin_dir_path( dirname( __FILE__ ) ) . 'build/woocommerce-product-addons.asset.php' );
+				$wpado_asset = require( plugin_dir_path( dirname( __FILE__ ) ) . 'build/switch/woocommerce-product-addons.asset.php' );
 				wp_enqueue_script(
 					'wdevs-tax-switch-woocommerce-product-addons',
-					plugin_dir_url( dirname( __FILE__ ) ) . 'build/woocommerce-product-addons.js',
+					plugin_dir_url( dirname( __FILE__ ) ) . 'build/switch/woocommerce-product-addons.js',
 					array_merge( $wpado_asset['dependencies'], [ 'accounting' ] ),
 					$wpado_asset['version']
 				);
@@ -108,20 +108,20 @@ class Wdevs_Tax_Switch_Compatibility {
 
 			// Advanced Product Fields Pro for WooCommerce
 			if ( $this->is_plugin_active( 'advanced-product-fields-for-woocommerce-pro/advanced-product-fields-for-woocommerce-pro.php' ) ) {
-				$apffw_asset = require( plugin_dir_path( dirname( __FILE__ ) ) . 'build/advanced-product-fields-for-woocommerce.asset.php' );
+				$apffw_asset = require( plugin_dir_path( dirname( __FILE__ ) ) . 'build/switch/advanced-product-fields-for-woocommerce.asset.php' );
 				wp_enqueue_script(
 					'wdevs-tax-switch-advanced-product-fields-for-woocommerce',
-					plugin_dir_url( dirname( __FILE__ ) ) . 'build/advanced-product-fields-for-woocommerce.js',
+					plugin_dir_url( dirname( __FILE__ ) ) . 'build/switch/advanced-product-fields-for-woocommerce.js',
 					array_merge( $apffw_asset['dependencies'], [ 'wapf-frontend', 'accounting' ] ),
 					$apffw_asset['version']
 				);
 			}
 			// Woocommerce Quantity Manager
 			if ( $this->is_plugin_active( 'woocommerce-quantity-manager-pro/woocommerce-quantity-manager-pro.php' ) ) {
-				$wqm_asset = require( plugin_dir_path( dirname( __FILE__ ) ) . 'build/woocommerce-quantity-manager.asset.php' );
+				$wqm_asset = require( plugin_dir_path( dirname( __FILE__ ) ) . 'build/switch/woocommerce-quantity-manager.asset.php' );
 				wp_enqueue_script(
 					'wdevs-tax-switch-woocommerce-quantity-manager',
-					plugin_dir_url( dirname( __FILE__ ) ) . 'build/woocommerce-quantity-manager.js',
+					plugin_dir_url( dirname( __FILE__ ) ) . 'build/switch/woocommerce-quantity-manager.js',
 					array_merge( $wqm_asset['dependencies'], [ 'accounting' ] ), //'wqm-frontend',
 					$wqm_asset['version']
 				);
@@ -139,10 +139,10 @@ class Wdevs_Tax_Switch_Compatibility {
 			'tier-pricing-table/tier-pricing-table.php',
 			'tier-pricing-table-premium/tier-pricing-table.php'
 		] ) ) {
-			$wctpt_asset = require( plugin_dir_path( dirname( __FILE__ ) ) . 'build/woocommerce-tiered-price-table.asset.php' );
+			$wctpt_asset = require( plugin_dir_path( dirname( __FILE__ ) ) . 'build/switch/woocommerce-tiered-price-table.asset.php' );
 			wp_enqueue_script(
 				'wdevs-tax-switch-woocommerce-tiered-price-table',
-				plugin_dir_url( dirname( __FILE__ ) ) . 'build/woocommerce-tiered-price-table.js',
+				plugin_dir_url( dirname( __FILE__ ) ) . 'build/switch/woocommerce-tiered-price-table.js',
 				$wctpt_asset['dependencies'],
 				$wctpt_asset['version']
 			);

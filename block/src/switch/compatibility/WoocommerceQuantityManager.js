@@ -1,6 +1,6 @@
 import jQuery from 'jquery';
 import TaxSwitchElementBuilder from '../includes/TaxSwitchElementBuilder';
-import TaxSwitchHelper from '../includes/TaxSwitchHelper';
+import TaxSwitchHelper from '../../shared/TaxSwitchHelper';
 
 class WoocommerceQuantityManager {
 	constructor( originalTaxDisplay, baseTaxRate ) {

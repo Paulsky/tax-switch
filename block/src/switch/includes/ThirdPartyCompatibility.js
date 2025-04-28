@@ -1,5 +1,5 @@
 import jQuery from 'jquery';
-import TaxSwitchHelper from './TaxSwitchHelper';
+import TaxSwitchHelper from '../../shared/TaxSwitchHelper';
 
 class ThirdPartyCompatibility {
 	static initialize( originalTaxDisplay ) {

@@ -1,5 +1,5 @@
 import jQuery from 'jquery';
-import TaxSwitchHelper from '../includes/TaxSwitchHelper';
+import TaxSwitchHelper from '../../shared/TaxSwitchHelper';
 import TaxSwitchElementBuilder from '../includes/TaxSwitchElementBuilder';
 
 class YithProductAddOns {
@@ -156,10 +156,14 @@ class YithProductAddOns {
 
 	updatePriceElement( $element ) {
 		const originalHtml = $element.html();
-		if ( ! originalHtml ) return;
+		if ( ! originalHtml ) {
+			return;
+		}
 
 		const price = window.wcPriceToFloat( originalHtml );
-		if ( ! price ) return;
+		if ( ! price ) {
+			return;
+		}
 
 		// Calculate alternate price
 		const alternatePrice = TaxSwitchHelper.calculateAlternatePrice(

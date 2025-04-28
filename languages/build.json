@@ -1,7 +1,12 @@
 {
-	"block/src/components/SwitchComponent.js": [
-		"build/index.js",
-		"build/view.js"
+	"block/src/switch/components/SwitchComponent.js": [
+		"build/switch/index.js",
+		"build/switch/view.js"
 	],
-	"block/src/edit.js": [ "build/index.js" ]
+	"block/src/switch/edit.js": [ "build/switch/index.js" ],
+	"block/src/label/components/LabelComponent.js": [
+		"build/label/index.js",
+		"build/label/view.js"
+	],
+	"block/src/label/edit.js": [ "build/label/index.js" ]
 }

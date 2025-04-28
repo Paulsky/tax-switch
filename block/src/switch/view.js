@@ -1,6 +1,6 @@
 import { render, Suspense } from '@wordpress/element';
 import SwitchComponent from './components/SwitchComponent';
-import TaxSwitchHelper from './includes/TaxSwitchHelper';
+import TaxSwitchHelper from '../shared/TaxSwitchHelper';
 import ThirdPartyCompatibility from './includes/ThirdPartyCompatibility';
 
 const renderSwitchComponent = ( element, ajaxConfig ) => {

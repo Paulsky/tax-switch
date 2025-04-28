@@ -71,6 +71,8 @@ The switch will toggle the display of prices including or excluding VAT across y
 
 ### Shortcode Usage
 
+#### Switch/buttons
+
 The plugin provides a shortcode that allows you to easily add the tax switch anywhere on your site.
 
 Basic usage:
@@ -103,13 +105,38 @@ Example with custom attributes:
 
 This will display an inline-style switch with a white handle that turns black when on, a black background when off, green background when on, and custom labels for including and excluding tax.
 
-You can use this shortcode in posts, pages, and even in your theme files by using the `do_shortcode()` function:
+#### Label
+
+Basic usage:
+[wdevs_tax_switch_label]
+
+Displays text indicating the currently selected tax setting. The text updates automatically when the tax switch is toggled.
+
+Attributes:
+- `class-name`: Adds custom CSS classes to the label.
+	- Default: `is-style-default`
+	- Options: `is-style-default` or custom classes
+- `label-text-incl`: Sets the text to display when "including VAT" is selected.
+	- Default: Uses the text set in the plugin settings or "Incl. VAT" if not set.
+- `label-text-excl`: Sets the text to display when "excluding VAT" is selected.
+	- Default: Uses the text set in the plugin settings or "Excl. VAT" if not set.
+- `label-text-color`: Sets the "excluding VAT" text color.
+- `label-text-color-checked`: Sets the "including VAT" text color.
+
+Example with custom attributes:
+`[wdevs_tax_switch_label class-name="tax-indicator" label-text-incl="Prices include tax" label-text-excl="Prices exclude tax" label-text-color="#FF0000" label-text-color-checked="#4CAF50"]`
+
+
+#### PHP implementation
+
+You can use these shortcodes with PHP with the do_shortcode() function:
 
 ```php
 <?php echo do_shortcode('[wdevs_tax_switch]'); ?>
+<?php echo do_shortcode('[wdevs_tax_switch_label]'); ?>
 ```
 
-### JavaScript Events
+### JavaScript events
 
 The switch fires a JavaScript event when the tax display is toggled. You can listen for this event to execute custom code when a user switches between inclusive and exclusive tax display. This is useful for when you need to perform additional actions based on the tax display state.
 

@@ -1,5 +1,5 @@
 import jQuery from 'jquery';
-import TaxSwitchHelper from '../includes/TaxSwitchHelper';
+import TaxSwitchHelper from '../../shared/TaxSwitchHelper';
 import TaxSwitchElementBuilder from '../includes/TaxSwitchElementBuilder';
 
 class AdvancedProductFieldsForWoocommerce {
@@ -20,10 +20,14 @@ class AdvancedProductFieldsForWoocommerce {
 		jQuery( document ).on(
 			'wapf/pricing',
 			( e, productTotal, optionsTotal, grandTotal, productElement ) => {
-				if ( ! productElement ) return;
+				if ( ! productElement ) {
+					return;
+				}
 
 				const taxFactor = productElement.data( 'taxFactor' );
-				if ( ! taxFactor || taxFactor <= 1 ) return;
+				if ( ! taxFactor || taxFactor <= 1 ) {
+					return;
+				}
 
 				const taxRateAsPercentage = ( taxFactor - 1 ) * 100;
 				const displayIncludingVat = TaxSwitchHelper.displayIncludingVat(
@@ -89,6 +93,14 @@ class AdvancedProductFieldsForWoocommerce {
 				if ( ! window.accounting ) {
 					return hint;
 				}
+
+				const taxElement =
+					document.querySelector( '[data-tax-factor]' );
+				const taxFactor = taxElement ? taxElement.dataset.taxFactor : 1;
+				if ( ! taxFactor || taxFactor <= 1 ) {
+					return;
+				}
+
 				//brackets become negative 'replace bracketed values with negatives'
 				const noBrackets = hint.replace( /[()]/g, '' );
 
@@ -96,11 +108,6 @@ class AdvancedProductFieldsForWoocommerce {
 					noBrackets,
 					window.wapf_config?.display_options.decimal
 				);
-
-				const taxElement =
-					document.querySelector( '[data-tax-factor]' );
-				const taxFactor = taxElement ? taxElement.dataset.taxFactor : 1;
-				if ( ! taxFactor || taxFactor <= 1 ) return;
 
 				const taxRateAsPercentage = ( taxFactor - 1 ) * 100;
 

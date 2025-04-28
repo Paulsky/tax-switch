@@ -1,22 +1,21 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Tax Switch for WooCommerce\n"
-"POT-Creation-Date: 2025-03-25 18:15+0100\n"
-"PO-Revision-Date: 2025-03-25 18:15+0100\n"
+"POT-Creation-Date: 2025-04-26 19:55+0200\n"
+"PO-Revision-Date: 2025-04-26 19:56+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.6\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: wdevs-tax-switch.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
-"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-KeywordsList: "
+"__;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 "X-Poedit-SearchPathExcluded-1: node_modules\n"
@@ -46,22 +45,22 @@ msgid "Close modal"
 msgstr "Close modal"
 
 #: admin/partials/section-wdevs-tax-switch-shortcode.php:55
-#: block/src/edit.js:67
+#: block/src/switch/edit.js:67
 msgid "Switch type"
 msgstr "Switchtype"
 
 #: admin/partials/section-wdevs-tax-switch-shortcode.php:59
-#: block/src/edit.js:74
+#: block/src/switch/edit.js:74
 msgid "Toggle switch"
 msgstr "Toggle switch"
 
 #: admin/partials/section-wdevs-tax-switch-shortcode.php:60
-#: block/src/edit.js:81
+#: block/src/switch/edit.js:81
 msgid "Buttons"
 msgstr "Buttons"
 
 #: admin/partials/section-wdevs-tax-switch-shortcode.php:67
-#: block/src/edit.js:104
+#: block/src/switch/edit.js:104
 msgid "Switch color"
 msgstr "Switch color"
 
@@ -74,44 +73,48 @@ msgid "Default"
 msgstr "Default"
 
 #: admin/partials/section-wdevs-tax-switch-shortcode.php:78
-#: block/src/edit.js:115
+#: block/src/switch/edit.js:115
 msgid "Switch color checked"
 msgstr "Switch color checked"
 
 #: admin/partials/section-wdevs-tax-switch-shortcode.php:89
-#: block/src/edit.js:126
+#: block/src/switch/edit.js:126
 msgid "Background color"
 msgstr "Background color"
 
 #: admin/partials/section-wdevs-tax-switch-shortcode.php:100
-#: block/src/edit.js:137
+#: block/src/switch/edit.js:137
 msgid "Background color checked"
 msgstr "Background color checked"
 
 #: admin/partials/section-wdevs-tax-switch-shortcode.php:111
-#: block/src/edit.js:148
+#: block/src/switch/edit.js:148
 msgid "Text color"
 msgstr "Text color"
 
 #: admin/partials/section-wdevs-tax-switch-shortcode.php:122
-#: block/src/edit.js:163
+#: block/src/label/edit.js:61 block/src/switch/edit.js:163
 msgid "Including VAT label"
 msgstr "Including VAT label"
 
 #: admin/partials/section-wdevs-tax-switch-shortcode.php:126
+#: includes/class-wdevs-tax-switch-block-label.php:61
+#: includes/class-wdevs-tax-switch-block-label.php:78
 #: includes/class-wdevs-tax-switch-woocommerce.php:218
-#: public/class-wdevs-tax-switch-public.php:136
+#: public/class-wdevs-tax-switch-public.php:138
 msgid "Incl. VAT"
 msgstr "Incl. VAT"
 
 #: admin/partials/section-wdevs-tax-switch-shortcode.php:132
-#: block/src/edit.js:173
+#: block/src/label/edit.js:71 block/src/switch/edit.js:173
 msgid "Excluding VAT label"
 msgstr "Excluding VAT label"
 
 #: admin/partials/section-wdevs-tax-switch-shortcode.php:136
+#: includes/class-wdevs-tax-switch-block-label.php:62
+#: includes/class-wdevs-tax-switch-block-label.php:79
 #: includes/class-wdevs-tax-switch-woocommerce.php:225
-#: public/class-wdevs-tax-switch-public.php:137
+#: public/class-wdevs-tax-switch-public.php:139
 msgid "Excl. VAT"
 msgstr "Excl. VAT"
 
@@ -127,19 +130,35 @@ msgstr "Options: is-style-default, is-style-inline or/and custom classes"
 msgid "Generate shortcode"
 msgstr "Generate shortcode"
 
-#: admin/partials/section-wdevs-tax-switch-shortcode.php:173
+#: admin/partials/section-wdevs-tax-switch-shortcode.php:174
 msgid "Copied"
 msgstr "Copied"
 
-#: block/src/edit.js:60
+#: block/src/label/edit.js:56
+msgid "Labels"
+msgstr "Labels"
+
+#: block/src/label/edit.js:81
+msgid "Label colors"
+msgstr "Label colors"
+
+#: block/src/label/edit.js:91
+msgid "Label excluding VAT color"
+msgstr "Label excluding VAT color"
+
+#: block/src/label/edit.js:102
+msgid "Label including VAT color"
+msgstr "Label including VAT color"
+
+#: block/src/switch/edit.js:60
 msgid "Display options"
 msgstr "Display options"
 
-#: block/src/edit.js:94
+#: block/src/switch/edit.js:94
 msgid "Switch colors"
 msgstr "Switch colors"
 
-#: block/src/edit.js:156
+#: block/src/switch/edit.js:156
 msgid "Switch labels"
 msgstr "Switch labels"
 
@@ -151,7 +170,7 @@ msgstr ""
 "This plugin requires WooCommerce. Please install and activate WooCommerce "
 "before activating this plugin."
 
-#: includes/class-wdevs-tax-switch-block.php:67
+#: includes/class-wdevs-tax-switch-block-switch.php:56
 msgid "Inline style"
 msgstr "Inline style"
 
@@ -222,3 +241,6 @@ msgstr "Wijnberg Developments"
 #. Author URI of the plugin/theme
 msgid "https://wijnberg.dev/"
 msgstr "https://wijnberg.dev/"
+
+#~ msgid "Text color checked"
+#~ msgstr "Text color checked"

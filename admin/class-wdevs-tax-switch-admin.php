@@ -66,12 +66,21 @@ class Wdevs_Tax_Switch_Admin {
 		$original_tax_display = $this->get_original_tax_display();
 
 		wp_localize_script(
-			'wdevs-tax-switch-edit-script',
+			'wdevs-tax-switch-editor-script',
 			'wtsEditorObject',
 			[
 				'originalTaxDisplay' => $original_tax_display
 			]
 		);
+
+		wp_localize_script(
+			'wdevs-tax-switch-label-editor-script',
+			'wtsEditorObject',
+			[
+				'originalTaxDisplay' => $original_tax_display
+			]
+		);
+
 	}
 
 	/**

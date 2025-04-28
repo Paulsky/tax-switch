@@ -153,10 +153,20 @@ class Wdevs_Tax_Switch {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wdevs-tax-switch-woocommerce.php';
 
 		/**
-		 * The class responsible for defining all actions that occur in the block-facing
-		 * side of the site.
+		 * The class responsible for common shortcode and Gutenberg block functions
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wdevs-tax-switch-block.php';
+
+
+		/**
+		 * The class responsible for the shortcode and Gutenberg block rendering of the Switch component
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wdevs-tax-switch-block-switch.php';
+
+		/**
+		 * The class responsible for the shortcode and Gutenberg block rendering of the Label component
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wdevs-tax-switch-block-label.php';
 
 		/**
 		 * The class responsible for defining all functionality from adding compatibility with third party code
@@ -247,11 +257,19 @@ class Wdevs_Tax_Switch {
 	 */
 	private function define_block_hooks() {
 
-		$plugin_block = new Wdevs_Tax_Switch_Block( $this->get_plugin_name(), $this->get_version() );
+		$switchBlock = new Wdevs_Tax_Switch_Block_Switch( $this->get_plugin_name(), $this->get_version() );
+		$labelBlock  = new Wdevs_Tax_Switch_Block_Label( $this->get_plugin_name(), $this->get_version() );
 
-		$this->loader->add_action( 'init', $plugin_block, 'register_frontend_scripts' );
-		$this->loader->add_action( 'init', $plugin_block, 'init_block' );
-		$this->loader->add_action( 'init', $plugin_block, 'register_shortcode' );
+		$blocks = [ $switchBlock, $labelBlock ];
+
+		foreach ( $blocks as $block_class ) {
+			$this->loader->add_action( 'init', $block_class, 'register_frontend_scripts' );
+			$this->loader->add_action( 'init', $block_class, 'init_block' );
+			$this->loader->add_action( 'init', $block_class, 'register_shortcode' );
+		}
+
+		$this->loader->add_action( 'block_type_metadata', $labelBlock, 'set_default_block_attributes' );
+
 	}
 
 	/**
@@ -271,7 +289,7 @@ class Wdevs_Tax_Switch {
 			$this->loader->add_filter( 'wcpt_element', $plugin_compatibility, 'activate_wc_product_table_compatibility', 10, 1 );
 
 			// Check for WooCommerce Measurement Price Calculator plugin
-			if ($this->is_plugin_active('woocommerce-measurement-price-calculator/woocommerce-measurement-price-calculator.php')) {
+			if ( $this->is_plugin_active( 'woocommerce-measurement-price-calculator/woocommerce-measurement-price-calculator.php' ) ) {
 				$this->loader->add_filter(
 					'woocommerce_available_variation',
 					$plugin_compatibility,
@@ -283,11 +301,11 @@ class Wdevs_Tax_Switch {
 
 			// Check for YITH WooCommerce Product Add-Ons (both free and premium versions)
 			// and for Woocommerce Quantity Manager
-			if ($this->is_any_plugin_active([
+			if ( $this->is_any_plugin_active( [
 				'yith-woocommerce-product-add-ons/init.php',
 				'yith-woocommerce-advanced-product-options-premium/init.php',
 				'woocommerce-quantity-manager-pro/woocommerce-quantity-manager-pro.php'
-			])) {
+			] ) ) {
 				$this->loader->add_filter(
 					'woocommerce_available_variation',
 					$plugin_compatibility,
@@ -298,7 +316,7 @@ class Wdevs_Tax_Switch {
 			}
 
 			// Advanced Product Fields Pro for WooCommerce
-			if ($this->is_plugin_active( 'advanced-product-fields-for-woocommerce-pro/advanced-product-fields-for-woocommerce-pro.php' ) ){
+			if ( $this->is_plugin_active( 'advanced-product-fields-for-woocommerce-pro/advanced-product-fields-for-woocommerce-pro.php' ) ) {
 				$this->loader->add_filter(
 					'wapf/html/pricing_hint',
 					$plugin_compatibility,

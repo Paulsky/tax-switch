@@ -1,7 +1,11 @@
 import { Component } from '@wordpress/element';
-import { dispatch, select, subscribe } from '@wordpress/data';
-import TaxSwitchHelper from '../includes/TaxSwitchHelper';
-import '../includes/store';
+import { subscribe } from '@wordpress/data';
+import TaxSwitchHelper from '../../shared/TaxSwitchHelper';
+import {
+	getIsSwitched,
+	saveIsSwitched,
+	setIsSwitched,
+} from '../../shared/store';
 
 class SwitchComponent extends Component {
 	constructor( props ) {
@@ -17,9 +21,7 @@ class SwitchComponent extends Component {
 		this.handleChange = this.handleChange.bind( this );
 
 		this.unsubscribe = subscribe( () => {
-			const newIsSwitched = select(
-				'wdevs-tax-switch/store'
-			).getIsSwitched();
+			const newIsSwitched = getIsSwitched();
 			if ( this.state.isSwitched !== newIsSwitched ) {
 				this.setState( { isSwitched: newIsSwitched } );
 			}
@@ -34,7 +36,7 @@ class SwitchComponent extends Component {
 		if ( readOnly ) {
 			isSwitched = ! ( originalTaxDisplay === 'incl' );
 		} else {
-			isSwitched = select( 'wdevs-tax-switch/store' ).getIsSwitched();
+			isSwitched = getIsSwitched();
 		}
 
 		return { readOnly, isSwitched };
@@ -50,15 +52,11 @@ class SwitchComponent extends Component {
 		const newIsSwitched = ! this.state.isSwitched;
 		this.setState( { isSwitched: newIsSwitched }, () => {
 			if ( ! this.state.readOnly ) {
-				dispatch( 'wdevs-tax-switch/store' ).saveIsSwitched(
-					newIsSwitched
-				);
+				saveIsSwitched( newIsSwitched );
 
 				this.fireSwitchChangeEvent( newIsSwitched );
 			} else {
-				dispatch( 'wdevs-tax-switch/store' ).setIsSwitched(
-					newIsSwitched
-				);
+				setIsSwitched( newIsSwitched );
 			}
 
 			this.togglePriceClasses();
@@ -89,9 +87,8 @@ class SwitchComponent extends Component {
 		const { switchLabelIncl, switchLabelExcl } = this.props;
 		if ( this.displayIncludingVat() ) {
 			return switchLabelIncl || '';
-		} else {
-			return switchLabelExcl || '';
 		}
+		return switchLabelExcl || '';
 	}
 
 	fireSwitchChangeEvent( isSwitched ) {
