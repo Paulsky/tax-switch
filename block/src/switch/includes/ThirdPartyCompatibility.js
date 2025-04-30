@@ -39,6 +39,10 @@ class ThirdPartyCompatibility {
 
 		const thirdPartyEvents = [
 			'jet-engine/listing-grid/after-load-more', //JetEngine Listing Grid 'infinity scroll' compatibility
+			'facetwp-loaded', //FacetWP compatibility
+			'experimental-flatsome-pjax-request-done', //Flatsome theme compatibility
+			'flatsome-relay-request-done', //Flatsome theme compatibility
+			'flatsome-infiniteScroll-append', //Flatsome theme compatibility
 		];
 
 		thirdPartyEvents.forEach( function ( eventName ) {

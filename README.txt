@@ -26,8 +26,15 @@ For more information about this plugin, please visit the [plugin page](https://p
 
 === Compatibility ===
 
-This plugin integrates with WooCommerce's standard filters and actions for price display and calculation. While most plugins work out of the box, some third-party plugins use custom price building methods that require specific compatibility integrations. The following plugins have been tested and confirmed compatible:
+This plugin integrates with WooCommerce's standard filters and actions for price display and calculation. While most plugins and themes work out of the box, some third-party code use custom price building methods that require specific compatibility integrations.
 
+The following themes have been tested and confirmed compatible:
+* GeneratePress
+* Blocksy
+* Thrive
+* Flatsome
+
+The following plugins have been tested and confirmed compatible:
 * WooCommerce Product Table Lite (+ PRO)
 * Tiered Pricing Table for WooCommerce (+ Premium)
 * Measurement Price Calculator for WooCommerce
@@ -38,8 +45,9 @@ This plugin integrates with WooCommerce's standard filters and actions for price
 * B2BKing – Ultimate WooCommerce Wholesale and B2B Solution (+ Premium)
 * Advanced Product Fields Pro for WooCommerce
 * WooCommerce Quantity Discounts, Rules & Swatches
+* FacetWP
 
-If you encounter any compatibility issues with other plugins, please let us know. Your feedback helps us improve the plugin and extend compatibility to more third-party solutions.
+If you encounter any compatibility issues with other plugins or themes, please let us know. Your feedback helps us improve the plugin and extend compatibility to more third-party solutions.
 
 === Incompatibility ===
 
@@ -157,8 +165,10 @@ Sometimes prices may not appear to change when toggled. This is often related to
 == Changelog ==
 = 1.5.0 =
 * Gutenberg block/shortcode for showing text about the currently selected tax setting. [See this topic](https://wordpress.org/support/topic/shortcode-for-wdevs-tax-switch-label-text/)
+* Compatibility for Flatsome theme
+* Compatibility for FacetWP
 * Tested WooCommerce 9.8.2
-* Possible breaking change: refactored the code base for registering multiple blocks
+* Possible breaking change: refactored the (block) code structure to support multiple blocks
 
 = 1.4.3 =
 * Tested WordPress 6.8.0

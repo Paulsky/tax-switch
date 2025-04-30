@@ -18,7 +18,7 @@
 		"start": "wp-scripts start --webpack-src-dir=block/src"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^30.7.0"
+		"@wordpress/scripts": "^30.15.0"
 	},
 	"dependencies": {
 		"@wordpress/data": "^10.22.0"

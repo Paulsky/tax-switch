@@ -158,6 +158,7 @@ This plugin is tested and compatible with the following:
 - GeneratePress
 - Blocksy
 - Thrive
+- Flatsome
 
 ### Plugins
 
@@ -171,6 +172,7 @@ This plugin is tested and compatible with the following:
 - B2BKing – Ultimate WooCommerce Wholesale and B2B Solution (+ Premium)
 - Advanced Product Fields Pro for WooCommerce
 - WooCommerce Quantity Discounts, Rules & Swatches
+- FacetWP
 
 If you encounter any conflicts with other themes or plugins, please report them by opening an issue or through our website.
 
