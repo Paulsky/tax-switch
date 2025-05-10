@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to the Tax Switch for WooCommerce plugin will be documented in this file.
 
+## [1.5.1] - 2025-05-10
+### Added
+- Option to hide the components on the cart and checkout pages
+
 ## [1.5.0] - 2025-04-26
 ### Added
 - Gutenberg block/shortcode for showing text about the currently selected tax setting. [See this topic](https://wordpress.org/support/topic/shortcode-for-wdevs-tax-switch-label-text/)

@@ -46,18 +46,39 @@ These instructions will guide you through the installation and basic setup of th
 
 ### Configuration
 
-Once activated, Tax Switch for WooCommerce requires minimal configuration:
+Configure the plugin settings below for proper functionality.
 
-1. Go to the Tax Switch for WooCommerce settings page located under the 'WooCommerce' menu in the WordPress admin area.
-2. Customize the text for including and excluding VAT.
-3. Save your changes.
+#### WooCommerce settings
 
-### WPML
+Ensure these WooCommerce settings are configured first:
 
-To translate the option texts via WPML:
+1. **Configure tax calculations**
+	- Go to: *WooCommerce > Settings > General*
+	- Verify your shop address is complete
+	- Enable *"Enable tax rates and calculations"*
+	- Set *"Default customer location"* to *"Shop base address"*
 
-1. Save your options first in: WooCommerce -> Settings -> Tax Switch
-2. Then translate the texts in: WPML -> String Translations and search for your option values in the domain 'tax-switch-for-woocommerce'
+2. **Set up tax rates**
+	- Go to: *WooCommerce > Settings > Tax > Standard Rates*
+	- Add your regional tax rates
+
+3. **Recommended: tax calculation method**
+	- Go to: *WooCommerce > Settings > Tax*
+	- Set *"Calculate tax based on"* to *"Shop base address"*
+	  *(This provides instant tax calculation. Other methods require customers to enter their address first.)*
+
+4. **Individual product configuration**
+	- Edit products at: *Products > [Product]*
+	- Under *Product Data > Tax*, set status to *"Taxable"*
+
+#### Plugin settings
+
+Configure these plugin-specific settings:
+
+1. **Main Settings**
+	- Go to: *WooCommerce > Settings > Tax Switch*
+	- Set your preferred text values
+	- Optional: Generate a shortcode via *WooCommerce > Settings > Tax Switch > Shortcode*
 
 
 ### Usage
@@ -136,7 +157,7 @@ You can use these shortcodes with PHP with the do_shortcode() function:
 <?php echo do_shortcode('[wdevs_tax_switch_label]'); ?>
 ```
 
-### JavaScript events
+#### JavaScript events
 
 The switch fires a JavaScript event when the tax display is toggled. You can listen for this event to execute custom code when a user switches between inclusive and exclusive tax display. This is useful for when you need to perform additional actions based on the tax display state.
 
@@ -148,6 +169,14 @@ document.addEventListener('wdevs-tax-switch-changed', function(event) {
 	// - displayIncludingVat: boolean - whether prices now display including VAT
 });
 ```
+
+### WPML
+
+To translate the option texts via WPML:
+
+1. Save your options first in: WooCommerce -> Settings -> Tax Switch
+2. Then translate the texts in: WPML -> String Translations and search for your option values in the domain 'tax-switch-for-woocommerce'
+
 
 ## Compatibility
 

@@ -72,8 +72,9 @@ class Wdevs_Tax_Switch_Block_Switch extends Wdevs_Tax_Switch_Block {
 	 * @since 1.0,0
 	 */
 	public function block_render_callback( $attributes = [], $content = '' ) {
-		if ( ! is_admin() ) {
-			$this->enqueue_frontend_scripts();
+		$shouldRender = $this->before_component_render();
+		if ( ! $shouldRender ) {
+			return '';
 		}
 
 		return $this->add_attributes_to_block( $attributes, $content );
@@ -83,8 +84,9 @@ class Wdevs_Tax_Switch_Block_Switch extends Wdevs_Tax_Switch_Block {
 	 * @since 1.0,0
 	 */
 	public function shortcode_render_callback( $attributes = [], $content = '' ) {
-		if ( ! is_admin() ) {
-			$this->enqueue_frontend_scripts();
+		$shouldRender = $this->before_component_render();
+		if ( ! $shouldRender ) {
+			return '';
 		}
 
 		$attributes = shortcode_atts( [

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tax Switch for WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-26 19:24+0200\n"
-"PO-Revision-Date: 2025-04-26 19:54+0200\n"
+"POT-Creation-Date: 2025-05-10 11:14+0200\n"
+"PO-Revision-Date: 2025-05-10 11:27+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -15,7 +15,8 @@ msgstr ""
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: wdevs-tax-switch.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-KeywordsList: "
+"__;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 "X-Poedit-SearchPathExcluded-1: node_modules\n"
@@ -34,8 +35,12 @@ msgid "Copy shortcode"
 msgstr "Kopiera shortcode"
 
 #: admin/partials/section-wdevs-tax-switch-shortcode.php:35
-msgid "Copy the generated shortcode and paste it where you want the tax switch to appear."
-msgstr "Kopiera den genererade shortcoden och klistra in den där du vill att momsswitchen ska visas."
+msgid ""
+"Copy the generated shortcode and paste it where you want the tax switch to "
+"appear."
+msgstr ""
+"Kopiera den genererade shortcoden och klistra in den där du vill att "
+"momsswitchen ska visas."
 
 #: admin/partials/section-wdevs-tax-switch-shortcode.php:48
 msgid "Close modal"
@@ -95,9 +100,9 @@ msgid "Including VAT label"
 msgstr "Inkl. moms etikett"
 
 #: admin/partials/section-wdevs-tax-switch-shortcode.php:126
-#: includes/class-wdevs-tax-switch-block-label.php:61
-#: includes/class-wdevs-tax-switch-block-label.php:78
-#: includes/class-wdevs-tax-switch-woocommerce.php:218
+#: includes/class-wdevs-tax-switch-block-label.php:62
+#: includes/class-wdevs-tax-switch-block-label.php:80
+#: includes/class-wdevs-tax-switch-woocommerce.php:222
 #: public/class-wdevs-tax-switch-public.php:138
 msgid "Incl. VAT"
 msgstr "Inkl. moms"
@@ -108,9 +113,9 @@ msgid "Excluding VAT label"
 msgstr "Exkl. moms etikett"
 
 #: admin/partials/section-wdevs-tax-switch-shortcode.php:136
-#: includes/class-wdevs-tax-switch-block-label.php:62
-#: includes/class-wdevs-tax-switch-block-label.php:79
-#: includes/class-wdevs-tax-switch-woocommerce.php:225
+#: includes/class-wdevs-tax-switch-block-label.php:63
+#: includes/class-wdevs-tax-switch-block-label.php:81
+#: includes/class-wdevs-tax-switch-woocommerce.php:229
 #: public/class-wdevs-tax-switch-public.php:139
 msgid "Excl. VAT"
 msgstr "Exkl. moms"
@@ -121,7 +126,8 @@ msgstr "CSS-klasser"
 
 #: admin/partials/section-wdevs-tax-switch-shortcode.php:147
 msgid "Options: is-style-default, is-style-inline or/and custom classes"
-msgstr "Alternativ: is-style-default, is-style-inline och/eller anpassade klasser"
+msgstr ""
+"Alternativ: is-style-default, is-style-inline och/eller anpassade klasser"
 
 #: admin/partials/section-wdevs-tax-switch-shortcode.php:156
 msgid "Generate shortcode"
@@ -131,9 +137,41 @@ msgstr "Generera shortcode"
 msgid "Copied"
 msgstr "Kopierad"
 
+#: block/src/label/edit.js:56
+msgid "Labels"
+msgstr "Etiketter"
+
+#: block/src/label/edit.js:81
+msgid "Label colors"
+msgstr "Etikett färger"
+
+#: block/src/label/edit.js:91
+msgid "Label excluding VAT color"
+msgstr "Etikett färg exklusive moms"
+
+#: block/src/label/edit.js:102
+msgid "Label including VAT color"
+msgstr "Etikett färg inklusive moms"
+
+#: block/src/switch/edit.js:60
+msgid "Display options"
+msgstr "Visningsalternativ"
+
+#: block/src/switch/edit.js:94
+msgid "Switch colors"
+msgstr "Byt färger"
+
+#: block/src/switch/edit.js:156
+msgid "Switch labels"
+msgstr "Byt etiketter"
+
 #: includes/class-wdevs-tax-switch-activator.php:36
-msgid "This plugin requires WooCommerce. Please install and activate WooCommerce before activating this plugin."
-msgstr "Det här tillägget kräver WooCommerce. Installera och aktivera WooCommerce innan du aktiverar detta tillägg."
+msgid ""
+"This plugin requires WooCommerce. Please install and activate WooCommerce "
+"before activating this plugin."
+msgstr ""
+"Det här tillägget kräver WooCommerce. Installera och aktivera WooCommerce "
+"innan du aktiverar detta tillägg."
 
 #: includes/class-wdevs-tax-switch-block-switch.php:56
 msgid "Inline style"
@@ -143,43 +181,51 @@ msgstr "Inline-stil"
 msgid "Tax switch"
 msgstr "Momsswitch"
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:165
+#: includes/class-wdevs-tax-switch-woocommerce.php:169
 msgid "Settings"
 msgstr "Inställningar"
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:166
+#: includes/class-wdevs-tax-switch-woocommerce.php:170
 msgid "Shortcode"
 msgstr "Shortcode"
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:208
+#: includes/class-wdevs-tax-switch-woocommerce.php:212
 msgid "Tax switch settings"
 msgstr "Inställningar för momsswitch"
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:210
+#: includes/class-wdevs-tax-switch-woocommerce.php:214
 msgid "Customize the tax switch settings."
 msgstr "Anpassa inställningarna för momsswitch."
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:214
+#: includes/class-wdevs-tax-switch-woocommerce.php:218
 msgid "Including VAT text"
 msgstr "Text för inklusive moms"
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:216
+#: includes/class-wdevs-tax-switch-woocommerce.php:220
 msgid "Text to append to prices including VAT."
 msgstr "Text som läggs till på priser inklusive moms."
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:221
+#: includes/class-wdevs-tax-switch-woocommerce.php:225
 msgid "Excluding VAT text"
 msgstr "Text för exklusive moms"
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:223
+#: includes/class-wdevs-tax-switch-woocommerce.php:227
 msgid "Text to append to prices excluding VAT."
 msgstr "Text som läggs till på priser exklusive moms."
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:245
+#: includes/class-wdevs-tax-switch-woocommerce.php:232
+msgid "Hide on cart and checkout pages"
+msgstr "Dölj på varukorgs- och kassasidor"
+
+#: includes/class-wdevs-tax-switch-woocommerce.php:234
+msgid "Hide switches/buttons on the cart and checkout pages"
+msgstr "Dölj bytar/knappar på varukorgs- och kassasidor"
+
+#: includes/class-wdevs-tax-switch-woocommerce.php:256
 msgid "Shortcode settings"
 msgstr "Shortcode-inställningar"
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:247
+#: includes/class-wdevs-tax-switch-woocommerce.php:258
 msgid "Generate a tax switch shortcode."
 msgstr "Generera en momsswitch shortcode."
 
@@ -192,8 +238,12 @@ msgid "https://wijnberg.dev"
 msgstr "https://wijnberg.dev"
 
 #. Description of the plugin/theme
-msgid "Let customers toggle between inclusive and exclusive VAT pricing in your WooCommerce store."
-msgstr "Låt kunder växla mellan priser inklusive och exklusive moms i din WooCommerce-butik."
+msgid ""
+"Let customers toggle between inclusive and exclusive VAT pricing in your "
+"WooCommerce store."
+msgstr ""
+"Låt kunder växla mellan priser inklusive och exklusive moms i din "
+"WooCommerce-butik."
 
 #. Author of the plugin/theme
 msgid "Wijnberg Developments"

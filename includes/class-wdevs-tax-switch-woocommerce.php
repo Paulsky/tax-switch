@@ -59,7 +59,7 @@ class Wdevs_Tax_Switch_Woocommerce {
 	 */
 	public function __construct( $plugin_name, $version ) {
 		$this->plugin_name = $plugin_name;
-		$this->version = $version;
+		$this->version     = $version;
 
 		$this->current_section = isset( $_GET['section'] ) ? sanitize_text_field( $_GET['section'] ) : '';
 
@@ -89,6 +89,7 @@ class Wdevs_Tax_Switch_Woocommerce {
 	 */
 	public function add_settings_tab( $settings_tabs ) {
 		$settings_tabs['wdevs_tax_switch'] = __( 'Tax switch', 'tax-switch-for-woocommerce' );
+
 		return $settings_tabs;
 	}
 
@@ -113,13 +114,13 @@ class Wdevs_Tax_Switch_Woocommerce {
 	 * @since    1.0.0
 	 */
 	public function settings_tab() {
-		if ($this->current_section === 'shortcode') {
+		if ( $this->current_section === 'shortcode' ) {
 			$GLOBALS['hide_save_button'] = true;
 		}
 
-		woocommerce_admin_fields($this->get_settings());
+		woocommerce_admin_fields( $this->get_settings() );
 
-		if ($this->current_section === 'shortcode') {
+		if ( $this->current_section === 'shortcode' ) {
 			include_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/partials/section-wdevs-tax-switch-shortcode.php';
 		}
 	}
@@ -148,7 +149,10 @@ class Wdevs_Tax_Switch_Woocommerce {
 		add_action( 'woocommerce_sections_wdevs_tax_switch', array( $this, 'output_sections' ) );
 
 		if ( ! empty( $this->current_section ) ) {
-			add_action( 'woocommerce_update_options_wdevs_tax_switch_' . $this->current_section, array( $this, 'update_settings' ) );
+			add_action( 'woocommerce_update_options_wdevs_tax_switch_' . $this->current_section, array(
+				$this,
+				'update_settings'
+			) );
 		} else {
 			add_action( 'woocommerce_update_options_wdevs_tax_switch', array( $this, 'update_settings' ) );
 		}
@@ -223,6 +227,13 @@ class Wdevs_Tax_Switch_Woocommerce {
 				'desc'        => __( 'Text to append to prices excluding VAT.', 'tax-switch-for-woocommerce' ),
 				'id'          => 'wdevs_tax_switch_excl_vat',
 				'placeholder' => __( 'Excl. VAT', 'tax-switch-for-woocommerce' )
+			),
+			array(
+				'name'    => __( 'Hide on cart and checkout pages', 'tax-switch-for-woocommerce' ),
+				'type'    => 'checkbox',
+				'desc'    => __( 'Hide switches/buttons on the cart and checkout pages', 'tax-switch-for-woocommerce' ),
+				'id'      => 'wdevs_tax_switch_hide_on_checkout',
+				'default' => 'no'
 			),
 			array(
 				'type' => 'sectionend',

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Tax Switch for WooCommerce\n"
-"POT-Creation-Date: 2025-04-26 19:55+0200\n"
-"PO-Revision-Date: 2025-04-26 19:56+0200\n"
+"POT-Creation-Date: 2025-05-10 11:07+0200\n"
+"PO-Revision-Date: 2025-05-10 11:27+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -98,9 +98,9 @@ msgid "Including VAT label"
 msgstr "Including VAT label"
 
 #: admin/partials/section-wdevs-tax-switch-shortcode.php:126
-#: includes/class-wdevs-tax-switch-block-label.php:61
-#: includes/class-wdevs-tax-switch-block-label.php:78
-#: includes/class-wdevs-tax-switch-woocommerce.php:218
+#: includes/class-wdevs-tax-switch-block-label.php:62
+#: includes/class-wdevs-tax-switch-block-label.php:80
+#: includes/class-wdevs-tax-switch-woocommerce.php:222
 #: public/class-wdevs-tax-switch-public.php:138
 msgid "Incl. VAT"
 msgstr "Incl. VAT"
@@ -111,9 +111,9 @@ msgid "Excluding VAT label"
 msgstr "Excluding VAT label"
 
 #: admin/partials/section-wdevs-tax-switch-shortcode.php:136
-#: includes/class-wdevs-tax-switch-block-label.php:62
-#: includes/class-wdevs-tax-switch-block-label.php:79
-#: includes/class-wdevs-tax-switch-woocommerce.php:225
+#: includes/class-wdevs-tax-switch-block-label.php:63
+#: includes/class-wdevs-tax-switch-block-label.php:81
+#: includes/class-wdevs-tax-switch-woocommerce.php:229
 #: public/class-wdevs-tax-switch-public.php:139
 msgid "Excl. VAT"
 msgstr "Excl. VAT"
@@ -178,43 +178,51 @@ msgstr "Inline style"
 msgid "Tax switch"
 msgstr "Tax switch"
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:165
+#: includes/class-wdevs-tax-switch-woocommerce.php:169
 msgid "Settings"
 msgstr "Settings"
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:166
+#: includes/class-wdevs-tax-switch-woocommerce.php:170
 msgid "Shortcode"
 msgstr "Shortcode"
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:208
+#: includes/class-wdevs-tax-switch-woocommerce.php:212
 msgid "Tax switch settings"
 msgstr "Tax switch settings"
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:210
+#: includes/class-wdevs-tax-switch-woocommerce.php:214
 msgid "Customize the tax switch settings."
 msgstr "Customize the tax switch settings."
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:214
+#: includes/class-wdevs-tax-switch-woocommerce.php:218
 msgid "Including VAT text"
 msgstr "Including VAT text"
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:216
+#: includes/class-wdevs-tax-switch-woocommerce.php:220
 msgid "Text to append to prices including VAT."
 msgstr "Text to append to prices including VAT."
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:221
+#: includes/class-wdevs-tax-switch-woocommerce.php:225
 msgid "Excluding VAT text"
 msgstr "Excluding VAT text"
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:223
+#: includes/class-wdevs-tax-switch-woocommerce.php:227
 msgid "Text to append to prices excluding VAT."
 msgstr "Text to append to prices excluding VAT."
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:245
+#: includes/class-wdevs-tax-switch-woocommerce.php:232
+msgid "Hide on cart and checkout pages"
+msgstr "Hide on cart and checkout pages"
+
+#: includes/class-wdevs-tax-switch-woocommerce.php:234
+msgid "Hide switches/buttons on the cart and checkout pages"
+msgstr "Hide switches/buttons on the cart and checkout pages"
+
+#: includes/class-wdevs-tax-switch-woocommerce.php:256
 msgid "Shortcode settings"
 msgstr "Shortcode settings"
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:247
+#: includes/class-wdevs-tax-switch-woocommerce.php:258
 msgid "Generate a tax switch shortcode."
 msgstr "Generate a tax switch shortcode."
 

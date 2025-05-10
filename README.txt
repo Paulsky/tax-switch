@@ -3,7 +3,7 @@ Contributors: wijnbergdevelopments
 Tags: woocommerce, tax, vat
 Requires at least: 5.0
 Tested up to: 6.8
-Stable tag: 1.5.0
+Stable tag: 1.5.1
 Requires PHP: 7.2
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
@@ -24,48 +24,46 @@ Tax Switch for WooCommerce enhances your WooCommerce store by allowing users to 
 
 For more information about this plugin, please visit the [plugin page](https://products.wijnberg.dev/product/wordpress/plugins/tax-switch-for-woocommerce/).
 
-=== Compatibility ===
-
-This plugin integrates with WooCommerce's standard filters and actions for price display and calculation. While most plugins and themes work out of the box, some third-party code use custom price building methods that require specific compatibility integrations.
-
-The following themes have been tested and confirmed compatible:
-* GeneratePress
-* Blocksy
-* Thrive
-* Flatsome
-
-The following plugins have been tested and confirmed compatible:
-* WooCommerce Product Table Lite (+ PRO)
-* Tiered Pricing Table for WooCommerce (+ Premium)
-* Measurement Price Calculator for WooCommerce
-* Discount Rules for WooCommerce
-* YITH WooCommerce Product Add-Ons (+ & Extra Options Premium)
-* JetEngine Listing Grid (Elementor)
-* Product Add-Ons for WooCommerce
-* B2BKing – Ultimate WooCommerce Wholesale and B2B Solution (+ Premium)
-* Advanced Product Fields Pro for WooCommerce
-* WooCommerce Quantity Discounts, Rules & Swatches
-* FacetWP
-
-If you encounter any compatibility issues with other plugins or themes, please let us know. Your feedback helps us improve the plugin and extend compatibility to more third-party solutions.
-
-=== Incompatibility ===
-
-After multiple attempts to create compatibility functions, reaching out to the plugin developers several times, and still finding no viable solution, the following plugins remain incompatible:
-
-* Unlimited Elements for Elementor (+ Pro): AJAX pagination and filtering issues
-
-=== WPML ===
-
-To translate the option texts via WPML:
-
-1. Save your options first in: WooCommerce -> Settings -> Tax Switch
-2. Then translate the texts in: WPML -> String Translations and search for your option values in the domain 'tax-switch-for-woocommerce'
-
 === Requirements ===
 
 * WooCommerce plugin installed and activated
 * WooCommerce tax calculations enabled and configured
+
+=== Configuration ===
+
+Configure the plugin settings below for proper functionality.
+
+= WooCommerce settings =
+
+Ensure these WooCommerce settings are configured first:
+
+1. **Configure tax calculations**
+   - Go to: *WooCommerce > Settings > General*
+   - Verify your shop address is complete
+   - Enable *"Enable tax rates and calculations"*
+   - Set *"Default customer location"* to *"Shop base address"*
+
+2. **Set up tax rates**
+   - Go to: *WooCommerce > Settings > Tax > Standard Rates*
+   - Add your regional tax rates
+
+3. **Recommended: tax calculation method**
+   - Go to: *WooCommerce > Settings > Tax*
+   - Set *"Calculate tax based on"* to *"Shop base address"*
+   *(This provides instant tax calculation. Other methods require customers to enter their address first.)*
+
+4. **Individual product configuration**
+   - Edit products at: *Products > [Product]*
+   - Under *Product Data > Tax*, set status to *"Taxable"*
+
+= Plugin settings =
+
+Configure these plugin-specific settings:
+
+1. **Main Settings**
+   - Go to: *WooCommerce > Settings > Tax Switch*
+   - Set your preferred text values
+   - Optional: Generate a shortcode via *WooCommerce > Settings > Tax Switch > Shortcode*
 
 === Usage ===
 
@@ -76,10 +74,12 @@ After installation and configuration, you can add the tax switch to your pages i
 
 = Shortcode Usage =
 
-== Switch/buttons ==
+**Switch/buttons**
 
 Basic usage:
 [wdevs_tax_switch]
+
+Displays a switch to toggle displaying prices including or excluding VAT.
 
 The shortcode accepts several attributes to customize its appearance and behavior:
 
@@ -103,16 +103,16 @@ Example with custom attributes:
 
 `[wdevs_tax_switch class-name="is-style-inline" switch-type="switch" switch-color="#ffffff" switch-color-checked="#000000" switch-background-color="#000000" switch-background-color-checked="#4CAF50" switch-text-color="#FF0000" switch-label-incl="Incl. tax" switch-label-excl="Excl. tax"]`
 
-This will display an inline-style switch with a white handle that turns black when on, a black background when off, green background when on, and custom labels for including and excluding tax.
 
-== Label ==
+**Label**
 
 Basic usage:
 [wdevs_tax_switch_label]
 
 Displays text indicating the currently selected tax setting. The text updates automatically when the tax switch is toggled.
 
-Attributes:
+The shortcode accepts several attributes to customize its appearance and behavior:
+
 * `class-name`: Adds custom CSS classes to the label.
     - Default: is-style-default
     - Options: is-style-default or custom classes
@@ -124,18 +124,21 @@ Attributes:
 * `label-text-color-checked`: Sets the "including VAT" text color.
 
 Example with custom attributes:
+
 `[wdevs_tax_switch_label class-name="tax-indicator" label-text-incl="Prices include tax" label-text-excl="Prices exclude tax" label-text-color="#FF0000" label-text-color-checked="#4CAF50"]`
 
-== PHP implementation ==
+
+= PHP implementation =
 
 You can use these shortcodes with PHP with the do_shortcode() function:
 
 `<?php echo do_shortcode('[wdevs_tax_switch]'); ?>`
 `<?php echo do_shortcode('[wdevs_tax_switch_label]'); ?>`
 
+
 = JavaScript events =
 
-The switch fires a JavaScript event when the tax display is toggled. You can listen for this event to execute custom code when a user switches between inclusive and exclusive tax display. This is useful for when you need to perform additional actions based on the tax display state.
+The switch fires a JavaScript event when the tax display is toggled. You can listen for this event to execute custom code when a user switches between inclusive and exclusive VAT display. This is useful for when you need to perform additional actions based on the tax display state.
 
 `
 document.addEventListener('wdevs-tax-switch-changed', function(event) {
@@ -146,11 +149,53 @@ document.addEventListener('wdevs-tax-switch-changed', function(event) {
  });
 `
 
+=== WPML ===
+
+To translate the option texts via WPML:
+
+1. Save your options first in: WooCommerce -> Settings -> Tax Switch
+2. Then translate the texts in: WPML -> String Translations and search for your option values in the domain 'tax-switch-for-woocommerce'
+
+=== Compatibility ===
+
+This plugin integrates with WooCommerce's standard filters and actions for price display and calculation. While most plugins and themes work out of the box, some third-party code use custom price building methods that require specific compatibility integrations.
+
+The following themes have been tested and confirmed compatible:
+
+* GeneratePress
+* Blocksy
+* Thrive
+* Flatsome
+
+The following plugins have been tested and confirmed compatible:
+
+* WooCommerce Product Table Lite (+ PRO)
+* Tiered Pricing Table for WooCommerce (+ Premium)
+* Measurement Price Calculator for WooCommerce
+* Discount Rules for WooCommerce
+* YITH WooCommerce Product Add-Ons (+ & Extra Options Premium)
+* JetEngine Listing Grid (Elementor)
+* Product Add-Ons for WooCommerce
+* B2BKing – Ultimate WooCommerce Wholesale and B2B Solution (+ Premium)
+* Advanced Product Fields Pro for WooCommerce
+* WooCommerce Quantity Discounts, Rules & Swatches
+* FacetWP
+
+If you encounter any compatibility issues with other plugins or themes, please let us know. Your feedback helps us improve the plugin and extend compatibility to more third-party solutions.
+
+=== Incompatibility ===
+
+After multiple attempts to create compatibility functions, reaching out to the plugin developers several times, and still finding no viable solution, the following plugins remain incompatible:
+
+* Unlimited Elements for Elementor (+ Pro): AJAX pagination and filtering issues
+* Barn2: WooCommerce Product Options
+
+
 == Installation ==
 
-1. Upload the plugin files to the `/wp-content/plugins/tax-switch-for-woocommerce` directory, or install the plugin through the WordPress plugins screen directly.
+1. Install the plugin through the WordPress plugins screen directly or Upload the plugin files to the `/wp-content/plugins/tax-switch-for-woocommerce` directory.
 2. Activate the plugin through the 'Plugins' screen in WordPress.
-3. Use the WooCommerce -> Settings -> Tax Switch screen to configure the plugin.
+3. Configure your settings as described in the 'Configuration' section.
 
 == Frequently Asked Questions ==
 
@@ -162,7 +207,20 @@ Some WooCommerce Blocks are not fully compatible with this plugin as they do not
 
 Sometimes prices may not appear to change when toggled. This is often related to WooCommerce tax settings. If possible, select 'Shop based' in WooCommerce → Settings → Tax → "Calculate tax based on". Otherwise, WooCommerce requires a billing/shipping address to calculate taxes, which is typically only available after login or during checkout.
 
+= Why don't prices update in the cart/checkout when switching? =
+
+The plugin is designed to keep prices consistent in the cart and checkout process. There are two main reasons for this:
+
+1. **Customer clarity**: This ensures visitors always see the exact final amount they'll pay, without unexpected changes during checkout.
+2. **Technical simplicity**: While dynamic price switching could be implemented, it would require compatibility with various third-party cart/checkout plugins. The focus is, at the moment, on maintaining a lightweight and reliable solution rather than this specific feature.
+
+Most plugin users choose to hide the switch/buttons in cart/checkout pages altogether for a distraction-free purchasing process.
+
+
 == Changelog ==
+= 1.5.1 =
+* Added option to hide the components on the cart and checkout pages
+
 = 1.5.0 =
 * Gutenberg block/shortcode for showing text about the currently selected tax setting. [See this topic](https://wordpress.org/support/topic/shortcode-for-wdevs-tax-switch-label-text/)
 * Compatibility for Flatsome theme
