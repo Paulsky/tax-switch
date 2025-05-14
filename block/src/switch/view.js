@@ -2,6 +2,7 @@ import { render, Suspense } from '@wordpress/element';
 import SwitchComponent from './components/SwitchComponent';
 import TaxSwitchHelper from '../shared/TaxSwitchHelper';
 import ThirdPartyCompatibility from './includes/ThirdPartyCompatibility';
+import { shouldBeEnabled } from '../shared/utils/render';
 
 const renderSwitchComponent = ( element, ajaxConfig ) => {
 	const attributes = {
@@ -23,6 +24,10 @@ const initPage = ( viewConfig ) => {
 };
 
 window.addEventListener( 'DOMContentLoaded', () => {
+	if ( ! shouldBeEnabled() ) {
+		return;
+	}
+
 	const elements = document.querySelectorAll( '.wp-block-wdevs-tax-switch' );
 
 	if ( elements.length > 0 ) {

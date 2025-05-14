@@ -103,53 +103,6 @@ class SwitchComponent extends Component {
 		document.dispatchEvent( switchEvent );
 	}
 
-	renderToggleSwitch() {
-		const {
-			switchColor,
-			switchColorChecked,
-			switchBackgroundColor,
-			switchBackgroundColorChecked,
-			switchTextColor,
-			switchLabelIncl,
-			switchLabelExcl,
-		} = this.props;
-
-		const isChecked = this.displayIncludingVat();
-		const showLabel = switchLabelIncl || switchLabelExcl;
-
-		return (
-			<div
-				className="wdevs-tax-switch"
-				style={ {
-					'--wts-color': switchColor,
-					'--wts-color-checked': switchColorChecked,
-					'--wts-bg-color': switchBackgroundColor,
-					'--wts-bg-color-checked': switchBackgroundColorChecked,
-					'--wts-text-color': switchTextColor,
-				} }
-			>
-				<label className="wdevs-tax-switch-label">
-					<input
-						type="checkbox"
-						name="wdevs-tax-switch-checkbox"
-						onChange={ this.handleChange }
-						checked={ isChecked }
-						className="wdevs-tax-switch-checkbox"
-					/>
-					<span className="wdevs-tax-switch-slider"></span>
-				</label>
-				{ showLabel && (
-					<span
-						className="wdevs-tax-switch-label-text"
-						onClick={ this.handleChange }
-					>
-						{ this.getCurrentLabel() }
-					</span>
-				) }
-			</div>
-		);
-	}
-
 	renderButtons() {
 		const {
 			switchColor,
@@ -204,6 +157,53 @@ class SwitchComponent extends Component {
 				>
 					{ switchLabelExcl || 'Excl. VAT' }
 				</button>
+			</div>
+		);
+	}
+
+	renderToggleSwitch() {
+		const {
+			switchColor,
+			switchColorChecked,
+			switchBackgroundColor,
+			switchBackgroundColorChecked,
+			switchTextColor,
+			switchLabelIncl,
+			switchLabelExcl,
+		} = this.props;
+
+		const isChecked = this.displayIncludingVat();
+		const showLabel = switchLabelIncl || switchLabelExcl;
+
+		return (
+			<div
+				className="wdevs-tax-switch"
+				style={ {
+					'--wts-color': switchColor,
+					'--wts-color-checked': switchColorChecked,
+					'--wts-bg-color': switchBackgroundColor,
+					'--wts-bg-color-checked': switchBackgroundColorChecked,
+					'--wts-text-color': switchTextColor,
+				} }
+			>
+				<label className="wdevs-tax-switch-label">
+					<input
+						type="checkbox"
+						name="wdevs-tax-switch-checkbox"
+						onChange={ this.handleChange }
+						checked={ isChecked }
+						className="wdevs-tax-switch-checkbox"
+					/>
+					<span className="wdevs-tax-switch-slider"></span>
+				</label>
+				{ showLabel && (
+					<span
+						className="wdevs-tax-switch-label-text"
+						onClick={ this.handleChange }
+					>
+						{ this.getCurrentLabel() }
+					</span>
+				) }
 			</div>
 		);
 	}

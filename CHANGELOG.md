@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to the Tax Switch for WooCommerce plugin will be documented in this file.
 
+## [1.5.2] - 2025-05-14
+### Added
+- Option to disable the components on WooCommerce pages or pages without prices
+- Disable price changes in WooCommerce table total rows
+- Fix for WooCommerce text tax labels
+### Updated
+- Possible breaking change: always disable components on the cart and checkout pages. Undo previous (1.5.1) opt-in function.
+
 ## [1.5.1] - 2025-05-10
 ### Added
 - Option to hide the components on the cart and checkout pages

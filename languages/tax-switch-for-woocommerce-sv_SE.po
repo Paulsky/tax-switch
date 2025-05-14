@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tax Switch for WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-10 11:14+0200\n"
-"PO-Revision-Date: 2025-05-10 11:27+0200\n"
+"POT-Creation-Date: 2025-05-14 17:50+0200\n"
+"PO-Revision-Date: 2025-05-14 17:53+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -103,7 +103,7 @@ msgstr "Inkl. moms etikett"
 #: includes/class-wdevs-tax-switch-block-label.php:62
 #: includes/class-wdevs-tax-switch-block-label.php:80
 #: includes/class-wdevs-tax-switch-woocommerce.php:222
-#: public/class-wdevs-tax-switch-public.php:138
+#: public/class-wdevs-tax-switch-public.php:146
 msgid "Incl. VAT"
 msgstr "Inkl. moms"
 
@@ -116,7 +116,7 @@ msgstr "Exkl. moms etikett"
 #: includes/class-wdevs-tax-switch-block-label.php:63
 #: includes/class-wdevs-tax-switch-block-label.php:81
 #: includes/class-wdevs-tax-switch-woocommerce.php:229
-#: public/class-wdevs-tax-switch-public.php:139
+#: public/class-wdevs-tax-switch-public.php:147
 msgid "Excl. VAT"
 msgstr "Exkl. moms"
 
@@ -213,19 +213,53 @@ msgstr "Text för exklusive moms"
 msgid "Text to append to prices excluding VAT."
 msgstr "Text som läggs till på priser exklusive moms."
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:232
-msgid "Hide on cart and checkout pages"
-msgstr "Dölj på varukorgs- och kassasidor"
+#: includes/class-wdevs-tax-switch-woocommerce.php:240
+msgid "Where enabled"
+msgstr "Där aktiverat"
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:234
-msgid "Hide switches/buttons on the cart and checkout pages"
-msgstr "Dölj bytar/knappar på varukorgs- och kassasidor"
+#: includes/class-wdevs-tax-switch-woocommerce.php:245
+msgid "On all pages"
+msgstr "På alla sidor"
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:256
+#: includes/class-wdevs-tax-switch-woocommerce.php:246
+msgid "Only on WooCommerce pages"
+msgstr "Endast på WooCommerce-sidor"
+
+#: includes/class-wdevs-tax-switch-woocommerce.php:247
+msgid "Only on pages displaying prices"
+msgstr "Endast på sidor som visar priser"
+
+#: includes/class-wdevs-tax-switch-woocommerce.php:249
+msgid ""
+"WooCommerce pages include: product archives/categories, single product pages "
+"and account pages."
+msgstr ""
+"WooCommerce-sidor inkluderar: produktarkiv/kategorier, enskilda produktsidor "
+"och kontosidor."
+
+#: includes/class-wdevs-tax-switch-woocommerce.php:251
+msgid ""
+"<strong>On all pages:</strong> On all pages where a Tax Switch block/"
+"shortcode is placed.<br /><strong>Only on WooCommerce pages:</strong> Hidden "
+"on pages that are not part of the store. Stops rendering completely.<br /"
+"><strong>Only on pages displaying prices:</strong> Hidden on pages that do "
+"not display any prices. Renders, but hides the components (slightly slower)."
+"<br/><br/><strong>Tax Switch blocks/shortcodes are always hidden on the cart "
+"and checkout pages.</strong>"
+msgstr ""
+"<strong>På alla sidor:</strong> På alla sidor där ett Tax Switch-block/"
+"shortcode är placerat.<br /><strong>Endast på WooCommerce-sidor:</strong> "
+"Döljs på sidor som inte är en del av butiken. Slutar rendera helt.<br /"
+"><strong>Endast på sidor som visar priser:</strong> Döljs på sidor som inte "
+"visar några priser. Renderar fortfarande men döljer komponenterna (något "
+"långsammare).<br /><br /><strong>Tax Switch-block/shortcodes är alltid dolda "
+"på varukorgs- och kassasidorna.</strong>"
+
+#: includes/class-wdevs-tax-switch-woocommerce.php:274
 msgid "Shortcode settings"
 msgstr "Shortcode-inställningar"
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:258
+#: includes/class-wdevs-tax-switch-woocommerce.php:276
 msgid "Generate a tax switch shortcode."
 msgstr "Generera en momsswitch shortcode."
 
@@ -252,3 +286,9 @@ msgstr "Wijnberg Developments"
 #. Author URI of the plugin/theme
 msgid "https://wijnberg.dev/"
 msgstr "https://wijnberg.dev/"
+
+#~ msgid "Hide on cart and checkout pages"
+#~ msgstr "Dölj på varukorgs- och kassasidor"
+
+#~ msgid "Hide switches/buttons on the cart and checkout pages"
+#~ msgstr "Dölj bytar/knappar på varukorgs- och kassasidor"

@@ -75,7 +75,7 @@ Ensure these WooCommerce settings are configured first:
 
 Configure these plugin-specific settings:
 
-1. **Main Settings**
+1. **Main settings**
 	- Go to: *WooCommerce > Settings > Tax Switch*
 	- Set your preferred text values
 	- Optional: Generate a shortcode via *WooCommerce > Settings > Tax Switch > Shortcode*

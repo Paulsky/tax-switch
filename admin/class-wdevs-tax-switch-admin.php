@@ -64,12 +64,14 @@ class Wdevs_Tax_Switch_Admin {
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( dirname( __FILE__ ) ) . 'includes/assets/css/wdevs-tax-switch-shared.css', array(), $this->version );
 
 		$original_tax_display = $this->get_original_tax_display();
+		$check_price_elements = false;
 
 		wp_localize_script(
 			'wdevs-tax-switch-editor-script',
 			'wtsEditorObject',
 			[
-				'originalTaxDisplay' => $original_tax_display
+				'originalTaxDisplay' => $original_tax_display,
+				'checkPriceElements' => $check_price_elements
 			]
 		);
 
@@ -77,7 +79,8 @@ class Wdevs_Tax_Switch_Admin {
 			'wdevs-tax-switch-label-editor-script',
 			'wtsEditorObject',
 			[
-				'originalTaxDisplay' => $original_tax_display
+				'originalTaxDisplay' => $original_tax_display,
+				'checkPriceElements' => $check_price_elements
 			]
 		);
 

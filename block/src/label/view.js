@@ -1,5 +1,6 @@
 import { render, Suspense } from '@wordpress/element';
 import LabelComponent from './components/LabelComponent';
+import { shouldBeEnabled } from '../shared/utils/render';
 
 const renderLabelComponent = ( element, ajaxConfig ) => {
 	const attributes = {
@@ -16,6 +17,10 @@ const renderLabelComponent = ( element, ajaxConfig ) => {
 };
 
 window.addEventListener( 'DOMContentLoaded', () => {
+	if ( ! shouldBeEnabled() ) {
+		return;
+	}
+
 	const elements = document.querySelectorAll(
 		'.wp-block-wdevs-tax-switch-label'
 	);

@@ -3,7 +3,7 @@ Contributors: wijnbergdevelopments
 Tags: woocommerce, tax, vat
 Requires at least: 5.0
 Tested up to: 6.8
-Stable tag: 1.5.1
+Stable tag: 1.5.2
 Requires PHP: 7.2
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
@@ -60,7 +60,7 @@ Ensure these WooCommerce settings are configured first:
 
 Configure these plugin-specific settings:
 
-1. **Main Settings**
+1. **Main settings**
    - Go to: *WooCommerce > Settings > Tax Switch*
    - Set your preferred text values
    - Optional: Generate a shortcode via *WooCommerce > Settings > Tax Switch > Shortcode*
@@ -214,10 +214,14 @@ The plugin is designed to keep prices consistent in the cart and checkout proces
 1. **Customer clarity**: This ensures visitors always see the exact final amount they'll pay, without unexpected changes during checkout.
 2. **Technical simplicity**: While dynamic price switching could be implemented, it would require compatibility with various third-party cart/checkout plugins. The focus is, at the moment, on maintaining a lightweight and reliable solution rather than this specific feature.
 
-Most plugin users choose to hide the switch/buttons in cart/checkout pages altogether for a distraction-free purchasing process.
-
 
 == Changelog ==
+= 1.5.2 =
+* Fix for WooCommerce text tax labels
+* Disable price changes in WooCommerce table total rows
+* Added option to disable the components on WooCommerce pages or pages without prices
+* Possible breaking change: always disable components on the cart and checkout pages. Undo previous (1.5.1) opt-in function.
+
 = 1.5.1 =
 * Added option to hide the components on the cart and checkout pages
 

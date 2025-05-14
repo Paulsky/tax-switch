@@ -39,8 +39,8 @@ class Wdevs_Tax_Switch_Block_Label extends Wdevs_Tax_Switch_Block {
 	 * @since 1.5.0
 	 */
 	public function block_render_callback( $attributes = [], $content = '' ) {
-		$shouldRender = $this->before_component_render();
-		if ( ! $shouldRender ) {
+		$should_render = $this->before_component_render();
+		if ( ! $should_render ) {
 			return '';
 		}
 
@@ -70,8 +70,8 @@ class Wdevs_Tax_Switch_Block_Label extends Wdevs_Tax_Switch_Block {
 	 * @since 1.5.0
 	 */
 	public function shortcode_render_callback( $attributes = [], $content = '' ) {
-		$shouldRender = $this->before_component_render();
-		if ( ! $shouldRender ) {
+		$should_render = $this->before_component_render();
+		if ( ! $should_render ) {
 			return '';
 		}
 
@@ -121,11 +121,14 @@ class Wdevs_Tax_Switch_Block_Label extends Wdevs_Tax_Switch_Block {
 			wp_enqueue_script( 'wdevs-tax-switch-label-view-script' );
 
 			$original_tax_display = $this->get_original_tax_display();
+			$check_price_elements = $this->should_hide_on_non_price_pages();
+
 			wp_localize_script(
 				'wdevs-tax-switch-label-view-script',
 				'wtsViewObject',
 				[
-					'originalTaxDisplay' => $original_tax_display
+					'originalTaxDisplay' => $original_tax_display,
+					'checkPriceElements' => $check_price_elements
 				]
 			);
 

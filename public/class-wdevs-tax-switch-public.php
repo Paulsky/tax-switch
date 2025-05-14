@@ -79,6 +79,10 @@ class Wdevs_Tax_Switch_Public {
 			return $return;
 		}
 
+		if ( $this->should_hide_on_current_page() ) {
+			return $return;
+		}
+
 		//already wrapped?
 //		if ( str_contains( $return, 'wts-price-wrapper' ) ) {
 //			return $return;
@@ -124,6 +128,10 @@ class Wdevs_Tax_Switch_Public {
 			return $price_html;
 		}
 
+		if ( $this->should_hide_on_current_page() ) {
+			return $price_html;
+		}
+
 		//Temporarily disable this filter and function to prevent infinite loop
 		//Is this still needed?
 		//remove_filter( 'woocommerce_get_price_html', [ $this, 'get_price_html' ], PHP_INT_MIN );
@@ -156,6 +164,55 @@ class Wdevs_Tax_Switch_Public {
 		return $html;
 	}
 
+	/**
+	 * @since 1.5.2
+	 */
+	public function wrap_inc_label($text) {
+		return $this->wrap_tax_label($text, 'inc');
+	}
+
+	/**
+	 * @since 1.5.2
+	 */
+	public function wrap_ex_label($text) {
+		return $this->wrap_tax_label($text, 'ex');
+	}
+
+	/**
+	 * Helper function to handle both tax label cases
+	 *
+	 * @since 1.5.2
+	 * @param string $text The label text
+	 * @param string $type Either 'inc' or 'ex' for including/excluding tax
+	 * @return string
+	 */
+	protected function wrap_tax_label($text, $type) {
+		if (empty(trim($text))) {
+			return $text;
+		}
+
+		// Temporarily disable the opposite filter to prevent infinite loop
+		$opposite_filter = ($type === 'inc') ? 'woocommerce_countries_ex_tax_or_vat' : 'woocommerce_countries_inc_tax_or_vat';
+		$opposite_callback = ($type === 'inc') ? 'wrap_ex_label' : 'wrap_inc_label';
+
+		remove_filter($opposite_filter, [$this, $opposite_callback], PHP_INT_MAX);
+
+		$opposite_label = ($type === 'inc')
+			? WC()->countries->ex_tax_or_vat()
+			: WC()->countries->inc_tax_or_vat();
+
+		add_filter($opposite_filter, [$this, $opposite_callback], PHP_INT_MAX, 1);
+		//Re-enable this filter and function
+
+		$shop_prices_include_tax = $this->shop_displays_price_including_tax_by_default();
+
+		return $this->combine_price_displays(
+			$text,
+			$opposite_label,
+			($type === 'inc') ? $shop_prices_include_tax : !$shop_prices_include_tax
+		);
+	}
+
 
 	/**
 	 * @return bool
@@ -165,6 +222,11 @@ class Wdevs_Tax_Switch_Public {
 
 		//compatibility with YITH WooCommerce Product Add Ons select
 		if ( did_filter( 'yith_wapo_option_price' ) ) {
+			return true;
+		}
+
+		//disable in the total table row. The total, is the total what the customer paid. So this is absolute.
+		if ( did_filter( 'woocommerce_order_get_total' ) ) {
 			return true;
 		}
 

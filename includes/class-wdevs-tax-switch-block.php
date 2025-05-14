@@ -120,24 +120,20 @@ abstract class Wdevs_Tax_Switch_Block {
 	/**
 	 * @since 1.5,1
 	 */
-	protected function before_component_render(){
+	protected function before_component_render() {
 		if ( ! is_admin() ) {
-			if ( $this->should_hide_on_checkout() ) {
-				if ( is_cart() || is_checkout() ) {
-					return false;
-				}
+
+			if ( $this->is_in_cart_or_checkout() ) {
+				return false;
 			}
+
+			if ( $this->should_hide_on_current_page() ) {
+				return false;
+			}
+
 			$this->enqueue_frontend_scripts();
 		}
 
 		return true;
 	}
-
-	/**
-	 * @since 1.5,1
-	 */
-	protected function should_hide_on_checkout() {
-		return ( get_option( 'wdevs_tax_switch_hide_on_checkout', 'no' ) === 'yes' );
-	}
-
 }

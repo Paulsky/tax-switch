@@ -157,7 +157,6 @@ class Wdevs_Tax_Switch {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wdevs-tax-switch-block.php';
 
-
 		/**
 		 * The class responsible for the shortcode and Gutenberg block rendering of the Switch component
 		 */
@@ -228,6 +227,8 @@ class Wdevs_Tax_Switch {
 
 			$this->loader->add_filter( 'wc_price', $plugin_public, 'wrap_wc_price', PHP_INT_MAX, 5 );
 			$this->loader->add_filter( 'woocommerce_get_price_html', $plugin_public, 'get_price_html', PHP_INT_MIN, 2 );
+			$this->loader->add_filter( 'woocommerce_countries_inc_tax_or_vat', $plugin_public, 'wrap_inc_label', PHP_INT_MAX, 1 );
+			$this->loader->add_filter( 'woocommerce_countries_ex_tax_or_vat', $plugin_public, 'wrap_ex_label', PHP_INT_MAX, 1 );
 		}
 	}
 

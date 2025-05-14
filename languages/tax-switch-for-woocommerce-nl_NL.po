@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tax Switch for WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-10 11:10+0200\n"
-"PO-Revision-Date: 2025-05-10 11:27+0200\n"
+"POT-Creation-Date: 2025-05-14 17:46+0200\n"
+"PO-Revision-Date: 2025-05-14 17:50+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -103,7 +103,7 @@ msgstr "Label inclusief btw"
 #: includes/class-wdevs-tax-switch-block-label.php:62
 #: includes/class-wdevs-tax-switch-block-label.php:80
 #: includes/class-wdevs-tax-switch-woocommerce.php:222
-#: public/class-wdevs-tax-switch-public.php:138
+#: public/class-wdevs-tax-switch-public.php:146
 msgid "Incl. VAT"
 msgstr "Incl. btw"
 
@@ -116,7 +116,7 @@ msgstr "Label exclusief btw"
 #: includes/class-wdevs-tax-switch-block-label.php:63
 #: includes/class-wdevs-tax-switch-block-label.php:81
 #: includes/class-wdevs-tax-switch-woocommerce.php:229
-#: public/class-wdevs-tax-switch-public.php:139
+#: public/class-wdevs-tax-switch-public.php:147
 msgid "Excl. VAT"
 msgstr "Excl. btw"
 
@@ -212,19 +212,54 @@ msgstr "Tekst exclusief btw"
 msgid "Text to append to prices excluding VAT."
 msgstr "Tekst om toe te voegen aan prijzen exclusief btw."
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:232
-msgid "Hide on cart and checkout pages"
-msgstr "Verberg op winkelwagen- en afrekenpagina's"
+#: includes/class-wdevs-tax-switch-woocommerce.php:240
+msgid "Where enabled"
+msgstr "Waar ingeschakeld"
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:234
-msgid "Hide switches/buttons on the cart and checkout pages"
-msgstr "Verberg schakelaar/knoppen op de winkelwagen- en afrekenpagina's"
+#: includes/class-wdevs-tax-switch-woocommerce.php:245
+msgid "On all pages"
+msgstr "Op alle pagina's"
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:256
+#: includes/class-wdevs-tax-switch-woocommerce.php:246
+msgid "Only on WooCommerce pages"
+msgstr "Alleen op WooCommerce-pagina's"
+
+#: includes/class-wdevs-tax-switch-woocommerce.php:247
+msgid "Only on pages displaying prices"
+msgstr "Alleen op pagina's met prijzen"
+
+#: includes/class-wdevs-tax-switch-woocommerce.php:249
+msgid ""
+"WooCommerce pages include: product archives/categories, single product pages "
+"and account pages."
+msgstr ""
+"WooCommerce-pagina's zijn: productarchieven/categorieën, individuele "
+"productpagina's en accountpagina's."
+
+#: includes/class-wdevs-tax-switch-woocommerce.php:251
+msgid ""
+"<strong>On all pages:</strong> On all pages where a Tax Switch block/"
+"shortcode is placed.<br /><strong>Only on WooCommerce pages:</strong> Hidden "
+"on pages that are not part of the store. Stops rendering completely.<br /"
+"><strong>Only on pages displaying prices:</strong> Hidden on pages that do "
+"not display any prices. Renders, but hides the components (slightly slower)."
+"<br/><br/><strong>Tax Switch blocks/shortcodes are always hidden on the cart "
+"and checkout pages.</strong>"
+msgstr ""
+"<strong>Op alle pagina's:</strong> Op alle pagina's waar een Tax Switch-blok/"
+"shortcode is geplaatst.<br /><strong>Alleen op WooCommerce-pagina's:</"
+"strong> Verborgen op pagina's die geen deel uitmaken van de webshop. Stopt "
+"renderen volledig.<br /><strong>Alleen op pagina's met prijzen:</strong> "
+"Verborgen op pagina's waar geen prijzen worden weergegeven. Rendert wel, "
+"maar verbergt de componenten (iets langzamer).<br /><br /><strong>Tax Switch-"
+"blokken/shortcodes zijn altijd verborgen op de winkelwagen- en "
+"afrekenpagina's.</strong>"
+
+#: includes/class-wdevs-tax-switch-woocommerce.php:274
 msgid "Shortcode settings"
 msgstr "Shortcode instellingen"
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:258
+#: includes/class-wdevs-tax-switch-woocommerce.php:276
 msgid "Generate a tax switch shortcode."
 msgstr "Genereer een btw-schakelaar shortcode."
 
@@ -251,3 +286,9 @@ msgstr "Wijnberg Developments"
 #. Author URI of the plugin/theme
 msgid "https://wijnberg.dev/"
 msgstr "https://wijnberg.dev/"
+
+#~ msgid "Hide on cart and checkout pages"
+#~ msgstr "Verberg op winkelwagen- en afrekenpagina's"
+
+#~ msgid "Hide switches/buttons on the cart and checkout pages"
+#~ msgstr "Verberg schakelaar/knoppen op de winkelwagen- en afrekenpagina's"

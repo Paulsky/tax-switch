@@ -205,4 +205,36 @@ trait Wdevs_Tax_Switch_Helper {
 
 		return $this->shop_prices_include_tax();
 	}
+
+	/**
+	 * @return bool
+	 * @since 1.5,2
+	 */
+	public function should_hide_on_non_wc_pages(){
+		return ( get_option( 'wdevs_tax_switch_location', 'all' ) === 'woocommerce' );
+	}
+
+	/**
+	 * @return bool
+	 * @since 1.5,2
+	 */
+	public function should_hide_on_non_price_pages(){
+		return ( get_option( 'wdevs_tax_switch_location', 'all' ) === 'prices' );
+	}
+
+	/**
+	 * @return bool
+	 * @since 1.5,2
+	 */
+	public function should_hide_on_current_page(){
+		if ( $this->should_hide_on_non_wc_pages() ) {
+			if ( ! is_woocommerce() && ! is_account_page() ) {
+				//Already always disabled on cart and checkout: && ! is_cart() && ! is_checkout()
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 }

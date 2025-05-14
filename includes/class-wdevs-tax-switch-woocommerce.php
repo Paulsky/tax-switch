@@ -228,12 +228,30 @@ class Wdevs_Tax_Switch_Woocommerce {
 				'id'          => 'wdevs_tax_switch_excl_vat',
 				'placeholder' => __( 'Excl. VAT', 'tax-switch-for-woocommerce' )
 			),
+//          Added in 1.5.1, removed in 1.5.2
+//			array(
+//				'name'    => __( 'Hide on cart and checkout pages', 'tax-switch-for-woocommerce' ),
+//				'type'    => 'checkbox',
+//				'desc'    => __( 'Hide switches/buttons on the cart and checkout pages', 'tax-switch-for-woocommerce' ),
+//				'id'      => 'wdevs_tax_switch_hide_on_checkout',
+//				'default' => 'no'
+//			),
 			array(
-				'name'    => __( 'Hide on cart and checkout pages', 'tax-switch-for-woocommerce' ),
-				'type'    => 'checkbox',
-				'desc'    => __( 'Hide switches/buttons on the cart and checkout pages', 'tax-switch-for-woocommerce' ),
-				'id'      => 'wdevs_tax_switch_hide_on_checkout',
-				'default' => 'no'
+				'title'       => __( 'Where enabled', 'tax-switch-for-woocommerce' ),
+				'type'        => 'radio',
+				'id'          => 'wdevs_tax_switch_location',
+				'default'     => 'all',
+				'options'     => array(
+					'all'         => __( 'On all pages', 'tax-switch-for-woocommerce' ),
+					'woocommerce' => __( 'Only on WooCommerce pages', 'tax-switch-for-woocommerce' ),
+					'prices'      => __( 'Only on pages displaying prices', 'tax-switch-for-woocommerce' ),
+				),
+				'desc_tip'    => __( 'WooCommerce pages include: product archives/categories, single product pages and account pages.', 'tax-switch-for-woocommerce' ),
+				'desc'        => __(
+					'<strong>On all pages:</strong> On all pages where a Tax Switch block/shortcode is placed.<br /><strong>Only on WooCommerce pages:</strong> Hidden on pages that are not part of the store. Stops rendering completely.<br /><strong>Only on pages displaying prices:</strong> Hidden on pages that do not display any prices. Renders, but hides the components (slightly slower).<br/><br/><strong>Tax Switch blocks/shortcodes are always hidden on the cart and checkout pages.</strong>',
+					'tax-switch-for-woocommerce'
+				),
+				'desc_at_end' => true,
 			),
 			array(
 				'type' => 'sectionend',

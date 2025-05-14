@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Tax Switch for WooCommerce\n"
-"POT-Creation-Date: 2025-05-10 11:06+0200\n"
+"POT-Creation-Date: 2025-05-14 17:54+0200\n"
 "PO-Revision-Date: 2024-09-16 10:21+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -101,7 +101,7 @@ msgstr ""
 #: includes/class-wdevs-tax-switch-block-label.php:62
 #: includes/class-wdevs-tax-switch-block-label.php:80
 #: includes/class-wdevs-tax-switch-woocommerce.php:222
-#: public/class-wdevs-tax-switch-public.php:138
+#: public/class-wdevs-tax-switch-public.php:146
 msgid "Incl. VAT"
 msgstr ""
 
@@ -114,7 +114,7 @@ msgstr ""
 #: includes/class-wdevs-tax-switch-block-label.php:63
 #: includes/class-wdevs-tax-switch-block-label.php:81
 #: includes/class-wdevs-tax-switch-woocommerce.php:229
-#: public/class-wdevs-tax-switch-public.php:139
+#: public/class-wdevs-tax-switch-public.php:147
 msgid "Excl. VAT"
 msgstr ""
 
@@ -208,19 +208,44 @@ msgstr ""
 msgid "Text to append to prices excluding VAT."
 msgstr ""
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:232
-msgid "Hide on cart and checkout pages"
+#: includes/class-wdevs-tax-switch-woocommerce.php:240
+msgid "Where enabled"
 msgstr ""
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:234
-msgid "Hide switches/buttons on the cart and checkout pages"
+#: includes/class-wdevs-tax-switch-woocommerce.php:245
+msgid "On all pages"
 msgstr ""
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:256
+#: includes/class-wdevs-tax-switch-woocommerce.php:246
+msgid "Only on WooCommerce pages"
+msgstr ""
+
+#: includes/class-wdevs-tax-switch-woocommerce.php:247
+msgid "Only on pages displaying prices"
+msgstr ""
+
+#: includes/class-wdevs-tax-switch-woocommerce.php:249
+msgid ""
+"WooCommerce pages include: product archives/categories, single product "
+"pages and account pages."
+msgstr ""
+
+#: includes/class-wdevs-tax-switch-woocommerce.php:251
+msgid ""
+"<strong>On all pages:</strong> On all pages where a Tax Switch block/"
+"shortcode is placed.<br /><strong>Only on WooCommerce pages:</strong> "
+"Hidden on pages that are not part of the store. Stops rendering completely."
+"<br /><strong>Only on pages displaying prices:</strong> Hidden on pages "
+"that do not display any prices. Renders, but hides the components "
+"(slightly slower).<br/><br/><strong>Tax Switch blocks/shortcodes are "
+"always hidden on the cart and checkout pages.</strong>"
+msgstr ""
+
+#: includes/class-wdevs-tax-switch-woocommerce.php:274
 msgid "Shortcode settings"
 msgstr ""
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:258
+#: includes/class-wdevs-tax-switch-woocommerce.php:276
 msgid "Generate a tax switch shortcode."
 msgstr ""
 
