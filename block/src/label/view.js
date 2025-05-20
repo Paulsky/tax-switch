@@ -1,4 +1,4 @@
-import { render, Suspense } from '@wordpress/element';
+import { createRoot, Suspense } from '@wordpress/element';
 import LabelComponent from './components/LabelComponent';
 import { shouldBeEnabled } from '../shared/utils/render';
 
@@ -8,11 +8,12 @@ const renderLabelComponent = ( element, ajaxConfig ) => {
 		...ajaxConfig,
 	};
 
-	render(
+	const root = createRoot( element );
+
+	root.render(
 		<Suspense fallback={ <div className="wp-block-placeholder" /> }>
 			<LabelComponent { ...attributes } />
-		</Suspense>,
-		element
+		</Suspense>
 	);
 };
 

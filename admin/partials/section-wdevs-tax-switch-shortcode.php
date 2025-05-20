@@ -43,10 +43,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<div class="wc-backbone-modal-content">
 			<section class="wc-backbone-modal-main" role="main">
 				<header class="wc-backbone-modal-header">
-					<h1><?php esc_html_e( 'Configure shortcode', 'tax-switch-for-woocommerce' ); ?></h1>
-					<button class="modal-close modal-close-link dashicons dashicons-no-alt">
-						<span class="screen-reader-text"><?php esc_html_e( 'Close modal', 'tax-switch-for-woocommerce' ); ?></span>
-					</button>
+					<div>
+						<h1><?php esc_html_e( 'Configure shortcode', 'tax-switch-for-woocommerce' ); ?></h1>
+						<button class="modal-close modal-close-link dashicons dashicons-no-alt">
+							<span class="screen-reader-text"><?php esc_html_e( 'Close modal', 'tax-switch-for-woocommerce' ); ?></span>
+						</button>
+					</div>
 				</header>
 				<article>
 					<form action="" method="post">
@@ -58,6 +60,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 								<select name="switch-type" data-attribute="switch-type" style="width:100%;">
 									<option value="switch"><?php esc_html_e( 'Toggle switch', 'tax-switch-for-woocommerce' ); ?></option>
 									<option value="buttons"><?php esc_html_e( 'Buttons', 'tax-switch-for-woocommerce' ); ?></option>
+								</select>
+							</div>
+						</div>
+
+						<div class="wc-shipping-class-modal-input">
+							<div class="view">
+								<?php esc_html_e( 'Switch style', 'tax-switch-for-woocommerce' ); ?>
+							</div>
+							<div class="edit">
+								<select style="width:100%;" id="wdevs-style-selector">
+									<option value="is-style-default"><?php esc_html_e( 'Default style', 'tax-switch-for-woocommerce' ); ?></option>
+									<option value="is-style-inline"><?php esc_html_e( 'Inline style', 'tax-switch-for-woocommerce' ); ?></option>
 								</select>
 							</div>
 						</div>
@@ -89,7 +103,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 								<label><?php esc_html_e( 'Background color', 'tax-switch-for-woocommerce' ); ?></label>
 							</div>
 							<div class="edit">
-								<input type="text" name="switch-bg-color" class="color-picker" value="#e9e9ea"
+								<input type="text" name="switch-background-color" class="color-picker" value="#e9e9ea"
 									   data-default-color="#e9e9ea">
 								<div class="wc-shipping-class-modal-help-text"><?php esc_html_e( 'Default', 'tax-switch-for-woocommerce' ); ?>: #e9e9ea</div>
 							</div>
@@ -100,7 +114,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 								<label><?php esc_html_e( 'Background color checked', 'tax-switch-for-woocommerce' ); ?></label>
 							</div>
 							<div class="edit">
-								<input type="text" name="switch-bg-color-checked" class="color-picker" value="#34c759"
+								<input type="text" name="switch-background-color-checked" class="color-picker" value="#34c759"
 									   data-default-color="#34c759">
 								<div class="wc-shipping-class-modal-help-text"><?php esc_html_e( 'Default', 'tax-switch-for-woocommerce' ); ?>: #34c759</div>
 							</div>
@@ -151,10 +165,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 					</form>
 				</article>
 				<footer>
-					<div class="inner">
-						<button id="btn-ok" class="button button-primary button-large">
-							<?php esc_html_e( 'Generate shortcode', 'tax-switch-for-woocommerce' ); ?>
-						</button>
+					<div class="inner" style="flex-direction: row;">
+						<div style="text-align: left;">
+							<div class="wc-shipping-class-modal-input" style="padding-bottom: 0; font-size: 14px !important;">
+								<div class="view">
+									<?php esc_html_e( 'Preview', 'tax-switch-for-woocommerce' ); ?>
+								</div>
+								<div class="edit">
+									<div id="preview" style="min-height: 35px;"><div class="spinner is-active" style="float:left;"></div></div>
+									<div class="wc-shipping-class-modal-help-text"><?php esc_html_e( 'This is a preview. The actual style depends on your theme.', 'tax-switch-for-woocommerce' ); ?></div>
+								</div>
+							</div>
+						</div>
+						<div style="margin-top: auto;">
+							<button id="btn-ok" class="button button-primary button-large">
+								<?php esc_html_e( 'Generate shortcode', 'tax-switch-for-woocommerce' ); ?>
+							</button>
+						</div>
 					</div>
 				</footer>
 			</section>

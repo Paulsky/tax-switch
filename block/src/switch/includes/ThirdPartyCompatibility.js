@@ -7,7 +7,7 @@ class ThirdPartyCompatibility {
 	}
 
 	static registerWooCommerceEvents( originalTaxDisplay ) {
-		jQuery( '.variations_form' ).on( 'found_variation', function () {
+		jQuery( '.variations_form' ).on( 'show_variation', function () {
 			setTimeout( function () {
 				TaxSwitchHelper.setPriceClasses( originalTaxDisplay );
 			}, 10 );

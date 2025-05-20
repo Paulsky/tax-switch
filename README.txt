@@ -3,7 +3,7 @@ Contributors: wijnbergdevelopments
 Tags: woocommerce, tax, vat
 Requires at least: 5.0
 Tested up to: 6.8
-Stable tag: 1.5.2
+Stable tag: 1.5.3
 Requires PHP: 7.2
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
@@ -63,6 +63,7 @@ Configure these plugin-specific settings:
 1. **Main settings**
    - Go to: *WooCommerce > Settings > Tax Switch*
    - Set your preferred text values
+   - Optional: Restrict display locations
    - Optional: Generate a shortcode via *WooCommerce > Settings > Tax Switch > Shortcode*
 
 === Usage ===
@@ -149,6 +150,12 @@ document.addEventListener('wdevs-tax-switch-changed', function(event) {
  });
 `
 
+If you are loading the switch dynamically (via AJAX), dispatch this event after rendering to initialize the component:
+
+`
+   document.dispatchEvent( new CustomEvent('wdevs-tax-switch-appeared') );
+`
+
 === WPML ===
 
 To translate the option texts via WPML:
@@ -180,6 +187,7 @@ The following plugins have been tested and confirmed compatible:
 * Advanced Product Fields Pro for WooCommerce
 * WooCommerce Quantity Discounts, Rules & Swatches
 * FacetWP
+* Variation Swatches for WooCommerce (+ PRO)
 
 If you encounter any compatibility issues with other plugins or themes, please let us know. Your feedback helps us improve the plugin and extend compatibility to more third-party solutions.
 
@@ -216,6 +224,12 @@ The plugin is designed to keep prices consistent in the cart and checkout proces
 
 
 == Changelog ==
+= 1.5.3 =
+* Switched from 'found_variation' to 'show_variation' WooCommerce event for UI updates reliability in variations form
+* Above change adds compatibility for Variation Swatches for WooCommerce
+* Added preview in shortcode generator
+* Added JavaScript 'wdevs-tax-switch-appeared' event listener
+
 = 1.5.2 =
 * Fix for WooCommerce text tax labels
 * Disable price changes in WooCommerce table total rows

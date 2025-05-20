@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to the Tax Switch for WooCommerce plugin will be documented in this file.
 
+## [1.5.3] - 2025-05-19
+### Added
+- Compatibility for Variation Swatches for WooCommerce
+### Updated
+- Switched from 'found_variation' to 'show_variation' WooCommerce event for UI updates reliability in variations form
+
 ## [1.5.2] - 2025-05-14
 ### Added
 - Option to disable the components on WooCommerce pages or pages without prices
