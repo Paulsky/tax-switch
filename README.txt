@@ -188,6 +188,7 @@ The following plugins have been tested and confirmed compatible:
 * WooCommerce Quantity Discounts, Rules & Swatches
 * FacetWP
 * Variation Swatches for WooCommerce (+ PRO)
+* Variation Price Display Range for WooCommerce
 
 If you encounter any compatibility issues with other plugins or themes, please let us know. Your feedback helps us improve the plugin and extend compatibility to more third-party solutions.
 
@@ -229,6 +230,8 @@ The plugin is designed to keep prices consistent in the cart and checkout proces
 * Above change adds compatibility for Variation Swatches for WooCommerce
 * Added preview in shortcode generator
 * Added JavaScript 'wdevs-tax-switch-appeared' event listener
+* Compatibility for Variation Price Display Range for WooCommerce
+* Added settings link
 
 = 1.5.2 =
 * Fix for WooCommerce text tax labels

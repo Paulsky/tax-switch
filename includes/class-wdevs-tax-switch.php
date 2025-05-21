@@ -204,9 +204,10 @@ class Wdevs_Tax_Switch {
 			$plugin_admin = new Wdevs_Tax_Switch_Admin( $this->get_plugin_name(), $this->get_version() );
 			$this->loader->add_action( 'enqueue_block_editor_assets', $plugin_admin, 'enqueue_block_editor_assets' );
 			$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_admin_scripts' );
+			$this->loader->add_filter( 'plugin_action_links_' . plugin_basename( dirname( __DIR__ ) . '/' . $this->plugin_name . '.php' ), $plugin_admin, 'add_action_links' );
 
 			//AJAX Requests
-			$this->loader->add_action( 'wp_ajax_' . Wdevs_Tax_Switch_Admin::AJAX_ACTION_RENDER , $plugin_admin, Wdevs_Tax_Switch_Admin::AJAX_ACTION_RENDER. '_action' );
+			$this->loader->add_action( 'wp_ajax_' . Wdevs_Tax_Switch_Admin::AJAX_ACTION_RENDER, $plugin_admin, Wdevs_Tax_Switch_Admin::AJAX_ACTION_RENDER . '_action' );
 		}
 	}
 

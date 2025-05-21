@@ -131,6 +131,19 @@ class Wdevs_Tax_Switch_Admin {
 	}
 
 	/**
+	 * @since 1.5.3
+	 */
+	public function add_action_links( $actions ) {
+		$links = array(
+			'<a href="' . admin_url( 'admin.php?page=wc-settings&tab=wdevs_tax_switch' ) . '">' . __( 'Settings' ) . '</a>', //Yes, just use WordPress text domain
+		);
+
+		$actions = array_merge( $actions, $links );
+
+		return $actions;
+	}
+
+	/**
 	 * AJAX request
 	 * Render the shortcode by AJAX request
 	 *

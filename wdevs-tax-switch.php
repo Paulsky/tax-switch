@@ -16,7 +16,7 @@
  * Plugin Name:          Tax Switch for WooCommerce
  * Plugin URI:           https://wijnberg.dev
  * Description:          Let customers toggle between inclusive and exclusive VAT pricing in your WooCommerce store.
- * Version:              1.5.2
+ * Version:              1.5.3
  * Author:               Wijnberg Developments
  * Author URI:           https://wijnberg.dev/
  * License:              GPL-2.0+

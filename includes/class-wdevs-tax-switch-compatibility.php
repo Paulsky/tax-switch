@@ -132,6 +132,16 @@ class Wdevs_Tax_Switch_Compatibility {
 					[ 'baseTaxRate' => $tax_rate ]
 				);
 			}
+
+			if ( $this->is_plugin_active( 'variation-price-display/variation-price-display.php' ) ) {
+				$vpdrfwc_asset = require( plugin_dir_path( dirname( __FILE__ ) ) . 'build/switch/variation-price-display-range-for-wc.asset.php' );
+				wp_enqueue_script(
+					'wdevs-tax-switch-woocommerce-quantity-manager',
+					plugin_dir_url( dirname( __FILE__ ) ) . 'build/switch/variation-price-display-range-for-wc.js',
+					$vpdrfwc_asset['dependencies'],
+					$vpdrfwc_asset['version']
+				);
+			}
 		}
 
 		// Tier Pricing Table (both free and premium)

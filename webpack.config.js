@@ -44,6 +44,11 @@ module.exports = {
 			'block/src/switch',
 			'woocommerce-quantity-manager.js'
 		),
+		'switch/variation-price-display-range-for-wc': path.resolve(
+			process.cwd(),
+			'block/src/switch',
+			'variation-price-display-range-for-wc.js'
+		),
 		'label/index': path.resolve(
 			process.cwd(),
 			'block/src/label',
@@ -54,5 +59,5 @@ module.exports = {
 			'block/src/label',
 			'view.js'
 		),
-	},
+	}
 };
