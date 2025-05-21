@@ -59,5 +59,5 @@ module.exports = {
 			'block/src/label',
 			'view.js'
 		),
-	}
+	},
 };

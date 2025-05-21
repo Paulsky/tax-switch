@@ -1,9 +1,13 @@
 # Changelog
 All notable changes to the Tax Switch for WooCommerce plugin will be documented in this file.
 
-## [1.5.3] - 2025-05-19
+## [1.5.3] - 2025-05-21
 ### Added
 - Compatibility for Variation Swatches for WooCommerce
+- Preview in shortcode generator
+- JavaScript 'wdevs-tax-switch-appeared' event listener
+- Compatibility for Variation Price Display Range for WooCommerce
+- Added settings link
 ### Updated
 - Switched from 'found_variation' to 'show_variation' WooCommerce event for UI updates reliability in variations form
 
