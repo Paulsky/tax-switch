@@ -210,7 +210,7 @@ trait Wdevs_Tax_Switch_Helper {
 	 * @return bool
 	 * @since 1.5,2
 	 */
-	public function should_hide_on_non_wc_pages(){
+	public function should_hide_on_non_wc_pages() {
 		return ( get_option( 'wdevs_tax_switch_location', 'all' ) === 'woocommerce' );
 	}
 
@@ -218,7 +218,7 @@ trait Wdevs_Tax_Switch_Helper {
 	 * @return bool
 	 * @since 1.5,2
 	 */
-	public function should_hide_on_non_price_pages(){
+	public function should_hide_on_non_price_pages() {
 		return ( get_option( 'wdevs_tax_switch_location', 'all' ) === 'prices' );
 	}
 
@@ -226,7 +226,7 @@ trait Wdevs_Tax_Switch_Helper {
 	 * @return bool
 	 * @since 1.5,2
 	 */
-	public function should_hide_on_current_page(){
+	public function should_hide_on_current_page() {
 		if ( $this->should_hide_on_non_wc_pages() ) {
 			if ( ! is_woocommerce() && ! is_account_page() ) {
 				//Already always disabled on cart and checkout: && ! is_cart() && ! is_checkout()
@@ -235,6 +235,44 @@ trait Wdevs_Tax_Switch_Helper {
 		}
 
 		return false;
+	}
+
+	/**
+	 * @since 1.5.4
+	 *
+	 * @return array
+	 */
+	public function register_script( $handle, $build_dir, $asset_name, $extra_dependencies = [] ) {
+		$script_path = plugin_dir_url( dirname( __FILE__ ) ) . 'build/' . $build_dir . '/' . $asset_name . '.js';
+		$script_asset = require( plugin_dir_path( dirname( __FILE__ ) ) .  'build/' . $build_dir . '/' . $asset_name .'.asset.php' );
+
+		wp_register_script(
+			$handle,
+			$script_path,
+			array_merge( $script_asset['dependencies'], [ 'wdevs-tax-switch-shared-script' ], $extra_dependencies ),
+			$script_asset['version']
+		);
+
+		return $script_asset;
+	}
+
+	/**
+	 * @since 1.5.4
+	 *
+	 * @return array
+	 */
+	public function enqueue_script( $handle, $build_dir, $asset_name, $extra_dependencies = [] ) {
+		$script_path = plugin_dir_url( dirname( __FILE__ ) ) . 'build/' . $build_dir . '/' . $asset_name . '.js';
+		$script_asset = require( plugin_dir_path( dirname( __FILE__ ) ) .  'build/' . $build_dir . '/' . $asset_name .'.asset.php' );
+
+		wp_enqueue_script(
+			$handle,
+			$script_path,
+			array_merge( $script_asset['dependencies'], [ 'wdevs-tax-switch-shared-script' ], $extra_dependencies ),
+			$script_asset['version']
+		);
+
+		return $script_asset;
 	}
 
 }

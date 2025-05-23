@@ -225,6 +225,9 @@ The plugin is designed to keep prices consistent in the cart and checkout proces
 
 
 == Changelog ==
+= 1.5.4 =
+- Introduced 'tree shake' for bundling all commonly shared JavaScript into a separate file as optimisation to prevent duplicated code
+
 = 1.5.3 =
 * Switched from 'found_variation' to 'show_variation' WooCommerce event for UI updates reliability in variations form
 * Above change adds compatibility for Variation Swatches for WooCommerce

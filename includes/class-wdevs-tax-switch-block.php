@@ -4,7 +4,7 @@
  * The block functionality of the plugin.
  *
  * @link       https://wijnberg.dev
- * @since      1.0.0
+ * @since      1.5.0
  *
  * @package    Wdevs_Tax_Switch
  * @subpackage Wdevs_Tax_Switch/includes

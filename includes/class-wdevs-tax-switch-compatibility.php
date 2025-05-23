@@ -59,13 +59,8 @@ class Wdevs_Tax_Switch_Compatibility {
 		if ( is_product() ) {
 			// WooCommerce Measurement Price Calculator
 			if ( $this->is_plugin_active( 'woocommerce-measurement-price-calculator/woocommerce-measurement-price-calculator.php' ) ) {
-				$wcmpc_asset = require( plugin_dir_path( dirname( __FILE__ ) ) . 'build/switch/woocommerce-measurement-price-calculator.asset.php' );
-				wp_enqueue_script(
-					'wdevs-tax-switch-woocommerce-measurement-price-calculator',
-					plugin_dir_url( dirname( __FILE__ ) ) . 'build/switch/woocommerce-measurement-price-calculator.js',
-					$wcmpc_asset['dependencies'],
-					$wcmpc_asset['version']
-				);
+				$wmpc_handle = 'wdevs-tax-switch-woocommerce-measurement-price-calculator';
+				$this->enqueue_script($wmpc_handle, 'switch', 'woocommerce-measurement-price-calculator');
 			}
 
 			$tax_rate = $this->get_product_tax_rate( wc_get_product() );
@@ -75,16 +70,11 @@ class Wdevs_Tax_Switch_Compatibility {
 				'yith-woocommerce-product-add-ons/init.php',
 				'yith-woocommerce-advanced-product-options-premium/init.php'
 			] ) ) {
-				$ywpado_asset = require( plugin_dir_path( dirname( __FILE__ ) ) . 'build/switch/yith-woocommerce-product-add-ons.asset.php' );
-				wp_enqueue_script(
-					'wdevs-tax-switch-yith-woocommerce-product-add-ons',
-					plugin_dir_url( dirname( __FILE__ ) ) . 'build/switch/yith-woocommerce-product-add-ons.js',
-					array_merge( $ywpado_asset['dependencies'], [ 'yith_wapo_front' ] ),
-					$ywpado_asset['version']
-				);
+				$ywpado_handle = 'wdevs-tax-switch-yith-woocommerce-product-add-ons';
+				$ywpado_asset = $this->enqueue_script($ywpado_handle, 'switch', 'yith-woocommerce-product-add-ons', [ 'yith_wapo_front' ]);
 
 				wp_localize_script(
-					'wdevs-tax-switch-yith-woocommerce-product-add-ons',
+					$ywpado_handle,
 					'wtsCompatibilityObject',
 					[ 'baseTaxRate' => $tax_rate ]
 				);
@@ -92,15 +82,11 @@ class Wdevs_Tax_Switch_Compatibility {
 
 			// WooCommerce Product Addons
 			if ( $this->is_plugin_active( 'woocommerce-product-addons/woocommerce-product-addons.php' ) ) {
-				$wpado_asset = require( plugin_dir_path( dirname( __FILE__ ) ) . 'build/switch/woocommerce-product-addons.asset.php' );
-				wp_enqueue_script(
-					'wdevs-tax-switch-woocommerce-product-addons',
-					plugin_dir_url( dirname( __FILE__ ) ) . 'build/switch/woocommerce-product-addons.js',
-					array_merge( $wpado_asset['dependencies'], [ 'accounting' ] ),
-					$wpado_asset['version']
-				);
+				$wpado_handle = 'wdevs-tax-switch-woocommerce-product-addons';
+				$wpado_asset = $this->enqueue_script($wpado_handle, 'switch', 'woocommerce-product-addons', [ 'accounting' ]);
+
 				wp_localize_script(
-					'wdevs-tax-switch-woocommerce-product-addons',
+					$wpado_handle,
 					'wtsCompatibilityObject',
 					[ 'baseTaxRate' => $tax_rate ]
 				);
@@ -108,39 +94,25 @@ class Wdevs_Tax_Switch_Compatibility {
 
 			// Advanced Product Fields Pro for WooCommerce
 			if ( $this->is_plugin_active( 'advanced-product-fields-for-woocommerce-pro/advanced-product-fields-for-woocommerce-pro.php' ) ) {
-				$apffw_asset = require( plugin_dir_path( dirname( __FILE__ ) ) . 'build/switch/advanced-product-fields-for-woocommerce.asset.php' );
-				wp_enqueue_script(
-					'wdevs-tax-switch-advanced-product-fields-for-woocommerce',
-					plugin_dir_url( dirname( __FILE__ ) ) . 'build/switch/advanced-product-fields-for-woocommerce.js',
-					array_merge( $apffw_asset['dependencies'], [ 'wapf-frontend', 'accounting' ] ),
-					$apffw_asset['version']
-				);
+				$apffw_handle = 'wdevs-tax-switch-advanced-product-fields-for-woocommerce';
+				$apffw_asset = $this->enqueue_script($apffw_handle, 'switch', 'advanced-product-fields-for-woocommerce', ['wapf-frontend', 'accounting' ]);
 			}
+
 			// Woocommerce Quantity Manager
 			if ( $this->is_plugin_active( 'woocommerce-quantity-manager-pro/woocommerce-quantity-manager-pro.php' ) ) {
-				$wqm_asset = require( plugin_dir_path( dirname( __FILE__ ) ) . 'build/switch/woocommerce-quantity-manager.asset.php' );
-				wp_enqueue_script(
-					'wdevs-tax-switch-woocommerce-quantity-manager',
-					plugin_dir_url( dirname( __FILE__ ) ) . 'build/switch/woocommerce-quantity-manager.js',
-					array_merge( $wqm_asset['dependencies'], [ 'accounting' ] ), //'wqm-frontend',
-					$wqm_asset['version']
-				);
+				$wqm_handle = 'wdevs-tax-switch-woocommerce-quantity-manager';
+				$wqm_asset = $this->enqueue_script($wqm_handle, 'switch', 'woocommerce-quantity-manager', [ 'accounting' ]);
 
 				wp_localize_script(
-					'wdevs-tax-switch-woocommerce-quantity-manager',
+					$wqm_handle,
 					'wtsCompatibilityObject',
 					[ 'baseTaxRate' => $tax_rate ]
 				);
 			}
 
 			if ( $this->is_plugin_active( 'variation-price-display/variation-price-display.php' ) ) {
-				$vpdrfwc_asset = require( plugin_dir_path( dirname( __FILE__ ) ) . 'build/switch/variation-price-display-range-for-wc.asset.php' );
-				wp_enqueue_script(
-					'wdevs-tax-switch-woocommerce-quantity-manager',
-					plugin_dir_url( dirname( __FILE__ ) ) . 'build/switch/variation-price-display-range-for-wc.js',
-					$vpdrfwc_asset['dependencies'],
-					$vpdrfwc_asset['version']
-				);
+				$vpdrfwc_handle = 'wdevs-tax-switch-woocommerce-quantity-manager';
+				$vpdrfwc_asset = $this->enqueue_script($vpdrfwc_handle, 'switch', 'variation-price-display-range-for-wc');
 			}
 		}
 
@@ -149,13 +121,8 @@ class Wdevs_Tax_Switch_Compatibility {
 			'tier-pricing-table/tier-pricing-table.php',
 			'tier-pricing-table-premium/tier-pricing-table.php'
 		] ) ) {
-			$wctpt_asset = require( plugin_dir_path( dirname( __FILE__ ) ) . 'build/switch/woocommerce-tiered-price-table.asset.php' );
-			wp_enqueue_script(
-				'wdevs-tax-switch-woocommerce-tiered-price-table',
-				plugin_dir_url( dirname( __FILE__ ) ) . 'build/switch/woocommerce-tiered-price-table.js',
-				$wctpt_asset['dependencies'],
-				$wctpt_asset['version']
-			);
+			$wctpt_handle = 'wdevs-tax-switch-woocommerce-tiered-price-table';
+			$wctpt_asset = $this->enqueue_script($wctpt_handle, 'switch', 'woocommerce-tiered-price-table');
 		}
 	}
 

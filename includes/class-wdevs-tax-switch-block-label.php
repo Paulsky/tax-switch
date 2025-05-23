@@ -4,7 +4,7 @@
  * The block functionality of the plugin.
  *
  * @link       https://wijnberg.dev
- * @since      1.0.0
+ * @since      1.5.0
  *
  * @package    Wdevs_Tax_Switch
  * @subpackage Wdevs_Tax_Switch/includes
@@ -92,14 +92,7 @@ class Wdevs_Tax_Switch_Block_Label extends Wdevs_Tax_Switch_Block {
 	 * @since 1.5.0
 	 */
 	public function register_frontend_scripts() {
-		$script_asset = require( plugin_dir_path( dirname( __FILE__ ) ) . 'build/label/view.asset.php' );
-
-		wp_register_script(
-			'wdevs-tax-switch-label-view-script',
-			plugin_dir_url( dirname( __FILE__ ) ) . 'build/label/view.js',
-			$script_asset['dependencies'],
-			$script_asset['version']
-		);
+		$script_asset = $this->register_script('wdevs-tax-switch-label-script', 'label', 'view');
 
 		wp_register_style(
 			'wdevs-tax-switch-label-style',
@@ -115,6 +108,10 @@ class Wdevs_Tax_Switch_Block_Label extends Wdevs_Tax_Switch_Block {
 	public function enqueue_frontend_scripts() {
 		if ( wp_style_is( 'wdevs-tax-switch-label-style', 'registered' ) ) {
 			wp_enqueue_style( 'wdevs-tax-switch-label-style' );
+		}
+
+		if ( wp_script_is( 'wdevs-tax-switch-shared-script', 'registered' ) ) {
+			wp_enqueue_script( 'wdevs-tax-switch-shared-script' );
 		}
 
 		if ( wp_script_is( 'wdevs-tax-switch-label-view-script', 'registered' ) ) {

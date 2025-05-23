@@ -153,6 +153,11 @@ class Wdevs_Tax_Switch {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wdevs-tax-switch-woocommerce.php';
 
 		/**
+		 * The class responsible for shared block functions
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wdevs-tax-switch-block-shared.php';
+
+		/**
 		 * The class responsible for common shortcode and Gutenberg block functions
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wdevs-tax-switch-block.php';
@@ -261,11 +266,13 @@ class Wdevs_Tax_Switch {
 	 * @access   private
 	 */
 	private function define_block_hooks() {
+		$shared_block = new Wdevs_Tax_Switch_Block_Shared( $this->get_plugin_name(), $this->get_version() );
+		$this->loader->add_action( 'init', $shared_block, 'register_frontend_scripts' );
 
-		$switchBlock = new Wdevs_Tax_Switch_Block_Switch( $this->get_plugin_name(), $this->get_version() );
-		$labelBlock  = new Wdevs_Tax_Switch_Block_Label( $this->get_plugin_name(), $this->get_version() );
+		$switch_block = new Wdevs_Tax_Switch_Block_Switch( $this->get_plugin_name(), $this->get_version() );
+		$label_block  = new Wdevs_Tax_Switch_Block_Label( $this->get_plugin_name(), $this->get_version() );
 
-		$blocks = [ $switchBlock, $labelBlock ];
+		$blocks = [ $switch_block, $label_block ];
 
 		foreach ( $blocks as $block_class ) {
 			$this->loader->add_action( 'init', $block_class, 'register_frontend_scripts' );
@@ -273,7 +280,7 @@ class Wdevs_Tax_Switch {
 			$this->loader->add_action( 'init', $block_class, 'register_shortcode' );
 		}
 
-		$this->loader->add_action( 'block_type_metadata', $labelBlock, 'set_default_block_attributes' );
+		$this->loader->add_action( 'block_type_metadata', $label_block, 'set_default_block_attributes' );
 
 	}
 

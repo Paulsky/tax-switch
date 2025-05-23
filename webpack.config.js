@@ -60,4 +60,22 @@ module.exports = {
 			'view.js'
 		),
 	},
+	optimization: {
+		...defaultConfig.optimization,
+		splitChunks: {
+			...defaultConfig.optimization.splitChunks,
+			cacheGroups: {
+				...defaultConfig.optimization.splitChunks.cacheGroups,
+				vendors: false,
+				sharedGlobal: {
+					name: 'shared/shared',
+					chunks: 'all',
+					minChunks: 2,
+					enforce: true,
+					test: /[\\/]block[\\/]src[\\/]/,
+				},
+
+			},
+		},
+	},
 };
