@@ -42,7 +42,8 @@ class ThirdPartyCompatibility {
 			'facetwp-loaded', //FacetWP compatibility
 			'experimental-flatsome-pjax-request-done', //Flatsome theme compatibility
 			'flatsome-relay-request-done', //Flatsome theme compatibility
-			'flatsome-infiniteScroll-append', //Flatsome theme compatibility
+			'flatsome-infiniteScroll-append', //Flatsome theme compatibility,
+			'vpd_after_price_fadein', //Variation Price Display Range for WooCommerce
 		];
 
 		thirdPartyEvents.forEach( function ( eventName ) {

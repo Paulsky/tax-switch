@@ -109,11 +109,6 @@ class Wdevs_Tax_Switch_Compatibility {
 					[ 'baseTaxRate' => $tax_rate ]
 				);
 			}
-
-			if ( $this->is_plugin_active( 'variation-price-display/variation-price-display.php' ) ) {
-				$vpdrfwc_handle = 'wdevs-tax-switch-woocommerce-quantity-manager';
-				$vpdrfwc_asset = $this->enqueue_script($vpdrfwc_handle, 'switch', 'variation-price-display-range-for-wc');
-			}
 		}
 
 		// Tier Pricing Table (both free and premium)

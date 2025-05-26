@@ -67,7 +67,7 @@ class Wdevs_Tax_Switch_Admin {
 	}
 
 	/**
-	 * Enqueue styles for the block editor.
+	 * Enqueue styles and scripts for the block editor.
 	 *
 	 * @since    1.0.0
 	 */

@@ -26,7 +26,9 @@ class Wdevs_Tax_Switch_Block_Label extends Wdevs_Tax_Switch_Block {
 	 * @since 1.5.0
 	 */
 	public function init_block() {
+		$editor_asset = $this->register_script('wdevs-tax-switch-label-editor-script', 'label', 'index');
 		register_block_type( plugin_dir_path( dirname( __FILE__ ) ) . 'build/label/block.json', array(
+			'editor_script'   => 'wdevs-tax-switch-label-editor-script',
 			'render_callback' => [ $this, 'block_render_callback' ]
 		) );
 
@@ -108,10 +110,6 @@ class Wdevs_Tax_Switch_Block_Label extends Wdevs_Tax_Switch_Block {
 	public function enqueue_frontend_scripts() {
 		if ( wp_style_is( 'wdevs-tax-switch-label-style', 'registered' ) ) {
 			wp_enqueue_style( 'wdevs-tax-switch-label-style' );
-		}
-
-		if ( wp_script_is( 'wdevs-tax-switch-shared-script', 'registered' ) ) {
-			wp_enqueue_script( 'wdevs-tax-switch-shared-script' );
 		}
 
 		if ( wp_script_is( 'wdevs-tax-switch-label-view-script', 'registered' ) ) {

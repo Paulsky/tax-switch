@@ -3,7 +3,7 @@ Contributors: wijnbergdevelopments
 Tags: woocommerce, tax, vat
 Requires at least: 5.0
 Tested up to: 6.8
-Stable tag: 1.5.3
+Stable tag: 1.5.4
 Requires PHP: 7.2
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
@@ -188,7 +188,7 @@ The following plugins have been tested and confirmed compatible:
 * WooCommerce Quantity Discounts, Rules & Swatches
 * FacetWP
 * Variation Swatches for WooCommerce (+ PRO)
-* Variation Price Display Range for WooCommerce
+* Variation Price Display Range for WooCommerce (+ PRO)
 
 If you encounter any compatibility issues with other plugins or themes, please let us know. Your feedback helps us improve the plugin and extend compatibility to more third-party solutions.
 
@@ -226,14 +226,15 @@ The plugin is designed to keep prices consistent in the cart and checkout proces
 
 == Changelog ==
 = 1.5.4 =
-- Introduced 'tree shake' for bundling all commonly shared JavaScript into a separate file as optimisation to prevent duplicated code
+* Introduced 'tree shake' for bundling all commonly shared JavaScript into a separate file as optimisation to prevent duplicated code
+* Improved compatibility for Variation Price Display Range for WooCommerce
 
 = 1.5.3 =
 * Switched from 'found_variation' to 'show_variation' WooCommerce event for UI updates reliability in variations form
 * Above change adds compatibility for Variation Swatches for WooCommerce
 * Added preview in shortcode generator
 * Added JavaScript 'wdevs-tax-switch-appeared' event listener
-* Compatibility for Variation Price Display Range for WooCommerce
+* Compatibility for Variation Price Display Range for WooCommerce (1.3.20 and up)
 * Added settings link
 
 = 1.5.2 =
