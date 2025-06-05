@@ -3,7 +3,7 @@ Contributors: wijnbergdevelopments
 Tags: woocommerce, tax, vat
 Requires at least: 5.0
 Tested up to: 6.8
-Stable tag: 1.5.4
+Stable tag: 1.5.5
 Requires PHP: 7.2
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
@@ -189,6 +189,7 @@ The following plugins have been tested and confirmed compatible:
 * FacetWP
 * Variation Swatches for WooCommerce (+ PRO)
 * Variation Price Display Range for WooCommerce (+ PRO)
+* WooCommerce Product Add-Ons Ultimate
 
 If you encounter any compatibility issues with other plugins or themes, please let us know. Your feedback helps us improve the plugin and extend compatibility to more third-party solutions.
 
@@ -225,6 +226,8 @@ The plugin is designed to keep prices consistent in the cart and checkout proces
 
 
 == Changelog ==
+= 1.5.5 =
+* Added compatibility for WooCommerce Product Add-Ons Ultimate
 = 1.5.4 =
 * Introduced 'tree shake' for bundling all commonly shared JavaScript into a separate file as optimisation to prevent duplicated code
 * Improved compatibility for Variation Price Display Range for WooCommerce

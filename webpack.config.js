@@ -44,6 +44,11 @@ module.exports = {
 			'block/src/switch',
 			'woocommerce-quantity-manager.js'
 		),
+		'switch/product-extras-for-woocommerce': path.resolve(
+			process.cwd(),
+			'block/src/switch',
+			'product-extras-for-woocommerce.js'
+		),
 		'label/index': path.resolve(
 			process.cwd(),
 			'block/src/label',

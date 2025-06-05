@@ -337,6 +337,17 @@ class Wdevs_Tax_Switch {
 					6
 				);
 			}
+
+			// Product Extras for Woocommerce  (WooCommerce Product Add-Ons Ultimate)
+			if ( $this->is_plugin_active( 'product-extras-for-woocommerce/product-extras-for-woocommerce.php' ) ) {
+				$this->loader->add_filter(
+					'pewc_field_formatted_price',
+					$plugin_compatibility,
+					'render_pewc_price_field',
+					PHP_INT_MAX,
+					4
+				);
+			}
 		}
 	}
 

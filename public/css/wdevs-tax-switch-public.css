@@ -4,3 +4,6 @@
 .tiered-pricing--active .wts-vat-text{
 	color: #ffffff;
 }
+h4.pewc-field-label .wts-price-wrapper > span, h4.pewc-field-label .wts-price-wrapper > span > span{
+	font-size: 100%;
+}

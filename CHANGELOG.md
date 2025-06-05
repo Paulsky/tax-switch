@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to the Tax Switch for WooCommerce plugin will be documented in this file.
 
+## [1.5.5] - 2025-06-05
+### Added
+- Compatibility for WooCommerce Product Add-Ons Ultimate
+
 ## [1.5.4] - 2025-05-26
 ### Added
 - Introduced 'tree shake' for bundling all commonly shared JavaScript into a separate file as optimisation to prevent duplicated code

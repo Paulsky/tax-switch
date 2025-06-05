@@ -244,20 +244,11 @@ class TieredPriceTable {
 			}
 
 			if ( vm.vatTexts ) {
-				const textSection = `
-                <span class="wts-price-wrapper">
-                    <span class="wts-price-incl ${
-						displayIncludingVat ? 'wts-active' : 'wts-inactive'
-					}">
-                        ${ vm.vatTexts.including }
-                    </span>
-                    <span class="wts-price-excl ${
-						! displayIncludingVat ? 'wts-active' : 'wts-inactive'
-					}">
-                        ${ vm.vatTexts.excluding }
-                    </span>
-                </span>
-            `;
+				const textSection = TaxSwitchElementBuilder.getVatTextElement(
+					displayIncludingVat,
+					vm.vatTexts.including,
+					vm.vatTexts.excluding
+				);
 
 				return `
                 <span class="wts-price-container">

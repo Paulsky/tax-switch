@@ -124,6 +124,26 @@ class TaxSwitchElementBuilder {
 				: '',
 		};
 	}
+
+	static getVatTextElement(
+		displayIncludingVat,
+		includingText,
+		excludingText
+	) {
+		return `<span class="wts-price-wrapper">
+                    <span class="wts-price-incl ${
+						displayIncludingVat ? 'wts-active' : 'wts-inactive'
+					}">
+                        ${ includingText }
+                    </span>
+                    <span class="wts-price-excl ${
+						! displayIncludingVat ? 'wts-active' : 'wts-inactive'
+					}">
+                          ${ excludingText }
+                    </span>
+                </span>
+            `;
+	}
 }
 
 export default TaxSwitchElementBuilder;

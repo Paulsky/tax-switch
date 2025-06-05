@@ -109,6 +109,18 @@ class Wdevs_Tax_Switch_Compatibility {
 					[ 'baseTaxRate' => $tax_rate ]
 				);
 			}
+
+			// Product Extras for Woocommerce (Woocommerce Product Add-Ons Ultimate)
+			if ( $this->is_plugin_active( 'product-extras-for-woocommerce/product-extras-for-woocommerce.php' ) ) {
+				$pewc_handle = 'wdevs-tax-switch-woocommerce-quantity-manager';
+				$pewc_asset = $this->enqueue_script($pewc_handle, 'switch', 'product-extras-for-woocommerce', [ 'accounting' ]); //'pewc-script',breaks things, but I wonder if that correct....
+
+				wp_localize_script(
+					$pewc_handle,
+					'wtsCompatibilityObject',
+					[ 'baseTaxRate' => $tax_rate ]
+				);
+			}
 		}
 
 		// Tier Pricing Table (both free and premium)
@@ -184,6 +196,38 @@ class Wdevs_Tax_Switch_Compatibility {
 
 		// Combine both price displays into one HTML string
 		return $this->combine_price_displays( $original_output, $alternate_hint, $shop_prices_include_tax );
+	}
+
+	/**
+	 * Adds the alternate price to the Product Extras for Woocommerce (WooCommerce Product Add-Ons Ultimate) price field
+	 * @since 1.5.5
+	 */
+	public function render_pewc_price_field($original_output, $item, $product, $price=false){
+		if(!$price){
+			return $original_output;
+		}
+
+		$alternate_amount = $this->calculate_alternate_price( $price, $product );
+
+		//Temporarily disable this filter and function to prevent infinite loop
+		remove_filter( 'pewc_field_formatted_price', [ $this, 'render_pewc_price_field' ], PHP_INT_MAX );
+
+		//get the pricing format for the alternate amount
+		$alternate_field = apply_filters(
+			'pewc_field_formatted_price',
+			pewc_wc_format_price( $alternate_amount ),
+			$item,
+			$product,
+			$alternate_amount
+		);
+
+		//Re-enable this filter and function
+		add_filter( 'pewc_field_formatted_price', [ $this, 'render_pewc_price_field' ], PHP_INT_MAX, 4 );
+
+		$shop_prices_include_tax = $this->shop_displays_price_including_tax_by_default();
+
+		// Combine both price displays into one HTML string
+		return $this->combine_price_displays( $original_output, $alternate_field, $shop_prices_include_tax );
 	}
 
 }
