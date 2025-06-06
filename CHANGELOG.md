@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to the Tax Switch for WooCommerce plugin will be documented in this file.
 
+## [1.5.6] - 2025-06-06
+### Updated
+- Improved compatibility for Tiered Pricing Table for WooCommerce
+
 ## [1.5.5] - 2025-06-05
 ### Added
 - Compatibility for WooCommerce Product Add-Ons Ultimate

@@ -114,6 +114,8 @@ class TieredPriceTable {
 		} );
 
 		vm.updateSummaryTable( data, displayIncludingVat );
+
+		TaxSwitchHelper.setPriceClasses( this.originalTaxDisplay );
 	}
 
 	shouldShowOriginalPrice( data ) {
@@ -176,6 +178,8 @@ class TieredPriceTable {
 			summaryTable
 				.find( '[data-tier-pricing-table-summary-total]' )
 				.html( totalHtml );
+
+			TaxSwitchHelper.setPriceClasses( this.originalTaxDisplay );
 		}, 10 );
 	}
 

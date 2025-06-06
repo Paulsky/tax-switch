@@ -3,7 +3,7 @@ Contributors: wijnbergdevelopments
 Tags: woocommerce, tax, vat
 Requires at least: 5.0
 Tested up to: 6.8
-Stable tag: 1.5.5
+Stable tag: 1.5.6
 Requires PHP: 7.2
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
@@ -226,8 +226,12 @@ The plugin is designed to keep prices consistent in the cart and checkout proces
 
 
 == Changelog ==
+= 1.5.6 =
+* Improved compatibility for Tiered Pricing Table for WooCommerce
+
 = 1.5.5 =
 * Added compatibility for WooCommerce Product Add-Ons Ultimate
+
 = 1.5.4 =
 * Introduced 'tree shake' for bundling all commonly shared JavaScript into a separate file as optimisation to prevent duplicated code
 * Improved compatibility for Variation Price Display Range for WooCommerce
