@@ -150,8 +150,8 @@ class Wdevs_Tax_Switch_Woocommerce {
 
 		if ( ! empty( $this->current_section ) ) {
 			add_action( 'woocommerce_update_options_wdevs_tax_switch_' . $this->current_section, array(
-				$this,
-				'update_settings'
+					$this,
+					'update_settings'
 			) );
 		} else {
 			add_action( 'woocommerce_update_options_wdevs_tax_switch', array( $this, 'update_settings' ) );
@@ -166,8 +166,8 @@ class Wdevs_Tax_Switch_Woocommerce {
 	 */
 	public function get_sections() {
 		return array(
-			''          => __( 'Settings', 'tax-switch-for-woocommerce' ),
-			'shortcode' => __( 'Shortcode', 'tax-switch-for-woocommerce' )
+				''          => __( 'Settings', 'tax-switch-for-woocommerce' ),
+				'shortcode' => __( 'Shortcode', 'tax-switch-for-woocommerce' ),
 		);
 	}
 
@@ -184,21 +184,54 @@ class Wdevs_Tax_Switch_Woocommerce {
 			return;
 		}
 
+		$documentationURL = 'https://products.wijnberg.dev/product/wordpress/plugins/tax-switch-for-woocommerce/';
+
 		echo '<ul class="subsubsub">';
 
-		$array_keys = array_keys( $sections );
+		//$array_keys = array_keys( $sections );
 
 		foreach ( $sections as $id => $label ) {
 			$url       = admin_url( 'admin.php?page=wc-settings&tab=wdevs_tax_switch&section=' . sanitize_title( $id ) );
 			$class     = ( $this->current_section === $id ? 'current' : '' );
-			$separator = ( end( $array_keys ) === $id ? '' : '|' );
+			$separator = '|';//( end( $array_keys ) === $id ? '' : '|' );
 			$text      = esc_html( $label );
 			echo "<li><a href='$url' class='$class'>$text</a> $separator </li>";
 		}
 
+		?>
+		<li>
+			<a href="<?php echo esc_attr( $documentationURL ); ?>" target="_blank">
+				<?php esc_html_e( 'Documentation', 'tax-switch-for-woocommerce' ); ?>
+				<svg style="width: 0.8rem; height: 0.8rem; stroke: currentColor; fill: none;"
+					 xmlns="http://www.w3.org/2000/svg"
+					 stroke-width="10" stroke-dashoffset="0"
+					 stroke-dasharray="0" stroke-linecap="round"
+					 stroke-linejoin="round" viewBox="0 0 100 100">
+					<polyline fill="none" points="40 20 20 20 20 90 80 90 80 60"/>
+					<polyline fill="none" points="60 10 90 10 90 40"/>
+					<line fill="none" x1="89" y1="11" x2="50" y2="50"/>
+				</svg>
+			</a>
+		</li>
+		<?php
+
 		echo '</ul><br class="clear" />';
 	}
 
+	/**
+	 * Output footer info
+	 *
+	 * @since    1.5.7
+	 */
+	public function render_footer_info() {
+		$text = sprintf(
+		/* translators: %s: Link to author site. */
+				__( 'Tax Switch for WooCommerce is developed by %s. Your trusted WordPress & WooCommerce plugin partner from the Netherlands.', 'tax-switch-for-woocommerce' ),
+				'<a href="https://products.wijnberg.dev" target="_blank" rel="noopener">Wijnberg Developments</a>'
+		);
+
+		echo '<span style="padding: 0 30px; background: #f0f0f1; display: block;">' . wp_kses_post( $text ) . '</span>';
+	}
 
 	/**
 	 * Get main settings fields.
@@ -208,26 +241,26 @@ class Wdevs_Tax_Switch_Woocommerce {
 	 */
 	private function get_main_settings() {
 		$settings = array(
-			array(
-				'name' => __( 'Tax switch settings', 'tax-switch-for-woocommerce' ),
-				'type' => 'title',
-				'desc' => __( 'Customize the tax switch settings.', 'tax-switch-for-woocommerce' ),
-				'id'   => 'wdevs_tax_switch_section_title'
-			),
-			array(
-				'name'        => __( 'Including VAT text', 'tax-switch-for-woocommerce' ),
-				'type'        => 'text',
-				'desc'        => __( 'Text to append to prices including VAT.', 'tax-switch-for-woocommerce' ),
-				'id'          => 'wdevs_tax_switch_incl_vat',
-				'placeholder' => __( 'Incl. VAT', 'tax-switch-for-woocommerce' )
-			),
-			array(
-				'name'        => __( 'Excluding VAT text', 'tax-switch-for-woocommerce' ),
-				'type'        => 'text',
-				'desc'        => __( 'Text to append to prices excluding VAT.', 'tax-switch-for-woocommerce' ),
-				'id'          => 'wdevs_tax_switch_excl_vat',
-				'placeholder' => __( 'Excl. VAT', 'tax-switch-for-woocommerce' )
-			),
+				array(
+						'name' => __( 'Tax switch settings', 'tax-switch-for-woocommerce' ),
+						'type' => 'title',
+						'desc' => __( 'Customize the tax switch settings.', 'tax-switch-for-woocommerce' ),
+						'id'   => 'wdevs_tax_switch_section_title'
+				),
+				array(
+						'name'        => __( 'Including VAT text', 'tax-switch-for-woocommerce' ),
+						'type'        => 'text',
+						'desc'        => __( 'Text to append to prices including VAT.', 'tax-switch-for-woocommerce' ),
+						'id'          => 'wdevs_tax_switch_incl_vat',
+						'placeholder' => __( 'Incl. VAT', 'tax-switch-for-woocommerce' )
+				),
+				array(
+						'name'        => __( 'Excluding VAT text', 'tax-switch-for-woocommerce' ),
+						'type'        => 'text',
+						'desc'        => __( 'Text to append to prices excluding VAT.', 'tax-switch-for-woocommerce' ),
+						'id'          => 'wdevs_tax_switch_excl_vat',
+						'placeholder' => __( 'Excl. VAT', 'tax-switch-for-woocommerce' )
+				),
 //          Added in 1.5.1, removed in 1.5.2
 //			array(
 //				'name'    => __( 'Hide on cart and checkout pages', 'tax-switch-for-woocommerce' ),
@@ -236,27 +269,27 @@ class Wdevs_Tax_Switch_Woocommerce {
 //				'id'      => 'wdevs_tax_switch_hide_on_checkout',
 //				'default' => 'no'
 //			),
-			array(
-				'title'       => __( 'Where enabled', 'tax-switch-for-woocommerce' ),
-				'type'        => 'radio',
-				'id'          => 'wdevs_tax_switch_location',
-				'default'     => 'all',
-				'options'     => array(
-					'all'         => __( 'On all pages', 'tax-switch-for-woocommerce' ),
-					'woocommerce' => __( 'Only on WooCommerce pages', 'tax-switch-for-woocommerce' ),
-					'prices'      => __( 'Only on pages displaying prices', 'tax-switch-for-woocommerce' ),
+				array(
+						'title'       => __( 'Where enabled', 'tax-switch-for-woocommerce' ),
+						'type'        => 'radio',
+						'id'          => 'wdevs_tax_switch_location',
+						'default'     => 'all',
+						'options'     => array(
+								'all'         => __( 'On all pages', 'tax-switch-for-woocommerce' ),
+								'woocommerce' => __( 'Only on WooCommerce pages', 'tax-switch-for-woocommerce' ),
+								'prices'      => __( 'Only on pages displaying prices', 'tax-switch-for-woocommerce' ),
+						),
+						'desc_tip'    => __( 'WooCommerce pages include: product archives/categories, single product pages and account pages.', 'tax-switch-for-woocommerce' ),
+						'desc'        => '<strong>' . __( 'On all pages', 'tax-switch-for-woocommerce' ) . ':</strong> ' . __( 'On all pages where a Tax Switch block/shortcode is placed.', 'tax-switch-for-woocommerce' ) . '<br/>' .
+										 '<strong>' . __( 'Only on WooCommerce pages', 'tax-switch-for-woocommerce' ) . ':</strong> ' . __( 'Hidden on pages that are not part of the store. Stops rendering completely.', 'tax-switch-for-woocommerce' ) . '<br/>' .
+										 '<strong>' . __( 'Only on pages displaying prices', 'tax-switch-for-woocommerce' ) . ':</strong> ' . __( 'Hidden on pages that do not display any prices. Renders, but hides the components (slightly slower).', 'tax-switch-for-woocommerce' ) . '<br/><br/>' .
+										 '<strong>' . __( 'Tax Switch blocks/shortcodes are always hidden on the cart and checkout pages.', 'tax-switch-for-woocommerce' ) . '</strong>',
+						'desc_at_end' => true,
 				),
-				'desc_tip'    => __( 'WooCommerce pages include: product archives/categories, single product pages and account pages.', 'tax-switch-for-woocommerce' ),
-				'desc'        => __(
-					'<strong>On all pages:</strong> On all pages where a Tax Switch block/shortcode is placed.<br /><strong>Only on WooCommerce pages:</strong> Hidden on pages that are not part of the store. Stops rendering completely.<br /><strong>Only on pages displaying prices:</strong> Hidden on pages that do not display any prices. Renders, but hides the components (slightly slower).<br/><br/><strong>Tax Switch blocks/shortcodes are always hidden on the cart and checkout pages.</strong>',
-					'tax-switch-for-woocommerce'
+				array(
+						'type' => 'sectionend',
+						'id'   => 'wdevs_tax_switch_section_end'
 				),
-				'desc_at_end' => true,
-			),
-			array(
-				'type' => 'sectionend',
-				'id'   => 'wdevs_tax_switch_section_end'
-			),
 		);
 
 		return apply_filters( 'wdevs_tax_switch_settings', $settings );
@@ -270,16 +303,16 @@ class Wdevs_Tax_Switch_Woocommerce {
 	 */
 	private function get_shortcode_settings() {
 		$settings = array(
-			array(
-				'name' => __( 'Shortcode settings', 'tax-switch-for-woocommerce' ),
-				'type' => 'title',
-				'desc' => __( 'Generate a tax switch shortcode.', 'tax-switch-for-woocommerce' ),
-				'id'   => 'wdevs_tax_switch_section_title'
-			),
-			array(
-				'type' => 'sectionend',
-				'id'   => 'wdevs_tax_switch_section_end'
-			),
+				array(
+						'name' => __( 'Shortcode settings', 'tax-switch-for-woocommerce' ),
+						'type' => 'title',
+						'desc' => __( 'Generate a tax switch shortcode.', 'tax-switch-for-woocommerce' ),
+						'id'   => 'wdevs_tax_switch_section_title'
+				),
+				array(
+						'type' => 'sectionend',
+						'id'   => 'wdevs_tax_switch_section_end'
+				),
 		);
 
 		return apply_filters( 'wdevs_tax_switch_settings_shortcode', $settings );

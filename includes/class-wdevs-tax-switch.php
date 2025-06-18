@@ -255,6 +255,7 @@ class Wdevs_Tax_Switch {
 			$this->loader->add_filter( 'woocommerce_settings_tabs_array', $plugin_woocommerce, 'add_settings_tab', 50 );
 			$this->loader->add_action( 'woocommerce_settings_tabs_wdevs_tax_switch', $plugin_woocommerce, 'settings_tab' );
 
+			$this->loader->add_action('woocommerce_after_settings_wdevs_tax_switch', $plugin_woocommerce, 'render_footer_info');
 		}
 	}
 

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Tax Switch for WooCommerce\n"
-"POT-Creation-Date: 2025-05-20 17:00+0200\n"
-"PO-Revision-Date: 2025-05-20 17:05+0200\n"
+"POT-Creation-Date: 2025-06-18 14:40+0200\n"
+"PO-Revision-Date: 2025-06-18 14:43+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -19,6 +19,11 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 "X-Poedit-SearchPathExcluded-1: node_modules\n"
+
+#: admin/class-wdevs-tax-switch-admin.php:138
+#: includes/class-wdevs-tax-switch-woocommerce.php:169
+msgid "Settings"
+msgstr "Settings"
 
 #: admin/partials/section-wdevs-tax-switch-shortcode.php:19
 msgid "Tax switch shortcode"
@@ -68,7 +73,7 @@ msgid "Default style"
 msgstr "Default style"
 
 #: admin/partials/section-wdevs-tax-switch-shortcode.php:74
-#: includes/class-wdevs-tax-switch-block-switch.php:56
+#: includes/class-wdevs-tax-switch-block-switch.php:51
 msgid "Inline style"
 msgstr "Inline style"
 
@@ -111,9 +116,9 @@ msgid "Including VAT label"
 msgstr "Including VAT label"
 
 #: admin/partials/section-wdevs-tax-switch-shortcode.php:140
-#: includes/class-wdevs-tax-switch-block-label.php:62
-#: includes/class-wdevs-tax-switch-block-label.php:80
-#: includes/class-wdevs-tax-switch-woocommerce.php:222
+#: includes/class-wdevs-tax-switch-block-label.php:64
+#: includes/class-wdevs-tax-switch-block-label.php:82
+#: includes/class-wdevs-tax-switch-woocommerce.php:255
 #: public/class-wdevs-tax-switch-public.php:146
 msgid "Incl. VAT"
 msgstr "Incl. VAT"
@@ -124,9 +129,9 @@ msgid "Excluding VAT label"
 msgstr "Excluding VAT label"
 
 #: admin/partials/section-wdevs-tax-switch-shortcode.php:150
-#: includes/class-wdevs-tax-switch-block-label.php:63
-#: includes/class-wdevs-tax-switch-block-label.php:81
-#: includes/class-wdevs-tax-switch-woocommerce.php:229
+#: includes/class-wdevs-tax-switch-block-label.php:65
+#: includes/class-wdevs-tax-switch-block-label.php:83
+#: includes/class-wdevs-tax-switch-woocommerce.php:262
 #: public/class-wdevs-tax-switch-public.php:147
 msgid "Excl. VAT"
 msgstr "Excl. VAT"
@@ -195,55 +200,68 @@ msgstr ""
 msgid "Tax switch"
 msgstr "Tax switch"
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:169
-msgid "Settings"
-msgstr "Settings"
-
 #: includes/class-wdevs-tax-switch-woocommerce.php:170
 msgid "Shortcode"
 msgstr "Shortcode"
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:212
+#: includes/class-wdevs-tax-switch-woocommerce.php:204
+msgid "Documentation"
+msgstr "Documentation"
+
+#. translators: %s: Link to author site.
+#: includes/class-wdevs-tax-switch-woocommerce.php:229
+#, php-format
+msgid ""
+"Tax Switch for WooCommerce is developed by %s. Your trusted WordPress & "
+"WooCommerce plugin partner from the Netherlands."
+msgstr ""
+"Tax Switch for WooCommerce is developed by %s. Your trusted WordPress & "
+"WooCommerce plugin partner from the Netherlands."
+
+#: includes/class-wdevs-tax-switch-woocommerce.php:245
 msgid "Tax switch settings"
 msgstr "Tax switch settings"
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:214
+#: includes/class-wdevs-tax-switch-woocommerce.php:247
 msgid "Customize the tax switch settings."
 msgstr "Customize the tax switch settings."
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:218
+#: includes/class-wdevs-tax-switch-woocommerce.php:251
 msgid "Including VAT text"
 msgstr "Including VAT text"
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:220
+#: includes/class-wdevs-tax-switch-woocommerce.php:253
 msgid "Text to append to prices including VAT."
 msgstr "Text to append to prices including VAT."
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:225
+#: includes/class-wdevs-tax-switch-woocommerce.php:258
 msgid "Excluding VAT text"
 msgstr "Excluding VAT text"
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:227
+#: includes/class-wdevs-tax-switch-woocommerce.php:260
 msgid "Text to append to prices excluding VAT."
 msgstr "Text to append to prices excluding VAT."
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:240
+#: includes/class-wdevs-tax-switch-woocommerce.php:273
 msgid "Where enabled"
 msgstr "Where enabled"
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:245
+#: includes/class-wdevs-tax-switch-woocommerce.php:278
+#: includes/class-wdevs-tax-switch-woocommerce.php:283
 msgid "On all pages"
 msgstr "On all pages"
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:246
+#: includes/class-wdevs-tax-switch-woocommerce.php:279
+#: includes/class-wdevs-tax-switch-woocommerce.php:284
 msgid "Only on WooCommerce pages"
 msgstr "Only on WooCommerce pages"
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:247
+#: includes/class-wdevs-tax-switch-woocommerce.php:280
+#: includes/class-wdevs-tax-switch-woocommerce.php:285
 msgid "Only on pages displaying prices"
 msgstr "Only on pages displaying prices"
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:249
+#: includes/class-wdevs-tax-switch-woocommerce.php:282
 msgid ""
 "WooCommerce pages include: product archives/categories, single product pages "
 "and account pages."
@@ -251,29 +269,37 @@ msgstr ""
 "WooCommerce pages include: product archives/categories, single product pages "
 "and account pages."
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:251
-msgid ""
-"<strong>On all pages:</strong> On all pages where a Tax Switch block/"
-"shortcode is placed.<br /><strong>Only on WooCommerce pages:</strong> Hidden "
-"on pages that are not part of the store. Stops rendering completely.<br /"
-"><strong>Only on pages displaying prices:</strong> Hidden on pages that do "
-"not display any prices. Renders, but hides the components (slightly slower)."
-"<br/><br/><strong>Tax Switch blocks/shortcodes are always hidden on the cart "
-"and checkout pages.</strong>"
-msgstr ""
-"<strong>On all pages:</strong> On all pages where a Tax Switch block/"
-"shortcode is placed.<br /><strong>Only on WooCommerce pages:</strong> Hidden "
-"on pages that are not part of the store. Stops rendering completely.<br /"
-"><strong>Only on pages displaying prices:</strong> Hidden on pages that do "
-"not display any prices. Renders, but hides the components (slightly slower)."
-"<br/><br/><strong>Tax Switch blocks/shortcodes are always hidden on the cart "
-"and checkout pages.</strong>"
+#: includes/class-wdevs-tax-switch-woocommerce.php:283
+msgid "On all pages where a Tax Switch block/shortcode is placed."
+msgstr "On all pages where a Tax Switch block/shortcode is placed."
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:274
+#: includes/class-wdevs-tax-switch-woocommerce.php:284
+msgid ""
+"Hidden on pages that are not part of the store. Stops rendering completely."
+msgstr ""
+"Hidden on pages that are not part of the store. Stops rendering completely."
+
+#: includes/class-wdevs-tax-switch-woocommerce.php:285
+msgid ""
+"Hidden on pages that do not display any prices. Renders, but hides the "
+"components (slightly slower)."
+msgstr ""
+"Hidden on pages that do not display any prices. Renders, but hides the "
+"components (slightly slower)."
+
+#: includes/class-wdevs-tax-switch-woocommerce.php:286
+msgid ""
+"Tax Switch blocks/shortcodes are always hidden on the cart and checkout "
+"pages."
+msgstr ""
+"Tax Switch blocks/shortcodes are always hidden on the cart and checkout "
+"pages."
+
+#: includes/class-wdevs-tax-switch-woocommerce.php:307
 msgid "Shortcode settings"
 msgstr "Shortcode settings"
 
-#: includes/class-wdevs-tax-switch-woocommerce.php:276
+#: includes/class-wdevs-tax-switch-woocommerce.php:309
 msgid "Generate a tax switch shortcode."
 msgstr "Generate a tax switch shortcode."
 
@@ -301,6 +327,23 @@ msgstr "Wijnberg Developments"
 msgid "https://wijnberg.dev/"
 msgstr "https://wijnberg.dev/"
 
+#~ msgid ""
+#~ "<strong>On all pages:</strong> On all pages where a Tax Switch block/"
+#~ "shortcode is placed.<br /><strong>Only on WooCommerce pages:</strong> "
+#~ "Hidden on pages that are not part of the store. Stops rendering "
+#~ "completely.<br /><strong>Only on pages displaying prices:</strong> Hidden "
+#~ "on pages that do not display any prices. Renders, but hides the "
+#~ "components (slightly slower).<br/><br/><strong>Tax Switch blocks/"
+#~ "shortcodes are always hidden on the cart and checkout pages.</strong>"
+#~ msgstr ""
+#~ "<strong>On all pages:</strong> On all pages where a Tax Switch block/"
+#~ "shortcode is placed.<br /><strong>Only on WooCommerce pages:</strong> "
+#~ "Hidden on pages that are not part of the store. Stops rendering "
+#~ "completely.<br /><strong>Only on pages displaying prices:</strong> Hidden "
+#~ "on pages that do not display any prices. Renders, but hides the "
+#~ "components (slightly slower).<br/><br/><strong>Tax Switch blocks/"
+#~ "shortcodes are always hidden on the cart and checkout pages.</strong>"
+
 #, fuzzy
 #~| msgid "Inline style"
 #~ msgid "Inline"
@@ -308,9 +351,6 @@ msgstr "https://wijnberg.dev/"
 
 #~ msgid "Hide on cart and checkout pages"
 #~ msgstr "Hide on cart and checkout pages"
-
-#~ msgid "Hide switches/buttons on the cart and checkout pages"
-#~ msgstr "Hide switches/buttons on the cart and checkout pages"
 
 #~ msgid "Text color checked"
 #~ msgstr "Text color checked"
