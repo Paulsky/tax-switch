@@ -78,7 +78,6 @@ class Wdevs_Tax_Switch {
 		$this->plugin_name = 'wdevs-tax-switch';
 
 		$this->load_dependencies();
-		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
 		$this->define_woocommerce_hooks();
@@ -123,12 +122,6 @@ class Wdevs_Tax_Switch {
 		 * core plugin.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wdevs-tax-switch-loader.php';
-
-		/**
-		 * The class responsible for defining internationalization functionality
-		 * of the plugin.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wdevs-tax-switch-i18n.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
@@ -178,23 +171,6 @@ class Wdevs_Tax_Switch {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wdevs-tax-switch-compatibility.php';
 
 		$this->loader = new Wdevs_Tax_Switch_Loader();
-	}
-
-	/**
-	 * Define the locale for this plugin for internationalization.
-	 *
-	 * Uses the Wdevs_Tax_Switch_i18n class in order to set the domain and to register the hook
-	 * with WordPress.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 */
-	private function set_locale() {
-
-		$plugin_i18n = new Wdevs_Tax_Switch_i18n();
-
-		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
-
 	}
 
 	/**
