@@ -122,6 +122,7 @@ class Wdevs_Tax_Switch_Compatibility {
 				);
 			}
 
+			//Kapee theme
 			if($this->is_theme_active('Kapee')){
 				$kapee_handle = 'wdevs-tax-switch-kapee-theme';
 				$kapee_asset = $this->enqueue_script($kapee_handle, 'switch', 'kapee-theme', [ 'accounting', 'kapee-script' ]);
