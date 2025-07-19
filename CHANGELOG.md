@@ -8,6 +8,8 @@ Load_plugin_textdomain() because it has been discouraged since WordPress version
 ## [1.5.8] - 2025-07-04
 ### Added
 - Compatibility for Advanced Woo Search (+ PRO)
+### Updated
+- Tested WooCommerce 10.0.2
 
 ## [1.5.7] - 2025-06-18
 ### Updated
