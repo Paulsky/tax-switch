@@ -3,7 +3,7 @@ Contributors: wijnbergdevelopments
 Tags: woocommerce, tax, vat
 Requires at least: 5.0
 Tested up to: 6.8
-Stable tag: 1.5.7
+Stable tag: 1.5.8
 Requires PHP: 7.2
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
@@ -190,6 +190,7 @@ The following plugins have been tested and confirmed compatible:
 * Variation Swatches for WooCommerce (+ PRO)
 * Variation Price Display Range for WooCommerce (+ PRO)
 * WooCommerce Product Add-Ons Ultimate
+* Advanced Woo Search (+ PRO)
 
 If you encounter any compatibility issues with other plugins or themes, please let us know. Your feedback helps us improve the plugin and extend compatibility to more third-party solutions.
 
@@ -226,6 +227,12 @@ The plugin is designed to keep prices consistent in the cart and checkout proces
 
 
 == Changelog ==
+= 1.5.9 =
+* Removed load_plugin_textdomain() because it has been discouraged since WordPress version 4.6.
+
+= 1.5.8 =
+* Added compatibility for Advanced Woo Search (+ PRO)
+
 = 1.5.7 =
 * Tested WooCommerce 9.9.4
 * Improved translations

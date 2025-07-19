@@ -42,7 +42,7 @@ The plugin is now ready for use.
 
 ## Getting started
 
-These instructions will guide you through the installation and basic setup of the Tax Switch for WooCommerce plugin, ensuring a smooth integration with your WooCommerce store.
+These instructions will guide you through the installation and basic setup of the Tax Switch for WooCommerce plugin.
 
 ### Configuration
 

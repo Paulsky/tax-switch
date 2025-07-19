@@ -44,6 +44,7 @@ class ThirdPartyCompatibility {
 			'flatsome-relay-request-done', //Flatsome theme compatibility
 			'flatsome-infiniteScroll-append', //Flatsome theme compatibility,
 			'vpd_after_price_fadein', //Variation Price Display Range for WooCommerce
+			'awsShowingResults', //Advanced Woo Search compatibility
 		];
 
 		thirdPartyEvents.forEach( function ( eventName ) {
