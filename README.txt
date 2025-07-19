@@ -230,6 +230,7 @@ The plugin is designed to keep prices consistent in the cart and checkout proces
 = 1.5.9 =
 * Added compatibility for Kapee theme
 * Removed load_plugin_textdomain() because it has been discouraged since WordPress version 4.6.
+* Tested WooCommerce 10.0.2
 
 = 1.5.8 =
 * Added compatibility for Advanced Woo Search (+ PRO)

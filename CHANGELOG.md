@@ -10,6 +10,8 @@ All notable changes to the Tax Switch for WooCommerce plugin will be documented 
 ## [1.5.8] - 2025-07-04
 ### Added
 - Compatibility for Advanced Woo Search (+ PRO)
+### Updated
+- Tested WooCommerce 10.0.2
 
 ## [1.5.7] - 2025-06-18
 ### Updated
