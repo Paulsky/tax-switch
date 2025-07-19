@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to the Tax Switch for WooCommerce plugin will be documented in this file.
 
+## [1.5.9]BETA
+### Removed
+Load_plugin_textdomain() because it has been discouraged since WordPress version 4.6.
+
 ## [1.5.8] - 2025-07-04
 ### Added
 - Compatibility for Advanced Woo Search (+ PRO)

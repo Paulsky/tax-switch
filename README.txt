@@ -227,6 +227,9 @@ The plugin is designed to keep prices consistent in the cart and checkout proces
 
 
 == Changelog ==
+= 1.5.9 =
+* Removed load_plugin_textdomain() because it has been discouraged since WordPress version 4.6.
+
 = 1.5.8 =
 * Added compatibility for Advanced Woo Search (+ PRO)
 
