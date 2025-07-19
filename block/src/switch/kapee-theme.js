@@ -10,8 +10,8 @@ window.addEventListener( 'DOMContentLoaded', () => {
 	};
 
 	const kt = new KapeeTheme(
-			viewConfig.originalTaxDisplay,
-			wtsCompatibilityObject.baseTaxRate
+		viewConfig.originalTaxDisplay,
+		wtsCompatibilityObject.baseTaxRate
 	);
 	kt.init();
 } );

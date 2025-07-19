@@ -50,9 +50,9 @@ module.exports = {
 			'product-extras-for-woocommerce.js'
 		),
 		'switch/kapee-theme': path.resolve(
-				process.cwd(),
-				'block/src/switch',
-				'kapee-theme.js'
+			process.cwd(),
+			'block/src/switch',
+			'kapee-theme.js'
 		),
 		'label/index': path.resolve(
 			process.cwd(),
