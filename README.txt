@@ -191,6 +191,7 @@ The following plugins have been tested and confirmed compatible:
 * Variation Price Display Range for WooCommerce (+ PRO)
 * WooCommerce Product Add-Ons Ultimate
 * Advanced Woo Search (+ PRO)
+* B2B Market
 
 If you encounter any compatibility issues with other plugins or themes, please let us know. Your feedback helps us improve the plugin and extend compatibility to more third-party solutions.
 

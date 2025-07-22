@@ -1,9 +1,10 @@
 # Changelog
 All notable changes to the Tax Switch for WooCommerce plugin will be documented in this file.
 
-## [1.5.9]BETA
+## [1.5.9] - 2025-07-22
 ### Added
 - Compatibility for Kapee theme (version ≥ 1.6.20)
+- Compatibility for B2B Market
 ### Removed
 - Load_plugin_textdomain() because it has been discouraged since WordPress version 4.6.
 
