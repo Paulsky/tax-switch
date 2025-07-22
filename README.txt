@@ -3,7 +3,7 @@ Contributors: wijnbergdevelopments
 Tags: woocommerce, tax, vat
 Requires at least: 5.0
 Tested up to: 6.8
-Stable tag: 1.5.8
+Stable tag: 1.5.9
 Requires PHP: 7.2
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
@@ -228,6 +228,7 @@ The plugin is designed to keep prices consistent in the cart and checkout proces
 
 == Changelog ==
 = 1.5.9 =
+* Added compatibility for Kapee theme
 * Removed load_plugin_textdomain() because it has been discouraged since WordPress version 4.6.
 * Tested WooCommerce 10.0.2
 
@@ -267,8 +268,8 @@ The plugin is designed to keep prices consistent in the cart and checkout proces
 
 = 1.5.0 =
 * Gutenberg block/shortcode for showing text about the currently selected tax setting. [See this topic](https://wordpress.org/support/topic/shortcode-for-wdevs-tax-switch-label-text/)
-* Compatibility for Flatsome theme
-* Compatibility for FacetWP
+* Added compatibility for Flatsome theme
+* Added compatibility for FacetWP
 * Tested WooCommerce 9.8.2
 * Possible breaking change: refactored the (block) code structure to support multiple blocks
 

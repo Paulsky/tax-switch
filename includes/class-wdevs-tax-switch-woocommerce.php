@@ -180,10 +180,6 @@ class Wdevs_Tax_Switch_Woocommerce {
 	public function output_sections() {
 		$sections = $this->get_sections();
 
-		if ( empty( $sections ) || 1 === count( $sections ) ) {
-			return;
-		}
-
 		$documentationURL = 'https://products.wijnberg.dev/product/wordpress/plugins/tax-switch-for-woocommerce/';
 
 		echo '<ul class="subsubsub">';
@@ -199,6 +195,7 @@ class Wdevs_Tax_Switch_Woocommerce {
 		}
 
 		?>
+
 		<li>
 			<a href="<?php echo esc_attr( $documentationURL ); ?>" target="_blank">
 				<?php esc_html_e( 'Documentation', 'tax-switch-for-woocommerce' ); ?>
@@ -213,6 +210,7 @@ class Wdevs_Tax_Switch_Woocommerce {
 				</svg>
 			</a>
 		</li>
+
 		<?php
 
 		echo '</ul><br class="clear" />';
