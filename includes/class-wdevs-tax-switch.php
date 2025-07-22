@@ -214,6 +214,11 @@ class Wdevs_Tax_Switch {
 			$this->loader->add_filter( 'woocommerce_get_price_html', $plugin_public, 'get_price_html', PHP_INT_MIN, 2 );
 			$this->loader->add_filter( 'woocommerce_countries_inc_tax_or_vat', $plugin_public, 'wrap_inc_label', PHP_INT_MAX, 1 );
 			$this->loader->add_filter( 'woocommerce_countries_ex_tax_or_vat', $plugin_public, 'wrap_ex_label', PHP_INT_MAX, 1 );
+
+			// B2B Market
+			if ( $this->is_plugin_active( 'b2b-market/b2b-market.php' ) ) {
+				$this->loader->add_filter( 'bm_filter_woocommerce_get_price_html', $plugin_public, 'get_price_html', PHP_INT_MIN, 2 );
+			}
 		}
 	}
 
