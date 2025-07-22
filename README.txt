@@ -173,6 +173,7 @@ The following themes have been tested and confirmed compatible:
 * Blocksy
 * Thrive
 * Flatsome
+* Kapee
 
 The following plugins have been tested and confirmed compatible:
 
@@ -230,6 +231,7 @@ The plugin is designed to keep prices consistent in the cart and checkout proces
 == Changelog ==
 = 1.5.9 =
 * Added compatibility for Kapee theme
+* Added compatibility for B2B Market
 * Removed load_plugin_textdomain() because it has been discouraged since WordPress version 4.6.
 * Tested WooCommerce 10.0.2
 

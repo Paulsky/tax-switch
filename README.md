@@ -188,6 +188,7 @@ This plugin is tested and compatible with the following:
 - Blocksy
 - Thrive
 - Flatsome
+- Kapee
 
 ### Plugins
 
@@ -202,6 +203,11 @@ This plugin is tested and compatible with the following:
 - Advanced Product Fields Pro for WooCommerce
 - WooCommerce Quantity Discounts, Rules & Swatches
 - FacetWP
+- Variation Swatches for WooCommerce (+ PRO)
+- Variation Price Display Range for WooCommerce (+ PRO)
+- WooCommerce Product Add-Ons Ultimate
+- Advanced Woo Search (+ PRO)
+- B2B Market
 
 If you encounter any conflicts with other themes or plugins, please report them by opening an issue or through our website.
 
