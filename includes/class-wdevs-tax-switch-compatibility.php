@@ -248,4 +248,31 @@ class Wdevs_Tax_Switch_Compatibility {
 		return $this->combine_price_displays( $original_output, $alternate_field, $shop_prices_include_tax );
 	}
 
+	/**
+	 * Allow span with classes in certain price html like menus or mini carts.
+	 * See @combine_price_displays. That's needed to wrap the prices. It only contains spans with a couple of classes
+	 *
+	 * @param $tags
+	 * @param $context
+	 *
+	 * @return array
+	 * @since 1.5.11
+	 */
+	public function kses_allow_span_classes_for_prices($tags, $context ){
+		//filters and actions
+		$allowed_contexts = [
+			'woocommerce_add_to_cart_fragments', //Default WooCommerce AJAX cart response
+			'generate_menu_bar_items', //GeneratePress theme compatibility,
+			'entr_header_cart' //Entr theme compatibility
+		];
+
+		if ( in_array( $context, $allowed_contexts ) ) {
+			$tags['span'] = array(
+				'class' => true,
+			);
+		}
+
+		return $tags;
+	}
+
 }

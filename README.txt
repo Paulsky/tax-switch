@@ -3,7 +3,7 @@ Contributors: wijnbergdevelopments
 Tags: woocommerce, tax, vat
 Requires at least: 5.0
 Tested up to: 6.8
-Stable tag: 1.5.10
+Stable tag: 1.5.11
 Requires PHP: 7.2
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
@@ -174,6 +174,7 @@ The following themes have been tested and confirmed compatible:
 * Thrive
 * Flatsome
 * Kapee
+* Entr
 
 The following plugins have been tested and confirmed compatible:
 
@@ -230,6 +231,11 @@ The plugin is designed to keep prices consistent in the cart and checkout proces
 
 
 == Changelog ==
+= 1.5.11 =
+* Added wp_kses_allowed_html filter to allow spans in certain contexts for price displays
+* Added compatibility for Entr theme [See this issue](https://github.com/Paulsky/tax-switch/issues/3)
+* Improved compatibility with GeneratePress
+
 = 1.5.10 =
 * Added compatibility for FiboFilters
 

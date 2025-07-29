@@ -189,6 +189,7 @@ This plugin is tested and compatible with the following:
 - Thrive
 - Flatsome
 - Kapee
+- Entr
 
 ### Plugins
 

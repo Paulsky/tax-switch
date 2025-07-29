@@ -45,6 +45,7 @@ class ThirdPartyCompatibility {
 			'flatsome-infiniteScroll-append', //Flatsome theme compatibility,
 			'vpd_after_price_fadein', //Variation Price Display Range for WooCommerce
 			'awsShowingResults', //Advanced Woo Search compatibility
+			'wc_fragments_loaded', //WooCommerce cart fragments (for prices in menus or mini carts)
 		];
 
 		thirdPartyEvents.forEach( function ( eventName ) {

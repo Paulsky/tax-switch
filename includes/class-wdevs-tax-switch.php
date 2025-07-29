@@ -281,6 +281,9 @@ class Wdevs_Tax_Switch {
 			//wc product table compatibility
 			$this->loader->add_filter( 'wcpt_element', $plugin_compatibility, 'activate_wc_product_table_compatibility', 10, 1 );
 
+			//Allow certain HTML elements in certain contexts
+			$this->loader->add_filter( 'wp_kses_allowed_html', $plugin_compatibility, 'kses_allow_span_classes_for_prices', 10, 2 );
+
 			// Check for WooCommerce Measurement Price Calculator plugin
 			if ( $this->is_plugin_active( 'woocommerce-measurement-price-calculator/woocommerce-measurement-price-calculator.php' ) ) {
 				$this->loader->add_filter(

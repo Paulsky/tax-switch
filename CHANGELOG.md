@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to the Tax Switch for WooCommerce plugin will be documented in this file.
 
+## [1.5.11] - 2025-07-29
+### Added
+- wp_kses_allowed_html filter to allow spans in certain contexts for price displays
+- Compatibility for Entr theme [See this issue](https://github.com/Paulsky/tax-switch/issues/3)
+### Updated
+- Improved compatibility with GeneratePress
+
 ## [1.5.10] - 2025-07-29
 ### Added
 - Compatibility for FiboFilters
