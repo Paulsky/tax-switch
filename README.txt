@@ -3,7 +3,7 @@ Contributors: wijnbergdevelopments
 Tags: woocommerce, tax, vat
 Requires at least: 5.0
 Tested up to: 6.8
-Stable tag: 1.5.9
+Stable tag: 1.5.10
 Requires PHP: 7.2
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
@@ -193,6 +193,7 @@ The following plugins have been tested and confirmed compatible:
 * WooCommerce Product Add-Ons Ultimate
 * Advanced Woo Search (+ PRO)
 * B2B Market
+* FiboFilters
 
 If you encounter any compatibility issues with other plugins or themes, please let us know. Your feedback helps us improve the plugin and extend compatibility to more third-party solutions.
 
@@ -229,6 +230,9 @@ The plugin is designed to keep prices consistent in the cart and checkout proces
 
 
 == Changelog ==
+= 1.5.10 =
+* Added compatibility for FiboFilters
+
 = 1.5.9 =
 * Added compatibility for Kapee theme
 * Added compatibility for B2B Market

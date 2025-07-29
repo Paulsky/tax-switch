@@ -54,6 +54,11 @@ module.exports = {
 			'block/src/switch',
 			'kapee-theme.js'
 		),
+		'switch/fibofilters': path.resolve(
+			process.cwd(),
+			'block/src/switch',
+			'fibofilters.js'
+		),
 		'label/index': path.resolve(
 			process.cwd(),
 			'block/src/label',

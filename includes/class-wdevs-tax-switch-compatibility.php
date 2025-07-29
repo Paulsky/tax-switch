@@ -143,6 +143,12 @@ class Wdevs_Tax_Switch_Compatibility {
 			$wctpt_handle = 'wdevs-tax-switch-woocommerce-tiered-price-table';
 			$wctpt_asset = $this->enqueue_script($wctpt_handle, 'switch', 'woocommerce-tiered-price-table');
 		}
+
+		// FiboFilters
+		if ( $this->is_plugin_active( 'fibofilters-pro/fibofilters.php' ) ) {
+			$ffilters_handle = 'wdevs-tax-switch-fibofilters';
+			$ffilters_asset = $this->enqueue_script($ffilters_handle, 'switch', 'fibofilters', [ 'fibofilters' ]);
+		}
 	}
 
 	public function activate_wc_product_table_compatibility( $element ) {
