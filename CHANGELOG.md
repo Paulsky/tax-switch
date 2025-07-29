@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to the Tax Switch for WooCommerce plugin will be documented in this file.
 
+## [1.5.10] - 2025-07-29
+### Added
+- Compatibility for FiboFilters
+
 ## [1.5.9] - 2025-07-22
 ### Added
 - Compatibility for Kapee theme (version ≥ 1.6.20)

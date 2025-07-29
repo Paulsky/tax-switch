@@ -208,6 +208,7 @@ This plugin is tested and compatible with the following:
 - WooCommerce Product Add-Ons Ultimate
 - Advanced Woo Search (+ PRO)
 - B2B Market
+- FiboFilters
 
 If you encounter any conflicts with other themes or plugins, please report them by opening an issue or through our website.
 
