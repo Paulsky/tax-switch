@@ -3,7 +3,7 @@ Contributors: wijnbergdevelopments
 Tags: woocommerce, tax, vat
 Requires at least: 5.0
 Tested up to: 6.8
-Stable tag: 1.5.11
+Stable tag: 1.5.12
 Requires PHP: 7.2
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
@@ -195,6 +195,7 @@ The following plugins have been tested and confirmed compatible:
 * Advanced Woo Search (+ PRO)
 * B2B Market
 * FiboFilters
+* Extra Product Options & Add-Ons for WooCommerce
 
 If you encounter any compatibility issues with other plugins or themes, please let us know. Your feedback helps us improve the plugin and extend compatibility to more third-party solutions.
 
@@ -231,9 +232,13 @@ The plugin is designed to keep prices consistent in the cart and checkout proces
 
 
 == Changelog ==
+= 1.5.12 =
+* Added compatibility for Extra Product Options & Add-Ons for WooCommerce
+* Tested WooCommerce 10.1.0
+
 = 1.5.11 =
 * Added wp_kses_allowed_html filter to allow spans in certain contexts for price displays
-* Added compatibility for Entr theme [See this issue](https://github.com/Paulsky/tax-switch/issues/3)
+* Added compatibility for Entr theme. [See this issue](https://github.com/Paulsky/tax-switch/issues/3)
 * Improved compatibility with GeneratePress
 
 = 1.5.10 =
@@ -379,6 +384,8 @@ The plugin is designed to keep prices consistent in the cart and checkout proces
 * Initial release of Tax Switch for WooCommerce.
 
 == Additional Information ==
+
+This plugin is fully open source. You can find the source code on [GitHub](https://github.com/Paulsky/tax-switch)
 
 For more information and other WordPress plugins, visit [Wijnberg Developments](https://products.wijnberg.dev/product-category/wordpress/plugins/).
 

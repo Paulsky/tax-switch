@@ -295,12 +295,13 @@ class Wdevs_Tax_Switch {
 				);
 			}
 
-			// Check for YITH WooCommerce Product Add-Ons (both free and premium versions)
-			// and for Woocommerce Quantity Manager
+			// Check for YITH WooCommerce Product Add-Ons (both free and premium versions),
+			// Woocommerce Quantity Manager, and Extra Product Options & Add-Ons for WooCommerce
 			if ( $this->is_any_plugin_active( [
 				'yith-woocommerce-product-add-ons/init.php',
 				'yith-woocommerce-advanced-product-options-premium/init.php',
-				'woocommerce-quantity-manager-pro/woocommerce-quantity-manager-pro.php'
+				'woocommerce-quantity-manager-pro/woocommerce-quantity-manager-pro.php',
+				'woocommerce-tm-extra-product-options/tm-woo-extra-product-options.php'
 			] ) ) {
 				$this->loader->add_filter(
 					'woocommerce_available_variation',

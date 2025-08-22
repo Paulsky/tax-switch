@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to the Tax Switch for WooCommerce plugin will be documented in this file.
 
+## [1.5.12] - 2025-08-22
+### Added
+- Compatibility for Extra Product Options & Add-Ons for WooCommerce
+### Updated
+- Tested WooCommerce 10.1.0
+
 ## [1.5.11] - 2025-07-29
 ### Added
 - wp_kses_allowed_html filter to allow spans in certain contexts for price displays

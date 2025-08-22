@@ -59,6 +59,11 @@ module.exports = {
 			'block/src/switch',
 			'fibofilters.js'
 		),
+		'switch/woocommerce-tm-extra-product-options': path.resolve(
+			process.cwd(),
+			'block/src/switch',
+			'woocommerce-tm-extra-product-options.js'
+		),
 		'label/index': path.resolve(
 			process.cwd(),
 			'block/src/label',

@@ -133,6 +133,18 @@ class Wdevs_Tax_Switch_Compatibility {
 					[ 'baseTaxRate' => $tax_rate ]
 				);
 			}
+
+			// Extra Product Options & Add-Ons for WooCommerce
+			if ( $this->is_plugin_active( 'woocommerce-tm-extra-product-options/tm-woo-extra-product-options.php' ) ) {
+				$tmtepo_handle = 'wdevs-tax-switch-woocommerce-tm-extra-product-options';
+				$tmtepo_asset = $this->enqueue_script($tmtepo_handle, 'switch', 'woocommerce-tm-extra-product-options', [ 'themecomplete-epo' ]);
+
+				wp_localize_script(
+					$tmtepo_handle,
+					'wtsCompatibilityObject',
+					[ 'baseTaxRate' => $tax_rate ]
+				);
+			}
 		}
 
 		// Tier Pricing Table (both free and premium)
