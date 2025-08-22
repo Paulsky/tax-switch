@@ -68,9 +68,9 @@ trait Wdevs_Tax_Switch_Helper {
 
 		$price_excl_tax = wc_get_price_excluding_tax( $product );
 
-		// Prevent division by zero
+		// Prevent division by zero - use fallback for 0.00 products
 		if ( $price_excl_tax <= 0 ) {
-			return 0;
+			return $this->get_fallback_tax_rate( $product );
 		}
 
 		$price_incl_tax = wc_get_price_including_tax( $product );
@@ -79,6 +79,40 @@ trait Wdevs_Tax_Switch_Helper {
 
 		return $tax_rate;
 		//return round($tax_rate, 2);
+	}
+
+	/**
+	 * Get fallback tax rate for products with €0.00 price
+	 * Creates a temporary product with €1.00 price to calculate tax rate
+	 *
+	 * @param WC_Product $product
+	 * @return float|int
+	 * @since 1.5.13
+	 */
+	public function get_fallback_tax_rate( $product ) {
+		if ( ! $product ) {
+			return 0;
+		}
+
+		// Create a temporary product clone
+		$calculator = clone $product;
+
+		// Set price to 1.00 to avoid division by zero
+		$calculator->set_price( 1.00 );
+
+		// Directly calculate tax rate to avoid infinite recursion
+		$price_excl_tax = wc_get_price_excluding_tax( $calculator );
+
+		// Prevent division by zero (should not happen with 1.00 but safety first)
+		if ( $price_excl_tax <= 0 ) {
+			return 0;
+		}
+
+		$price_incl_tax = wc_get_price_including_tax( $calculator );
+
+		$tax_rate = ( ( $price_incl_tax - $price_excl_tax ) / $price_excl_tax ) * 100;
+
+		return $tax_rate;
 	}
 
 	public function calculate_alternate_price( $price, $product = null ) {

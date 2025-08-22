@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to the Tax Switch for WooCommerce plugin will be documented in this file.
 
+## [1.5.13] - 2025-08-22
+### Updated
+- Fixed tax calculation if product price is zero
+
 ## [1.5.12] - 2025-08-22
 ### Added
 - Compatibility for Extra Product Options & Add-Ons for WooCommerce
