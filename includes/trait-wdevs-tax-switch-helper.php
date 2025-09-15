@@ -86,6 +86,7 @@ trait Wdevs_Tax_Switch_Helper {
 	 * Creates a temporary product with €1.00 price to calculate tax rate
 	 *
 	 * @param WC_Product $product
+	 *
 	 * @return float|int
 	 * @since 1.5.13
 	 */
@@ -100,7 +101,6 @@ trait Wdevs_Tax_Switch_Helper {
 		// Set price to 1.00 to avoid division by zero
 		$calculator->set_price( 1.00 );
 
-		// Directly calculate tax rate to avoid infinite recursion
 		$price_excl_tax = wc_get_price_excluding_tax( $calculator );
 
 		// Prevent division by zero (should not happen with 1.00 but safety first)
@@ -134,6 +134,12 @@ trait Wdevs_Tax_Switch_Helper {
 			$calculator->set_tax_status( $product->get_tax_status() );
 		} else {
 			$calculator->set_tax_status( 'taxable' );
+		}
+
+		//If the original price doesn't have any tax. For example; country with 0 tax.
+		$tax_rate = $this->get_product_tax_rate( $calculator );
+		if ( $tax_rate <= 0 ) {
+			return $price;
 		}
 
 		if ( $is_vat_exempt ) {
@@ -272,13 +278,13 @@ trait Wdevs_Tax_Switch_Helper {
 	}
 
 	/**
+	 * @return array
 	 * @since 1.5.4
 	 *
-	 * @return array
 	 */
 	public function register_script( $handle, $build_dir, $asset_name, $extra_dependencies = [] ) {
-		$script_path = plugin_dir_url( dirname( __FILE__ ) ) . 'build/' . $build_dir . '/' . $asset_name . '.js';
-		$script_asset = require( plugin_dir_path( dirname( __FILE__ ) ) .  'build/' . $build_dir . '/' . $asset_name .'.asset.php' );
+		$script_path  = plugin_dir_url( dirname( __FILE__ ) ) . 'build/' . $build_dir . '/' . $asset_name . '.js';
+		$script_asset = require( plugin_dir_path( dirname( __FILE__ ) ) . 'build/' . $build_dir . '/' . $asset_name . '.asset.php' );
 
 		wp_register_script(
 			$handle,
@@ -291,13 +297,13 @@ trait Wdevs_Tax_Switch_Helper {
 	}
 
 	/**
+	 * @return array
 	 * @since 1.5.4
 	 *
-	 * @return array
 	 */
 	public function enqueue_script( $handle, $build_dir, $asset_name, $extra_dependencies = [] ) {
-		$script_path = plugin_dir_url( dirname( __FILE__ ) ) . 'build/' . $build_dir . '/' . $asset_name . '.js';
-		$script_asset = require( plugin_dir_path( dirname( __FILE__ ) ) .  'build/' . $build_dir . '/' . $asset_name .'.asset.php' );
+		$script_path  = plugin_dir_url( dirname( __FILE__ ) ) . 'build/' . $build_dir . '/' . $asset_name . '.js';
+		$script_asset = require( plugin_dir_path( dirname( __FILE__ ) ) . 'build/' . $build_dir . '/' . $asset_name . '.asset.php' );
 
 		wp_enqueue_script(
 			$handle,
