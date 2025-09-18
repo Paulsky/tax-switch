@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to the Tax Switch for WooCommerce plugin will be documented in this file.
 
+## [1.5.15] - 2025-09-18
+### Updated
+- Ignore zero tax price check if customer is vat exempt
+
 ## [1.5.14] - 2025-09-12
 ### Updated
 - Fixed price calculation if tax is zero for the current customer (zero tax rate country)

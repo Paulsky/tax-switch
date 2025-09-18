@@ -136,10 +136,13 @@ trait Wdevs_Tax_Switch_Helper {
 			$calculator->set_tax_status( 'taxable' );
 		}
 
-		//If the original price doesn't have any tax. For example; country with 0 tax.
-		$tax_rate = $this->get_product_tax_rate( $calculator );
-		if ( $tax_rate <= 0 ) {
-			return $price;
+		//Is not vat exempt (B2B customer)
+		if ( ! $is_vat_exempt ) {
+			//If the original price doesn't have any tax. For example; country with 0 tax.
+			$tax_rate = $this->get_product_tax_rate( $calculator );
+			if ( $tax_rate <= 0 ) {
+				return $price;
+			}
 		}
 
 		if ( $is_vat_exempt ) {
