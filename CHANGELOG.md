@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to the Tax Switch for WooCommerce plugin will be documented in this file.
 
+## [1.5.16] - 2025-09-25
+### Updated
+- Improved compatibility for Measurement Price Calculator for WooCommerce
+
 ## [1.5.15] - 2025-09-18
 ### Updated
 - Ignore zero tax price check if customer is vat exempt

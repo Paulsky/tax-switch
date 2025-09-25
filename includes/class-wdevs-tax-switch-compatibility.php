@@ -57,13 +57,19 @@ class Wdevs_Tax_Switch_Compatibility {
 
 	public function enqueue_compatibility_scripts() {
 		if ( is_product() ) {
+			$tax_rate = $this->get_product_tax_rate( wc_get_product() );
+
 			// WooCommerce Measurement Price Calculator
 			if ( $this->is_plugin_active( 'woocommerce-measurement-price-calculator/woocommerce-measurement-price-calculator.php' ) ) {
 				$wmpc_handle = 'wdevs-tax-switch-woocommerce-measurement-price-calculator';
-				$this->enqueue_script($wmpc_handle, 'switch', 'woocommerce-measurement-price-calculator');
-			}
+				$wmpc_asset = $this->enqueue_script($wmpc_handle, 'switch', 'woocommerce-measurement-price-calculator');
 
-			$tax_rate = $this->get_product_tax_rate( wc_get_product() );
+				wp_localize_script(
+					$wmpc_handle,
+					'wtsCompatibilityObject',
+					[ 'baseTaxRate' => $tax_rate ]
+				);
+			}
 
 			// YITH WooCommerce Product Add-Ons (both free and premium)
 			if ( $this->is_any_plugin_active( [
