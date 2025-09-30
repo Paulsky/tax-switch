@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to the Tax Switch for WooCommerce plugin will be documented in this file.
 
+## [1.5.17] - 2025-09-30
+### Updated
+- Tested WooCommerce 10.2.2
+- Improved compatibility for Measurement Price Calculator for WooCommerce
+
 ## [1.5.16] - 2025-09-25
 ### Updated
 - Improved compatibility for Measurement Price Calculator for WooCommerce

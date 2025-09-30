@@ -135,10 +135,11 @@ class MeasurementPriceCalculator {
 			this.currentVariation.price_incl_vat &&
 			this.currentVariation.price_excl_vat
 		) {
-			const displayIncludingVat = TaxSwitchHelper.displayIncludingVat(
-				this.originalTaxDisplay
-			);
-			if ( displayIncludingVat ) {
+			// const displayIncludingVat = TaxSwitchHelper.displayIncludingVat(
+			// 	this.originalTaxDisplay
+			// );
+			// if ( displayIncludingVat ) {
+			if ( this.originalTaxDisplay === 'incl' ) {
 				return parseFloat( this.currentVariation.price_incl_vat );
 			}
 
