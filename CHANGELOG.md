@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to the Tax Switch for WooCommerce plugin will be documented in this file.
 
+## [1.5.18] - 2025-10-08
+### Updated
+- Fixed incorrect tax calculation for variation products loaded via AJAX
+
 ## [1.5.17] - 2025-09-30
 ### Updated
 - Tested WooCommerce 10.2.2

@@ -126,7 +126,7 @@ trait Wdevs_Tax_Switch_Helper {
 		$pricesIncludeTaxFilter = false;
 
 		if ( ! $product ) {
-			$product = wc_get_product();
+			$product = $this->get_current_product();
 		}
 
 		if ( $product instanceof WC_Product ) {
@@ -316,6 +316,34 @@ trait Wdevs_Tax_Switch_Helper {
 		);
 
 		return $script_asset;
+	}
+
+	/**
+	 * Get the current product, handling AJAX variation requests
+	 *
+	 * During AJAX variation requests, there is no global $post context,
+	 * so we need to manually retrieve the variation product using the
+	 * same logic as WooCommerce uses in WC_AJAX::get_variation()
+	 *
+	 * @return WC_Product|null The current product or null if not available
+	 * @since 1.5.18
+	 */
+	public function get_current_product() {
+		if ( doing_action( 'wc_ajax_get_variation' ) && ! empty( $_POST['product_id'] ) ) {
+			$variable_product = wc_get_product( absint( $_POST['product_id'] ) );
+
+			if ( $variable_product ) {
+				$data_store   = WC_Data_Store::load( 'product' );
+				$variation_id = $data_store->find_matching_product_variation( $variable_product, wp_unslash( $_POST ) );
+
+				if ( $variation_id ) {
+					return wc_get_product( $variation_id );
+				}
+			}
+
+		}
+
+		return wc_get_product();
 	}
 
 }

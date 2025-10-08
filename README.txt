@@ -3,7 +3,7 @@ Contributors: wijnbergdevelopments
 Tags: woocommerce, tax, vat
 Requires at least: 5.0
 Tested up to: 6.8
-Stable tag: 1.5.17
+Stable tag: 1.5.18
 Requires PHP: 7.2
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
@@ -232,6 +232,9 @@ The plugin is designed to keep prices consistent in the cart and checkout proces
 
 
 == Changelog ==
+= 1.5.18 =
+* Fixed incorrect tax calculation for variation products loaded via AJAX
+
 = 1.5.17 =
 * Tested WooCommerce 10.2.2
 * Improved compatibility for Measurement Price Calculator for WooCommerce
