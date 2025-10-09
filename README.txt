@@ -3,7 +3,7 @@ Contributors: wijnbergdevelopments
 Tags: woocommerce, tax, vat
 Requires at least: 5.0
 Tested up to: 6.8
-Stable tag: 1.5.18
+Stable tag: 1.5.19
 Requires PHP: 7.2
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
@@ -175,6 +175,7 @@ The following themes have been tested and confirmed compatible:
 * Flatsome
 * Kapee
 * Entr
+* Woodmart
 
 The following plugins have been tested and confirmed compatible:
 
@@ -232,6 +233,9 @@ The plugin is designed to keep prices consistent in the cart and checkout proces
 
 
 == Changelog ==
+= 1.5.19 =
+* Added PJAX compatibility for themes using jquery-pjax (e.g. WoodMart theme)
+
 = 1.5.18 =
 * Fixed incorrect tax calculation for variation products loaded via AJAX
 

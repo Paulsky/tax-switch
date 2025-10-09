@@ -190,6 +190,7 @@ This plugin is tested and compatible with the following:
 - Flatsome
 - Kapee
 - Entr
+- Woodmart
 
 ### Plugins
 

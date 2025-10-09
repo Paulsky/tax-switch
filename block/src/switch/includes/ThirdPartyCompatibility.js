@@ -46,6 +46,7 @@ class ThirdPartyCompatibility {
 			'vpd_after_price_fadein', //Variation Price Display Range for WooCommerce
 			'awsShowingResults', //Advanced Woo Search compatibility
 			'wc_fragments_loaded', //WooCommerce cart fragments (for prices in menus or mini carts)
+			'pjax:success', //PJAX compatibility (WoodMart and other themes using jquery-pjax)
 		];
 
 		thirdPartyEvents.forEach( function ( eventName ) {

@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to the Tax Switch for WooCommerce plugin will be documented in this file.
 
+## [1.5.19] - 2025-10-09
+### Added
+- PJAX compatibility for themes using jquery-pjax (e.g. WoodMart theme)
+
 ## [1.5.18] - 2025-10-08
 ### Updated
 - Fixed incorrect tax calculation for variation products loaded via AJAX
