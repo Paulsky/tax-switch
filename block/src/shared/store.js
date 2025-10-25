@@ -3,11 +3,13 @@ import { createReduxStore, select, register, dispatch } from '@wordpress/data';
 const STORAGE_KEY = 'wdevs_tax_switch_is_switched';
 const STORE_NAME = 'wdevs-tax-switch/store';
 const SWITCH_TYPE = 'SET_IS_SWITCHED';
+const DISABLED_TYPE = 'SET_IS_DISABLED';
 
 const getInitialState = () => {
 	const storedValue = localStorage.getItem( STORAGE_KEY );
 	return {
 		isSwitched: storedValue ? JSON.parse( storedValue ) : false,
+		isDisabled: false,
 	};
 };
 
@@ -25,6 +27,12 @@ const actions = {
 			value,
 		};
 	},
+	setIsDisabled( value ) {
+		return {
+			type: DISABLED_TYPE,
+			value,
+		};
+	},
 };
 
 const reducer = ( state = getInitialState(), action ) => {
@@ -34,6 +42,11 @@ const reducer = ( state = getInitialState(), action ) => {
 				...state,
 				isSwitched: action.value,
 			};
+		case DISABLED_TYPE:
+			return {
+				...state,
+				isDisabled: action.value,
+			};
 		default:
 			return state;
 	}
@@ -42,6 +55,9 @@ const reducer = ( state = getInitialState(), action ) => {
 const selectors = {
 	getIsSwitched( state ) {
 		return state.isSwitched;
+	},
+	getIsDisabled( state ) {
+		return state.isDisabled;
 	},
 };
 
@@ -67,4 +83,12 @@ export function saveIsSwitched( value ) {
 
 export function setIsSwitched( value ) {
 	return dispatch( STORE_NAME ).setIsSwitched( value );
+}
+
+export function getIsDisabled() {
+	return select( STORE_NAME ).getIsDisabled();
+}
+
+export function setIsDisabled( value ) {
+	return dispatch( STORE_NAME ).setIsDisabled( value );
 }

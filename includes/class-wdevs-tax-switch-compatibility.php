@@ -167,6 +167,27 @@ class Wdevs_Tax_Switch_Compatibility {
 			$ffilters_handle = 'wdevs-tax-switch-fibofilters';
 			$ffilters_asset = $this->enqueue_script($ffilters_handle, 'switch', 'fibofilters', [ 'fibofilters' ]);
 		}
+
+		// WoodMart theme
+		if ( $this->is_theme_active( 'woodmart' ) ) {
+			$woodmart_handle = 'wdevs-tax-switch-woodmart-theme';
+			$woodmart_asset = $this->enqueue_script( $woodmart_handle, 'switch', 'woodmart-theme' );
+		}
+
+		// FacetWP
+		if ( $this->is_plugin_active( 'facetwp/index.php' ) ) {
+			$facetwp_handle = 'wdevs-tax-switch-facetwp';
+			$facetwp_asset = $this->enqueue_script( $facetwp_handle, 'switch', 'facetwp' );
+
+			// Estimate tax rate for FacetWP (no specific product context available)
+			$estimated_tax_rate = $this->estimate_tax_rate();
+
+			wp_localize_script(
+				$facetwp_handle,
+				'wtsCompatibilityObject',
+				[ 'baseTaxRate' => $estimated_tax_rate ]
+			);
+		}
 	}
 
 	public function activate_wc_product_table_compatibility( $element ) {
@@ -202,7 +223,7 @@ class Wdevs_Tax_Switch_Compatibility {
 	 * @since 1.4.1
 	 */
 	public function render_wapf_pricing_hint( $original_output, $product, $amount, $type, $field = null, $option = null ) {
-		if ( $this->is_in_cart_or_checkout() ) {
+		if ( $this->is_in_cart_or_checkout() && ! $this->should_switch_in_mini_cart() ) {
 			return $original_output;
 		}
 
@@ -291,6 +312,65 @@ class Wdevs_Tax_Switch_Compatibility {
 		}
 
 		return $tags;
+	}
+
+	/**
+	 * Filters FacetWP slider facet render arguments to add VAT label text to price sliders
+	 *
+	 * @param array $args Facet render arguments containing facet settings
+	 *
+	 * @return array Modified render arguments with VAT label text added to suffix
+	 * @since 1.6.0
+	 */
+	public function filter_facetwp_slider_label( $args ) {
+		// Only process slider facets
+		if ( ! isset( $args['facet']['type'] ) || $args['facet']['type'] !== 'slider' ) {
+			return $args;
+		}
+
+		// Only process WooCommerce price-related sources
+		$price_sources = [ 'woo/price', 'woo/sale_price', 'woo/regular_price' ];
+		if ( ! isset( $args['facet']['source'] ) || ! in_array( $args['facet']['source'], $price_sources ) ) {
+			return $args;
+		}
+
+		$shop_prices_include_tax = $this->shop_displays_price_including_tax_by_default();
+
+		// Get VAT text options
+		$incl_vat_text = $this->get_option_text( 'wdevs_tax_switch_incl_vat', __( 'Incl. VAT', 'tax-switch-for-woocommerce' ) );
+		$excl_vat_text = $this->get_option_text( 'wdevs_tax_switch_excl_vat', __( 'Excl. VAT', 'tax-switch-for-woocommerce' ) );
+
+		if ( $shop_prices_include_tax ) {
+			$vat_text           = $incl_vat_text;
+			$alternate_vat_text = $excl_vat_text;
+		} else {
+			$vat_text           = $excl_vat_text;
+			$alternate_vat_text = $incl_vat_text;
+		}
+
+		// Get current suffix (may be empty)
+		$current_suffix = isset( $args['facet']['suffix'] ) ? $args['facet']['suffix'] : '';
+
+		// Wrap the suffix with VAT label text
+		$args['facet']['suffix'] = $this->wrap_price_displays(
+			$current_suffix,
+			$shop_prices_include_tax,
+			$vat_text,
+			$alternate_vat_text
+		);
+
+		return $args;
+	}
+
+	/**
+	 * Enable dynamic price loading for FiboSearch to ensure tax-inclusive/exclusive prices are calculated based on the current customer. Normally, The price is saved in the search index statically.
+	 *
+	 * @param bool $loadDynamically Current dynamic loading state.
+	 * @return bool Always true to force dynamic price loading.
+	 * @since 1.6.0
+	 */
+	public function enable_ajax_search_for_woocommerce_dynamic_prices($loadDynamically){
+		return true;
 	}
 
 }

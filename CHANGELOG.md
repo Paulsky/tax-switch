@@ -1,6 +1,17 @@
 # Changelog
 All notable changes to the Tax Switch for WooCommerce plugin will be documented in this file.
 
+## [1.6.0] - 2025-10-14
+### Added
+- Option to enable price switching in the mini cart
+- Compatibility for FiboSearch - AJAX Search for WooCommerce (+ Pro)
+- New filter: `wdevs_tax_switch_should_hide_on_current_page` for custom visibility control
+- 'disabled' state
+- Added FacetWP slider price switching
+### Updated
+- Improved AJAX compatibility. Price switching should be included in AJAX-loaded content
+- Improved compatibility for WoodMart theme
+
 ## [1.5.19] - 2025-10-09
 ### Added
 - PJAX compatibility for themes using jquery-pjax (e.g. WoodMart theme)

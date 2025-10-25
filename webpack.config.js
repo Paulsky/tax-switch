@@ -59,10 +59,20 @@ module.exports = {
 			'block/src/switch',
 			'fibofilters.js'
 		),
+		'switch/woodmart-theme': path.resolve(
+			process.cwd(),
+			'block/src/switch',
+			'woodmart-theme.js'
+		),
 		'switch/woocommerce-tm-extra-product-options': path.resolve(
 			process.cwd(),
 			'block/src/switch',
 			'woocommerce-tm-extra-product-options.js'
+		),
+		'switch/facetwp': path.resolve(
+			process.cwd(),
+			'block/src/switch',
+			'facetwp.js'
 		),
 		'label/index': path.resolve(
 			process.cwd(),

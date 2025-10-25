@@ -67,7 +67,7 @@ class Wdevs_Tax_Switch_Public {
 
 	public function wrap_wc_price( $return, $price, $args, $unformatted_price, $original_price ) {
 
-		if ( $this->is_in_cart_or_checkout() ) {
+		if ( $this->is_in_cart_or_checkout() && ! $this->should_switch_in_mini_cart() ) {
 			return $return;
 		}
 

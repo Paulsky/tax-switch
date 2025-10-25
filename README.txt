@@ -3,7 +3,7 @@ Contributors: wijnbergdevelopments
 Tags: woocommerce, tax, vat
 Requires at least: 5.0
 Tested up to: 6.8
-Stable tag: 1.5.19
+Stable tag: 1.6.0
 Requires PHP: 7.2
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
@@ -197,6 +197,7 @@ The following plugins have been tested and confirmed compatible:
 * B2B Market
 * FiboFilters
 * Extra Product Options & Add-Ons for WooCommerce
+* FiboSearch – Ajax Search for WooCommerce (+ Pro)
 
 If you encounter any compatibility issues with other plugins or themes, please let us know. Your feedback helps us improve the plugin and extend compatibility to more third-party solutions.
 
@@ -233,6 +234,15 @@ The plugin is designed to keep prices consistent in the cart and checkout proces
 
 
 == Changelog ==
+= 1.6.0 =
+* Added option to enable price switching in the mini cart
+* Added compatibility for FiboSearch - AJAX Search for WooCommerce (+ Pro)
+* Added new filter: `wdevs_tax_switch_should_hide_on_current_page` for custom visibility control
+* Improved AJAX compatibility. Price switching should be included in AJAX-loaded content
+* Improved compatibility for WoodMart theme
+* Added FacetWP slider price switching
+* Added 'disabled' state
+
 = 1.5.19 =
 * Added PJAX compatibility for themes using jquery-pjax (e.g. WoodMart theme)
 

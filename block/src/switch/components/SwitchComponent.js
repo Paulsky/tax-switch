@@ -3,6 +3,7 @@ import { subscribe } from '@wordpress/data';
 import TaxSwitchHelper from '../../shared/TaxSwitchHelper';
 import {
 	getIsSwitched,
+	getIsDisabled,
 	saveIsSwitched,
 	setIsSwitched,
 } from '../../shared/store';
@@ -16,14 +17,22 @@ class SwitchComponent extends Component {
 		this.state = {
 			readOnly,
 			isSwitched,
+			isDisabled: getIsDisabled(),
 		};
 
 		this.handleChange = this.handleChange.bind( this );
 
 		this.unsubscribe = subscribe( () => {
 			const newIsSwitched = getIsSwitched();
-			if ( this.state.isSwitched !== newIsSwitched ) {
-				this.setState( { isSwitched: newIsSwitched } );
+			const newIsDisabled = getIsDisabled();
+			if (
+				this.state.isSwitched !== newIsSwitched ||
+				this.state.isDisabled !== newIsDisabled
+			) {
+				this.setState( {
+					isSwitched: newIsSwitched,
+					isDisabled: newIsDisabled,
+				} );
 			}
 		} );
 	}
@@ -115,6 +124,7 @@ class SwitchComponent extends Component {
 		} = this.props;
 
 		const isIncl = this.displayIncludingVat();
+		const { isDisabled } = this.state;
 
 		const setInclusive = () => {
 			if ( ! isIncl ) {
@@ -144,6 +154,7 @@ class SwitchComponent extends Component {
 					className={ `wdevs-tax-button ${
 						isIncl ? 'wdevs-tax-button-active' : ''
 					}` }
+					disabled={ isDisabled }
 					onClick={ setInclusive }
 				>
 					{ switchLabelIncl || 'Incl. VAT' }
@@ -153,6 +164,7 @@ class SwitchComponent extends Component {
 					className={ `wdevs-tax-button ${
 						! isIncl ? 'wdevs-tax-button-active' : ''
 					}` }
+					disabled={ isDisabled }
 					onClick={ setExclusive }
 				>
 					{ switchLabelExcl || 'Excl. VAT' }
@@ -174,6 +186,7 @@ class SwitchComponent extends Component {
 
 		const isChecked = this.displayIncludingVat();
 		const showLabel = switchLabelIncl || switchLabelExcl;
+		const { isDisabled } = this.state;
 
 		return (
 			<div
@@ -192,6 +205,7 @@ class SwitchComponent extends Component {
 						name="wdevs-tax-switch-checkbox"
 						onChange={ this.handleChange }
 						checked={ isChecked }
+						disabled={ isDisabled }
 						className="wdevs-tax-switch-checkbox"
 					/>
 					<span className="wdevs-tax-switch-slider"></span>

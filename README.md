@@ -212,6 +212,7 @@ This plugin is tested and compatible with the following:
 - B2B Market
 - FiboFilters
 - Extra Product Options & Add-Ons for WooCommerce
+- FiboSearch – Ajax Search for WooCommerce (+ Pro)
 
 If you encounter any conflicts with other themes or plugins, please report them by opening an issue or through our website.
 

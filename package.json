@@ -1,6 +1,6 @@
 {
 	"name": "wdevs-tax-switch",
-	"version": "1.5.19",
+	"version": "1.6.0",
 	"description": "Let customers toggle between inclusive and exclusive VAT pricing in your WooCommerce store.",
 	"author": "Wijnberg Developments",
 	"license": "GPL-2.0-or-later",
@@ -14,7 +14,7 @@
 		"lint:css": "wp-scripts lint-style",
 		"lint:js": "wp-scripts lint-js",
 		"packages-update": "wp-scripts packages-update  --webpack-src-dir=block/src",
-		"plugin-zip": "wp-scripts plugin-zip  --webpack-src-dir=block/src --no-root-folder",
+		"plugin-zip": "wp-scripts plugin-zip  --webpack-src-dir=block/src --root-folder=tax-switch-for-woocommerce",
 		"start": "wp-scripts start --webpack-src-dir=block/src"
 	},
 	"devDependencies": {

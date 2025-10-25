@@ -115,6 +115,27 @@ trait Wdevs_Tax_Switch_Helper {
 		return $tax_rate;
 	}
 
+	/**
+	 * Estimate the tax rate without a specific product context
+	 * Creates a temporary product with the given tax class to calculate the applicable tax rate
+	 * Uses customer location if available, otherwise falls back to shop base location
+	 *
+	 * @param string $tax_class Tax class (empty string for standard rate)
+	 *
+	 * @return float Tax rate as percentage (e.g., 21.0 for 21%)
+	 * @since 1.6.0
+	 */
+	public function estimate_tax_rate( $tax_class = 'standard' ) {
+		$calculator = new WC_Product_Simple();
+		$calculator->set_price( 100 );
+
+		if ( ! empty( $tax_class ) ) {
+			$calculator->set_tax_class( $tax_class );
+		}
+
+		return $this->get_product_tax_rate( $calculator );
+	}
+
 	public function calculate_alternate_price( $price, $product = null ) {
 		$prices_include_tax      = wc_prices_include_tax();
 		$shop_prices_include_tax = $this->shop_prices_include_tax();
@@ -270,14 +291,35 @@ trait Wdevs_Tax_Switch_Helper {
 	 * @since 1.5,2
 	 */
 	public function should_hide_on_current_page() {
-		if ( $this->should_hide_on_non_wc_pages() ) {
+		$should_hide = false;
+
+		// During AJAX requests, conditional tags like is_woocommerce() and is_account_page()
+		// don't work reliably because there's no global $post context.
+		// Always allow rendering during AJAX, let JavaScript handle visibility.
+		if ( $this->is_doing_ajax() ) {
+			$should_hide = false;
+		} elseif ( $this->should_hide_on_non_wc_pages() ) {
 			if ( ! is_woocommerce() && ! is_account_page() ) {
 				//Already always disabled on cart and checkout: && ! is_cart() && ! is_checkout()
-				return true;
+				$should_hide = true;
 			}
 		}
 
-		return false;
+		/**
+		 * Filter whether to hide the tax switch/label on the current page
+		 *
+		 * Allows developers to override the default visibility logic.
+		 *
+		 * Use cases:
+		 * - Hide on specific pages (e.g., homepage even during AJAX)
+		 * - Show on custom post types
+		 * - Complex conditional logic based on user roles, etc.
+		 *
+		 * @since 1.6.0
+		 * @param bool $should_hide Whether to hide the component. Default is based on plugin settings.
+		 * @return bool True to hide the component, false to show it.
+		 */
+		return apply_filters( 'wdevs_tax_switch_should_hide_on_current_page', $should_hide );
 	}
 
 	/**
@@ -344,6 +386,34 @@ trait Wdevs_Tax_Switch_Helper {
 		}
 
 		return wc_get_product();
+	}
+
+	/**
+	 * Check for AJAX requests.
+	 *
+	 * @link https://gist.github.com/zitrusblau/58124d4b2c56d06b070573a99f33b9ed#file-lazy-load-responsive-images-php-L193
+	 * @since 1.6.0
+	 */
+	public function is_doing_ajax() {
+		if ( function_exists( 'wp_doing_ajax' ) ) {
+			return wp_doing_ajax();
+		}
+
+		return ( defined( 'DOING_AJAX' ) && DOING_AJAX );
+	}
+
+	/**
+	 * Check if price switching should be allowed in the mini cart.
+	 *
+	 * @return bool True if we're in mini cart and the setting is enabled, false otherwise.
+	 * @since 1.6.0
+	 */
+	public function should_switch_in_mini_cart() {
+		if ( ! Wdevs_Tax_Switch_Mini_Cart_Context::is_in_mini_cart() ) {
+			return false;
+		}
+
+		return get_option( 'wdevs_tax_switch_enable_mini_cart', 'no' ) === 'yes';
 	}
 
 }

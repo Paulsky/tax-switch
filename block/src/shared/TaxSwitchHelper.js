@@ -69,6 +69,22 @@ class TaxSwitchHelper {
 
 		return Number( alternatePrice.toFixed( 2 ) );
 	}
+
+	static calculateOriginalPrice(
+		alternatePrice,
+		originalTaxDisplay,
+		taxRate
+	) {
+		let alternateTaxDisplay = 'excl';
+		if ( originalTaxDisplay === 'excl' ) {
+			alternateTaxDisplay = 'incl';
+		}
+		return this.calculateAlternatePrice(
+			alternatePrice,
+			alternateTaxDisplay,
+			taxRate
+		);
+	}
 }
 
 export default TaxSwitchHelper;

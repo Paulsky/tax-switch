@@ -235,7 +235,7 @@ class Wdevs_Tax_Switch {
 		if ( is_admin() ) {
 			$this->loader->add_filter( 'woocommerce_settings_tabs_array', $plugin_woocommerce, 'add_settings_tab', 50 );
 			$this->loader->add_action( 'woocommerce_settings_tabs_wdevs_tax_switch', $plugin_woocommerce, 'settings_tab' );
-			$this->loader->add_action('woocommerce_after_settings_wdevs_tax_switch', $plugin_woocommerce, 'render_footer_info');
+			$this->loader->add_action( 'woocommerce_after_settings_wdevs_tax_switch', $plugin_woocommerce, 'render_footer_info' );
 		}
 	}
 
@@ -323,7 +323,7 @@ class Wdevs_Tax_Switch {
 				);
 			}
 
-			// Product Extras for Woocommerce  (WooCommerce Product Add-Ons Ultimate)
+			// Product Extras for Woocommerce (WooCommerce Product Add-Ons Ultimate)
 			if ( $this->is_plugin_active( 'product-extras-for-woocommerce/product-extras-for-woocommerce.php' ) ) {
 				$this->loader->add_filter(
 					'pewc_field_formatted_price',
@@ -332,6 +332,22 @@ class Wdevs_Tax_Switch {
 					PHP_INT_MAX,
 					4
 				);
+			}
+
+			// FacetWP - Add VAT label to price sliders
+			if ( $this->is_plugin_active( 'facetwp/index.php' ) ) {
+				$this->loader->add_filter(
+					'facetwp_facet_render_args',
+					$plugin_compatibility,
+					'filter_facetwp_slider_label',
+					10,
+					1
+				);
+			}
+
+			//FiboSearch - AJAX Search for WooCommerce Pro
+			if ( $this->is_plugin_active( 'ajax-search-for-woocommerce-premium/ajax-search-for-woocommerce.php' ) ) {
+				$this->loader->add_filter( 'dgwt/wcas/tnt/dynamic_prices', $plugin_compatibility, 'enable_ajax_search_for_woocommerce_dynamic_prices', 10, 1 );
 			}
 		}
 	}
@@ -474,12 +490,11 @@ class Wdevs_Tax_Switch {
 	 * @since 1.1.5
 	 */
 	private function is_doing_ajax() {
-
 		if ( function_exists( 'wp_doing_ajax' ) ) {
 			return wp_doing_ajax();
-		} else {
-			return ( defined( 'DOING_AJAX' ) && DOING_AJAX );
 		}
+
+		return ( defined( 'DOING_AJAX' ) && DOING_AJAX );
 	}
 
 	/**

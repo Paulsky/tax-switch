@@ -47,6 +47,7 @@ class ThirdPartyCompatibility {
 			'awsShowingResults', //Advanced Woo Search compatibility
 			'wc_fragments_loaded', //WooCommerce cart fragments (for prices in menus or mini carts)
 			'pjax:success', //PJAX compatibility (WoodMart and other themes using jquery-pjax)
+			'fibosearch/show-suggestions', //FiboSearch - AJAX Search for WooCommerce compatibility
 		];
 
 		thirdPartyEvents.forEach( function ( eventName ) {

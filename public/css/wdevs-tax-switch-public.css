@@ -7,3 +7,21 @@
 h4.pewc-field-label .wts-price-wrapper > span, h4.pewc-field-label .wts-price-wrapper > span > span{
 	font-size: 100%;
 }
+
+.wdevs-tax-switch-checkbox:disabled ~ .wdevs-tax-switch-slider {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+.wdevs-tax-switch-checkbox:disabled {
+	cursor: not-allowed;
+}
+
+.wdevs-tax-button:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+.wdevs-tax-switch-label:has(.wdevs-tax-switch-checkbox:disabled) {
+	cursor: not-allowed;
+}
