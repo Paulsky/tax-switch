@@ -1,7 +1,11 @@
 # Changelog
 All notable changes to the Tax Switch for WooCommerce plugin will be documented in this file.
 
-## [1.6.0] - 2025-10-14
+## [1.6.1] - 2025-11-03
+### Updated
+- Improved FacetWP compatibility
+
+## [1.6.0] - 2025-10-25
 ### Added
 - Option to enable price switching in the mini cart
 - Compatibility for FiboSearch - AJAX Search for WooCommerce (+ Pro)

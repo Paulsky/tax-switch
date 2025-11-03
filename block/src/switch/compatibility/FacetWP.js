@@ -7,6 +7,7 @@ class FacetWP {
 		this.originalTaxDisplay = originalTaxDisplay;
 		this.taxRate = baseTaxRate;
 		this.facetHistory = {};
+		this.taxSwitchUnsubscribe = null;
 	}
 
 	getStepPrecision( settings ) {
@@ -56,8 +57,54 @@ class FacetWP {
 
 	init() {
 		this.registerFacetWPEvents();
-		this.registerTaxSwitchListener();
+		//this.registerTaxSwitchListener();
 		this.setupFacetWPLoadedListener();
+	}
+
+	hasRelevantFacet() {
+		if ( typeof window.FWP === 'undefined' || ! window.FWP.settings ) {
+			return false;
+		}
+
+		const facetSettings = window.FWP.settings || {};
+
+		return Object.keys( facetSettings ).some( ( facetName ) =>
+			this.getSliderSettings( facetName )
+		);
+	}
+
+	hasPriceContainer( settings = {} ) {
+		const suffix = settings?.suffix || '';
+		const prefix = settings?.prefix || '';
+
+		return (
+			suffix.includes( 'wts-price-container' ) ||
+			prefix.includes( 'wts-price-container' )
+		);
+	}
+
+	getSliderSettings( facetName ) {
+		if ( typeof window.FWP === 'undefined' || ! window.FWP.settings ) {
+			return null;
+		}
+
+		const settings = window.FWP.settings[ facetName ];
+		if ( ! settings ) {
+			return null;
+		}
+
+		const facetTypes = window.FWP.facet_type || {};
+		if ( facetTypes[ facetName ] !== 'slider' ) {
+			return null;
+		}
+
+		return this.hasPriceContainer( settings ) ? settings : null;
+	}
+
+	getSliderElement( facetName ) {
+		return document.querySelector(
+			`.facetwp-facet[data-name="${ facetName }"] .facetwp-slider`
+		);
 	}
 
 	calculateAndStoreRangeBounds() {
@@ -68,19 +115,9 @@ class FacetWP {
 		const vm = this;
 
 		Object.keys( window.FWP.settings ).forEach( ( facetName ) => {
-			const settings = window.FWP.settings[ facetName ];
+			const settings = vm.getSliderSettings( facetName );
 
-			if ( window.FWP.facet_type[ facetName ] !== 'slider' ) {
-				return;
-			}
-
-			const hasPriceContainer =
-				( settings.suffix &&
-					settings.suffix.includes( 'wts-price-container' ) ) ||
-				( settings.prefix &&
-					settings.prefix.includes( 'wts-price-container' ) );
-
-			if ( ! hasPriceContainer ) {
+			if ( ! settings ) {
 				return;
 			}
 
@@ -187,19 +224,9 @@ class FacetWP {
 		const vm = this;
 
 		Object.keys( window.FWP.settings ).forEach( ( facetName ) => {
-			const settings = window.FWP.settings[ facetName ];
+			const settings = vm.getSliderSettings( facetName );
 
-			if ( window.FWP.facet_type[ facetName ] !== 'slider' ) {
-				return;
-			}
-
-			const hasPriceContainer =
-				( settings.suffix &&
-					settings.suffix.includes( 'wts-price-container' ) ) ||
-				( settings.prefix &&
-					settings.prefix.includes( 'wts-price-container' ) );
-
-			if ( ! hasPriceContainer ) {
+			if ( ! settings ) {
 				return;
 			}
 
@@ -207,9 +234,7 @@ class FacetWP {
 				return;
 			}
 
-			const sliderElement = document.querySelector(
-				`.facetwp-facet[data-name="${ facetName }"] .facetwp-slider`
-			);
+			const sliderElement = vm.getSliderElement( facetName );
 
 			if ( ! sliderElement || ! sliderElement.noUiSlider ) {
 				return;
@@ -259,26 +284,35 @@ class FacetWP {
 		} );
 	}
 
-	registerTaxSwitchListener() {
-		let previousIsSwitched = getIsSwitched();
+	registerTaxSwitchListener( shouldRegister = true ) {
 		const vm = this;
-
-		subscribe( () => {
-			const currentIsSwitched = select(
-				'wdevs-tax-switch/store'
-			).getIsSwitched();
-
-			if ( currentIsSwitched !== previousIsSwitched ) {
-				previousIsSwitched = currentIsSwitched;
-
-				if ( typeof window.FWP !== 'undefined' ) {
-					setIsDisabled( true );
-
-					vm.updateAllPriceSliders( currentIsSwitched );
-					window.FWP.refresh();
-				}
+		if ( shouldRegister ) {
+			if ( this.taxSwitchUnsubscribe ) {
+				return;
 			}
-		} );
+
+			let previousIsSwitched = getIsSwitched();
+
+			vm.taxSwitchUnsubscribe = subscribe( () => {
+				const currentIsSwitched = select(
+					'wdevs-tax-switch/store'
+				).getIsSwitched();
+
+				if ( currentIsSwitched !== previousIsSwitched ) {
+					previousIsSwitched = currentIsSwitched;
+
+					if ( typeof window.FWP !== 'undefined' ) {
+						setIsDisabled( true );
+
+						vm.updateAllPriceSliders( currentIsSwitched );
+						window.FWP.refresh();
+					}
+				}
+			} );
+		} else if ( vm.taxSwitchUnsubscribe ) {
+			vm.taxSwitchUnsubscribe();
+			vm.taxSwitchUnsubscribe = null;
+		}
 	}
 
 	updateAllPriceSliders( isSwitched ) {
@@ -289,19 +323,9 @@ class FacetWP {
 		const vm = this;
 
 		Object.keys( window.FWP.settings ).forEach( ( facetName ) => {
-			const settings = window.FWP.settings[ facetName ];
+			const settings = vm.getSliderSettings( facetName );
 
-			if ( window.FWP.facet_type[ facetName ] !== 'slider' ) {
-				return;
-			}
-
-			const hasPriceContainer =
-				( settings.suffix &&
-					settings.suffix.includes( 'wts-price-container' ) ) ||
-				( settings.prefix &&
-					settings.prefix.includes( 'wts-price-container' ) );
-
-			if ( ! hasPriceContainer ) {
+			if ( ! settings ) {
 				return;
 			}
 
@@ -309,9 +333,7 @@ class FacetWP {
 				return;
 			}
 
-			const sliderElement = document.querySelector(
-				`.facetwp-facet[data-name="${ facetName }"] .facetwp-slider`
-			);
+			const sliderElement = vm.getSliderElement( facetName );
 
 			if ( ! sliderElement || ! sliderElement.noUiSlider ) {
 				return;
@@ -352,6 +374,12 @@ class FacetWP {
 		const vm = this;
 
 		if ( typeof window.FWP !== 'undefined' && window.FWP.hooks ) {
+			window.FWP.hooks.addAction( 'facetwp/loaded', function () {
+				const hasRelevantFacet = vm.hasRelevantFacet();
+
+				vm.registerTaxSwitchListener( hasRelevantFacet );
+			} );
+
 			window.FWP.hooks.addAction(
 				'facetwp/refresh/slider',
 				function ( $facet, facetName ) {
@@ -365,20 +393,8 @@ class FacetWP {
 						return;
 					}
 
-					const settings = window.FWP.settings[ facetName ];
+					const settings = vm.getSliderSettings( facetName );
 					if ( ! settings ) {
-						return;
-					}
-
-					const hasPriceContainer =
-						( settings.suffix &&
-							settings.suffix.includes(
-								'wts-price-container'
-							) ) ||
-						( settings.prefix &&
-							settings.prefix.includes( 'wts-price-container' ) );
-
-					if ( ! hasPriceContainer ) {
 						return;
 					}
 
@@ -459,9 +475,7 @@ class FacetWP {
 
 						vm.facetHistory[ facetName ] = historyData;
 
-						const sliderElement = document.querySelector(
-							`.facetwp-facet[data-name="${ facetName }"] .facetwp-slider`
-						);
+						const sliderElement = vm.getSliderElement( facetName );
 
 						let decimals = 2;
 						if ( sliderElement && sliderElement.noUiSlider ) {

@@ -3,7 +3,7 @@ Contributors: wijnbergdevelopments
 Tags: woocommerce, tax, vat
 Requires at least: 5.0
 Tested up to: 6.8
-Stable tag: 1.6.0
+Stable tag: 1.6.1
 Requires PHP: 7.2
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
@@ -234,6 +234,9 @@ The plugin is designed to keep prices consistent in the cart and checkout proces
 
 
 == Changelog ==
+= 1.6.1 =
+* Improved FacetWP compatibility
+
 = 1.6.0 =
 * Added option to enable price switching in the mini cart
 * Added compatibility for FiboSearch - AJAX Search for WooCommerce (+ Pro)
