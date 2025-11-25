@@ -1,9 +1,13 @@
 # Changelog
 All notable changes to the Tax Switch for WooCommerce plugin will be documented in this file.
 
-## [1.6.1] - 2025-11-03
+## [1.6.1] - 2025-11-26
+### Added
+- Compatibility for YayMail - WooCommerce Email Customizer
+- Compatibility for PDF Invoices & Packing Slips for WooCommerce
 ### Updated
 - Improved FacetWP compatibility
+- Tested WooCommerce 10.3.5
 
 ## [1.6.0] - 2025-10-25
 ### Added

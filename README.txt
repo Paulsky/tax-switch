@@ -198,6 +198,8 @@ The following plugins have been tested and confirmed compatible:
 * FiboFilters
 * Extra Product Options & Add-Ons for WooCommerce
 * FiboSearch – Ajax Search for WooCommerce (+ Pro)
+* YayMail - WooCommerce Email Customizer
+* PDF Invoices & Packing Slips for WooCommerce
 
 If you encounter any compatibility issues with other plugins or themes, please let us know. Your feedback helps us improve the plugin and extend compatibility to more third-party solutions.
 
@@ -236,6 +238,9 @@ The plugin is designed to keep prices consistent in the cart and checkout proces
 == Changelog ==
 = 1.6.1 =
 * Improved FacetWP compatibility
+* Added compatibility for YayMail - WooCommerce Email Customizer
+* Added compatibility for PDF Invoices & Packing Slips for WooCommerce
+* Tested WooCommerce 10.3.5
 
 = 1.6.0 =
 * Added option to enable price switching in the mini cart

@@ -83,6 +83,10 @@ class Wdevs_Tax_Switch_Public {
 			return $return;
 		}
 
+		if ( $this->is_file_context() ) {
+			return $return;
+		}
+
 		//already wrapped?
 //		if ( str_contains( $return, 'wts-price-wrapper' ) ) {
 //			return $return;

@@ -236,10 +236,29 @@ trait Wdevs_Tax_Switch_Helper {
 	}
 
 	public function is_mail_context() {
-		return (
+		if (
 			did_action( 'woocommerce_email_header' ) ||
 			did_action( 'woocommerce_email_order_details' )
-		);
+		) {
+			return true;
+		}
+
+		//Compatibility for YayMail - WooCommerce Email Customizer
+		return did_action( 'yaymail_before_email_content' );
+	}
+
+	/**
+	 * @return bool
+	 * @since 1.6.1
+	 */
+	public function is_file_context() {
+		//Compatibility for PDF Invoices & Packing Slips for WooCommerce
+		if (did_filter( 'wcpdf_get_document' ) ) {
+			return true;
+		}
+
+
+		return false;
 	}
 
 	/**
