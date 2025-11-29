@@ -215,6 +215,8 @@ This plugin is tested and compatible with the following:
 - FiboSearch – Ajax Search for WooCommerce (+ Pro)
 - YayMail - WooCommerce Email Customizer
 - PDF Invoices & Packing Slips for WooCommerce
+- WooCommerce Product Bundles
+- LiteSpeed Cache
 
 If you encounter any conflicts with other themes or plugins, please report them by opening an issue or through our website.
 

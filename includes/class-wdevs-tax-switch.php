@@ -349,6 +349,11 @@ class Wdevs_Tax_Switch {
 			if ( $this->is_plugin_active( 'ajax-search-for-woocommerce-premium/ajax-search-for-woocommerce.php' ) ) {
 				$this->loader->add_filter( 'dgwt/wcas/tnt/dynamic_prices', $plugin_compatibility, 'enable_ajax_search_for_woocommerce_dynamic_prices', 10, 1 );
 			}
+
+			//WooCommerce Product Bundles
+			if ( $this->is_plugin_active( 'woocommerce-product-bundles/woocommerce-product-bundles.php' ) ) {
+				$this->loader->add_filter( 'wdevs_tax_switch_current_product', $plugin_compatibility, 'set_product_for_woocommerce_product_bundles', 10, 1 );
+			}
 		}
 	}
 

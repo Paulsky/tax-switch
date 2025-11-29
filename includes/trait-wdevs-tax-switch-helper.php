@@ -390,6 +390,8 @@ trait Wdevs_Tax_Switch_Helper {
 	 * @since 1.5.18
 	 */
 	public function get_current_product() {
+		$product = null;
+
 		if ( doing_action( 'wc_ajax_get_variation' ) && ! empty( $_POST['product_id'] ) ) {
 			$variable_product = wc_get_product( absint( $_POST['product_id'] ) );
 
@@ -398,13 +400,22 @@ trait Wdevs_Tax_Switch_Helper {
 				$variation_id = $data_store->find_matching_product_variation( $variable_product, wp_unslash( $_POST ) );
 
 				if ( $variation_id ) {
-					return wc_get_product( $variation_id );
+					$product = wc_get_product( $variation_id );
 				}
 			}
 
 		}
 
-		return wc_get_product();
+		if ( ! $product ) {
+			$product = wc_get_product();
+		}
+
+		/**
+		 * Allow third party code to override the current product context.
+		 *
+		 * @since 1.6.2
+		 */
+		return apply_filters( 'wdevs_tax_switch_current_product', $product );
 	}
 
 	/**

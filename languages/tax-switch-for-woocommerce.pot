@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Tax Switch for WooCommerce\n"
-"POT-Creation-Date: 2025-10-14 08:01+0200\n"
+"POT-Creation-Date: 2025-11-29 10:32+0100\n"
 "PO-Revision-Date: 2024-09-16 10:21+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -118,8 +118,9 @@ msgstr ""
 #: admin/partials/section-wdevs-tax-switch-shortcode.php:140
 #: includes/class-wdevs-tax-switch-block-label.php:64
 #: includes/class-wdevs-tax-switch-block-label.php:82
+#: includes/class-wdevs-tax-switch-compatibility.php:340
 #: includes/class-wdevs-tax-switch-woocommerce.php:253
-#: public/class-wdevs-tax-switch-public.php:146
+#: public/class-wdevs-tax-switch-public.php:150
 msgid "Incl. VAT"
 msgstr ""
 
@@ -131,8 +132,9 @@ msgstr ""
 #: admin/partials/section-wdevs-tax-switch-shortcode.php:150
 #: includes/class-wdevs-tax-switch-block-label.php:65
 #: includes/class-wdevs-tax-switch-block-label.php:83
+#: includes/class-wdevs-tax-switch-compatibility.php:341
 #: includes/class-wdevs-tax-switch-woocommerce.php:260
-#: public/class-wdevs-tax-switch-public.php:147
+#: public/class-wdevs-tax-switch-public.php:151
 msgid "Excl. VAT"
 msgstr ""
 
@@ -297,7 +299,8 @@ msgstr ""
 #: includes/class-wdevs-tax-switch-woocommerce.php:292
 msgid ""
 "By default, price switching is disabled in the mini cart to keep cart "
-"totals consistent."
+"totals consistent. After changing this setting, empty the mini cart and "
+"reload to see the updated behavior (the mini cart markup is cached)."
 msgstr ""
 
 #: includes/class-wdevs-tax-switch-woocommerce.php:314

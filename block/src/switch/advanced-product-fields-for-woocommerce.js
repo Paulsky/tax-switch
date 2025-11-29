@@ -1,6 +1,7 @@
 import AdvancedProductFieldsForWoocommerce from './compatibility/AdvancedProductFieldsForWoocommerce';
+import { onDomReady } from '../shared/utils/render';
 
-window.addEventListener( 'DOMContentLoaded', () => {
+onDomReady( () => {
 	const viewConfig = window.wtsViewObject || {
 		originalTaxDisplay: 'incl',
 	};

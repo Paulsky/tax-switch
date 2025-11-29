@@ -1,6 +1,7 @@
 import YithProductAddOns from './compatibility/YithProductAddOns';
+import { onDomReady } from '../shared/utils/render';
 
-window.addEventListener( 'DOMContentLoaded', () => {
+onDomReady( () => {
 	const viewConfig = window.wtsViewObject || {
 		originalTaxDisplay: 'incl',
 	};

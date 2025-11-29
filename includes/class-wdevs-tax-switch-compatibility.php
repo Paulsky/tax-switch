@@ -373,4 +373,32 @@ class Wdevs_Tax_Switch_Compatibility {
 		return true;
 	}
 
+	/**
+	 * Use bundled item product as current product context for WooCommerce Product Bundles.
+	 *
+	 * @param WC_Product|null $product Current product context.
+	 *
+	 * @return WC_Product|null
+	 * @since 1.6.2
+	 */
+	public function set_product_for_woocommerce_product_bundles( $product ) {
+		if ( ! class_exists( 'WC_PB_Product_Prices' ) || empty( WC_PB_Product_Prices::$bundled_item ) ) {
+			return $product;
+		}
+
+		$bundled_item = WC_PB_Product_Prices::$bundled_item;
+
+		if ( ! $bundled_item instanceof WC_Bundled_Item ) {
+			return $product;
+		}
+
+		$bundled_product = $bundled_item->get_product();
+
+		if ( $bundled_product instanceof WC_Product ) {
+			return $bundled_product;
+		}
+
+		return $product;
+	}
+
 }

@@ -3,7 +3,7 @@ Contributors: wijnbergdevelopments
 Tags: woocommerce, tax, vat
 Requires at least: 5.0
 Tested up to: 6.8
-Stable tag: 1.6.1
+Stable tag: 1.6.2
 Requires PHP: 7.2
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
@@ -200,6 +200,8 @@ The following plugins have been tested and confirmed compatible:
 * FiboSearch – Ajax Search for WooCommerce (+ Pro)
 * YayMail - WooCommerce Email Customizer
 * PDF Invoices & Packing Slips for WooCommerce
+* WooCommerce Product Bundles
+* LiteSpeed Cache
 
 If you encounter any compatibility issues with other plugins or themes, please let us know. Your feedback helps us improve the plugin and extend compatibility to more third-party solutions.
 
@@ -236,6 +238,11 @@ The plugin is designed to keep prices consistent in the cart and checkout proces
 
 
 == Changelog ==
+= 1.6.2 =
+* Added new filter: `wdevs_tax_switch_current_product` to allow third-parties to set the correct product context
+* Added compatibility for WooCommerce Product Bundles
+* Hardened frontend init so switches/labels still render when scripts load after DOMContentLoaded (e.g. LiteSpeed Delay/Defer JS)
+
 = 1.6.1 =
 * Improved FacetWP compatibility
 * Added compatibility for YayMail - WooCommerce Email Customizer

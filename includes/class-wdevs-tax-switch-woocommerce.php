@@ -289,7 +289,7 @@ class Wdevs_Tax_Switch_Woocommerce {
 				'name'     => __( 'Price switching in mini cart', 'tax-switch-for-woocommerce' ),
 				'type'     => 'checkbox',
 				'desc'     => __( 'Allow customers to switch between prices including and excluding VAT in the default WooCommerce mini cart.', 'tax-switch-for-woocommerce' ),
-				'desc_tip' => __( 'By default, price switching is disabled in the mini cart to keep cart totals consistent.', 'tax-switch-for-woocommerce' ),
+				'desc_tip' => __( 'By default, price switching is disabled in the mini cart to keep cart totals consistent. After changing this setting, empty the mini cart and reload to see the updated behavior (the mini cart markup is cached).', 'tax-switch-for-woocommerce' ),
 				'id'       => 'wdevs_tax_switch_enable_mini_cart',
 				'default'  => 'no'
 			),

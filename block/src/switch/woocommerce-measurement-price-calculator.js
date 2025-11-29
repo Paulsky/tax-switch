@@ -1,6 +1,7 @@
 import MeasurementPriceCalculator from './compatibility/MeasurementPriceCalculator';
+import { onDomReady } from '../shared/utils/render';
 
-window.addEventListener( 'DOMContentLoaded', () => {
+onDomReady( () => {
 	const viewConfig = window.wtsViewObject || {
 		originalTaxDisplay: 'incl',
 	};

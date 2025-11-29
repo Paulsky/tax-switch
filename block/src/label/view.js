@@ -1,6 +1,6 @@
 import { createRoot, Suspense } from '@wordpress/element';
 import LabelComponent from './components/LabelComponent';
-import { shouldBeEnabled } from '../shared/utils/render';
+import { onDomReady, shouldBeEnabled } from '../shared/utils/render';
 
 const renderLabelComponent = ( element, ajaxConfig ) => {
 	const attributes = {
@@ -17,7 +17,7 @@ const renderLabelComponent = ( element, ajaxConfig ) => {
 	);
 };
 
-window.addEventListener( 'DOMContentLoaded', () => {
+onDomReady( () => {
 	if ( ! shouldBeEnabled() ) {
 		return;
 	}

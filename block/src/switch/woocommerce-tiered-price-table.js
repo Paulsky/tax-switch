@@ -1,6 +1,7 @@
 import TieredPriceTable from './compatibility/TieredPriceTable';
+import { onDomReady } from '../shared/utils/render';
 
-window.addEventListener( 'DOMContentLoaded', () => {
+onDomReady( () => {
 	const viewConfig = window.wtsViewObject || {
 		originalTaxDisplay: 'incl',
 	};

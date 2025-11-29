@@ -2,7 +2,7 @@ import { createRoot, Suspense } from '@wordpress/element';
 import SwitchComponent from './components/SwitchComponent';
 import TaxSwitchHelper from '../shared/TaxSwitchHelper';
 import ThirdPartyCompatibility from './includes/ThirdPartyCompatibility';
-import { shouldBeEnabled } from '../shared/utils/render';
+import { onDomReady, shouldBeEnabled } from '../shared/utils/render';
 
 const renderSwitchComponent = ( element, ajaxConfig ) => {
 	const attributes = {
@@ -51,7 +51,7 @@ const renderElements = () => {
 	}
 };
 
-window.addEventListener( 'DOMContentLoaded', () => {
+onDomReady( () => {
 	renderElements();
 } );
 

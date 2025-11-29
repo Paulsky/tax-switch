@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to the Tax Switch for WooCommerce plugin will be documented in this file.
 
+## [1.6.2] - 2025-11-29
+### Added
+- New filter: `wdevs_tax_switch_current_product` to allow third-parties to set the correct product context
+- Compatibility for WooCommerce Product Bundles
+### Updated
+- Hardened frontend initialization so switches/labels still render when scripts load after DOMContentLoaded (e.g. LiteSpeed Delay/Defer JS)
+
 ## [1.6.1] - 2025-11-26
 ### Added
 - Compatibility for YayMail - WooCommerce Email Customizer
