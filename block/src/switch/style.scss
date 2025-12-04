@@ -154,4 +154,59 @@
 	  }
 	}
   }
+
+	&.is-style-flat-pill {
+		.wdevs-tax-switch {
+			.wdevs-tax-switch-label {
+				width: 64px;
+				height: 28px;
+			}
+
+			.wdevs-tax-switch-slider {
+				background-color: var(--wts-bg-color, #929197);
+				border-radius: 14px;
+				transition: background-color 0.3s ease;
+
+				&::before {
+					height: 24px;
+					width: 39px;
+					left: 2px;
+					bottom: 2px;
+					border-radius: 12px;
+					box-shadow: none;
+					transition: transform 0.3s ease, left 0.3s ease;
+				}
+			}
+
+			.wdevs-tax-switch-checkbox:checked + .wdevs-tax-switch-slider {
+				background-color: var(--wts-bg-color-checked, #34C759);
+
+				&::before {
+					left: 23px;
+					transform: translateX(0);
+				}
+			}
+
+			.wdevs-tax-switch-label-text {
+				font-size: 14px;
+			}
+		}
+
+		.wdevs-tax-buttons {
+			.wdevs-tax-button {
+				padding: 6px 16px;
+				border-radius: 14px;
+				background-color: var(--wts-bg-color, #E5E5EA);
+				color: var(--wts-text-color, #333);
+				border: none;
+				transition: background-color 0.3s ease;
+
+				&.wdevs-tax-button-active {
+					background-color: var(--wts-bg-color-checked, #34C759);
+					color: var(--wts-text-color, #fff);
+					border: none;
+				}
+			}
+		}
+	}
 }

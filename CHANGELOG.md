@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to the Tax Switch for WooCommerce plugin will be documented in this file.
 
+## [1.6.3] - 2025-12-04
+### Added
+ - New style: `flat pill`
+### Updated
+- Tested WooCommerce 10.3.6
+- Tested WordPress 6.9
+
 ## [1.6.2] - 2025-11-29
 ### Added
 - New filter: `wdevs_tax_switch_current_product` to allow third-parties to set the correct product context

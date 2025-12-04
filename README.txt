@@ -2,8 +2,8 @@
 Contributors: wijnbergdevelopments
 Tags: woocommerce, tax, vat
 Requires at least: 5.0
-Tested up to: 6.8
-Stable tag: 1.6.2
+Tested up to: 6.9
+Stable tag: 1.6.3
 Requires PHP: 7.2
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
@@ -86,7 +86,7 @@ The shortcode accepts several attributes to customize its appearance and behavio
 
 * `class-name`: Adds custom CSS classes to the switch.
     - Default: is-style-default
-    - Options: is-style-default, is-style-inline, or custom classes
+    - Options: is-style-default, is-style-inline, is-style-flat-pill, or custom classes
 * `switch-type`: Determines the style of the toggle.
  	- Default: `switch`
  	- Options: `switch`, `buttons`
@@ -176,6 +176,7 @@ The following themes have been tested and confirmed compatible:
 * Kapee
 * Entr
 * Woodmart
+* Hello Elementor
 
 The following plugins have been tested and confirmed compatible:
 
@@ -202,6 +203,7 @@ The following plugins have been tested and confirmed compatible:
 * PDF Invoices & Packing Slips for WooCommerce
 * WooCommerce Product Bundles
 * LiteSpeed Cache
+* Elementor Pro
 
 If you encounter any compatibility issues with other plugins or themes, please let us know. Your feedback helps us improve the plugin and extend compatibility to more third-party solutions.
 
@@ -238,6 +240,11 @@ The plugin is designed to keep prices consistent in the cart and checkout proces
 
 
 == Changelog ==
+= 1.6.3 =
+* Added new style: `flat pill`
+* Tested WooCommerce 10.3.6
+* Tested WordPress 6.9
+
 = 1.6.2 =
 * Added new filter: `wdevs_tax_switch_current_product` to allow third-parties to set the correct product context
 * Added compatibility for WooCommerce Product Bundles

@@ -102,9 +102,16 @@
 		}
 	} );
 
+	let lastPreviewData = null;
+
 	$( document ).on(
 		'wc_backbone_modal_validation',
 		function ( e, target, data ) {
+			if ( _.isEqual( data, lastPreviewData ) ) {
+				return;
+			}
+
+			lastPreviewData = { ...data };
 			renderPreview( data );
 		}
 	);

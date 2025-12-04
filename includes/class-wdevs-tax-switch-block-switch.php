@@ -51,6 +51,11 @@ class Wdevs_Tax_Switch_Block_Switch extends Wdevs_Tax_Switch_Block {
 			'label' => __( 'Inline style', 'tax-switch-for-woocommerce' ),
 		] );
 
+		register_block_style( 'wdevs/tax-switch', [
+			'name'  => 'flat-pill',
+			'label' => __( 'Flat pill', 'tax-switch-for-woocommerce' ),
+		] );
+
 		wp_set_script_translations( 'wdevs-tax-switch-editor-script', 'tax-switch-for-woocommerce', plugin_dir_path( dirname( __FILE__ ) ) . 'languages' );
 	}
 

@@ -106,7 +106,7 @@ The shortcode also accepts several attributes to customize its appearance:
 
 - `class-name`: Adds custom CSS classes to the switch.
     - Default: `is-style-default`
-    - Options: `is-style-default`, `is-style-inline`, custom classes
+    - Options: `is-style-default`, `is-style-inline`, `is-style-flat-pill`, custom classes
 - `switch-type`: Determines the style of the toggle.
 	- Default: `switch`
 	- Options: `switch`, `buttons`
@@ -191,6 +191,7 @@ This plugin is tested and compatible with the following:
 - Kapee
 - Entr
 - Woodmart
+- Hello Elementor
 
 ### Plugins
 
@@ -217,6 +218,7 @@ This plugin is tested and compatible with the following:
 - PDF Invoices & Packing Slips for WooCommerce
 - WooCommerce Product Bundles
 - LiteSpeed Cache
+- Elementor Pro
 
 If you encounter any conflicts with other themes or plugins, please report them by opening an issue or through our website.
 

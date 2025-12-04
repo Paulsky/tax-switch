@@ -72,6 +72,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 								<select style="width:100%;" id="wdevs-style-selector">
 									<option value="is-style-default"><?php esc_html_e( 'Default style', 'tax-switch-for-woocommerce' ); ?></option>
 									<option value="is-style-inline"><?php esc_html_e( 'Inline style', 'tax-switch-for-woocommerce' ); ?></option>
+									<option value="is-style-flat-pill"><?php esc_html_e( 'Flat pill', 'tax-switch-for-woocommerce' ); ?></option>
 								</select>
 							</div>
 						</div>
@@ -158,7 +159,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<div class="edit">
 								<input type="text" name="class-name" data-attribute="class-name"
 									   value="is-style-default">
-								<div class="wc-shipping-class-modal-help-text"><?php esc_html_e( 'Options: is-style-default, is-style-inline or/and custom classes', 'tax-switch-for-woocommerce' ); ?></div>
+								<div class="wc-shipping-class-modal-help-text"><?php esc_html_e( 'Options: is-style-default, is-style-inline, is-style-flat-pill or/and custom classes', 'tax-switch-for-woocommerce' ); ?></div>
 							</div>
 						</div>
 
