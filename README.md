@@ -219,6 +219,7 @@ This plugin is tested and compatible with the following:
 - WooCommerce Product Bundles
 - LiteSpeed Cache
 - Elementor Pro
+- YITH WooCommerce Role Based Prices
 
 If you encounter any conflicts with other themes or plugins, please report them by opening an issue or through our website.
 

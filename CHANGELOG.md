@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to the Tax Switch for WooCommerce plugin will be documented in this file.
 
+## [1.6.4] - 2025-12-11
+### Added
+- Compatibility for YITH WooCommerce Role Based Prices
+
 ## [1.6.3] - 2025-12-04
 ### Added
  - New style: `flat pill`

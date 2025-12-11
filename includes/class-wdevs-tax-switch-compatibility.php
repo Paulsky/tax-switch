@@ -401,4 +401,45 @@ class Wdevs_Tax_Switch_Compatibility {
 		return $product;
 	}
 
+	/**
+	 * Wrap YITH Role Based Prices suffix with alternate tax display.
+	 *
+	 * @param string                         $suffix Existing suffix HTML.
+	 * @param YITH_Role_Based_Prices_Product $yith_product Instance used by YITH.
+	 *
+	 * @return string
+	 * @since 1.6.4
+	 */
+	public function wrap_yith_price_suffix( $suffix, $yith_product ) {
+		if ( empty( trim( $suffix ) ) ) {
+			return $suffix;
+		}
+
+		if ( str_contains( $suffix, 'wts-price-wrapper' ) || str_contains( $suffix, 'wts-price-container' ) ) {
+			return $suffix;
+			}
+
+		if ( $this->should_hide_on_current_page() ) {
+			return $suffix;
+		}
+
+		$shop_prices_include_tax = $this->shop_displays_price_including_tax_by_default();
+
+		// Get VAT text options
+		$incl_vat_text = $this->get_option_text( 'wdevs_tax_switch_incl_vat', __( 'Incl. VAT', 'tax-switch-for-woocommerce' ) );
+		$excl_vat_text = $this->get_option_text( 'wdevs_tax_switch_excl_vat', __( 'Excl. VAT', 'tax-switch-for-woocommerce' ) );
+
+		if ( $shop_prices_include_tax ) {
+			$vat_text           = $incl_vat_text;
+			$alternate_vat_text = $excl_vat_text;
+		} else {
+			$vat_text           = $excl_vat_text;
+			$alternate_vat_text = $incl_vat_text;
+		}
+
+		$html = $this->wrap_price_displays( '', $shop_prices_include_tax, $vat_text, $alternate_vat_text );
+
+		return $html;
+	}
+
 }

@@ -58,7 +58,7 @@ trait Wdevs_Tax_Switch_Display {
 		}
 
 		return sprintf(
-			'<span class="wts-price-container">%s <span class="wts-price-wrapper"><span class="%s wts-active" ><span class="wts-vat-text">%s</span></span><span class="%s wts-inactive"><span class="wts-vat-text">%s</span></span></span></span>',
+			'<span class="wts-price-container">%s <span class="wts-price-wrapper"><span class="%s wts-active"><span class="wts-vat-text">%s</span></span><span class="%s wts-inactive"><span class="wts-vat-text">%s</span></span></span></span>',
 			$price_html,
 			$classes[0],
 			$vat_text,

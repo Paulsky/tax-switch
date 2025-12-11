@@ -354,6 +354,17 @@ class Wdevs_Tax_Switch {
 			if ( $this->is_plugin_active( 'woocommerce-product-bundles/woocommerce-product-bundles.php' ) ) {
 				$this->loader->add_filter( 'wdevs_tax_switch_current_product', $plugin_compatibility, 'set_product_for_woocommerce_product_bundles', 10, 1 );
 			}
+
+			// YITH WooCommerce Role Based Prices
+			if ( $this->is_plugin_active( 'yith-woocommerce-role-based-prices-premium/init.php' ) ) {
+				$this->loader->add_filter(
+					'yith_role_based_prices_get_price_suffix',
+					$plugin_compatibility,
+					'wrap_yith_price_suffix',
+					PHP_INT_MAX,
+					2
+				);
+			}
 		}
 	}
 

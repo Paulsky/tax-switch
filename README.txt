@@ -3,7 +3,7 @@ Contributors: wijnbergdevelopments
 Tags: woocommerce, tax, vat
 Requires at least: 5.0
 Tested up to: 6.9
-Stable tag: 1.6.3
+Stable tag: 1.6.4
 Requires PHP: 7.2
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
@@ -204,6 +204,7 @@ The following plugins have been tested and confirmed compatible:
 * WooCommerce Product Bundles
 * LiteSpeed Cache
 * Elementor Pro
+* YITH WooCommerce Role Based Prices
 
 If you encounter any compatibility issues with other plugins or themes, please let us know. Your feedback helps us improve the plugin and extend compatibility to more third-party solutions.
 
@@ -240,6 +241,9 @@ The plugin is designed to keep prices consistent in the cart and checkout proces
 
 
 == Changelog ==
+= 1.6.4 =
+* Added compatibility for YITH WooCommerce Role Based Prices
+
 = 1.6.3 =
 * Added new style: `flat pill`
 * Tested WooCommerce 10.3.6
