@@ -43,6 +43,14 @@ class Wdevs_Tax_Switch_Public {
 	private $version;
 
 	/**
+	 * Skip wrapping the next wc_price() call.
+	 *
+	 * @since 1.6.5
+	 * @var bool
+	 */
+	private $skip_next_wc_price_wrap = false;
+
+	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @param string $plugin_name The name of the plugin.
@@ -84,6 +92,10 @@ class Wdevs_Tax_Switch_Public {
 		}
 
 		if ( $this->is_file_context() ) {
+			return $return;
+		}
+
+		if ( $this->should_skip_next_price_wrap() ) {
 			return $return;
 		}
 
@@ -223,7 +235,6 @@ class Wdevs_Tax_Switch_Public {
 	 * @since 1.2.0
 	 */
 	private function should_be_disabled_in_action() {
-
 		//compatibility with YITH WooCommerce Product Add Ons select
 		if ( did_filter( 'yith_wapo_option_price' ) ) {
 			return true;
@@ -231,6 +242,34 @@ class Wdevs_Tax_Switch_Public {
 
 		//disable in the total table row. The total, is the total what the customer paid. So this is absolute.
 		if ( did_filter( 'woocommerce_order_get_total' ) ) {
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * Disable price wrapping in coupon error messages.
+	 * Reason 1: mostly called from cart/checkout. Reason 2: HTML is stripped from these messages.
+	 *
+	 * @param mixed $amount Coupon amount.
+	 * @return mixed
+	 * @since 1.6.5
+	 */
+	public function is_coupon_error_message( $amount ) {
+		$this->skip_next_wc_price_wrap = true;
+		return $amount;
+	}
+
+	/**
+	 * Check if the next wc_price() call should be skipped.
+	 *
+	 * @return bool
+	 * @since 1.6.5
+	 */
+	public function should_skip_next_price_wrap() {
+		if ( $this->skip_next_wc_price_wrap ) {
+			$this->skip_next_wc_price_wrap = false;
 			return true;
 		}
 

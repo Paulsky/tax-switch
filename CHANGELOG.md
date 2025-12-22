@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to the Tax Switch for WooCommerce plugin will be documented in this file.
 
+## [1.6.5] - 2025-12-22
+### Updated
+- Skip price wrapping in coupon min/max error messages
+
 ## [1.6.4] - 2025-12-11
 ### Added
 - Compatibility for YITH WooCommerce Role Based Prices
