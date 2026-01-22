@@ -30,6 +30,7 @@
 	  background-color: var(--wts-bg-color, #ccc);
 	  transition: background-color 0.4s;
 	  border-radius: 34px;
+	  touch-action: manipulation;
 
 	  &::before {
 		position: absolute;
@@ -60,6 +61,7 @@
 	  margin-left: 10px;
 	  cursor: pointer;
 	  user-select: none;
+	  touch-action: manipulation;
 	}
   }
 

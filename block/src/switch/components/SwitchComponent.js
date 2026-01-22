@@ -214,6 +214,14 @@ class SwitchComponent extends Component {
 					<span
 						className="wdevs-tax-switch-label-text"
 						onClick={ this.handleChange }
+						role="button"
+						tabIndex={ 0 }
+						onKeyDown={ ( e ) => {
+							if ( e.key === 'Enter' || e.key === ' ' ) {
+								e.preventDefault();
+								this.handleChange();
+							}
+						} }
 					>
 						{ this.getCurrentLabel() }
 					</span>

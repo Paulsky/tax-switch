@@ -3,7 +3,7 @@ Contributors: wijnbergdevelopments
 Tags: woocommerce, tax, vat
 Requires at least: 5.0
 Tested up to: 6.9
-Stable tag: 1.6.5
+Stable tag: 1.6.6
 Requires PHP: 7.2
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
@@ -241,6 +241,10 @@ The plugin is designed to keep prices consistent in the cart and checkout proces
 
 
 == Changelog ==
+= 1.6.6 =
+* Improved switch accessibility and mobile UX
+* Tested WooCommerce 10.4.3
+
 = 1.6.5 =
 * Skip price wrapping in coupon min/max error messages
 

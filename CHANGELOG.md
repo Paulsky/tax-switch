@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to the Tax Switch for WooCommerce plugin will be documented in this file.
 
+## [1.6.6] - 2026-01-22
+### Updated
+- Improved switch accessibility and mobile UX
+- Tested WooCommerce 10.4.3
+
 ## [1.6.5] - 2025-12-22
 ### Updated
 - Skip price wrapping in coupon min/max error messages
