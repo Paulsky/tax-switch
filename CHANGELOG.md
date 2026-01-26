@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to the Tax Switch for WooCommerce plugin will be documented in this file.
 
+## [1.6.7] - 2026-01-28
+### Added
+- Compatibility for WooCommerce Dynamic Pricing and Discount Rules
+
 ## [1.6.6] - 2026-01-22
 ### Updated
 - Improved switch accessibility and mobile UX

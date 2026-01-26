@@ -87,6 +87,25 @@ class TaxSwitchElementBuilder {
 	static getVatTexts( existingWrapper = null ) {
 		const space = document.createTextNode( ' ' ).nodeValue;
 		let $includingText, $excludingText;
+
+		if ( window.wtsCompatibilityObject ) {
+			if (
+				window.wtsCompatibilityObject.includingVatText &&
+				window.wtsCompatibilityObject.excludingVatText
+			) {
+				$includingText = window.wtsCompatibilityObject.includingVatText;
+				$excludingText = window.wtsCompatibilityObject.excludingVatText;
+				return {
+					including:
+						space +
+						`<span class="wts-vat-text">${ $includingText }</span>`,
+					excluding:
+						space +
+						`<span class="wts-vat-text">${ $excludingText }</span>`,
+				};
+			}
+		}
+
 		if ( existingWrapper ) {
 			const $wrapper = jQuery( existingWrapper );
 			$includingText = $wrapper

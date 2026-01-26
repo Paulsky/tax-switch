@@ -19,6 +19,11 @@ module.exports = {
 			'block/src/switch',
 			'woocommerce-tiered-price-table.js'
 		),
+		'switch/woocommerce-fees-discounts': path.resolve(
+			process.cwd(),
+			'block/src/switch',
+			'woocommerce-fees-discounts.js'
+		),
 		'switch/woocommerce-measurement-price-calculator': path.resolve(
 			process.cwd(),
 			'block/src/switch',

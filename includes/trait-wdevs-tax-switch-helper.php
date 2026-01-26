@@ -446,4 +446,31 @@ trait Wdevs_Tax_Switch_Helper {
 		return get_option( 'wdevs_tax_switch_enable_mini_cart', 'no' ) === 'yes';
 	}
 
+	/**
+	 * Get the label for the current VAT display status.
+	 *
+	 * @param bool $shop_prices_include_tax Whether the shop shows prices including tax.
+	 * @return string
+	 * @since 1.6.7
+	 */
+	public function get_vat_text($shop_prices_include_tax){
+		if ( $shop_prices_include_tax ) {
+			return $this->get_option_text( 'wdevs_tax_switch_incl_vat', __( 'Incl. VAT', 'tax-switch-for-woocommerce' ) );
+		}
+
+		return $this->get_option_text( 'wdevs_tax_switch_excl_vat', __( 'Excl. VAT', 'tax-switch-for-woocommerce' ) );
+	}
+
+	/**
+	 * Get the label for the alternate VAT display.
+	 *
+	 * @param bool $shop_prices_include_tax Whether the shop shows prices including tax.
+	 * @return string
+	 * @since 1.6.7
+	 */
+	public function get_alternate_vat_text($shop_prices_include_tax){
+		$shop_prices_exclude_tax = !$shop_prices_include_tax;
+		return $this->get_vat_text($shop_prices_exclude_tax);
+	}
+
 }

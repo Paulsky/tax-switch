@@ -127,7 +127,7 @@ class ProductExtrasForWoocommerce {
 
 				if (
 					priceContainer.length &&
-					priceContainer.find( '.wts-price-wrapper' ).length === 1
+					priceContainer.find( '.wts-price-wrapper' ).length === 1 //TODO: this is false/positive when there is a from - to price
 				) {
 					const vatTextElement = vm.getVatTextElement();
 					if ( vatTextElement ) {

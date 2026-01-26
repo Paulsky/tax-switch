@@ -62,7 +62,7 @@ class Wdevs_Tax_Switch_Compatibility {
 			// WooCommerce Measurement Price Calculator
 			if ( $this->is_plugin_active( 'woocommerce-measurement-price-calculator/woocommerce-measurement-price-calculator.php' ) ) {
 				$wmpc_handle = 'wdevs-tax-switch-woocommerce-measurement-price-calculator';
-				$wmpc_asset = $this->enqueue_script($wmpc_handle, 'switch', 'woocommerce-measurement-price-calculator');
+				$wmpc_asset  = $this->enqueue_script( $wmpc_handle, 'switch', 'woocommerce-measurement-price-calculator' );
 
 				wp_localize_script(
 					$wmpc_handle,
@@ -77,7 +77,7 @@ class Wdevs_Tax_Switch_Compatibility {
 				'yith-woocommerce-advanced-product-options-premium/init.php'
 			] ) ) {
 				$ywpado_handle = 'wdevs-tax-switch-yith-woocommerce-product-add-ons';
-				$ywpado_asset = $this->enqueue_script($ywpado_handle, 'switch', 'yith-woocommerce-product-add-ons', [ 'yith_wapo_front' ]);
+				$ywpado_asset  = $this->enqueue_script( $ywpado_handle, 'switch', 'yith-woocommerce-product-add-ons', [ 'yith_wapo_front' ] );
 
 				wp_localize_script(
 					$ywpado_handle,
@@ -89,7 +89,7 @@ class Wdevs_Tax_Switch_Compatibility {
 			// WooCommerce Product Addons
 			if ( $this->is_plugin_active( 'woocommerce-product-addons/woocommerce-product-addons.php' ) ) {
 				$wpado_handle = 'wdevs-tax-switch-woocommerce-product-addons';
-				$wpado_asset = $this->enqueue_script($wpado_handle, 'switch', 'woocommerce-product-addons', [ 'accounting' ]);
+				$wpado_asset  = $this->enqueue_script( $wpado_handle, 'switch', 'woocommerce-product-addons', [ 'accounting' ] );
 
 				wp_localize_script(
 					$wpado_handle,
@@ -101,13 +101,16 @@ class Wdevs_Tax_Switch_Compatibility {
 			// Advanced Product Fields Pro for WooCommerce
 			if ( $this->is_plugin_active( 'advanced-product-fields-for-woocommerce-pro/advanced-product-fields-for-woocommerce-pro.php' ) ) {
 				$apffw_handle = 'wdevs-tax-switch-advanced-product-fields-for-woocommerce';
-				$apffw_asset = $this->enqueue_script($apffw_handle, 'switch', 'advanced-product-fields-for-woocommerce', ['wapf-frontend', 'accounting' ]);
+				$apffw_asset  = $this->enqueue_script( $apffw_handle, 'switch', 'advanced-product-fields-for-woocommerce', [
+					'wapf-frontend',
+					'accounting'
+				] );
 			}
 
 			// Woocommerce Quantity Manager
 			if ( $this->is_plugin_active( 'woocommerce-quantity-manager-pro/woocommerce-quantity-manager-pro.php' ) ) {
 				$wqm_handle = 'wdevs-tax-switch-woocommerce-quantity-manager';
-				$wqm_asset = $this->enqueue_script($wqm_handle, 'switch', 'woocommerce-quantity-manager', [ 'accounting' ]);
+				$wqm_asset  = $this->enqueue_script( $wqm_handle, 'switch', 'woocommerce-quantity-manager', [ 'accounting' ] );
 
 				wp_localize_script(
 					$wqm_handle,
@@ -118,20 +121,27 @@ class Wdevs_Tax_Switch_Compatibility {
 
 			// Product Extras for Woocommerce (Woocommerce Product Add-Ons Ultimate)
 			if ( $this->is_plugin_active( 'product-extras-for-woocommerce/product-extras-for-woocommerce.php' ) ) {
-				$pewc_handle = 'wdevs-tax-switch-woocommerce-quantity-manager';
-				$pewc_asset = $this->enqueue_script($pewc_handle, 'switch', 'product-extras-for-woocommerce', [ 'accounting' ]); //'pewc-script',breaks things, but I wonder if that correct....
+				$pewc_handle = 'wdevs-tax-switch-product-extras-for-woocommerce';
+				$pewc_asset  = $this->enqueue_script( $pewc_handle, 'switch', 'product-extras-for-woocommerce', [ 'accounting' ] ); //'pewc-script',breaks things, but I wonder if that correct....
 
 				wp_localize_script(
 					$pewc_handle,
 					'wtsCompatibilityObject',
-					[ 'baseTaxRate' => $tax_rate ]
+					[
+						'baseTaxRate'      => $tax_rate,
+						'includingVatText' => $this->get_vat_text( true ),
+						'excludingVatText' => $this->get_alternate_vat_text( true ),
+					]
 				);
 			}
 
 			//Kapee theme
-			if($this->is_theme_active('Kapee')){
+			if ( $this->is_theme_active( 'Kapee' ) ) {
 				$kapee_handle = 'wdevs-tax-switch-kapee-theme';
-				$kapee_asset = $this->enqueue_script($kapee_handle, 'switch', 'kapee-theme', [ 'accounting', 'kapee-script' ]);
+				$kapee_asset  = $this->enqueue_script( $kapee_handle, 'switch', 'kapee-theme', [
+					'accounting',
+					'kapee-script'
+				] );
 
 				wp_localize_script(
 					$kapee_handle,
@@ -143,12 +153,33 @@ class Wdevs_Tax_Switch_Compatibility {
 			// Extra Product Options & Add-Ons for WooCommerce
 			if ( $this->is_plugin_active( 'woocommerce-tm-extra-product-options/tm-woo-extra-product-options.php' ) ) {
 				$tmtepo_handle = 'wdevs-tax-switch-woocommerce-tm-extra-product-options';
-				$tmtepo_asset = $this->enqueue_script($tmtepo_handle, 'switch', 'woocommerce-tm-extra-product-options', [ 'themecomplete-epo' ]);
+				$tmtepo_asset  = $this->enqueue_script( $tmtepo_handle, 'switch', 'woocommerce-tm-extra-product-options', [ 'themecomplete-epo' ] );
 
 				wp_localize_script(
 					$tmtepo_handle,
 					'wtsCompatibilityObject',
 					[ 'baseTaxRate' => $tax_rate ]
+				);
+			}
+
+			// WooCommerce Fees & Discounts
+			if ( $this->is_plugin_active( 'woocommerce-fees-discounts/woocommerce-fees-discounts.php' ) ) {
+				$wcfad_handle = 'wdevs-tax-switch-woocommerce-fees-discounts';
+				$wcfad_asset  = $this->enqueue_script(
+					$wcfad_handle,
+					'switch',
+					'woocommerce-fees-discounts',
+					[ 'wcfad-script' ]
+				);
+
+				wp_localize_script(
+					$wcfad_handle,
+					'wtsCompatibilityObject',
+					[
+						'baseTaxRate'      => $tax_rate,
+						'includingVatText' => $this->get_vat_text( true ),
+						'excludingVatText' => $this->get_alternate_vat_text( true ),
+					]
 				);
 			}
 		}
@@ -159,25 +190,25 @@ class Wdevs_Tax_Switch_Compatibility {
 			'tier-pricing-table-premium/tier-pricing-table.php'
 		] ) ) {
 			$wctpt_handle = 'wdevs-tax-switch-woocommerce-tiered-price-table';
-			$wctpt_asset = $this->enqueue_script($wctpt_handle, 'switch', 'woocommerce-tiered-price-table');
+			$wctpt_asset  = $this->enqueue_script( $wctpt_handle, 'switch', 'woocommerce-tiered-price-table' );
 		}
 
 		// FiboFilters
 		if ( $this->is_plugin_active( 'fibofilters-pro/fibofilters.php' ) ) {
 			$ffilters_handle = 'wdevs-tax-switch-fibofilters';
-			$ffilters_asset = $this->enqueue_script($ffilters_handle, 'switch', 'fibofilters', [ 'fibofilters' ]);
+			$ffilters_asset  = $this->enqueue_script( $ffilters_handle, 'switch', 'fibofilters', [ 'fibofilters' ] );
 		}
 
 		// WoodMart theme
 		if ( $this->is_theme_active( 'woodmart' ) ) {
 			$woodmart_handle = 'wdevs-tax-switch-woodmart-theme';
-			$woodmart_asset = $this->enqueue_script( $woodmart_handle, 'switch', 'woodmart-theme' );
+			$woodmart_asset  = $this->enqueue_script( $woodmart_handle, 'switch', 'woodmart-theme' );
 		}
 
 		// FacetWP
 		if ( $this->is_plugin_active( 'facetwp/index.php' ) ) {
 			$facetwp_handle = 'wdevs-tax-switch-facetwp';
-			$facetwp_asset = $this->enqueue_script( $facetwp_handle, 'switch', 'facetwp' );
+			$facetwp_asset  = $this->enqueue_script( $facetwp_handle, 'switch', 'facetwp' );
 
 			// Estimate tax rate for FacetWP (no specific product context available)
 			$estimated_tax_rate = $this->estimate_tax_rate();
@@ -259,8 +290,8 @@ class Wdevs_Tax_Switch_Compatibility {
 	 * Adds the alternate price to the Product Extras for Woocommerce (WooCommerce Product Add-Ons Ultimate) price field
 	 * @since 1.5.5
 	 */
-	public function render_pewc_price_field($original_output, $item, $product, $price=false){
-		if(!$price){
+	public function render_pewc_price_field( $original_output, $item, $product, $price = false ) {
+		if ( ! $price ) {
 			return $original_output;
 		}
 
@@ -297,7 +328,7 @@ class Wdevs_Tax_Switch_Compatibility {
 	 * @return array
 	 * @since 1.5.11
 	 */
-	public function kses_allow_span_classes_for_prices($tags, $context ){
+	public function kses_allow_span_classes_for_prices( $tags, $context ) {
 		//filters and actions
 		$allowed_contexts = [
 			'woocommerce_add_to_cart_fragments', //Default WooCommerce AJAX cart response
@@ -337,16 +368,8 @@ class Wdevs_Tax_Switch_Compatibility {
 		$shop_prices_include_tax = $this->shop_displays_price_including_tax_by_default();
 
 		// Get VAT text options
-		$incl_vat_text = $this->get_option_text( 'wdevs_tax_switch_incl_vat', __( 'Incl. VAT', 'tax-switch-for-woocommerce' ) );
-		$excl_vat_text = $this->get_option_text( 'wdevs_tax_switch_excl_vat', __( 'Excl. VAT', 'tax-switch-for-woocommerce' ) );
-
-		if ( $shop_prices_include_tax ) {
-			$vat_text           = $incl_vat_text;
-			$alternate_vat_text = $excl_vat_text;
-		} else {
-			$vat_text           = $excl_vat_text;
-			$alternate_vat_text = $incl_vat_text;
-		}
+		$vat_text           = $this->get_vat_text( $shop_prices_include_tax );
+		$alternate_vat_text = $this->get_alternate_vat_text( $shop_prices_include_tax );
 
 		// Get current suffix (may be empty)
 		$current_suffix = isset( $args['facet']['suffix'] ) ? $args['facet']['suffix'] : '';
@@ -366,10 +389,11 @@ class Wdevs_Tax_Switch_Compatibility {
 	 * Enable dynamic price loading for FiboSearch to ensure tax-inclusive/exclusive prices are calculated based on the current customer. Normally, The price is saved in the search index statically.
 	 *
 	 * @param bool $loadDynamically Current dynamic loading state.
+	 *
 	 * @return bool Always true to force dynamic price loading.
 	 * @since 1.6.0
 	 */
-	public function enable_ajax_search_for_woocommerce_dynamic_prices($loadDynamically){
+	public function enable_ajax_search_for_woocommerce_dynamic_prices( $loadDynamically ) {
 		return true;
 	}
 
@@ -404,7 +428,7 @@ class Wdevs_Tax_Switch_Compatibility {
 	/**
 	 * Wrap YITH Role Based Prices suffix with alternate tax display.
 	 *
-	 * @param string                         $suffix Existing suffix HTML.
+	 * @param string $suffix Existing suffix HTML.
 	 * @param YITH_Role_Based_Prices_Product $yith_product Instance used by YITH.
 	 *
 	 * @return string
@@ -417,7 +441,7 @@ class Wdevs_Tax_Switch_Compatibility {
 
 		if ( str_contains( $suffix, 'wts-price-wrapper' ) || str_contains( $suffix, 'wts-price-container' ) ) {
 			return $suffix;
-			}
+		}
 
 		if ( $this->should_hide_on_current_page() ) {
 			return $suffix;
@@ -425,17 +449,8 @@ class Wdevs_Tax_Switch_Compatibility {
 
 		$shop_prices_include_tax = $this->shop_displays_price_including_tax_by_default();
 
-		// Get VAT text options
-		$incl_vat_text = $this->get_option_text( 'wdevs_tax_switch_incl_vat', __( 'Incl. VAT', 'tax-switch-for-woocommerce' ) );
-		$excl_vat_text = $this->get_option_text( 'wdevs_tax_switch_excl_vat', __( 'Excl. VAT', 'tax-switch-for-woocommerce' ) );
-
-		if ( $shop_prices_include_tax ) {
-			$vat_text           = $incl_vat_text;
-			$alternate_vat_text = $excl_vat_text;
-		} else {
-			$vat_text           = $excl_vat_text;
-			$alternate_vat_text = $incl_vat_text;
-		}
+		$vat_text           = $this->get_vat_text( $shop_prices_include_tax );
+		$alternate_vat_text = $this->get_alternate_vat_text( $shop_prices_include_tax );
 
 		$html = $this->wrap_price_displays( '', $shop_prices_include_tax, $vat_text, $alternate_vat_text );
 

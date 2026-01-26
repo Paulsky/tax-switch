@@ -3,7 +3,7 @@ Contributors: wijnbergdevelopments
 Tags: woocommerce, tax, vat
 Requires at least: 5.0
 Tested up to: 6.9
-Stable tag: 1.6.6
+Stable tag: 1.6.7
 Requires PHP: 7.2
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
@@ -205,6 +205,7 @@ The following plugins have been tested and confirmed compatible:
 * LiteSpeed Cache
 * Elementor Pro
 * YITH WooCommerce Role Based Prices
+* WooCommerce Dynamic Pricing and Discount Rules
 
 If you encounter any compatibility issues with other plugins or themes, please let us know. Your feedback helps us improve the plugin and extend compatibility to more third-party solutions.
 
@@ -241,6 +242,9 @@ The plugin is designed to keep prices consistent in the cart and checkout proces
 
 
 == Changelog ==
+= 1.6.7 =
+* Added compatibility for WooCommerce Dynamic Pricing and Discount Rules
+
 = 1.6.6 =
 * Improved switch accessibility and mobile UX
 * Tested WooCommerce 10.4.3

@@ -159,16 +159,8 @@ class Wdevs_Tax_Switch_Public {
 		$shop_prices_include_tax = $this->shop_displays_price_including_tax_by_default();
 
 		// Get VAT text options
-		$incl_vat_text = $this->get_option_text( 'wdevs_tax_switch_incl_vat', __( 'Incl. VAT', 'tax-switch-for-woocommerce' ) );
-		$excl_vat_text = $this->get_option_text( 'wdevs_tax_switch_excl_vat', __( 'Excl. VAT', 'tax-switch-for-woocommerce' ) );
-
-		if ( $shop_prices_include_tax ) {
-			$vat_text           = $incl_vat_text;
-			$alternate_vat_text = $excl_vat_text;
-		} else {
-			$vat_text           = $excl_vat_text;
-			$alternate_vat_text = $incl_vat_text;
-		}
+		$vat_text           = $this->get_vat_text($shop_prices_include_tax);
+		$alternate_vat_text = $this->get_alternate_vat_text($shop_prices_include_tax);
 
 		//Re-enable this filter and function
 		//Is this still needed?
