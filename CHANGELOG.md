@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to the Tax Switch for WooCommerce plugin will be documented in this file.
 
+## [1.6.8] - 2026-02-06
+### Added
+- Compatibility for Elementor Popup
+- Compatibility for Price Based on Country for WooCommerce
+### Updated
+- Improved AJAX request handling (special thanks to [Peter-Jan Timmermans](https://www.indegymzaal.nl/))
+
 ## [1.6.7] - 2026-01-28
 ### Added
 - Compatibility for WooCommerce Dynamic Pricing and Discount Rules

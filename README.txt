@@ -3,7 +3,7 @@ Contributors: wijnbergdevelopments
 Tags: woocommerce, tax, vat
 Requires at least: 5.0
 Tested up to: 6.9
-Stable tag: 1.6.7
+Stable tag: 1.6.8
 Requires PHP: 7.2
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
@@ -242,6 +242,11 @@ The plugin is designed to keep prices consistent in the cart and checkout proces
 
 
 == Changelog ==
+= 1.6.8 =
+* Added compatibility for Elementor Popup
+* Added compatibility for Price Based on Country for WooCommerce
+* Improved AJAX request handling (special thanks to [Peter-Jan Timmermans](https://www.indegymzaal.nl/))
+
 = 1.6.7 =
 * Added compatibility for WooCommerce Dynamic Pricing and Discount Rules
 

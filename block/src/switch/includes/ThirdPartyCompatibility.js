@@ -4,6 +4,7 @@ import TaxSwitchHelper from '../../shared/TaxSwitchHelper';
 class ThirdPartyCompatibility {
 	static initialize( originalTaxDisplay ) {
 		this.registerWooCommerceEvents( originalTaxDisplay );
+		this.registerDynamicContentEvents();
 	}
 
 	static registerWooCommerceEvents( originalTaxDisplay ) {
@@ -20,7 +21,11 @@ class ThirdPartyCompatibility {
 		} );
 
 		jQuery( document ).ajaxSuccess( function ( event, xhr, settings ) {
-			if ( settings && settings.data ) {
+			if (
+				settings &&
+				settings.data &&
+				typeof settings.data === 'string'
+			) {
 				const methods = [
 					'get_variable_product_bulk_table', //Flycart Discount Rules for WooCommerce compatibility
 				];
@@ -48,11 +53,26 @@ class ThirdPartyCompatibility {
 			'wc_fragments_loaded', //WooCommerce cart fragments (for prices in menus or mini carts)
 			'pjax:success', //PJAX compatibility (WoodMart and other themes using jquery-pjax)
 			'fibosearch/show-suggestions', //FiboSearch - AJAX Search for WooCommerce compatibility
+			'wc_price_based_country_after_ajax_geolocation', // WooCommerce Price Based on Country compatibility
 		];
 
 		thirdPartyEvents.forEach( function ( eventName ) {
 			jQuery( document ).on( eventName, function ( event, response ) {
 				TaxSwitchHelper.setPriceClasses( originalTaxDisplay );
+			} );
+		} );
+	}
+
+	static registerDynamicContentEvents() {
+		const dynamicContentEvents = [
+			'elementor/popup/show', //Elementor popup compatibility
+		];
+
+		dynamicContentEvents.forEach( function ( eventName ) {
+			document.addEventListener( eventName, function ( event ) {
+				document.dispatchEvent(
+					new CustomEvent( 'wdevs-tax-switch-appeared' )
+				);
 			} );
 		} );
 	}

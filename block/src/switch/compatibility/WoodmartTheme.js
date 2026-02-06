@@ -15,37 +15,41 @@ class WoodmartTheme {
 		// This problem did NOT occur in other browsers on iOS.
 		//
 		//a (heavy) workaround was:
-		//function isInteractive(el) {
-		//     return (
-		//         el.matches('a, button, input, select, textarea, label, [role="button"], [tabindex], .wdevs-tax-switch-slider, .wd-role-btn') ||
-		//         el.onclick !== null
-		//     );
+		//const interactiveSelector =
+		//   'a, button, input, select, textarea, label, [role="button"], [tabindex], .wdevs-tax-switch-slider, .wd-role-btn, [onclick]';
+		//
+		// function isInteractive(el) {
+		//   return el.matches(interactiveSelector) || el.onclick !== null;
 		// }
 		//
 		// function onFirstTouch(e) {
-		//     const el = e.target;
-		//     const interactiveEl = isInteractive(el) ? el : el.closest('a, button, input, select, textarea, label, [role="button"], [tabindex], .wdevs-tax-switch-slider, .wd-role-btn, [onclick]');
-		//
-		//     if (!interactiveEl) {
-		//         document.removeEventListener('touchstart', onFirstTouch);
-		//         return;
-		//     }
+		//   const target = e.target;
+		//   const interactiveEl = isInteractive(target) ? target : target.closest(interactiveSelector);
 		//
 		//
-		//     if (interactiveEl.matches('input, textarea, select')) {
-		//         document.removeEventListener('touchstart', onFirstTouch);
-		//         return;
-		//     }
+		//   document.removeEventListener('touchstart', onFirstTouch);
 		//
+		//   if (!interactiveEl) return;
+		//
+		//   if (interactiveEl.matches('input, textarea, select')) {
+		//     interactiveEl.focus({ preventScroll: true });
+		//     return;
+		//   }
+		//
+		//
+		//   if (
+		//     interactiveEl.classList.contains('wdevs-tax-switch-slider') ||
+		//     interactiveEl.classList.contains('wd-role-btn')
+		//   ) {
 		//     e.preventDefault();
 		//     e.stopPropagation();
+		//   }
 		//
-		//     requestAnimationFrame(() => {
-		//         interactiveEl.click();
-		//     });
+		//   interactiveEl.click();
 		// }
 		//
 		// document.addEventListener('touchstart', onFirstTouch, { passive: false, once: true });
+		//
 
 		// Listen to WoodMart's header clone event
 		window.addEventListener( 'wdHeaderBuilderCloneCreated', function () {
