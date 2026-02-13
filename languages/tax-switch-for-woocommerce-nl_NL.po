@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tax Switch for WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-29 10:33+0100\n"
-"PO-Revision-Date: 2025-11-29 10:33+0100\n"
+"POT-Creation-Date: 2026-02-12 15:18+0100\n"
+"PO-Revision-Date: 2026-02-12 15:18+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.7\n"
+"X-Generator: Poedit 3.8\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: wdevs-tax-switch.php\n"
@@ -52,17 +52,17 @@ msgid "Close modal"
 msgstr "Popup sluiten"
 
 #: admin/partials/section-wdevs-tax-switch-shortcode.php:57
-#: block/src/switch/edit.js:67
+#: block/src/switch/edit.js:68
 msgid "Switch type"
 msgstr "Type schakelaar"
 
 #: admin/partials/section-wdevs-tax-switch-shortcode.php:61
-#: block/src/switch/edit.js:74
+#: block/src/switch/edit.js:75
 msgid "Toggle switch"
 msgstr "Schakelaar"
 
 #: admin/partials/section-wdevs-tax-switch-shortcode.php:62
-#: block/src/switch/edit.js:81
+#: block/src/switch/edit.js:82
 msgid "Buttons"
 msgstr "Knoppen"
 
@@ -79,90 +79,99 @@ msgstr "Standaard stijl"
 msgid "Inline style"
 msgstr "Inline stijl"
 
-#: admin/partials/section-wdevs-tax-switch-shortcode.php:81
-#: block/src/switch/edit.js:104
+#: admin/partials/section-wdevs-tax-switch-shortcode.php:75
+#: includes/class-wdevs-tax-switch-block-switch.php:56
+msgid "Flat pill"
+msgstr "Platte pilvormige stijl"
+
+#: admin/partials/section-wdevs-tax-switch-shortcode.php:82
+#: block/src/switch/edit.js:105
 msgid "Switch color"
 msgstr "Schakelaarkleur"
 
-#: admin/partials/section-wdevs-tax-switch-shortcode.php:86
-#: admin/partials/section-wdevs-tax-switch-shortcode.php:97
-#: admin/partials/section-wdevs-tax-switch-shortcode.php:108
-#: admin/partials/section-wdevs-tax-switch-shortcode.php:119
-#: admin/partials/section-wdevs-tax-switch-shortcode.php:130
+#: admin/partials/section-wdevs-tax-switch-shortcode.php:87
+#: admin/partials/section-wdevs-tax-switch-shortcode.php:98
+#: admin/partials/section-wdevs-tax-switch-shortcode.php:109
+#: admin/partials/section-wdevs-tax-switch-shortcode.php:120
+#: admin/partials/section-wdevs-tax-switch-shortcode.php:131
 msgid "Default"
 msgstr "Standaard"
 
-#: admin/partials/section-wdevs-tax-switch-shortcode.php:92
-#: block/src/switch/edit.js:115
+#: admin/partials/section-wdevs-tax-switch-shortcode.php:93
+#: block/src/switch/edit.js:116
 msgid "Switch color checked"
 msgstr "Schakelaarkleur ingeschakeld"
 
-#: admin/partials/section-wdevs-tax-switch-shortcode.php:103
-#: block/src/switch/edit.js:126
+#: admin/partials/section-wdevs-tax-switch-shortcode.php:104
+#: block/src/switch/edit.js:127
 msgid "Background color"
 msgstr "Achtergrondkleur"
 
-#: admin/partials/section-wdevs-tax-switch-shortcode.php:114
-#: block/src/switch/edit.js:137
+#: admin/partials/section-wdevs-tax-switch-shortcode.php:115
+#: block/src/switch/edit.js:138
 msgid "Background color checked"
 msgstr "Achtergrondkleur ingeschakeld"
 
-#: admin/partials/section-wdevs-tax-switch-shortcode.php:125
-#: block/src/switch/edit.js:148
+#: admin/partials/section-wdevs-tax-switch-shortcode.php:126
+#: block/src/switch/edit.js:149
 msgid "Text color"
 msgstr "Tekstkleur"
 
-#: admin/partials/section-wdevs-tax-switch-shortcode.php:136
-#: block/src/label/edit.js:61 block/src/switch/edit.js:163
+#: admin/partials/section-wdevs-tax-switch-shortcode.php:137
+#: block/src/label/edit.js:61 block/src/switch/edit.js:164
 msgid "Including VAT label"
 msgstr "Label inclusief btw"
 
-#: admin/partials/section-wdevs-tax-switch-shortcode.php:140
+#: admin/partials/section-wdevs-tax-switch-shortcode.php:141
+#: block/src/switch/components/SwitchComponent.js:180
 #: includes/class-wdevs-tax-switch-block-label.php:64
 #: includes/class-wdevs-tax-switch-block-label.php:82
-#: includes/class-wdevs-tax-switch-compatibility.php:340
 #: includes/class-wdevs-tax-switch-woocommerce.php:253
-#: public/class-wdevs-tax-switch-public.php:150
+#: includes/trait-wdevs-tax-switch-helper.php:458
 msgid "Incl. VAT"
 msgstr "Incl. btw"
 
-#: admin/partials/section-wdevs-tax-switch-shortcode.php:146
-#: block/src/label/edit.js:71 block/src/switch/edit.js:173
+#: admin/partials/section-wdevs-tax-switch-shortcode.php:147
+#: block/src/label/edit.js:71 block/src/switch/edit.js:174
 msgid "Excluding VAT label"
 msgstr "Label exclusief btw"
 
-#: admin/partials/section-wdevs-tax-switch-shortcode.php:150
+#: admin/partials/section-wdevs-tax-switch-shortcode.php:151
+#: block/src/switch/components/SwitchComponent.js:191
 #: includes/class-wdevs-tax-switch-block-label.php:65
 #: includes/class-wdevs-tax-switch-block-label.php:83
-#: includes/class-wdevs-tax-switch-compatibility.php:341
 #: includes/class-wdevs-tax-switch-woocommerce.php:260
-#: public/class-wdevs-tax-switch-public.php:151
+#: includes/trait-wdevs-tax-switch-helper.php:461
 msgid "Excl. VAT"
 msgstr "Excl. btw"
 
-#: admin/partials/section-wdevs-tax-switch-shortcode.php:156
+#: admin/partials/section-wdevs-tax-switch-shortcode.php:157
 msgid "CSS classes"
 msgstr "CSS klassen"
 
-#: admin/partials/section-wdevs-tax-switch-shortcode.php:161
-msgid "Options: is-style-default, is-style-inline or/and custom classes"
-msgstr "Opties: is-style-default, is-style-inline of/en eigen klassen"
+#: admin/partials/section-wdevs-tax-switch-shortcode.php:162
+msgid ""
+"Options: is-style-default, is-style-inline, is-style-flat-pill or/and custom "
+"classes"
+msgstr ""
+"Opties: is-style-default, is-style-inline, is-style-flat-pill of/en eigen "
+"klassen"
 
-#: admin/partials/section-wdevs-tax-switch-shortcode.php:172
+#: admin/partials/section-wdevs-tax-switch-shortcode.php:173
 msgid "Preview"
 msgstr "Voorvertoning"
 
-#: admin/partials/section-wdevs-tax-switch-shortcode.php:176
+#: admin/partials/section-wdevs-tax-switch-shortcode.php:177
 msgid "This is a preview. The actual style depends on your theme."
 msgstr ""
 "Dit is een voorvertoning. De daadwerkelijke stijl wordt door uw thema "
 "bepaald."
 
-#: admin/partials/section-wdevs-tax-switch-shortcode.php:182
+#: admin/partials/section-wdevs-tax-switch-shortcode.php:183
 msgid "Generate shortcode"
 msgstr "Shortcode genereren"
 
-#: admin/partials/section-wdevs-tax-switch-shortcode.php:201
+#: admin/partials/section-wdevs-tax-switch-shortcode.php:202
 msgid "Copied"
 msgstr "Gekopieerd"
 
@@ -182,17 +191,25 @@ msgstr "Label exclusief btw kleur"
 msgid "Label including VAT color"
 msgstr "Label inclusief btw kleur"
 
-#: block/src/switch/edit.js:60
+#: block/src/switch/components/SwitchComponent.js:109
+msgid "Switch between prices including and excluding VAT"
+msgstr "Schakel tussen prijzen inclusief en exclusief btw"
+
+#: block/src/switch/edit.js:61
 msgid "Display options"
 msgstr "Weergave opties"
 
-#: block/src/switch/edit.js:94
+#: block/src/switch/edit.js:95
 msgid "Switch colors"
 msgstr "Schakelaarkleuren"
 
-#: block/src/switch/edit.js:156
+#: block/src/switch/edit.js:157
 msgid "Switch labels"
 msgstr "Schakelaar labels"
+
+#: block/src/switch/edit.js:184
+msgid "Switch aria label"
+msgstr "Schakelaar aria label"
 
 #: includes/class-wdevs-tax-switch-activator.php:36
 msgid ""
@@ -357,6 +374,13 @@ msgstr "Wijnberg Developments"
 #. Author URI of the plugin/theme
 msgid "https://wijnberg.dev/"
 msgstr "https://wijnberg.dev/"
+
+#~ msgid "Toggle label text"
+#~ msgstr "Toggle-labeltekst"
+
+#~ msgid "Text used for the toggle switch aria-label."
+#~ msgstr ""
+#~ "Tekst die wordt gebruikt voor het aria-label van de wisselschakelaar."
 
 #~ msgid ""
 #~ "<strong>On all pages:</strong> On all pages where a Tax Switch block/"

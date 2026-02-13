@@ -72,7 +72,7 @@ abstract class Wdevs_Tax_Switch_Block {
 	 */
 	protected function render_shortcode_html( array $attributes, string $container_class_name, string $content, string $element = 'div' ): string {
 		$wpml_active             = defined( 'ICL_SITEPRESS_VERSION' );
-		$translatable_attributes = [ 'switch-label-incl', 'switch-label-excl' ];
+		$translatable_attributes = [ 'switch-label-incl', 'switch-label-excl', 'switch-aria-label' ];
 		foreach ( $translatable_attributes as $label_key ) {
 			if ( ! empty( $attributes[ $label_key ] ) ) {
 				$attributes[ $label_key ] = __( $attributes[ $label_key ], 'tax-switch-for-woocommerce' );

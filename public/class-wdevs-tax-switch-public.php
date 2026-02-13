@@ -95,7 +95,15 @@ class Wdevs_Tax_Switch_Public {
 			return $return;
 		}
 
-		if ( $this->should_skip_next_price_wrap() ) {
+		$context = [
+			'return'             => $return,
+			'price'              => $price,
+			'args'               => $args,
+			'unformatted_price'  => $unformatted_price,
+			'original_price'     => $original_price,
+		];
+
+		if ( $this->should_skip_next_price_wrap( $context ) ) {
 			return $return;
 		}
 
@@ -259,13 +267,177 @@ class Wdevs_Tax_Switch_Public {
 	 * @return bool
 	 * @since 1.6.5
 	 */
-	public function should_skip_next_price_wrap() {
-		if ( $this->skip_next_wc_price_wrap ) {
+	public function should_skip_next_price_wrap( array $context = [] ) {
+		$skip = $this->skip_next_wc_price_wrap;
+
+		/**
+		 * Allow third-party code to skip the next wc_price() call.
+		 *
+		 * @since 1.6.9
+		 *
+		 * @param bool                   $skip    Whether to bypass this filter.
+		 * @param array                  $context Context passed from wrap_wc_price().
+		 * @param Wdevs_Tax_Switch_Public $public  Current public class instance.
+		 */
+		$skip = (bool) apply_filters( 'wdevs_tax_switch_skip_next_price_wrap', $skip, $context, $this );
+
+		if ( $skip ) {
 			$this->skip_next_wc_price_wrap = false;
 			return true;
 		}
 
 		return false;
 	}
+
+	/**
+	 * TODO consider this to be implemented OR deleted
+	 * This is for <option> elements with prices included.
+	 * $this->loader->add_filter( 'woocommerce_dropdown_variation_attribute_options_html', $plugin_public, 'set_price_texts_for_variation_options', 10, 2 );
+	 *
+	 * @param string $html Current dropdown HTML.
+	 * @param array  $args Arguments passed to the dropdown builder.
+	 * @return string Modified or original HTML.
+	 * @since 1.6.9
+	 */
+//	public function set_price_texts_for_variation_options( $html, $args ) {
+//		if ( empty( $html ) ) {
+//			return $html;
+//		}
+//
+//		$price_html = wc_price( 10.01 );
+//		$price_text = wp_strip_all_tags( $price_html );
+//
+//		$decimal_separator  = preg_quote( wc_get_price_decimal_separator(), '/' );
+//		$thousand_separator = preg_quote( wc_get_price_thousand_separator(), '/' );
+//
+//		if ( '' === $thousand_separator ) {
+//			$number_pattern = '\d+(?:' . $decimal_separator . '\d+)?';
+//		} else {
+//			$number_pattern = '\d{1,3}(?:' . $thousand_separator . '\d{3})*(?:' . $decimal_separator . '\d+)?';
+//		}
+//
+//		$normalized_price_html = trim( preg_replace( '/\s+/u', ' ', html_entity_decode( $price_html, ENT_QUOTES, 'UTF-8' ) ) );
+//		$number_matches_html  = [];
+//		preg_match( '/\d+(?:[.,\s]\d+)*/u', $normalized_price_html, $number_matches_html, PREG_OFFSET_CAPTURE );
+//		if ( empty( $number_matches_html ) ) {
+//			$pattern_html = '/' . preg_quote( $normalized_price_html, '/' ) . '/u';
+//		} else {
+//			$start_html = $number_matches_html[0][1];
+//			$end_html   = $start_html + strlen( $number_matches_html[0][0] );
+//			$pattern_html = '/' . preg_quote( substr( $normalized_price_html, 0, $start_html ), '/' ) . '(' . $number_pattern . ')' . preg_quote( substr( $normalized_price_html, $end_html ), '/' ) . '/u';
+//		}
+//
+//		$normalized_price_text = trim( preg_replace( '/\s+/u', ' ', html_entity_decode( $price_text, ENT_QUOTES, 'UTF-8' ) ) );
+//		$number_matches_text = [];
+//		preg_match( '/\d+(?:[.,\s]\d+)*/u', $normalized_price_text, $number_matches_text, PREG_OFFSET_CAPTURE );
+//		if ( empty( $number_matches_text ) ) {
+//			$pattern_text = '/' . preg_quote( $normalized_price_text, '/' ) . '/u';
+//		} else {
+//			$start_text = $number_matches_text[0][1];
+//			$end_text   = $start_text + strlen( $number_matches_text[0][0] );
+//			$pattern_text = '/' . preg_quote( substr( $normalized_price_text, 0, $start_text ), '/' ) . '(' . $number_pattern . ')' . preg_quote( substr( $normalized_price_text, $end_text ), '/' ) . '/u';
+//		}
+//
+//		$option_pattern = '/<option\b([^>]*)>(.*?)<\/option>/is';
+//		if ( ! preg_match_all( $option_pattern, $html, $matches, PREG_SET_ORDER | PREG_OFFSET_CAPTURE ) ) {
+//			return $html;
+//		}
+//
+//		$result    = '';
+//		$last_pos  = 0;
+//		foreach ( $matches as $match ) {
+//			$full_match = $match[0][0];
+//			$start      = $match[0][1];
+//			$result    .= substr( $html, $last_pos, $start - $last_pos );
+//
+//			$attributes = $match[1][0];
+//			$label_html = $match[2][0];
+//
+//			$normalized_option_html = trim( preg_replace( '/\s+/u', ' ', $label_html ) );
+//			$plain_label            = html_entity_decode( strip_tags( $label_html ), ENT_QUOTES, 'UTF-8' );
+//			$normalized_option_text = trim( preg_replace( '/\s+/u', ' ', $plain_label ) );
+//
+//			$price_matches = [];
+//			if ( preg_match_all( $pattern_html, $normalized_option_html, $found_html, PREG_OFFSET_CAPTURE ) ) {
+//				foreach ( $found_html[0] as $found ) {
+//					$price_matches[] = [
+//						'text'  => $found[0],
+//						'start' => $found[1],
+//						'end'   => $found[1] + strlen( $found[0] ),
+//					];
+//				}
+//			}
+//
+//			if ( count( $price_matches ) < 2 && preg_match_all( $pattern_text, $normalized_option_text, $found_text, PREG_OFFSET_CAPTURE ) ) {
+//				foreach ( $found_text[0] as $found ) {
+//					$price_matches[] = [
+//						'text'  => $found[0],
+//						'start' => $found[1],
+//						'end'   => $found[1] + strlen( $found[0] ),
+//					];
+//				}
+//			}
+//
+//			if ( count( $price_matches ) < 2 ) {
+//				$result .= $full_match;
+//				$last_pos = $start + strlen( $full_match );
+//				continue;
+//			}
+//
+//			$unique = [];
+//			foreach ( $price_matches as $price_match ) {
+//				$key = $price_match['start'] . ':' . $price_match['end'];
+//				if ( ! isset( $unique[ $key ] ) ) {
+//					$unique[ $key ] = $price_match;
+//				}
+//			}
+//
+//			$price_matches = array_values( $unique );
+//			$starts        = array_column( $price_matches, 'start' );
+//			array_multisort( $starts, SORT_NUMERIC, $price_matches );
+//
+//			if ( count( $price_matches ) < 2 ) {
+//				$result .= $full_match;
+//				$last_pos = $start + strlen( $full_match );
+//				continue;
+//			}
+//
+//			$first  = $price_matches[0];
+//			$second = $price_matches[1];
+//
+//			$between_first_and_second = substr( $normalized_option_text, $first['end'], $second['start'] - $first['end'] );
+//
+//			$primary_label   = substr( $normalized_option_text, 0, $second['start'] ) . substr( $normalized_option_text, $second['end'] );
+//			$alternate_label = substr( $normalized_option_text, 0, $first['start'] ) . $second['text'] . $between_first_and_second . substr( $normalized_option_text, $second['end'] );
+//
+//			$primary_label   = trim( preg_replace( '/\s+/u', ' ', $primary_label ) );
+//			$alternate_label = trim( preg_replace( '/\s+/u', ' ', $alternate_label ) );
+//
+//			if ( '' === $primary_label || '' === $alternate_label ) {
+//				$result .= $full_match;
+//				$last_pos = $start + strlen( $full_match );
+//				continue;
+//			}
+//
+//			$data_attributes = sprintf(
+//				' data-vat-price-text="%s" data-vat-price-alternate-text="%s"',
+//				esc_attr( $primary_label ),
+//				esc_attr( $alternate_label )
+//			);
+//
+//			$result .= sprintf(
+//				'<option%s%s>%s</option>',
+//				$attributes ? ' ' . trim( $attributes ) : '',
+//				$data_attributes,
+//				esc_html( $primary_label )
+//			);
+//
+//			$last_pos = $start + strlen( $full_match );
+//		}
+//
+//		$result .= substr( $html, $last_pos );
+//
+//		return $result;
+//	}
 
 }

@@ -46,6 +46,7 @@ export default function Edit( { attributes, setAttributes } ) {
 		switchTextColor,
 		switchLabelIncl,
 		switchLabelExcl,
+		switchAriaLabel,
 	} = attributes;
 
 	const { originalTaxDisplay } = window.wtsEditorObject || {
@@ -176,6 +177,16 @@ export default function Edit( { attributes, setAttributes } ) {
 						value={ switchLabelExcl }
 						onChange={ ( value ) =>
 							setAttributes( { switchLabelExcl: value } )
+						}
+					/>
+					<TextControl
+						label={ __(
+							'Switch aria label',
+							'tax-switch-for-woocommerce'
+						) }
+						value={ switchAriaLabel }
+						onChange={ ( value ) =>
+							setAttributes( { switchAriaLabel: value } )
 						}
 					/>
 				</PanelBody>

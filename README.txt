@@ -3,7 +3,7 @@ Contributors: wijnbergdevelopments
 Tags: woocommerce, tax, vat
 Requires at least: 5.0
 Tested up to: 6.9
-Stable tag: 1.6.8
+Stable tag: 1.6.9
 Requires PHP: 7.2
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
@@ -99,10 +99,12 @@ The shortcode accepts several attributes to customize its appearance and behavio
     - Default: Uses the text set in the plugin settings or "Incl. VAT" if not set.
 * `switch-label-excl`: Sets the text for the "excluding VAT" label.
     - Default: Uses the text set in the plugin settings or "Excl. VAT" if not set.
+* `switch-aria-label`: Sets the aria label of the switch.
+    - Default: Uses the text set in the plugin settings or "Switch between prices including and excluding VAT" if not set.
 
 Example with custom attributes:
 
-`[wdevs_tax_switch class-name="is-style-inline" switch-type="switch" switch-color="#ffffff" switch-color-checked="#000000" switch-background-color="#000000" switch-background-color-checked="#4CAF50" switch-text-color="#FF0000" switch-label-incl="Incl. tax" switch-label-excl="Excl. tax"]`
+`[wdevs_tax_switch class-name="is-style-inline" switch-type="switch" switch-color="#ffffff" switch-color-checked="#000000" switch-background-color="#000000" switch-background-color-checked="#4CAF50" switch-text-color="#FF0000" switch-label-incl="Incl. tax" switch-label-excl="Excl. tax" switch-aria-label="Switch between prices including and excluding VAT"]`
 
 
 **Label**
@@ -206,6 +208,7 @@ The following plugins have been tested and confirmed compatible:
 * Elementor Pro
 * YITH WooCommerce Role Based Prices
 * WooCommerce Dynamic Pricing and Discount Rules
+* Price Based on Country for WooCommerce
 
 If you encounter any compatibility issues with other plugins or themes, please let us know. Your feedback helps us improve the plugin and extend compatibility to more third-party solutions.
 
@@ -242,6 +245,10 @@ The plugin is designed to keep prices consistent in the cart and checkout proces
 
 
 == Changelog ==
+= 1.6.9 =
+* Added new option for setting the tax switch aria-label
+* Added new filter: `wdevs_tax_switch_skip_next_price_wrap` to allow third-parties to skip the next price wrapping
+
 = 1.6.8 =
 * Added compatibility for Elementor Popup
 * Added compatibility for Price Based on Country for WooCommerce

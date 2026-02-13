@@ -99,6 +99,7 @@ class Wdevs_Tax_Switch_Block_Switch extends Wdevs_Tax_Switch_Block {
 			'switch-text-color'               => '',
 			'switch-label-incl'               => '',
 			'switch-label-excl'               => '',
+			'switch-aria-label'               => '',
 		], $attributes );
 
 		$container_class_name = 'wp-block-wdevs-tax-switch'; //important for rendering JS

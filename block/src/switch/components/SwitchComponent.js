@@ -1,5 +1,6 @@
 import { Component } from '@wordpress/element';
 import { subscribe } from '@wordpress/data';
+import { __ } from '@wordpress/i18n';
 import TaxSwitchHelper from '../../shared/TaxSwitchHelper';
 import {
 	getIsSwitched,
@@ -92,6 +93,24 @@ class SwitchComponent extends Component {
 		);
 	}
 
+	getToggleSwitchAriaLabel() {
+		const { switchAriaLabel, switchLabelIncl, switchLabelExcl } =
+			this.props;
+
+		if ( switchAriaLabel ) {
+			return switchAriaLabel;
+		}
+
+		if ( switchLabelIncl && switchLabelExcl ) {
+			return switchLabelIncl + ' / ' + switchLabelExcl;
+		}
+
+		return __(
+			'Switch between prices including and excluding VAT',
+			'tax-switch-for-woocommerce'
+		);
+	}
+
 	getCurrentLabel() {
 		const { switchLabelIncl, switchLabelExcl } = this.props;
 		if ( this.displayIncludingVat() ) {
@@ -157,7 +176,8 @@ class SwitchComponent extends Component {
 					disabled={ isDisabled }
 					onClick={ setInclusive }
 				>
-					{ switchLabelIncl || 'Incl. VAT' }
+					{ switchLabelIncl ||
+						__( 'Incl. VAT', 'tax-switch-for-woocommerce' ) }
 				</button>
 				<button
 					type="button"
@@ -167,7 +187,8 @@ class SwitchComponent extends Component {
 					disabled={ isDisabled }
 					onClick={ setExclusive }
 				>
-					{ switchLabelExcl || 'Excl. VAT' }
+					{ switchLabelExcl ||
+						__( 'Excl. VAT', 'tax-switch-for-woocommerce' ) }
 				</button>
 			</div>
 		);
@@ -207,6 +228,7 @@ class SwitchComponent extends Component {
 						checked={ isChecked }
 						disabled={ isDisabled }
 						className="wdevs-tax-switch-checkbox"
+						aria-label={ this.getToggleSwitchAriaLabel() }
 					/>
 					<span className="wdevs-tax-switch-slider"></span>
 				</label>
