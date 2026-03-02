@@ -79,6 +79,11 @@ module.exports = {
 			'block/src/switch',
 			'facetwp.js'
 		),
+		'switch/wp-grid-builder': path.resolve(
+			process.cwd(),
+			'block/src/switch',
+			'wp-grid-builder.js'
+		),
 		'label/index': path.resolve(
 			process.cwd(),
 			'block/src/label',

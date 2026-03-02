@@ -219,6 +219,13 @@ class Wdevs_Tax_Switch_Compatibility {
 				[ 'baseTaxRate' => $estimated_tax_rate ]
 			);
 		}
+
+		// WP Grid Builder
+		if ( $this->is_plugin_active( 'wp-grid-builder/wp-grid-builder.php' ) ) {
+			$wp_grid_builder_handle = 'wdevs-tax-switch-wp-grid-builder';
+			$wp_grid_builder_asset  = $this->enqueue_script( $wp_grid_builder_handle, 'switch', 'wp-grid-builder', [ 'wpgb' ] );
+		}
+
 	}
 
 	public function activate_wc_product_table_compatibility( $element ) {

@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to the Tax Switch for WooCommerce plugin will be documented in this file.
 
+## [1.6.10] - 2026-03-02
+### Added
+- Compatibility for WP Grid Builder
+
 ## [1.6.9] - 2026-02-12
 ### Added
 - New option for setting the tax switch aria-label

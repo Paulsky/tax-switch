@@ -224,6 +224,7 @@ This plugin is tested and compatible with the following:
 - YITH WooCommerce Role Based Prices
 - WooCommerce Dynamic Pricing and Discount Rules
 - Price Based on Country for WooCommerce
+- WP Grid Builder
 
 If you encounter any conflicts with other themes or plugins, please report them by opening an issue or through our website.
 

@@ -3,7 +3,7 @@ Contributors: wijnbergdevelopments
 Tags: woocommerce, tax, vat
 Requires at least: 5.0
 Tested up to: 6.9
-Stable tag: 1.6.9
+Stable tag: 1.6.10
 Requires PHP: 7.2
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
@@ -209,6 +209,7 @@ The following plugins have been tested and confirmed compatible:
 * YITH WooCommerce Role Based Prices
 * WooCommerce Dynamic Pricing and Discount Rules
 * Price Based on Country for WooCommerce
+* WP Grid Builder
 
 If you encounter any compatibility issues with other plugins or themes, please let us know. Your feedback helps us improve the plugin and extend compatibility to more third-party solutions.
 
@@ -245,6 +246,9 @@ The plugin is designed to keep prices consistent in the cart and checkout proces
 
 
 == Changelog ==
+= 1.6.10 =
+* Added compatibility for WP Grid Builder
+
 = 1.6.9 =
 * Added new option for setting the tax switch aria-label
 * Added new filter: `wdevs_tax_switch_skip_next_price_wrap` to allow third-parties to skip the next price wrapping
