@@ -13,6 +13,7 @@ class TieredPriceTable {
 	init() {
 		this.registerWooCommerceEvents();
 		this.initializePriceBackups();
+		this.registerThirdPartyEvents();
 	}
 
 	initializePriceBackups() {
@@ -31,37 +32,113 @@ class TieredPriceTable {
 
 	registerWooCommerceEvents() {
 		const vm = this;
-		// Handle tiered price updates
-		jQuery( '.tpt__tiered-pricing' ).on(
-			'tiered_price_update',
-			( event, data ) => {
+		// Listen on document so updates from dynamically inserted wrappers also reach us.
+		jQuery( document )
+			.off( 'tiered_price_update.wtsTieredPriceTable' )
+			.on( 'tiered_price_update.wtsTieredPriceTable', ( event, data ) => {
 				vm.updateAllPrices( data );
-			}
-		);
+			} );
 
 		const mainElement = jQuery( '.tpt__tiered-pricing' ).first();
 		//mainElement is always inserted if the plugin is active...
 		//but do NOT have children if there are no prices
 		if ( mainElement.children().length ) {
 			// Handle variation resets
-			jQuery( document ).on( 'reset_data', ( e ) => {
-				const $form = jQuery( e.target ).closest( '.variations_form' );
-				if ( $form.length ) {
-					const productId = $form.data( 'product_id' );
-					vm.resetPrices( productId );
-				}
-			} );
+			jQuery( document )
+				.off( 'reset_data.wtsTieredPriceTable' )
+				.on( 'reset_data.wtsTieredPriceTable', ( e ) => {
+					const $form = jQuery( e.target ).closest(
+						'.variations_form'
+					);
+					if ( $form.length ) {
+						const productId = $form.data( 'product_id' );
+						vm.resetPrices( productId );
+					}
+				} );
 
 			// Handle variation changes
-			jQuery( document ).on( 'show_variation', ( e, variation ) => {
-				const productId = variation.variation_id;
-				vm.resetPrices( productId );
-			} );
+			jQuery( document )
+				.off( 'show_variation.wtsTieredPriceTable' )
+				.on( 'show_variation.wtsTieredPriceTable', ( e, variation ) => {
+					const productId = variation.variation_id;
+					vm.resetPrices( productId );
+				} );
 		}
 	}
 
+	registerThirdPartyEvents() {
+		if ( typeof window.fiboFilters === 'undefined' ) {
+			return;
+		}
+
+		window.fiboFilters.hooks.addAction(
+			'fiboFilters.renderer.product_placeholders_overwritten',
+			'tiered-price-table',
+			() => {
+				if (
+					typeof document.__tieredPricing === 'undefined' ||
+					typeof document.__tieredPricing.initFunction !== 'function'
+				) {
+					return;
+				}
+
+				jQuery( '.tpt__tiered-pricing' ).each( ( _, wrapper ) => {
+					if ( this.isTieredPricingWrapperInitialized( wrapper ) ) {
+						return;
+					}
+
+					document.__tieredPricing.initFunction( wrapper );
+					this.triggerSelectedVariation( wrapper );
+				} );
+			}
+		);
+	}
+
+	isTieredPricingWrapperInitialized( wrapper ) {
+		const instances = document.__tieredPricing?.activeInstances;
+
+		if ( ! Array.isArray( instances ) ) {
+			return false;
+		}
+
+		return instances.some(
+			( instance ) => instance?.$wrapper?.get( 0 ) === wrapper
+		);
+	}
+
+	triggerSelectedVariation( wrapper ) {
+		const $product = jQuery( wrapper ).closest( '.product' );
+		const $form = $product.find( '.variations_form' );
+		const $variationWrap = $product.find( '.single_variation_wrap' );
+
+		if ( ! $form.length || ! $variationWrap.length ) {
+			return;
+		}
+
+		const variationId = parseInt( $form.find( '.variation_id' ).val() );
+
+		if ( Number.isNaN( variationId ) || ! variationId ) {
+			return;
+		}
+
+		const productVariations = $form.data( 'product_variations' );
+
+		if ( Array.isArray( productVariations ) ) {
+			const variation = productVariations.find(
+				( item ) => parseInt( item.variation_id ) === variationId
+			);
+
+			if ( variation ) {
+				$variationWrap.trigger( 'show_variation', [ variation ] );
+				return;
+			}
+		}
+
+		$form.trigger( 'check_variations' );
+	}
+
 	updateAllPrices( data ) {
-		if ( ! data.__instance ) {
+		if ( ! data || ! data.__instance ) {
 			return;
 		}
 

@@ -253,7 +253,11 @@ trait Wdevs_Tax_Switch_Helper {
 	 */
 	public function is_file_context() {
 		//Compatibility for PDF Invoices & Packing Slips for WooCommerce
-		if (did_filter( 'wcpdf_get_document' ) ) {
+		// wcpdf_get_document is also called sometimes via AJAX in frontend
+		// This would probably return false or null, but this would pass this if incorrectly
+		//if (did_filter( 'wcpdf_get_document' ) ) {
+		//In 1.6.11 switched to:
+		if ( did_filter( 'wpo_wcpdf_html_filters' ) || did_filter( 'wpo_wcpdf_pdf_filters' ) ) {
 			return true;
 		}
 
